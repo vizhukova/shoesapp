@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'starter.services', 'starter.directives'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -46,7 +46,8 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
     url: '/shop',
     views: {
       'tab-shop': {
-        templateUrl: 'templates/tab-shop.html'
+        templateUrl: 'templates/tab-shop.html',
+        controller: 'ShopCtrl'
       }
     }
   })

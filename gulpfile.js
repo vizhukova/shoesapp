@@ -15,10 +15,15 @@ var paths = {
 
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'watch']);
 
 gulp.task('build', function () {
-  return browserify({entries: ["./www/src/app.js", "./www/src/controllers.js", "./www/src/services.js"],debug: true})
+  return browserify({entries: [
+    "./www/src/app.js", 
+    "./www/src/controllers.js", 
+    "./www/src/services.js", 
+    "./www/src/directives.js"
+  ],debug: true})
     .transform("babelify", {presets: ["es2015"]})
     .bundle()
     .pipe(source('bundle.js'))
@@ -26,7 +31,7 @@ gulp.task('build', function () {
 });
 
 gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
+  gulp.src(['./scss/ionic.app.scss', './scss/style.scss'])
     .pipe(sass())
     .on('error', sass.logError)
     .pipe(gulp.dest('./www/css/'))
