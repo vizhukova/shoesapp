@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'starter.services', 'starter.directives'])
+angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'starter.services', 'starter.directives', 'starter.config'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,7 +25,8 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-  $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.tabs.position('bottom').style('standart');
+  $ionicConfigProvider.navBar.alignTitle('center');
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -60,7 +61,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
         }
       }
     })
-    
+
   .state('tab.search', {
       url: '/search',
       views: {

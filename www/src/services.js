@@ -10,9 +10,64 @@ angular.module('starter.services', [])
   //   categories = c;
   // });
 
-  
+
   this.get = function(){
 
     return categories;
   }
-});
+})
+
+.service('Widgets', function ($http, $q, URL) {
+
+  var categories = {};
+
+  // Get current category widgets content
+  this.fetch = (currentCategory) => {
+    return $q((resolve, reject)=> {
+      $http.get(URL+currentCategory).then((response)=>{}, (error)=>{
+        categories[currentCategory] = [
+          {
+            type: 'likedCat'
+          },
+          {
+            type: 'likedSlider'
+          },
+          {
+            type: 'likedSlider'
+          },
+          {
+            type: 'likedSlider'
+          },
+          {
+            type: 'likedSlider'
+          },
+          {
+            type: 'likedSlider'
+          },
+          {
+            type: 'tileSlider'
+          },
+          {
+            type: 'tileSlider'
+          },
+          {
+            type: 'tileSlider'
+          },
+          {
+            type: 'likedSlider'
+          },
+          {
+            type: 'likedSlider'
+          },
+          {
+            type: 'likedSlider'
+          },
+          {
+            type: 'categoryMenu'
+          }
+        ]
+        resolve(categories[currentCategory])
+      })
+    })
+  }
+})

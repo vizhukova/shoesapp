@@ -14,6 +14,15 @@ angular.module('starter.directives', [])
   }
 })
 
+.directive('categoryContent', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './src/shop/category-content.html',
+    controller: 'CategoryContentCtrl'
+  }
+})
+
 .directive('slider', function (Category) {
 
   return {
@@ -28,4 +37,31 @@ angular.module('starter.directives', [])
     restrict: 'E',
     templateUrl: './src/shop/liked-cat.html'
   }
-});
+})
+
+.directive('likedSlider', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './src/shop/liked-slider.html'
+  }
+})
+
+.directive('tileSlider', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './src/shop/tile-slider.html'
+  }
+})
+
+.directive('categoryMenu', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './src/shop/category-menu.html'
+  }
+})
+
+
+

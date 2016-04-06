@@ -1,7 +1,6 @@
-// 
+
 .main-slider {
   height: 19em;
-  border: 2px solid grey;
   background: rgba(0, 0, 0, .7);
   text-align: center;
 
@@ -9,9 +8,28 @@
     line-height: 19em;
     .slider-slide {
       line-height: inherit;
+      width: 100%;
+      height: inherit;
+      background: #fff;
+
+      .img {
+        width: 100%;
+        height: inherit;
+        background: url('../img/run.jpg') center center no-repeat;
+        background-size: contain;
+        &.walk {
+          background: url('../img/walk.jpg') center center no-repeat;
+          background-size: contain;
+        }
+        &.cas {
+          background: url('../img/cas.jpg') center center no-repeat;
+          background-size: contain;
+        }
+      }
     }
   }
 }
+
 .liked-cat {
   width: 100%;
   text-align: center;
@@ -36,21 +54,110 @@
     &.sale {
       div.img {
         background: url('../img/liked-3.png') center center no-repeat;
-        background-size: 100%;
+        background-size: 85%;
       }
     }
 
     div.img {
       background: url('../img/liked-1.png') center center no-repeat;
       background-size: 100%;
-      width: 4em;
-      height: 5.5em;
+      width: 5em;
+      height: 6.3em;
       display: inline-block;
     }
 
     p {
       text-align: center;
     }
+  }
+
+}
+
+.liked-slider {
+  height: 18em;
+  width: 100%;
+  background-color: #fff;
+  margin: .6em 0;
+
+  .slider-header {
+    height: 3em;
+    line-height: 3em;
+    margin: 0;
+    text-align: center;
+
+  }
+
+  .scrolling {
+    height: 15em;
+    text-align: left;
+    width: 250%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    div.thing {
+      height: 100%;
+      display: inline-block;
+      margin: 0 0 0 .6em;
+      overflow: hidden;
+
+      div.img {
+        background: url("../img/slider1.jpg") center center no-repeat;
+        background-size: 100% 100%;
+        width: 7em;
+        height: 11em;
+      }
+    }
+  }
+}
+
+.tile-slider {
+  width: 100%;
+  height: 30em;
+  background-color: #fff;
+  margin-bottom: .6em;
+
+  .slider-header {
+    height: 3em;
+    line-height: 3em;
+    margin: 0;
+    text-align: center;
+  }
+
+  div.wrapper {
+    height: 27em;
+
+    div.thing {
+      height: 30%;
+      display: inline-block;
+      margin: .3em;
+      overflow: hidden;
+      background: url("../img/slider1.jpg") center center no-repeat;
+      background-size: 100% 100%;
+      width: 7em;
+
+      &.link {
+        background: #fff;
+        text-align: center;
+        position: relative;
+        border: 1px solid dimgrey;
+
+        span {
+          border: 1px solid dimgrey;
+          background: #000;
+          position: absolute;
+          top:0;
+          left:0;
+          right:0;
+          bottom:0;
+          margin: auto;
+          width: 40px;
+          height: 40px;
+          border-radius: 41px;
+        }
+      }
+    }
+
+
   }
 
 }

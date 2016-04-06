@@ -19,9 +19,10 @@ gulp.task('default', ['sass', 'watch']);
 
 gulp.task('build', function () {
   return browserify({entries: [
-    "./www/src/app.js", 
-    "./www/src/controllers.js", 
-    "./www/src/services.js", 
+    "./www/src/app.js",
+    "./www/src/controllers.js",
+    "./www/src/services.js",
+    "./www/src/config.js",
     "./www/src/directives.js"
   ],debug: true})
     .transform("babelify", {presets: ["es2015"]})

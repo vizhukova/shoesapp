@@ -1,0 +1,15 @@
+<div class="category-content">
+  <div ng-repeat="widget in widgets">
+
+    <div ng-if="widget.type=='likedCat'"><liked-cat></liked-cat></div>
+
+
+    <div ng-if="widget.type=='likedSlider'"><liked-slider></liked-slider></div>
+
+    <div ng-if="widget.type=='tileSlider'"><tile-slider></tile-slider></div>
+
+    <div ng-if="widget.type=='categoryMenu'"><category-menu></category-menu></div>
+
+
+  </div>
+</div>
