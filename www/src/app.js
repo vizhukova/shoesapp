@@ -26,6 +26,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $ionicConfigProvider.tabs.position('bottom').style('standart');
+  $ionicConfigProvider.scrolling.jsScrolling(false);
   $ionicConfigProvider.navBar.alignTitle('center');
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -49,6 +50,15 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
       'tab-shop': {
         templateUrl: 'templates/tab-shop.html',
         controller: 'ShopCtrl'
+      }
+    }
+  })
+  .state('tab.showcase', {
+    url: '/showcase',
+    views: {
+      'tab-shop': {
+        templateUrl: 'templates/subtab-showcase.html',
+        controller: 'ShowcaseCtrl'
       }
     }
   })

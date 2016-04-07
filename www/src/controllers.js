@@ -1,3 +1,5 @@
+import ShowcaseCtrl from './showcase/controller'
+
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {
@@ -26,12 +28,13 @@ angular.module('starter.controllers', [])
   }
 })
 
+.controller('ShowcaseCtrl', ShowcaseCtrl)
+
 .controller('ShopCtrl', function($scope, Category) {
 
 
   $scope.cats = Category.get();
 })
-
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
@@ -39,10 +42,26 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CategoryContentCtrl', function($scope, Widgets) {
+.controller('CategoryContentCtrl', function($scope, $ionicPopover, $state,  Widgets) {
 
 
-  $scope.widgets;
-    // Call Widget service method to fetch data by current category
+  $ionicPopover.fromTemplateUrl('./src/shop/category-popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+  $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+  };
+
+
+  $scope.toShowcase = () => {
+    $scope.popover.hide();
+    $state.go("tab.showcase")
+  };
+
+    // Call Widget service method to
+    // fetch data by current category
   Widgets.fetch('/man').then(data => {$scope.widgets = data})
 });

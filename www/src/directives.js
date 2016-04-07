@@ -63,5 +63,30 @@ angular.module('starter.directives', [])
   }
 })
 
+.directive('categoryPopover', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './src/shop/category-popover.html'
+  }
+})
+
+.directive('showcase', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './src/showcase/template.html'
+  }
+})
+
+.directive('product', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './src/showcase/directives/product.html',
+    controller: ''
+  }
+})
+
 
 
