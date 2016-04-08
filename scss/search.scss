@@ -1,0 +1,53 @@
+.Search {
+  .search-panel {
+    height: 4em;
+    line-height: 4em;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom: 1px solid gainsboro;
+
+    .item {
+      width: 90%;
+      height: 3em;
+      display: inline-flex;
+    }
+  }
+
+  .category-holder {
+    height: 12em;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid gainsboro;
+    position: relative;
+
+    div.categories {
+      position: absolute;
+      bottom: 0;
+      height: 9em;
+      line-height: 9em;
+      left:0;
+      right:0;
+      margin: auto;
+
+      div.category {
+        display: inline-block;
+
+        div.img {
+          width: 65px;
+          height: 65px;
+          border-radius: 36px;
+          display: block;
+          margin: auto;
+          border: 1px solid gainsboro;
+
+        }
+
+        span {
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
+    }
+
+  }
+}

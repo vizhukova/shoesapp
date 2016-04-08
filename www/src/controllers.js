@@ -1,4 +1,7 @@
 import ShowcaseCtrl from './showcase/controller'
+import ProductCtrl from './product/controller'
+import BrandsCtrl from './brands/controller'
+import SearchCtrl from './search/controller'
 
 angular.module('starter.controllers', [])
 
@@ -29,7 +32,24 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ShowcaseCtrl', ShowcaseCtrl)
+  // Product in showcase
+  .controller('productCtrl', ($scope, $state, $ionicPopover)=> {
 
+    $scope.openProduct = () => {
+      $state.go("tab.product")
+    }
+  })
+    
+// Product subtab 
+.controller('ProductCtrl', ProductCtrl)
+  
+// Brands tab
+.controller('BrandsCtrl', BrandsCtrl)  
+  
+// Search tab
+.controller('SearchCtrl', SearchCtrl)
+
+  
 .controller('ShopCtrl', function($scope, Category) {
 
 

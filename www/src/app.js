@@ -62,21 +62,40 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
       }
     }
   })
+    .state('tab.product', {
+      url: '/product/:id',
+      views: {
+        'tab-shop': {
+          templateUrl: 'src/product/template.html',
+          controller: 'ProductCtrl'
+        }
+      }
+    })
 
   .state('tab.brands', {
       url: '/brands',
       views: {
         'tab-brands': {
-          templateUrl: 'templates/tab-brands.html'
+          templateUrl: 'src/brands/template.html',
+          controller: 'BrandsCtrl'
         }
       }
     })
+      .state('tab.brand', {
+        url: '/brand/:id',
+        views: {
+          'tab-brands': {
+            templateUrl: 'src/brands/subtabs/brand.html'
+          }
+        }
+      })
 
   .state('tab.search', {
       url: '/search',
       views: {
         'tab-search': {
-          templateUrl: 'templates/tab-search.html'
+          templateUrl: 'src/search/template.html',
+          controller: 'SearchCtrl'
         }
       }
     })

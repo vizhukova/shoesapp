@@ -5,8 +5,8 @@ export default function($scope, $ionicPopover) {
   $scope.products = [1, 2, 3,4 ,5 ,6, 7, 8,9, 0];
 
   var popups = [
-    {name: 'sortPopover', url: './src/shop/sort-popover.html'},
-    {name: 'filterPopover', url: './src/shop/filter-popover.html'}
+    {name: 'optionPopover', url: './src/shop/productOption-popover.html'},
+    {name: 'authPopover', url: './src/shop/auth-popover.html'}
   ];
 
   popups.map((popup)=>{

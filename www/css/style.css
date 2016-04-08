@@ -164,6 +164,43 @@
       height: 2em;
       line-height: 2em; }
 
+.product-container {
+  background: #fff;
+  border-bottom: 1px solid black; }
+  .product-container .slider {
+    height: 23em; }
+    .product-container .slider .slider-slides {
+      line-height: 19em; }
+      .product-container .slider .slider-slides .slider-slide {
+        line-height: inherit;
+        width: 100%;
+        height: inherit;
+        background: #fff; }
+        .product-container .slider .slider-slides .slider-slide .img {
+          width: 100%;
+          height: inherit;
+          background: url("../img/run.jpg") center center no-repeat;
+          background-size: contain; }
+          .product-container .slider .slider-slides .slider-slide .img.walk {
+            background: url("../img/walk.jpg") center center no-repeat;
+            background-size: contain; }
+          .product-container .slider .slider-slides .slider-slide .img.cas {
+            background: url("../img/cas.jpg") center center no-repeat;
+            background-size: contain; }
+  .product-container .about {
+    height: 4em;
+    text-align: center;
+    border-bottom: 1px solid black; }
+  .product-container div.manage {
+    height: 4em;
+    line-height: 4em;
+    text-align: center; }
+    .product-container div.manage button {
+      margin: auto; }
+
+.showcase .items-list {
+  width: 100%; }
+
 .filter-popover {
   top: 0;
   left: 0;
@@ -256,9 +293,6 @@
     .sort-popover div.nav-panel span.title {
       font-size: 20px; }
 
-.showcase .items-list {
-  width: 100%; }
-
 .case-item {
   width: 50%;
   margin: .3em 0 0 0;
@@ -274,24 +308,229 @@
   .case-item span {
     display: block; }
 
-.Showcase-tab .filter {
+.filter {
   height: 4em;
   width: 100%;
   border-bottom: 1px solid black; }
-  .Showcase-tab .filter div {
+  .filter div {
     height: 100%;
     float: left;
     line-height: 4em;
     text-align: center; }
-  .Showcase-tab .filter div.box:nth-child(1) {
+  .filter div.box:nth-child(1) {
     background: dodgerblue;
     width: 15%;
     border-right: 1px solid black; }
-  .Showcase-tab .filter div.box:nth-child(2) {
+  .filter div.box:nth-child(2) {
     width: 30%;
     border-right: 1px solid black; }
-  .Showcase-tab .filter div.box:nth-child(3) {
+  .filter div.box:nth-child(3) {
     width: 25%;
     border-right: 1px solid black; }
-  .Showcase-tab .filter div.box:nth-child(4) {
+  .filter div.box:nth-child(4) {
     width: 30%; }
+
+.product-tab {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: initial;
+  width: 100%;
+  opacity: 1;
+  background: #fff;
+  margin: 0 !important; }
+  .product-tab div.follow-btn {
+    position: absolute;
+    width: 50%;
+    left: 0;
+    right: 0;
+    bottom: -25px;
+    margin: auto;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid black;
+    z-index: 45;
+    background: #fff; }
+
+.productOption-popover {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  background: #e4e4e4;
+  margin: 0 !important; }
+  .productOption-popover div.popover-arrow {
+    display: none; }
+  .productOption-popover div.nav-panel {
+    height: 3.8em;
+    text-align: center;
+    line-height: 3.8em;
+    position: relative;
+    border-bottom: 1px solid grey;
+    background: #fff; }
+    .productOption-popover div.nav-panel button.close-btn {
+      width: 20px;
+      height: 20px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      position: absolute;
+      left: 4px; }
+      .productOption-popover div.nav-panel button.close-btn:before {
+        font-size: 24px; }
+    .productOption-popover div.nav-panel span.title {
+      font-size: 20px; }
+    .productOption-popover div.nav-panel span.reset {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      right: 8px;
+      font-size: 10px; }
+  .productOption-popover div.size {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 90px;
+    width: 90px;
+    border-radius: 45px;
+    background: #000;
+    opacity: 1;
+    margin: auto;
+    color: #ffffff;
+    line-height: 90px;
+    text-align: center;
+    font-size: 30px; }
+
+.auth-popover {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  background: #e4e4e4;
+  margin: 0 !important; }
+  .auth-popover div.popover-arrow {
+    display: none; }
+  .auth-popover div.nav-panel {
+    height: 3.8em;
+    text-align: center;
+    line-height: 3.8em;
+    position: relative;
+    border-bottom: 1px solid grey;
+    background: #fff; }
+    .auth-popover div.nav-panel button.close-btn {
+      width: 20px;
+      height: 20px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      position: absolute;
+      left: 4px; }
+      .auth-popover div.nav-panel button.close-btn:before {
+        font-size: 24px; }
+    .auth-popover div.nav-panel span.title {
+      font-size: 20px; }
+    .auth-popover div.nav-panel span.reset {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      right: 8px;
+      font-size: 10px; }
+
+.Brands {
+  background-color: rgba(214, 214, 214, 0.33); }
+  .Brands .brand-header {
+    height: 8em;
+    line-height: 8em;
+    width: 150%;
+    padding: 0 .6em;
+    border-bottom: 1px solid gainsboro; }
+    .Brands .brand-header .thing {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      border: 1px solid black;
+      display: inline-block;
+      margin: .2em;
+      background: url("../img/slider1.jpg") center center no-repeat;
+      background-size: 100% 100%;
+      vertical-align: middle; }
+  .Brands span.update {
+    display: inline-block;
+    height: 3.2em;
+    line-height: 3.2em;
+    font-size: 10px;
+    width: 100%;
+    background: rgba(222, 219, 219, 0.72);
+    text-align: center; }
+  .Brands .product-container {
+    margin: .6em 0; }
+
+.Brand-subtab .brand-slide {
+  height: 13em;
+  width: 100%;
+  background: url("../img/run.jpg") center center no-repeat;
+  background-size: contain;
+  border-bottom: 1px solid grey;
+  position: relative; }
+  .Brand-subtab .brand-slide div.follow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 90px;
+    height: 30px;
+    background: #fff;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 7px; }
+
+.Search .search-panel {
+  height: 4em;
+  line-height: 4em;
+  vertical-align: middle;
+  text-align: center;
+  border-bottom: 1px solid gainsboro; }
+  .Search .search-panel .item {
+    width: 90%;
+    height: 3em;
+    display: inline-flex; }
+
+.Search .category-holder {
+  height: 12em;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid gainsboro;
+  position: relative; }
+  .Search .category-holder div.categories {
+    position: absolute;
+    bottom: 0;
+    height: 9em;
+    line-height: 9em;
+    left: 0;
+    right: 0;
+    margin: auto; }
+    .Search .category-holder div.categories div.category {
+      display: inline-block; }
+      .Search .category-holder div.categories div.category div.img {
+        width: 65px;
+        height: 65px;
+        border-radius: 36px;
+        display: block;
+        margin: auto;
+        border: 1px solid gainsboro; }
+      .Search .category-holder div.categories div.category span {
+        display: inline-block;
+        vertical-align: top; }

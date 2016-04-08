@@ -1,0 +1,154 @@
+.product-tab {
+  top: 0;
+  left:0;
+  right:0;
+  bottom:0;
+  height: initial;
+  width: 100%;
+  opacity: 1;
+  background: #fff;
+  margin: 0!important;
+
+  div.follow-btn {
+    position: absolute;
+    width: 50%;
+    left: 0;
+    right: 0;
+    bottom: -25px;
+    margin: auto;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid black;
+    z-index: 45;
+    background: #fff;
+  }
+
+}
+
+
+  // Product option poppover: size and ...
+  .productOption-popover {
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    height:100%;
+    width: 100%;
+    opacity: 1;
+    background: rgb(228, 228, 228);
+    margin: 0!important;
+
+    div.popover-arrow {
+      display: none;
+    }
+
+    div.nav-panel {
+      height: 3.8em;
+      text-align: center;
+      line-height: 3.8em;
+      position: relative;
+      border-bottom: 1px solid grey;
+      background: #fff;
+
+      button.close-btn {
+        width: 20px;
+        height: 20px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        position: absolute;
+        left: 4px;
+
+        &:before {
+          font-size: 24px;
+        }
+      }
+
+      span.title {
+        font-size: 20px;
+      }
+
+      span.reset {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        right: 8px;
+        font-size: 10px;
+      }
+    }
+
+    div.size {
+      position: absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      height:90px;
+      width: 90px;
+      border-radius: 45px;
+      background: #000;
+      opacity: 1;
+      margin: auto;
+      color: #ffffff;
+      line-height: 90px;
+      text-align: center;
+      font-size: 30px;
+    }
+  }
+
+  // Product auth poppover
+  .auth-popover {
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    height:100%;
+    width: 100%;
+    opacity: 1;
+    background: rgb(228, 228, 228);
+    margin: 0!important;
+
+    div.popover-arrow {
+      display: none;
+    }
+
+    div.nav-panel {
+      height: 3.8em;
+      text-align: center;
+      line-height: 3.8em;
+      position: relative;
+      border-bottom: 1px solid grey;
+      background: #fff;
+
+      button.close-btn {
+        width: 20px;
+        height: 20px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        position: absolute;
+        left: 4px;
+
+        &:before {
+          font-size: 24px;
+        }
+      }
+
+      span.title {
+        font-size: 20px;
+      }
+
+      span.reset {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        right: 8px;
+        font-size: 10px;
+      }
+    }
+
+  }

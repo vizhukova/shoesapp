@@ -71,20 +71,32 @@ angular.module('starter.directives', [])
   }
 })
 
+
+// Showcase with products directive
 .directive('showcase', function () {
 
   return {
     restrict: 'E',
-    templateUrl: './src/showcase/template.html'
+    templateUrl: './src/showcase/template.html',
+    controller: 'ShowcaseCtrl'
   }
 })
+  //Product item in showcase
+  .directive('product', function () {
 
-.directive('product', function () {
+    return {
+      restrict: 'E',
+      templateUrl: './src/showcase/directives/templates/product.html',
+      controller: 'productCtrl'
+    }
+  })
+
+// Product container for product in product subtab
+.directive('productContainer', function () {
 
   return {
     restrict: 'E',
-    templateUrl: './src/showcase/directives/product.html',
-    controller: ''
+    templateUrl: './src/product/directives/product.container.html'
   }
 })
 

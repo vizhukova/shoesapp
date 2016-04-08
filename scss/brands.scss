@@ -1,0 +1,61 @@
+.Brands {
+  background-color: rgba(214, 214, 214, 0.33);
+
+  .brand-header {
+    height: 8em;
+    line-height: 8em;
+    width: 150%;
+    padding: 0 .6em;
+
+    border-bottom: 1px solid gainsboro;
+
+    .thing {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      border: 1px solid black;
+      display: inline-block;
+      margin: .2em;
+      background: url("../img/slider1.jpg") center center no-repeat;
+      background-size: 100% 100%;
+      vertical-align: middle;
+    }
+  }
+
+  span.update {
+    display: inline-block;
+    height: 3.2em;
+    line-height: 3.2em;
+    font-size: 10px;
+    width: 100%;
+    background: rgba(222, 219, 219, 0.72);
+    text-align: center;
+  }
+
+  .product-container {
+    margin: .6em 0;
+  }
+}
+
+.Brand-subtab {
+  .brand-slide {
+    height: 13em;
+    width: 100%;
+    background: url("../img/run.jpg") center center no-repeat;
+    background-size: contain;
+    border-bottom: 1px solid grey;
+    position: relative;
+    div.follow {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 90px;
+      height: 30px;
+      background: #fff;
+      line-height: 30px;
+      text-align: center;
+      border: 1px solid black;
+      border-radius: 7px;
+    }
+  }
+}
