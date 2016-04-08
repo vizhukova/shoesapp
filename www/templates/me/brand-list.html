@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<ion-view view-title="Brands" class="Me">
 
-</body>
-</html>
+    <ion-content>
+
+        <div class="brand-item" ng-repeat="brand in brandList track by $index">
+            <div class="img"></div>
+
+            <div class="text">
+                <p>Brand name</p>
+                <span>List of categories in brand</span>
+            </div>
+
+            <div class="follow-button">
+                <i class="icon ion-ios-checkmark"></i>
+                <p>Following</p>
+            </div>
+        </div>
+
+    </ion-content>
+
+</ion-view>

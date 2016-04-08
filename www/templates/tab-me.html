@@ -1,5 +1,30 @@
-<ion-view view-title="SETTINGS">
-  <ion-content class="padding">
+<ion-view view-title="ME" class="Me">
 
-  </ion-content>
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="toSettings()">
+            <i class="icon ion-ios-gear-outline"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content>
+
+        <div class="me-tabs">
+            <div class="link" ng-click="toOrders()">
+                <i class="icon ion-cube"></i>
+                <p>Orders (0)</p>
+            </div>
+            <div class="link" ng-click="toBrands()">
+                <i class="icon ion-ios-checkmark-outline"></i>
+                <p>Brands (5)</p>
+            </div>
+        </div>
+
+        <div class="like-list">
+
+            <p>My loves (5)</p>
+            <showcase></showcase>
+
+        </div>
+
+    </ion-content>
 </ion-view>
