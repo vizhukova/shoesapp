@@ -104,10 +104,43 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
     url: '/me',
     views: {
       'tab-me': {
-        templateUrl: 'templates/tab-me.html'
+        templateUrl: 'templates/tab-me.html',
+        controller: 'MeCtrl'
+      }
+    }
+  })
+
+  .state('tab.me-settings', {
+    url: '/me/settings',
+    views: {
+      'tab-me': {
+        templateUrl: 'templates/me/settings.html',
+        controller: 'MeSettingsCtrl'
+      }
+    }
+  })
+
+  .state('tab.me-brands', {
+    url: '/me/brands',
+    views: {
+      'tab-me': {
+        templateUrl: 'templates/me/brand-list.html',
+        controller: 'MeBrandsCtrl'
+      }
+    }
+  })
+
+  .state('tab.me-orders', {
+    url: '/me/orders',
+    views: {
+      'tab-me': {
+        templateUrl: 'templates/me/order-list.html',
+        controller: 'MeCtrl'
       }
     }
   });
+
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/shop');

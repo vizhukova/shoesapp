@@ -1,0 +1,140 @@
+.me-tabs {
+
+  font-size: 0;
+
+  .link {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    height: 80px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+
+    &:first-child {
+      border-right: 1px solid #ccc;
+    }
+
+    i{
+      font-size: 20px;
+    }
+
+    p{
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+
+}
+
+.like-list{
+
+  &>p{
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+  }
+
+}
+
+.contact {
+
+  padding: .5em;
+  border: 1px solid #ccc;
+
+  button {
+    display: block;
+    width: 100%;
+    padding: .6em;
+    background-color: #fff;
+    border: 2px solid;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+}
+
+.brand-item {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding: 5px;
+  font-size: 0;
+
+  .img {
+    width: 60px;
+    height: 60px;
+    background-color: #ccc;
+    display: inline-block;
+
+  }
+
+  .text{
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 1.5em;
+    font-size: 14px;
+
+    p{
+      font-weight: 700;
+    }
+
+    span{
+      color: #5e6060;
+    }
+  }
+
+  .follow-button{
+    float: right;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    padding-right: 0.5em;
+    padding-top: 0.8em;
+    font-size: 12px;
+
+    i{
+      font-size: 18px;
+    }
+  }
+}
+
+.label{
+  padding: 10px;
+  text-align: left;
+  background-color: #eee;
+  text-transform: uppercase;
+  font-weight: 700;
+
+}
+
+.Settings{
+
+  .link{
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  .logout {
+    margin-top: 50px;
+    padding: 10px;
+
+    button{
+      display: block;
+    width: 100%;
+    padding: .6em;
+    background-color: #fff;
+    border: 2px solid;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    }
+  }
+
+}

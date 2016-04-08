@@ -2,6 +2,7 @@ import ShowcaseCtrl from './showcase/controller'
 import ProductCtrl from './product/controller'
 import BrandsCtrl from './brands/controller'
 import SearchCtrl from './search/controller'
+import MeCtrl from './me/controller'
 
 angular.module('starter.controllers', [])
 
@@ -50,6 +51,18 @@ angular.module('starter.controllers', [])
 .controller('SearchCtrl', SearchCtrl)
 
   
+.controller('MeCtrl', MeCtrl)
+.controller('MeSettingsCtrl', function($scope){
+
+
+
+})
+.controller('MeBrandsCtrl', function($scope){
+
+  $scope.brandList = [1,1,1,1,1,1,1,1,1];
+
+})
+
 .controller('ShopCtrl', function($scope, Category) {
 
 
