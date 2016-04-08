@@ -102,7 +102,8 @@
       overflow: hidden;
 
       div.img {
-        background: url("../img/slider1.jpg") center center no-repeat;
+        background-color: #eee;
+        //background: url("../img/slider1.jpg") center center no-repeat;
         background-size: 100% 100%;
         width: 7em;
         height: 11em;
@@ -132,7 +133,8 @@
       display: inline-block;
       margin: .3em;
       overflow: hidden;
-      background: url("../img/slider1.jpg") center center no-repeat;
+      background-color: #eee;
+      //background: url("../img/slider1.jpg") center center no-repeat;
       background-size: 100% 100%;
       width: 7em;
 
@@ -419,9 +421,10 @@
 
     div.img {
       display: inline-block;
-      height: 9em;
-      width: 80px;
-      background: url("../img/slider1.jpg") center center no-repeat;
+      height: 12em;
+      width: 95%;
+      background-color: #eee;
+      //background: url("../img/slider1.jpg") center center no-repeat;
       background-size: 100% 100%;
     }
 
