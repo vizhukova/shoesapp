@@ -152,3 +152,117 @@
     }
 
   }
+
+  .detail-popover {
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    height:100%;
+    width: 100%;
+    opacity: 1;
+    background: rgb(249, 249, 249);
+    margin: 0!important;
+
+    div.popover-arrow {
+      display: none;
+    }
+
+    div.nav-panel {
+      height: 3.8em;
+      text-align: center;
+      line-height: 3.8em;
+      position: relative;
+      border-bottom: 1px solid #d7d7d7;
+      background: #fff;
+
+      button.close-btn {
+        width: 20px;
+        height: 20px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        position: absolute;
+        left: 4px;
+
+        &:before {
+          font-size: 24px;
+        }
+      }
+
+      span.title {
+        font-size: 20px;
+      }
+
+      span.reset {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        right: 8px;
+        font-size: 10px;
+      }
+    }
+
+    div.product-detail {
+      text-align: center;
+      padding: 1em 0;
+      height: 14em;
+      position: relative;
+
+      div.img {
+        display: inline-block;
+        height: 7em;
+        width: 5em;
+        background: url("../img/slider1.jpg") center center no-repeat;
+        background-size: 100% 100%;
+      }
+
+      p.title {
+
+      }
+    }
+
+    div.body {
+      position: absolute;
+      bottom: 3.5em;
+      top: 17em;
+      left: 0;
+      right: 0;
+      margin: auto;
+
+      div.button-bar {
+        width: 90%;
+        margin: auto;
+        border: 1px solid black;
+        border-radius: 5px;
+
+        a.button:first-child {
+          border-right: 1px solid black;
+        }
+      }
+
+      div.info {
+        position: absolute;
+        bottom: 0;
+        top: 4em;
+        left: 0;
+        right: 0;
+        margin: auto;
+        padding: 0 1em 1em;
+        overflow-y: auto;
+      }
+    }
+
+    div.footer {
+      text-align: center;
+      position: absolute;
+      bottom:0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      margin: auto;
+      height: 3.5em;
+      border-top: 1px solid #d7d7d7;
+    }
+  }

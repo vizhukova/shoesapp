@@ -1,0 +1,23 @@
+.Login {
+  position: relative;
+
+  div.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+
+    button {
+      width: 95%;
+      margin-bottom: 1.2em;
+    }
+
+    p {
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+
+}

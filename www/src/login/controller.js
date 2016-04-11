@@ -1,13 +1,9 @@
-export default function($scope, $ionicPopover) {
-
+export default function($scope, $state, $ionicPopover) {
   $scope.animation = 'slide-in-up';
 
-  $scope.products = [1, 2, 3,4 ,5 ,6, 7, 8,9, 0];
-
   var popups = [
-    {name: 'optionPopover', url: './src/shop/productOption-popover.html'},
-    {name: 'authPopover', url: './src/shop/auth-popover.html'},
-    {name: 'detailPopover', url: './src/product/directives/detail.popover.html'}
+    {name: 'signinPopover', url: 'src/login/directives/signin.popover.html'},
+    {name: 'authPopover', url: 'src/shop/auth-popover.html'}
   ];
 
   popups.map((popup)=>{
@@ -22,4 +18,9 @@ export default function($scope, $ionicPopover) {
       $scope[popup.name].show($event);
     };
   })
+
+  $scope.toShop = () => {
+    $scope.signinPopover.hide();
+    $state.go('tab.shop')
+  };
 }
