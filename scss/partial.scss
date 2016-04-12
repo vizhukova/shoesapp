@@ -451,59 +451,6 @@
     }
   }
 
-.signin-popover {
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  height:100%;
-  width: 100%;
-  opacity: 1;
-  background: #fff;
-  margin: 0!important;
-  text-align: center;
-
-  div.popover-arrow {
-    display: none;
-  }
-
-  div.panel {
-    height: 4em;
-    background: #fff;
-    border-bottom: 2px solid #ececec;
-    position: relative;
-
-
-    button.close-btn {
-      width: 30px;
-      height: 30px;
-      top: 0;
-      bottom: 0;
-      left: 15px;
-      z-index: 5;
-      margin: auto;
-      position: absolute;
-    }
-  }
-
-  div.list {
-    margin-bottom: 10px;
-
-    label.item {
-      border-bottom: 1px solid #ddd;
-    }
-  }
-
-  .forgot, .sign {
-    width: 90%;
-    margin: auto;
-    margin-bottom: 7px;
-  }
-
-  .forgot {
-    text-decoration: underline;
-  }
-}
 
 
 

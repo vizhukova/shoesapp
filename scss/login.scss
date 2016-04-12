@@ -1,9 +1,22 @@
+
+//Login page
 .Login {
   position: relative;
+  height: 100%;
+
+  .main-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 16em;
+    margin: auto;
+  }
 
   div.footer {
     position: absolute;
     bottom: 0;
+    top: 33em;
     left: 0;
     right: 0;
     text-align: center;
@@ -14,6 +27,8 @@
     }
 
     p {
+      margin-bottom: 16px;
+
       span {
         text-decoration: underline;
       }
@@ -21,3 +36,146 @@
   }
 
 }
+
+  //Sign-in popover in showcase and login page
+  .signin-popover {
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    height:100%;
+    width: 100%;
+    opacity: 1;
+    background: #fff;
+    margin: 0!important;
+    text-align: center;
+
+    div.popover-arrow {
+      display: none;
+    }
+
+    div.panel {
+      height: 4em;
+      background: #fff;
+      border-bottom: 2px solid #ececec;
+      position: relative;
+
+
+      button.close-btn {
+        width: 30px;
+        height: 30px;
+        top: 0;
+        bottom: 0;
+        left: 15px;
+        z-index: 5;
+        margin: auto;
+        position: absolute;
+
+        &:before {
+          font-size: 18px;
+        }
+      }
+    }
+
+    div.list {
+      margin-bottom: 10px;
+
+      label.item {
+        border-bottom: 1px solid #ddd;
+      }
+    }
+
+    .forgot, .sign {
+      width: 90%;
+      margin: auto;
+      margin-bottom: 12px;
+    }
+
+    .forgot {
+      text-decoration: underline;
+    }
+
+    .recover {
+      width: 90%;
+      margin: auto;
+    }
+  }
+
+  .signun-popover {
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    height:100%;
+    width: 100%;
+    opacity: 1;
+    background: #fff;
+    margin: 0!important;
+    text-align: center;
+
+    div.popover-arrow {
+      display: none;
+    }
+
+    div.nav-panel {
+      height: 4em;
+      line-height: 4em;
+      background: #fff;
+      border-bottom: 2px solid #ececec;
+      position: relative;
+
+
+      button.close-btn {
+        width: 30px;
+        height: 30px;
+        top: 0;
+        bottom: 0;
+        left: 15px;
+        z-index: 5;
+        margin: auto;
+        position: absolute;
+
+        &:before {
+          font-size: 18px;
+        }
+      }
+
+      span.title {
+        font-size: 18px;
+      }
+    }
+
+    div.signun-list {
+      border-bottom: 1px solid #ddd;;
+    }
+
+    span.info {
+      text-align: left;
+      display: inline-block;
+      width: 90%;
+    }
+
+    div.footer {
+      position: absolute;
+      bottom: 0;
+      top: 33em;
+      left: 0;
+      right: 0;
+      text-align: center;
+
+      button {
+        width: 95%;
+        margin-bottom: 1.2em;
+      }
+
+      p {
+        margin-bottom: 16px;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+
+  }
+
