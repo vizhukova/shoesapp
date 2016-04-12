@@ -1,37 +1,51 @@
 <ion-view view-title="SEARCH" class="Search">
   <ion-content>
     <div class="search-panel">
-      <label class="item item-input">
+      <label ng-class="{'item-reduce': isSearchOnFocus}" class="item item-input sample-show-hide">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search">
+        <input type="text" placeholder="Search everything on cite" ng-focus="onSearchFocus()">
       </label>
+      <div ng-show="isSearchOnFocus"
+           ng-class="{'button-increase': isSearchOnFocus}"
+           ng-click="onCancelClick()"
+           class="button sample-show-hide">Cancel</div>
     </div>
-    <div class="category-holder">
-      <p class="title">BROWSE BY CATEGORY</p>
-      <div class="categories">
-        <figure class="category">
-          <div class="img"></div>
-          <figcaption>Man</figcaption>
-        </figure>
-        <div class="category">
-          <div class="img"></div>
-          <div>Man</div>
+
+    <div class="last-searches check-element sample-show-hide"
+         ng-show="isSearchOnFocus"
+         ng-include="includes.lastSearches"></div>
+
+    <div ng-show="! isSearchOnFocus" class="check-element sample-show-hide">
+      <div class="category-holder">
+        <p class="title">Browse by category</p>
+        <div class="categories">
+          <div class="category" ng-repeat="category in cats track by $index">
+            <div class="img img-{{category.toLowerCase()}} {{icons[category.toLowerCase()]}}"></div>
+            <div>{{category}}</div>
+          </div>
         </div>
-        <div class="category">
-          <div class="img"></div>
-          <span>Man</span>
-        </div>
-        <div class="category">
-          <div class="img"></div>
-          <span>Man</span>
-        </div>
-        <div class="category">
-          <div class="img"></div>
-          <span>Man</span>
-        </div>
-        <div class="category">
-          <div class="img"></div>
-          <span>Man</span>
+      </div>
+      <div class="top-search-holder">
+        <p class="title">Top searches:</p>
+        <div class="top-searches">
+          <div>Sneakers <span class="category">in Men</span></div>
+          <div>T-shirt</div>
+          <div>Sneakers <span class="category">in Men</span></div>
+          <div>T-shirt</div>
+          <div>Sneakers <span class="category">in Men</span></div>
+          <div>T-shirt</div>
+          <div>Sneakers <span class="category">in Men</span></div>
+          <div>T-shirt</div>
+          <div>Sneakers <span class="category">in Men</span></div>
+          <div>T-shirt</div>
+          <div>Sneakers <span class="category">in Men</span></div>
+          <div>T-shirt</div>
+          <div>Sneakers <span class="category">in Men</span></div>
+          <div>T-shirt</div><div>Sneakers <span class="category">in Men</span></div>
+          <div>T-shirt</div><div>Sneakers <span class="category">in Men</span></div>
+          <div>T-shirt</div>
+          <div>Sneakers <span class="category">in Men</span></div>
+          <div>T-shirt</div>
         </div>
       </div>
     </div>
