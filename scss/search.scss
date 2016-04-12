@@ -1,4 +1,18 @@
 .Search {
+
+  $fontStrongColor: #8A8686;
+  $fontMainColor: #4E4D4B;
+
+  color: $fontMainColor;
+
+  .title {
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 1em;
+    color: $fontStrongColor;
+    font-size: 0.7em;
+  }
+
   .search-panel {
     height: 4em;
     line-height: 4em;
@@ -8,8 +22,37 @@
 
     .item {
       width: 90%;
-      height: 3em;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -khtml-border-radius: 5px;
+      border-radius: 5px;
+      background: #ECECEC;
+      height: 2em;
       display: inline-flex;
+      padding: 0 14%;
+      /*float: left;
+      margin: 15px;*/
+    }
+
+    .item-reduce {
+      width: 70%;
+      padding: 0 3%;
+    }
+
+    .button {
+      background-color: #fff;
+      margin: 0;
+      padding: 7px 9px;
+      min-width: 0px;
+      min-height: 29px;
+      vertical-align: middle;
+      line-height: 100%;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    .button-increase {
+      min-width: 57px;
     }
   }
 
@@ -24,30 +67,83 @@
       position: absolute;
       bottom: 0;
       height: 9em;
-      line-height: 9em;
+      line-height: 3em;
       left:0;
       right:0;
       margin: auto;
 
       div.category {
         display: inline-block;
+        margin: 0em 2%;
+        font-size: 0.7em;
 
         div.img {
-          width: 65px;
-          height: 65px;
-          border-radius: 36px;
+          width: 50px;
+          height: 50px;
+          border-radius: 35px;
           display: block;
           margin: auto;
           border: 1px solid gainsboro;
-
+          font-size: 3.5em;
+          padding-top: 6%;
+          color: #fff;
         }
 
         span {
           display: inline-block;
           vertical-align: top;
         }
+
+        div.img-women {
+          background: #F79675;
+        }
+
+        div.img-men {
+          background: #80DEB5;
+        }
+
+        div.img-kids {
+          background: #6EBDBB;
+        }
+
+        div.img-beauty {
+          background: rgba(157, 134, 197, 0.87);
+        }
+
+        div.img-lifestyle {
+          background: #6F6866;
+        }
       }
     }
 
   }
+
+  .top-search-holder {
+      text-align: center;
+
+    .top-searches {
+      font-size: 1.1em;
+    }
+
+    .category {
+      color: $fontStrongColor;
+    }
+  }
+
+  .last-searches {
+    text-align: center;
+    background: #fff;
+    height: 100%;
+  }
+
+  .sample-show-hide {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+  }
+
+  .sample-show-hide.ng-hide {
+    opacity:0;
+  }
+
 }
+

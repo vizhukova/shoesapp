@@ -5,7 +5,7 @@ import SearchCtrl from './search/controller'
 import MeCtrl from './me/controller'
 import LoginCtrl from './login/controller'
 
-angular.module('starter.controllers', ['duParallax'])
+angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {
   var deploy = new Ionic.Deploy();
@@ -35,7 +35,7 @@ angular.module('starter.controllers', ['duParallax'])
 
 // Login page
 .controller('LoginCtrl', LoginCtrl)
-  
+
 .controller('ShowcaseCtrl', ShowcaseCtrl)
   // Product in showcase
   .controller('productCtrl', ($scope, $state, $ionicPopover)=> {
@@ -55,13 +55,13 @@ angular.module('starter.controllers', ['duParallax'])
 .controller('SearchCtrl', SearchCtrl)
 
 .controller('MeCtrl', MeCtrl)
-  
+
 .controller('MeSettingsCtrl', function($scope){
 
 
 
 })
-  
+
 .controller('MeBrandsCtrl', function($scope){
 
   $scope.brandList = [1,1,1,1,1,1,1,1,1];
