@@ -5,7 +5,7 @@ import SearchCtrl from './search/controller'
 import MeCtrl from './me/controller'
 import LoginCtrl from './login/controller'
 
-angular.module('starter.controllers', ['duParallax'])
+angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {
   var deploy = new Ionic.Deploy();
@@ -35,10 +35,10 @@ angular.module('starter.controllers', ['duParallax'])
 
 // Login page
 .controller('LoginCtrl', LoginCtrl)
-  
+
 .controller('ShowcaseCtrl', ShowcaseCtrl)
   // Product in showcase
-  .controller('productCtrl', ($scope, $state, $ionicPopover)=> {
+  .controller('productCtrl', ($scope, $state)=> {
 
     $scope.openProduct = () => {
       $state.go("tab.product")
@@ -55,24 +55,58 @@ angular.module('starter.controllers', ['duParallax'])
 .controller('SearchCtrl', SearchCtrl)
 
 .controller('MeCtrl', MeCtrl)
-  
+
 .controller('MeSettingsCtrl', function($scope){
 
 
 
 })
-  
+
 .controller('MeBrandsCtrl', function($scope){
 
   $scope.brandList = [1,1,1,1,1,1,1,1,1];
 
 })
 
-.controller('ShopCtrl', function($scope, Category) {
+.controller('ShopCtrl', function($scope, $ionicScrollDelegate, $ionicPopover, Category) {
 
+  var navigation, navigationY;
+
+  $ionicScrollDelegate.getScrollView('mainScroll')
+
+  $scope.onScroll = () => {
+    navigation = $('.categories');
+    navigationY = navigation.offset().top;
+
+    var scrollY = $ionicScrollDelegate.getScrollPosition().top;
+
+    if(scrollY >= navigationY) {
+      navigation.addClass('fixed')
+    }
+  };
 
   $scope.cats = Category.get();
 })
+
+// Join header controller with join button
+.controller('joinHeaderCtrl', function($scope, $ionicPopover) {
+
+  $ionicPopover.fromTemplateUrl('./src/login/directives/signun.popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+  $scope.openSignupPopover = function($event) {
+    $scope.popover.show($event);
+  };
+
+  // $scope.close = ($event)=>{
+  //   $scope.popover.hide();
+  // };
+})
+
+
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {

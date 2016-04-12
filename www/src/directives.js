@@ -5,8 +5,9 @@ angular.module('starter.directives', [])
   return {
     restrict: 'E',
     scope: {cats: '='},
+    replace: true,
     templateUrl: './src/shop/category.html',
-    link: (scope) => {
+    link: (scope, element, $ionicScrollDelegate, $rootScope) => {
 
       // Get categories [...] from Category service
       scope.cats = Category.get();
@@ -17,6 +18,7 @@ angular.module('starter.directives', [])
 .directive('categoryContent', function () {
 
   return {
+    scope: {},
     restrict: 'E',
     templateUrl: './src/shop/category-content.html',
     controller: 'CategoryContentCtrl'
@@ -26,6 +28,7 @@ angular.module('starter.directives', [])
 .directive('slider', function (Category) {
 
   return {
+    scope: {},
     restrict: 'E',
     templateUrl: './src/shop/slider.html'
   }
@@ -34,6 +37,7 @@ angular.module('starter.directives', [])
 .directive('likedCat', function (Category) {
 
   return {
+    scope: {},
     restrict: 'E',
     templateUrl: './src/shop/liked-cat.html'
   }
@@ -42,6 +46,7 @@ angular.module('starter.directives', [])
 .directive('likedSlider', function () {
 
   return {
+    scope: {},
     restrict: 'E',
     templateUrl: './src/shop/liked-slider.html'
   }
@@ -50,6 +55,7 @@ angular.module('starter.directives', [])
 .directive('tileSlider', function () {
 
   return {
+    scope: {},
     restrict: 'E',
     templateUrl: './src/shop/tile-slider.html'
   }
@@ -58,6 +64,7 @@ angular.module('starter.directives', [])
 .directive('categoryMenu', function () {
 
   return {
+    scope: {},
     restrict: 'E',
     templateUrl: './src/shop/category-menu.html'
   }
@@ -66,6 +73,7 @@ angular.module('starter.directives', [])
 .directive('categoryPopover', function () {
 
   return {
+    scope: {},
     restrict: 'E',
     templateUrl: './src/shop/category-popover.html'
   }
@@ -76,6 +84,7 @@ angular.module('starter.directives', [])
 .directive('showcase', function () {
 
   return {
+    scope: {},
     restrict: 'E',
     templateUrl: './src/showcase/template.html',
     controller: 'ShowcaseCtrl'
@@ -85,6 +94,7 @@ angular.module('starter.directives', [])
   .directive('product', function () {
 
     return {
+      scope: {},
       restrict: 'E',
       templateUrl: './src/showcase/directives/templates/product.html',
       controller: 'productCtrl'
@@ -95,8 +105,21 @@ angular.module('starter.directives', [])
 .directive('productContainer', function () {
 
   return {
+    scope: {},
     restrict: 'E',
     templateUrl: './src/product/directives/product.container.html'
+  }
+})
+
+// Header with join button
+.directive('joinHeader', function () {
+
+  return {
+    scope: {},
+    restrict: 'E',
+    replace: true,
+    templateUrl: './src/partial/join.header.html',
+    controller: 'joinHeaderCtrl'
   }
 })
 

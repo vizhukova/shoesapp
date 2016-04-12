@@ -3,16 +3,22 @@
   background-color: rgba(214, 214, 214, 0.33);
   text-align: center;
 
+  .bar-subheader {
+    height: auto;
+    padding: 0;
+
+    .tabs.categories {
+      position: relative;
+      background: #fff;
+    }
+  }
+
   .scroll {
     //height: 100%;
 
     .header {
       //height: 3em;
-      position: relative;
 
-      .tabs {
-        position: relative;
-      }
     }
 
 

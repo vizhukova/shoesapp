@@ -1,6 +1,6 @@
 
 .main-slider {
-  height: 19em;
+  height: 24.5em;
   background: rgba(0, 0, 0, .7);
   text-align: center;
 
@@ -451,6 +451,21 @@
     }
   }
 
+// Header with join button
+.join-header {
+  height: 12em;
+  background: url("../img/bg2.jpg") center center no-repeat;
+  background-size: cover;
+  padding: 1.2em 1em 1.5em;
 
+  p.title {
+    font-weight: 700;
+    margin-bottom: .2em;
+  }
+
+  button.join {
+    width: 90%;
+  }
+}
 
 

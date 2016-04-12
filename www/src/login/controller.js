@@ -21,13 +21,17 @@ export default function($scope, $state, $ionicPopover) {
     };
 
     $scope[`close${popup.name}`] = ($event)=>{
-      $scope.toggleRecovery();
+      $scope.closeRecovery();
       $scope[popup.name].hide();
     };
   });
 
-  $scope.toggleRecovery = () => {
-    $scope.recovery = !$scope.recovery;
+  $scope.openRecovery = () => {
+    $scope.recovery = true;
+  };
+
+  $scope.closeRecovery = () => {
+    $scope.recovery = false;
   };
 
   $scope.toShop = () => {
