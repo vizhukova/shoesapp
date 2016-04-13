@@ -1,3 +1,9 @@
-<div class="tabs-striped tabs categories">
-  <a class="tab-item" ng-repeat="cat in cats">{{cat}}</a>
+<div class="categories">
+  <div
+    class="tab-item cat-item"
+    ng-repeat="cat in cats track by $index"
+    ng-class="{'active': isActive(cat)}"
+    ng-click="setActive($index)"
+  ><span class="cat-text">{{cat}}</span></div>
+  <div class="active-line"></div>
 </div>

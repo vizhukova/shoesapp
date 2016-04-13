@@ -15,19 +15,22 @@
 
   div.footer {
     position: absolute;
-    bottom: 0;
-    top: 33em;
+    bottom: 10px;
+    //top: 33em;
     left: 0;
     right: 0;
     text-align: center;
 
     button {
       width: 95%;
-      margin-bottom: 1.2em;
+
+      &.join {
+        margin-bottom: 1.5em;
+      }
     }
 
-    p {
-      margin-bottom: 16px;
+    p:not(.terms) {
+      margin: 24px 0;
 
       span {
         text-decoration: underline;
@@ -59,11 +62,14 @@
       background: #fff;
       border-bottom: 2px solid #ececec;
       position: relative;
+      line-height: 4em;
 
 
       button.close-btn {
         width: 30px;
         height: 30px;
+        min-width: 30px;
+        min-height: 30px;
         top: 0;
         bottom: 0;
         left: 15px;
@@ -128,6 +134,8 @@
       button.close-btn {
         width: 30px;
         height: 30px;
+        min-width: 30px;
+        min-height: 30px;
         top: 0;
         bottom: 0;
         left: 15px;
@@ -146,7 +154,11 @@
     }
 
     div.signun-list {
-      border-bottom: 1px solid #ddd;;
+      border-bottom: 1px solid #ddd;
+
+      .item {
+        border-bottom: 1px solid #ddd;
+      }
     }
 
     span.info {
@@ -157,19 +169,21 @@
 
     div.footer {
       position: absolute;
-      bottom: 0;
-      top: 33em;
+      bottom: 10px;
       left: 0;
       right: 0;
       text-align: center;
 
       button {
         width: 95%;
-        margin-bottom: 1.2em;
       }
 
-      p {
-        margin-bottom: 16px;
+      .join + p {
+        margin: 15px 0;
+      }
+
+      p.terms {
+        margin: 27px 0 10px;
 
         span {
           text-decoration: underline;

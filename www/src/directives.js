@@ -1,16 +1,51 @@
 angular.module('starter.directives', [])
 
-.directive('categories', function (Category) {
+.directive('categories', function (Category, $timeout) {
 
   return {
     restrict: 'E',
     scope: {cats: '='},
     replace: true,
     templateUrl: './src/shop/category.html',
-    link: (scope, element, $ionicScrollDelegate, $rootScope) => {
+    link: (scope) => {
 
       // Get categories [...] from Category service
       scope.cats = Category.get();
+      scope.activeCat = scope.cats[0];
+
+      var underline = $('.active-line');
+
+      // Init underline width & left
+      $timeout(()=>{
+
+        var text = $('.cat-text');
+
+        underline.animate({
+          width: text.width(),
+          left: text.offset().left
+        });
+      });
+
+      // Set active category
+      scope.setActive = (index) => {
+        scope.activeCat = scope.cats[index];
+        scope.animate(index)
+      };
+
+      // Animate navigation menu underline
+      scope.animate = (index) => {
+
+        var item = $('.cat-text').get(index);
+
+        underline.animate({
+          left: $(item).offset().left - 1,
+          width: $(item).width() + 2
+        }, 300)
+
+      };
+
+      // Set active class for category navigation menu
+      scope.isActive = (cat) => cat === scope.activeCat;
     }
   }
 })
@@ -46,8 +81,9 @@ angular.module('starter.directives', [])
 .directive('likedSlider', function () {
 
   return {
-    scope: {},
+    scope: true,
     restrict: 'E',
+    replace: true,
     templateUrl: './src/shop/liked-slider.html'
   }
 })
@@ -105,7 +141,7 @@ angular.module('starter.directives', [])
 .directive('productContainer', function () {
 
   return {
-    scope: {},
+    scope: true,
     restrict: 'E',
     templateUrl: './src/product/directives/product.container.html'
   }

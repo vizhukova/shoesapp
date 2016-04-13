@@ -17,9 +17,14 @@ angular.module('starter.services', [])
   }
 })
 
-.service('Widgets', function ($http, $q, URL) {
+.service('Content', function ($http, $q, URL) {
 
   var categories = {};
+  var category;
+
+  this.setCategory = (category) => {
+
+  }
 
   // Get current category widgets content
   this.fetch = (currentCategory) => {

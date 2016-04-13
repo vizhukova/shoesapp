@@ -1,15 +1,41 @@
 
 .Shop {
-  background-color: rgba(214, 214, 214, 0.33);
+  background-color: rgba(201, 201, 201, 0.4);
   text-align: center;
 
   .bar-subheader {
     height: auto;
     padding: 0;
 
-    .tabs.categories {
+    .categories {
+      padding: 0;
       position: relative;
       background: #fff;
+      border-bottom: 1px solid rgba(214, 214, 214, 0.33);
+      text-align: center;
+      width: 100%;
+      height: 50px;
+      line-height: 57px;
+
+      .tab-item {
+        display: inline-block;
+        margin: 0 1.3em;
+        position: relative;
+
+        &.active {
+          font-weight: 600;
+          color: black;
+          box-sizing: border-box;
+        }
+      }
+
+      .active-line {
+        position: absolute;
+        bottom: 17px;
+        height: 2px;
+        border-radius: 3px;
+        background: #000;
+      }
     }
   }
 

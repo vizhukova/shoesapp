@@ -68,22 +68,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ShopCtrl', function($scope, $ionicScrollDelegate, $ionicPopover, Category) {
-
-  var navigation, navigationY;
-
-  $ionicScrollDelegate.getScrollView('mainScroll')
-
-  $scope.onScroll = () => {
-    navigation = $('.categories');
-    navigationY = navigation.offset().top;
-
-    var scrollY = $ionicScrollDelegate.getScrollPosition().top;
-
-    if(scrollY >= navigationY) {
-      navigation.addClass('fixed')
-    }
-  };
+.controller('ShopCtrl', function($scope, Category) {
 
   $scope.cats = Category.get();
 })
@@ -101,9 +86,6 @@ angular.module('starter.controllers', [])
     $scope.popover.show($event);
   };
 
-  // $scope.close = ($event)=>{
-  //   $scope.popover.hide();
-  // };
 })
 
 
@@ -114,7 +96,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CategoryContentCtrl', function($scope, $ionicPopover, $state,  Widgets) {
+.controller('CategoryContentCtrl', function($scope, $ionicPopover, $state,  Content) {
 
 
   $ionicPopover.fromTemplateUrl('./src/shop/category-popover.html', {
@@ -135,5 +117,5 @@ angular.module('starter.controllers', [])
 
     // Call Widget service method to
     // fetch data by current category
-  Widgets.fetch('/man').then(data => {$scope.widgets = data})
+  Content.fetch('/man').then(data => {$scope.widgets = data})
 });

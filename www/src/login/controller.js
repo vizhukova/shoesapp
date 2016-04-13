@@ -20,7 +20,7 @@ export default function($scope, $state, $ionicPopover) {
       $scope[popup.name].show($event);
     };
 
-    $scope[`close${popup.name}`] = ($event)=>{
+    $scope[`close${popup.name}`] = ()=>{
       $scope.closeRecovery();
       $scope[popup.name].hide();
     };
