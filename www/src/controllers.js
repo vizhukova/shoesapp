@@ -4,6 +4,8 @@ import BrandsCtrl from './brands/controller'
 import SearchCtrl from './search/controller'
 import MeCtrl from './me/controller'
 import LoginCtrl from './login/controller'
+import MeSettingsCtrl from './settings/settings'
+import MeSettingsPromoCtrl from './settings/promo/promo'
 
 angular.module('starter.controllers', [])
 
@@ -56,11 +58,9 @@ angular.module('starter.controllers', [])
 
 .controller('MeCtrl', MeCtrl)
 
-.controller('MeSettingsCtrl', function($scope){
+.controller('MeSettingsPromoCtrl', MeSettingsPromoCtrl)
 
-
-
-})
+.controller('MeSettingsCtrl', MeSettingsCtrl)
 
 .controller('MeBrandsCtrl', function($scope){
 

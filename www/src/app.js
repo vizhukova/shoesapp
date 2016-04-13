@@ -126,6 +126,18 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
     }
   })
 
+  .state('tab.me-settings-promo', {
+    url: '/me/settings/promo',
+    views: {
+      'tab-me': {
+        templateUrl: 'src/settings/promo/template.html',
+        controller: 'MeSettingsPromoCtrl'
+      }
+    }
+  })
+
+
+
   .state('tab.me-brands', {
     url: '/me/brands',
     views: {
