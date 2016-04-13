@@ -11,17 +11,23 @@ export default function($scope, $ionicPopover, Category) {
   };
 
   $scope.isSearchOnFocus = false;
-  $scope.includes = {lastSearches: 'src/search/directives/last-searches.html'};
+  $scope.isRecentSearchesShow = false;
+  $scope.includes = {
+    lastSearches: 'src/search/directives/last-searches.html',
+    topSearches: 'src/search/directives/top-searches.html'
+  };
 
   $scope.onSearchFocus = (e) => {
-    $scope.isSearchOnFocus = true;
+    $scope.isSearchOnFocus = $scope.isRecentSearchesShow = true;
   }
 
   $scope.onCancelClick = (e) => {
-    $scope.isSearchOnFocus = false;
+    $scope.isSearchOnFocus = $scope.isRecentSearchesShow = false;
   }
 
-
+  $scope.onCloseResentSearchClick = (e) => {
+    $scope.isRecentSearchesShow = false;
+  }
 
 
 }
