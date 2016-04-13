@@ -5,6 +5,14 @@
 
   color: $fontMainColor;
 
+  .row {
+    padding: 0;
+  }
+
+  .category {
+      color: $fontStrongColor;
+  }
+
   .title {
     text-transform: uppercase;
     text-align: center;
@@ -30,8 +38,8 @@
       height: 2em;
       display: inline-flex;
       padding: 0 14%;
-      /*float: left;
-      margin: 15px;*/
+      float: left;
+      margin: 15px;
     }
 
     .item-reduce {
@@ -46,9 +54,9 @@
       min-width: 0px;
       min-height: 29px;
       vertical-align: middle;
-      line-height: 100%;
       font-size: inherit;
       color: inherit;
+      word-wrap: initial;
     }
 
     .button-increase {
@@ -124,16 +132,16 @@
     .top-searches {
       font-size: 1.1em;
     }
-
-    .category {
-      color: $fontStrongColor;
-    }
   }
 
-  .last-searches {
+  .searches-list {
     text-align: center;
     background: #fff;
     height: 100%;
+
+    .container {
+      padding: 0px 15px;
+    }
   }
 
   .sample-show-hide {
@@ -143,6 +151,23 @@
 
   .sample-show-hide.ng-hide {
     opacity:0;
+  }
+
+  .recent-searches {
+
+    .title {
+      width: 70%;
+      float: left;
+      text-align: left;
+    }
+  }
+
+  .button-close {
+    color: #B3B0B0;
+    width: 30%;
+    float: right;
+    text-align: right;
+    margin-top: 0.5em;
   }
 
 }

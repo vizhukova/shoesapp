@@ -242,6 +242,74 @@
   }
 }
 
+.promo-popover {
+  top:15%;
+  left:0;
+  right:0;
+  bottom:0;
+  height:100%;
+  width: 100%;
+  opacity: 1;
+  margin: 0!important;
+
+  div.popover-arrow {
+    display: none;
+  }
+
+  button.close-btn {
+    width: 40px;
+    height: 40px;
+    top: 15px;
+    left:15px;
+    z-index: 5;
+    position: absolute;
+  }
+
+  .button {
+    text-transform: uppercase;
+    background: #928A7E;
+    color: #484545;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1em;
+    font-size: 0.9em;
+    min-height: 40px;
+     -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+  }
+
+  .main-button {
+    background: #292929;
+    color: #fff;
+  }
+
+  input[type="text"] {
+    background-color: #EAE5DD;
+    width: 100%;
+    padding: 10px;
+    color: #928A7E;
+    font-family: inherit;
+  }
+
+  .container {
+    padding: 0 10px;
+
+    .form-head {
+      padding: 15px 0px;
+      border-top: solid 1px #292929;
+      border-bottom: solid 1px #EAE5DD;
+      font-weight: 600;
+    }
+
+    .form-body {
+      padding: 5px;
+    }
+  }
+
+}
+
 
 // Product container
 .product-container {

@@ -1,4 +1,12 @@
 {
   "name": "SPshop",
-  "app_id": "8e838102"
+  "app_id": "8e838102",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

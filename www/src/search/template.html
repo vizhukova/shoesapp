@@ -1,26 +1,32 @@
 <ion-view view-title="SEARCH" class="Search">
   <ion-content>
-    <div class="search-panel">
+    <div class="search-panel row">
       <label ng-class="{'item-reduce': isSearchOnFocus}" class="item item-input sample-show-hide">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search everything on cite" ng-focus="onSearchFocus()">
+        <input type="text" class="sample-show-hide" placeholder="Search everything on site" ng-focus="onSearchFocus()">
       </label>
       <div ng-show="isSearchOnFocus"
            ng-class="{'button-increase': isSearchOnFocus}"
            ng-click="onCancelClick()"
-           class="button sample-show-hide">Cancel</div>
+           class="button sample-show-hide ng-hide">Cancel</div>
     </div>
 
-    <div class="last-searches check-element sample-show-hide"
-         ng-show="isSearchOnFocus"
+    <div class="searches-list recent-searches check-element sample-show-hide ng-hide"
+         ng-show="isSearchOnFocus && isRecentSearchesShow"
          ng-include="includes.lastSearches"></div>
+
+    <div class="searches-list top-searches check-element sample-show-hide ng-hide"
+         ng-show="isSearchOnFocus && !isRecentSearchesShow"
+         ng-include="includes.topSearches"></div>
 
     <div ng-show="! isSearchOnFocus" class="check-element sample-show-hide">
       <div class="category-holder">
         <p class="title">Browse by category</p>
         <div class="categories">
-          <div class="category" ng-repeat="category in cats track by $index">
-            <div class="img img-{{category.toLowerCase()}} {{icons[category.toLowerCase()]}}"></div>
+          <div class="category" ng-repeat="category in cats track by $index" ng-click="openPopover()">
+            <div class="img img-{{category.toLowerCase()}}">
+              <i class="{{icons[category.toLowerCase()]}}"></i>
+            </div>
             <div>{{category}}</div>
           </div>
         </div>
