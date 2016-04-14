@@ -3,17 +3,53 @@
     <ion-content>
 
         <div class="label">Promotion</div>
-        <div class="link" ng-click="toPromo()">Promo codes</div>
+        <div class="link" ng-click="toPromo()">
+          <span>Promo codes</span>
+          <div class="arrow">
+            <i class="ion-chevron-right"></i>
+          </div>
+        </div>
         <div class="label">Profile</div>
-        <div class="link">Show me</div>
+        <div class="link" ng-click="toShowMe()">
+          <span>Show me</span>
+          <div class="arrow">
+            <span>{{sexObj.sex[sexObj.chosenIndex]}}</span>
+            <i class="ion-chevron-right"></i>
+          </div>
+        </div>
         <div class="label">About</div>
         <div class="link">Feedback</div>
         <div class="link">Contact us</div>
-        <div class="link">FAQ</div>
-        <div class="link">Shipping + Returns</div>
-        <div class="link">Privacy Policy</div>
-        <div class="link">Terms of Service</div>
-        <div class="link">Surprise me!</div>
+        <div class="link" ng-click="toFaq()">
+          <span>FAQ</span>
+          <div class="arrow">
+            <i class="ion-chevron-right"></i>
+          </div>
+        </div>
+        <div class="link" ng-click="toShippingAndReturns()">
+          <span>Shipping + Returns</span>
+          <div class="arrow">
+            <i class="ion-chevron-right"></i>
+          </div>
+        </div>
+        <div class="link" ng-click="toPrivacyPolicy()">
+          <span>Privacy Policy</span>
+           <div class="arrow">
+            <i class="ion-chevron-right"></i>
+          </div>
+        </div>
+        <div class="link" ng-click="toTermsOfService()">
+          <span>Terms of Service</span>
+          <div class="arrow">
+            <i class="ion-chevron-right"></i>
+          </div>
+        </div>
+        <div class="link" ng-click="toSurpriseMe()">
+          <span>Surprise me!</span>
+          <div class="arrow">
+            <i class="ion-chevron-right"></i>
+          </div>
+        </div>
 
 
         <div class="logout">

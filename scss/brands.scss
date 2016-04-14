@@ -1,6 +1,29 @@
 .Brands {
+
+  $fontStrongColor: #8A8686;
+  $fontMainColor: #4E4D4B;
+
   background-color: rgba(214, 214, 214, 0.33);
 
+  .container {
+    padding: 25px 15px;
+    text-align: center;
+
+    .title {
+      font-size: 1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+    }
+
+    .content {
+      font-size: 0.9em;
+      color: #444444;
+      padding-top: 10px;
+      padding-bottom: 25px;
+      letter-spacing: 0.05em;
+    }
+  }
   .brand-header {
     height: 8em;
     line-height: 8em;

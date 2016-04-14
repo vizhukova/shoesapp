@@ -17,6 +17,48 @@ angular.module('starter.services', [])
   }
 })
 
+.service('Settings', function($http, localStorageService) {
+
+  var settings = {
+
+    sexObj : {
+      sex : ['Women', 'Men', 'Both'],
+      chosenIndex: 0
+    },
+
+    faq: 'test text faq',
+    shippingAndReturns: 'test text shippingAndReturns',
+    privacyPolicy: 'test text privacyPolicy',
+    termsOfService: 'test text termsOfService'
+  };
+
+  this.saveInLocalStorage = function() {
+
+     return localStorageService.set('Settings', settings);
+
+  }
+
+  this.get = function(){
+
+    return settings;
+  };
+
+  this.getSexObj = function() {
+
+    return settings.sexObj;
+
+  };
+
+  this.setCurrenctSexIndex = function(index) {
+
+    settings.sexObj.chosenIndex = index;
+    this.saveInLocalStorage();
+
+  };
+
+  this.saveInLocalStorage();
+})
+
 .service('Widgets', function ($http, $q, URL) {
 
   var categories = {};
