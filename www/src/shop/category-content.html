@@ -6,13 +6,15 @@
     BROWSE BY CATEGORY
   </button>
 
-  <div ng-repeat="widget in widgets">
+  <div ng-repeat="widget in widgets track by $index">
 
     <div ng-if="widget.type=='likedCat'"><liked-cat></liked-cat></div>
 
-    <div ng-if="widget.type=='likedSlider'"><liked-slider></liked-slider></div>
+    <liked-slider ng-if="widget.type=='likedSlider'" widget="widget"></liked-slider>
 
-    <div ng-if="widget.type=='tileSlider'"><tile-slider></tile-slider></div>
+    <gallery-slider ng-if="widget.type=='gallerySlider'" widget="widget"></gallery-slider>
+
+    <thematic-slider ng-if="widget.type=='thematicSlider'" widget="widget"></thematic-slider>
 
     <div ng-if="widget.type=='categoryMenu'"><category-menu></category-menu></div>
 

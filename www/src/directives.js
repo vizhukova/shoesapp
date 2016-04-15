@@ -81,19 +81,87 @@ angular.module('starter.directives', [])
 .directive('likedSlider', function () {
 
   return {
-    scope: true,
+    scope: {
+      widget: '='
+    },
     restrict: 'E',
     replace: true,
-    templateUrl: './src/shop/liked-slider.html'
+    templateUrl: './src/shop/liked.slider.html',
+    link: (scope, element, attrs) => {
+
+
+      // Width of scrollable area depend on count items
+      scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+
+    }
+  }
+})
+
+.directive('gallerySlider', function ($timeout) {
+
+  return {
+    scope: {
+      widget: '='
+    },
+    restrict: 'E',
+    replace: true,
+    templateUrl: './src/shop/gallery.slider.html',
+    link: (scope, element, attrs) => {
+
+      $timeout(()=> {
+        var mySwiper = new Swiper ('.swiper-container', {
+          // Optional parameters
+          direction: 'horizontal',
+          slidesPerView: 'auto',
+          centeredSlides: true,
+          spaceBetween: 7,
+          loop: true
+        })
+      })
+    }
   }
 })
 
 .directive('tileSlider', function () {
 
   return {
-    scope: {},
+    scope: {
+      widget: '='
+    },
+    replace: true,
     restrict: 'E',
-    templateUrl: './src/shop/tile-slider.html'
+    templateUrl: './src/shop/tile.slider.html',
+    link: (scope, element, attrs) => {
+
+    }
+
+  }
+})
+
+.directive('thematicSlider', function ($timeout) {
+
+  return {
+    scope: {
+      widget: '='
+    },
+    replace: true,
+    restrict: 'E',
+    templateUrl: './src/shop/thematic.slider.html',
+    link: (scope, element, attrs) => {
+
+      $timeout(()=> {
+        var thematicSlider = new Swiper ('.thematic-container', {
+          // Optional parameters
+          direction: 'horizontal',
+          slidesPerView: 'auto',
+          centeredSlides: true,
+          pagination: '.swiper-pagination',
+          paginationHide: false,
+          spaceBetween: 10
+        })
+      })
+    }
+
   }
 })
 

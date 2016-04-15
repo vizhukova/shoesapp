@@ -1,0 +1,22 @@
+<div class="thematic-slider">
+  <p ng-class="widget.sale ? 'slider-header red' : 'slider-header' ">{{widget.title}} <i class="ion-chevron-right"></i></p>
+
+  <!-- Slider main container -->
+  <div class="thematic-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide" ng-repeat="item in widget.items">
+        <img ng-src="{{item.src}}" alt="">
+        <p class="suptitle">{{item.suptitle}}</p>
+        <p class="title">{{item.title}}</p>
+        <p class="subtitle">{{item.subtitle}}</p>
+        <p class="footer">{{item.footer}}</p>
+      </div>
+    </div>
+
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+</div>

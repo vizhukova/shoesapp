@@ -1,0 +1,17 @@
+<div class="tile-slider">
+  <p ng-class="widget.sale ? 'slider-header red' : 'slider-header' ">{{widget.title}} <i class="ion-chevron-right"></i><p>{{widget.subtitle}}</p></p>
+  <div class="wrapper">
+      <img class="thing" ng-src="{{item.src}}" ng-repeat="item in widget.items"/>
+      <div class="thing">
+        <div class="holder">
+          <div class="img">
+            <div class="center">
+              <span class="all">SHOP ALL</span><br>
+              <span>{{widget.count}} <span>items</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <span class="stretch"></span>
+    </div>
+</div>
