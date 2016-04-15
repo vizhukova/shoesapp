@@ -128,6 +128,7 @@ angular.module('starter.directives', [])
   return {
     restrict: 'E',
     templateUrl: './src/shop/image-loader.html',
+    replace: true,
     scope: {
       width: '@',
       height: '@',

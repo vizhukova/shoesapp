@@ -8,3 +8,4 @@ angular.module('starter.config', [])
     .setStorageType('localStorage')
     .setNotify(true, true)
 })*/
+

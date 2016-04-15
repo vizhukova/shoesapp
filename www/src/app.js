@@ -18,6 +18,12 @@ angular.module('starter', [
   'LocalStorageModule'
 ])
 
+  .constant('_', window._)
+
+  .run(function ($rootScope) {
+     $rootScope._ = window._;
+  })
+
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

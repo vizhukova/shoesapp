@@ -4,15 +4,35 @@
       <div class="container">
 
         <div class="title">Start following</div>
-        <div class="content">Get started by following some of the top brands.</div>
+        <div class="content">
+          <p>Get started by following some of the top brands.</p>
 
-        <image-loader width="100px" height="100px" src="http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"></image-loader>
-        <image-loader width="100px" height="100px" src="http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"></image-loader>
-        <image-loader width="100px" height="100px" src="http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"></image-loader>
-        <image-loader width="100px" height="100px" src="http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"></image-loader>
-        <image-loader width="100px" height="100px" src="http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"></image-loader>
+          <div class="brand-block" ng-class="{'selected': isSelected($index) }" ng-repeat="brand in brands track by $index" ng-click="onBlindChange($index)">
 
+            <div style="position:relative">
+
+              <i class="ion-plus-circled blind-on" ng-show="!isSelected($index)"></i>
+
+              <i class="ion-checkmark-circled blind-on" ng-show="isSelected($index)"></i>
+
+            <div class="brand-name">
+              <p>{{brand.name}}</p>
+            </div>
+
+            <div class="blind sample-show-hide">
+            </div>
+
+            <image-loader width="100%"
+                          height="100px"
+                          src="{{trustSrc(brand.src)}}">
+
+            </image-loader>
+            </div>
+
+          </div>
+        </div>
       </div>
     </ion-scroll>
   </ion-content>
+  <div class="button" ng-click="update()">Done</div>
 </ion-view>
