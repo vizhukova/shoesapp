@@ -227,5 +227,65 @@ angular.module('starter.directives', [])
   }
 })
 
+.directive('focusIf', function ($timeout) {
+
+   function link($scope, $element, $attrs) {
+            var dom = $element[0];
+            if ($attrs.focusIf) {
+                $scope.$watch($attrs.focusIf, focus);
+            } else {
+                focus(true);
+            }
+            function focus(condition) {
+                if (condition) {
+                    $timeout(function() {
+                        dom.focus();
+                    }, $scope.$eval($attrs.focusDelay) || 0);
+                }
+            }
+        }
+        return {
+            restrict: 'A',
+            link: link
+        };
+})
+
+.directive('imageLoader', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './src/shop/image-loader.html',
+    replace: true,
+    scope: {
+      width: '@',
+      height: '@',
+      src: '@'
+    },
+    link: function(scope, element, attributes) {
+
+      scope.isLoaded = false;
+
+      function PreLoadImage( objSettings, callback ) {
+
+        var thePic = new Image();
+
+         thePic.onload = function() {
+              callback();
+           console.log('uploaded')
+         };
+
+         thePic.onerror = function(err) {
+              console.error('Error load image in PreLoadImage', err)
+         };
+
+         thePic.src = objSettings.src;
+      }
+
+      PreLoadImage(scope, ()=> {scope.isLoaded = true});
+
+    }
+  }
+})
+
 
 

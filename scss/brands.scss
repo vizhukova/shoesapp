@@ -1,6 +1,108 @@
 .Brands {
-  background-color: rgba(214, 214, 214, 0.33);
 
+  $fontStrongColor: #8A8686;
+  $fontMainColor: #4E4D4B;
+
+  //background-color: rgba(214, 214, 214, 0.33);
+  background: #fff;
+
+  .button {
+    background: #387EF5;
+    text-transform: uppercase;
+    border-radius: 0;
+    color: #fff;
+    width: 100%;
+    position: absolute;
+    top: 80%;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+
+  .sample-show-hide {
+    -webkit-transition:opacity linear 0.5s;
+    transition:opacity linear 0.5s;
+  }
+
+  .sample-show-hide.ng-hide {
+    opacity:0;
+  }
+
+  .container {
+    padding: 25px 15px;
+    text-align: center;
+
+    .title {
+      font-size: 1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+    }
+
+    .content {
+      font-size: 0.9em;
+      color: #444444;
+      padding-top: 10px;
+      padding-bottom: 25px;
+      letter-spacing: 0.05em;
+
+      .brand-block {
+        width: 45%;
+        display: inline-block;
+        margin: 0px 2.5px 5px 2.5px;
+        position: relative;
+
+        .brand-name {
+          color: #fff;
+          border-radius: 100%;
+          font-size: 1.5em;
+          display: block;
+          position: absolute;
+          line-height: 100%;
+          vertical-align: middle;
+          right: 0;
+          top: 30%;
+          left: 0;
+          z-index: 100;
+        }
+
+        &.selected{
+          .blind{
+            opacity: 0;
+          }
+
+          .brand-name {
+            color: #C3C3C3;
+          }
+        }
+
+        .blind-on {
+          background: #fff;
+          border-radius: 100%;
+          color: #4B4B4B;
+          width: 25px;
+          height: 25px;
+          font-size: 2em;
+          display: inline-block;
+          position: absolute;
+          bottom: 10%;
+          right: 10%;
+          z-index: 100;
+        }
+
+        .blind {
+          position: absolute;
+          background: #000000;
+          opacity: 0.7;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+
+        }
+      }
+    }
+  }
   .brand-header {
     height: 8em;
     line-height: 8em;

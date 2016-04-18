@@ -1,47 +1,38 @@
 <ion-view view-title="MY BRANDS" class="Brands">
   <ion-content>
-    <ion-scroll direction="x">
-      <div class="brand-header">
-        <div class="thing"  ng-click="toBrand()">
-          <div class="img"></div>
-        </div>
-        <div class="thing" ng-click="toBrand()">
-          <div class="img"></div>
-        </div>
-        <div class="thing" ng-click="toBrand()">
-          <div class="img"></div>
-        </div>
-        <div class="thing" ng-click="toBrand()">
-          <div class="img"></div>
-        </div>
-        <div class="thing" ng-click="toBrand()">
-          <div class="img"></div>
-        </div>
-        <div class="thing" ng-click="toBrand()">
-          <div class="img"></div>
-        </div>
-        <div class="thing" ng-click="toBrand()">
-          <div class="img"></div>
-        </div>
-        <div class="thing" ng-click="toBrand()">
-          <div class="img"></div>
-        </div>
-        <div class="thing" ng-click="toBrand()">
-          <div class="img"></div>
-        </div>
-        <div class="thing" ng-click="toBrand()">
-          <div class="img"></div>
+    <ion-scroll direction="y">
+      <div class="container">
+
+        <div class="title">Start following</div>
+        <div class="content">
+          <p>Get started by following some of the top brands.</p>
+
+          <div class="brand-block" ng-class="{'selected': isSelected($index) }" ng-repeat="brand in brands track by $index" ng-click="onBlindChange($index)">
+
+            <div style="position:relative">
+
+              <i class="ion-plus-circled blind-on" ng-show="!isSelected($index)"></i>
+
+              <i class="ion-checkmark-circled blind-on" ng-show="isSelected($index)"></i>
+
+            <div class="brand-name">
+              <p>{{brand.name}}</p>
+            </div>
+
+            <div class="blind sample-show-hide">
+            </div>
+
+            <image-loader width="100%"
+                          height="100px"
+                          src="{{trustSrc(brand.src)}}">
+
+            </image-loader>
+            </div>
+
+          </div>
         </div>
       </div>
     </ion-scroll>
-    <span class="update">LATEST UPDATES</span>
-    <product-container></product-container>
-    <product-container></product-container>
-    <product-container></product-container>
-    <liked-slider></liked-slider>
-    <liked-slider></liked-slider>
-    <product-container></product-container>
-    <product-container></product-container>
-    <liked-slider></liked-slider>
   </ion-content>
+  <div class="button" ng-click="update()">Done</div>
 </ion-view>

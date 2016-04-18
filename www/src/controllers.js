@@ -6,6 +6,7 @@ import MeCtrl from './me/controller'
 import LoginCtrl from './login/controller'
 import MeSettingsCtrl from './settings/settings'
 import MeSettingsPromoCtrl from './settings/promo/promo'
+import MeSettingsShowMeCtrl from './settings/showMe/showMe'
 
 angular.module('starter.controllers', [])
 
@@ -59,6 +60,8 @@ angular.module('starter.controllers', [])
 .controller('MeCtrl', MeCtrl)
 
 .controller('MeSettingsPromoCtrl', MeSettingsPromoCtrl)
+
+.controller('MeSettingsShowMeCtrl', MeSettingsShowMeCtrl)
 
 .controller('MeSettingsCtrl', MeSettingsCtrl)
 
@@ -117,5 +120,7 @@ angular.module('starter.controllers', [])
 
     // Call Widget service method to
     // fetch data by current category
+
   Content.fetch('/man').then(data => {$scope.widgets = data})
 });
+

@@ -137,6 +137,19 @@
     }
   }
 
+  .arrow {
+    display: inline-block;
+    float: right;
+    font-size: 0.8em;
+
+    span {
+      text-transform: uppercase;
+      font-size: 1.3em;
+      padding: 0px 15px;
+      color: #464040;
+    }
+  }
+
 }
 
 /*begin Promo*/
@@ -187,3 +200,26 @@
   }
 }
 /*end Promo*/
+
+/*begin ShowMe*/
+.ShowMe {
+  .sex {
+    line-height: 65px;
+    border-bottom: solid 1px #E0DEDE;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0px 10px;
+
+    div {
+      display: inline-block;
+    }
+
+    .chosen {
+      float: right;
+      font-size: 2em;
+      color: #232222;
+    }
+
+  }
+}
+/*end ShowMe*/

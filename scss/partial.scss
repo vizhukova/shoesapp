@@ -590,7 +590,7 @@
 }
 
 .promo-popover {
-  top:15%;
+  top:20%;
   left:0;
   right:0;
   bottom:0;
@@ -648,6 +648,16 @@
       border-top: solid 1px #292929;
       border-bottom: solid 1px #EAE5DD;
       font-weight: 600;
+
+      div {
+        display: inline-block;
+      }
+
+      .arrow {
+        display: inline-block;
+        float: right;
+        font-size: 0.8em;
+      }
     }
 
     .form-body {
@@ -889,21 +899,44 @@
     }
   }
 
+
 // Header with join button
 .join-header {
   height: 12em;
   background: url("../img/bg2.jpg") center center no-repeat;
   background-size: cover;
   padding: 1.2em 1em 1.5em;
+  .imageLoader {
 
-  p.title {
-    font-weight: 700;
-    margin-bottom: .2em;
-  }
+    .spinner {
+      background: gray;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
 
-  button.join {
-    width: 90%;
+    svg {
+      stroke: #444;
+      fill: #444;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+    }
   }
+}
+
+p.title {
+  font-weight: 700;
+  margin-bottom: .2em;
+}
+
+button.join {
+  width: 90%;
 }
 
 

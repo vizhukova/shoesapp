@@ -19,7 +19,100 @@ angular.module('starter.services', [])
 
 
 
-.service('Content', function ($http, $q, URL) {
+.service('Content', function ($http, $q, URL) {})
+
+.service('Brand', function($http, localStorageService) {
+
+  // Some fake testing data
+  var brands = [
+    {
+      name: 'Brand name',
+      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
+    }, {
+      name: 'Brand name',
+      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
+    }, {
+      name: 'Brand name',
+      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
+    }, {
+      name: 'Brand name',
+      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
+    }, {
+      name: 'Brand name',
+      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
+    }, {
+      name: 'Brand name',
+      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
+    }, {
+      name: 'Brand name',
+      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
+    }, {
+      name: 'Brand name',
+      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
+    }
+
+  ];
+
+  this.get = function(){
+
+    return brands;
+
+  };
+
+  this.saveInLocalStorage = (chosenBrands) => {
+
+     localStorageService.set('chosenBrands', chosenBrands);
+
+  };
+})
+
+
+
+.service('Settings', function($http, localStorageService) {
+
+  var settings = {
+
+    sexObj : {
+      sex : ['Women', 'Men', 'Both'],
+      chosenIndex: 0
+    },
+
+    faq: 'test text faq',
+    shippingAndReturns: 'test text shippingAndReturns',
+    privacyPolicy: 'test text privacyPolicy',
+    termsOfService: 'test text termsOfService'
+  };
+
+  this.saveInLocalStorage = function() {
+
+     localStorageService.set('Settings', settings);
+
+  };
+
+  this.get = function(){
+
+    return settings;
+  };
+
+  this.getSexObj = function() {
+
+    return settings.sexObj;
+
+  };
+
+  this.setCurrenctSexIndex = function(index) {
+
+    settings.sexObj.chosenIndex = index;
+    this.saveInLocalStorage();
+
+  };
+
+  this.saveInLocalStorage();
+})
+
+
+
+.service('Widgets', function ($http, $q, URL) {
 
   var categories = {};
   var category;
