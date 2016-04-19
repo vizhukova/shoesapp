@@ -1,0 +1,38 @@
+<div class="brand-follow">
+
+   <div class='content content-profile'>
+      <div class="brand-pic">Brand name</div>
+      <div class="brand-descr">
+        <div><strong>Brand name</strong></div>
+        <div>Bottoms, Tops, Bags, Accessori...</div>
+      </div>
+      <div class="brand-new-items">
+        <i class="ion-ios-plus-outline"></i>
+        <p>Follow</p>
+      </div>
+   </div>
+
+  <ion-scroll direction="x" delegate-handle="horizontal">
+    <div class="scrolling" ng-style="{width: width}">
+      <div class="thing" ng-repeat="product in widget.items track by $index">
+        <div class="holder">
+          <img class="img" ng-src="{{product.src}}">
+        </div>
+        <p class="title">{{product.title}}</p>
+        <p class="cost">
+          <span ng-class="{{product.price}}">{{product.cost | currency:"$":00}}</span>
+        </p>
+      </div>
+      <div class="thing">
+        <div class="holder">
+          <div class="img">
+            <div class="center">
+              <span class="all">SHOP ALL</span><br>
+              <span>{{widget.count}} <span>items</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-scroll>
+</div>

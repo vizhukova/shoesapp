@@ -74,10 +74,198 @@
 
 }
 
+
+.recommend-slider {
+  width: 100%;
+  background-color: #fff;
+  margin: .6em 0;
+  position: relative;
+
+  .slider-header {
+    height: 4em;
+    line-height: 4em;
+    margin: 0 0 1em 0;
+    text-align: center;
+    font-size: 17px;
+    letter-spacing: 0.2em;
+
+    &.red {
+      color: red;
+    }
+
+    i:before {
+      font-size: 15px;
+    }
+  }
+
+  .subheader {
+    position: absolute;
+    top: 4em;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-style: italic;
+    text-transform: capitalize;
+    color: #3A3838;;
+  }
+
+  .postheader {
+    text-transform: none;
+    padding: 1em;
+  }
+
+  .line {
+    width: 25%;
+    border-top: solid 1px #D0CDCD;
+    margin: auto;
+
+
+  }
+
+  .scrolling {
+    height: 15em;
+    text-align: left;
+
+    div.thing {
+      height: 100%;
+      width: 10em;
+      display: inline-block;
+      margin: 0 0 0 1em;
+      text-align: center;
+      float: left;
+
+      &:last-child {
+        margin-right: 1em;
+      }
+
+      div.holder {
+        position: relative;
+
+        .img {
+          display: inline-block;
+          background-color: #eee;
+          //background: url("../img/slider1.jpg") center center no-repeat;
+          background-size: 100% 100%;
+          width: 10em;
+          height: 10em;
+        }
+
+        div.img {
+          position: relative;
+          border: 1px solid black;
+          background: #fff;
+
+          div.center {
+            position: absolute;
+            width: 50%;
+            height: 3em;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+
+
+            span.all {
+              padding-bottom: 2px;
+              border-bottom: 1px solid #ddd;
+            }
+
+            span:not(.all) {
+              color: #bbb;
+              margin-top: 1px;
+              display: inline-block;
+            }
+          }
+        }
+
+
+
+        div.ribbon {
+          position: absolute;
+          bottom: .5em;
+          left: -4px;
+          right: 0;
+          display: inline-block;
+          text-align: left;
+
+          h2 {
+            display: inline-block;
+            padding: 0 13px 0 16px;
+            position: relative;
+            font-size: 11px;
+            color: #ffffff;
+            height: 2.4em;
+            line-height: 2.65em;
+            background-color: #000;
+
+            &:before {
+              content: ' ';
+              position: absolute;
+              width: 15px;
+              top: 4px;
+              height: 15px;
+              right: -8px;
+              background-color: #000;
+              -webkit-transform: rotateZ(45deg);
+            }
+
+            &:after {
+              content: ' ';
+              position: absolute;
+              width: 0;
+              height: 0;
+              left: 0px;
+              top: 100%;
+              border-width: 3px 3px;
+              border-style: solid;
+              border-color: #000 #000 transparent transparent;
+            }
+          }
+        }
+      }
+
+
+      p {
+        text-align: center;
+        margin: -1px 0;
+        white-space: nowrap; /* Запрещаем перенос строк */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 10em;
+
+        &.brand {
+          font-weight: 600;
+        }
+        &.name {}
+
+        &.cost {
+
+          .price {
+            color: #ddd;
+
+            &.old {
+              font-size: 13px;
+              text-decoration: line-through;
+            }
+          }
+
+          span.discount {
+            color: red;
+            margin-left: .3em;
+          }
+        }
+      }
+    }
+  }
+}
+
+
 .liked-slider {
   width: 100%;
   background-color: #fff;
   margin: .6em 0;
+  position: relative;
 
   .slider-header {
     height: 4em;
@@ -94,6 +282,22 @@
     i:before {
       font-size: 15px;
     }
+  }
+
+  .subheader {
+    position: absolute;
+    top: 4em;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-style: italic;
+    text-transform: capitalize;
+    color: #595959;
+  }
+
+  .postheader {
+    text-transform: none;
+    padding: 15px;
   }
 
   .scrolling {
@@ -938,5 +1142,26 @@ p.title {
 button.join {
   width: 90%;
 }
+
+
+.brand-follow {
+ @extend .liked-slider;
+
+  .content .brand-descr {
+    width: 60% !important;
+  }
+
+  .brand-new-items {
+    width: 15%;
+    text-align: center;
+    float: right;
+
+    i {
+      font-size: 2em;
+    }
+  }
+
+}
+
 
 

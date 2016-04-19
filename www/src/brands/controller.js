@@ -4,6 +4,15 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
 
   $scope.chosenBrands = [];
   $scope.brands = Brand.get();
+  $scope.products = Brand.getProducts();
+
+  $scope.widget = {
+    title: 'On sale',
+    subtitle: 'Subtitle',
+    postheader: 'Recomended for you',
+    sale: true,
+    items: $scope.products
+  }
 
   $scope.onBlindChange = (index) => {
 

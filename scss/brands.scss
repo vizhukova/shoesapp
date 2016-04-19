@@ -6,7 +6,11 @@
   //background-color: rgba(214, 214, 214, 0.33);
   background: #fff;
 
-  .button {
+  em {
+    color: #9D9A9A;
+  }
+
+  .button-done {
     background: #387EF5;
     text-transform: uppercase;
     border-radius: 0;
@@ -28,7 +32,7 @@
     opacity:0;
   }
 
-  .container {
+  .content {
     padding: 25px 15px;
     text-align: center;
 
@@ -39,11 +43,10 @@
       letter-spacing: 0.2em;
     }
 
-    .content {
+    .post-title {
       font-size: 0.9em;
       color: #444444;
       padding-top: 10px;
-      padding-bottom: 25px;
       letter-spacing: 0.05em;
 
       .brand-block {
@@ -102,7 +105,42 @@
         }
       }
     }
+
+    .brand-pic {
+      display: inline-block;
+      background: black;
+      color: #fff;
+      height: 60px;
+      width: 60px;
+      line-height: 60px;
+      vertical-align: middle;
+      font-size: 0.7em;
+      text-align: center;
+    }
+
+    .brand-descr, .brand-new-items {
+      display: inline-block;
+      color: #4B4B4B;
+    }
+
+    .brand-descr {
+      width: 69%;
+    }
   }
+
+  .content-profile {
+    text-align: left;
+    font-size: 1em;
+    text-transform: none;
+    line-height: 1.6em;
+    vertical-align: top;
+    padding: 10px;
+
+    div {
+      font-weight: 100;
+    }
+  }
+
   .brand-header {
     height: 8em;
     line-height: 8em;
@@ -138,6 +176,58 @@
   .product-container {
     margin: .6em 0;
   }
+
+
+  .line-title {
+    background: #ECECEC;
+    color: #8F8C8C;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 5px 0px;
+    line-height: 35px;
+    width: 100%;
+    font-size: 0.8em;
+    text-align: center;
+
+    div {
+      line-height: 1.5em;
+    }
+
+    p {
+      font-weight: 100;
+    }
+
+    p.title {
+      color: #000;
+    }
+  }
+}
+
+
+.picture {
+
+  position: relative;
+  padding: 0.5em 4em;
+
+  .name {
+    position: absolute;
+    opacity: 0.7;
+    top: 40%;
+  }
+
+  .image {
+
+  }
+
+  div.button {
+    background: #fff;
+    font-size: 1.1em;
+    font-weight: 100;
+    color: #000;
+    min-height: 4em;
+    vertical-align: middle;
+    line-height: 4em;
+  }
 }
 
 .Brand-subtab {
@@ -159,6 +249,145 @@
       text-align: center;
       border: 1px solid black;
       border-radius: 7px;
+    }
+  }
+}
+
+$marginMainBlock: 10px;
+$colorShipping: #B5A758;
+
+.product-slider {
+  background: #fff;
+  text-transform: none;
+  text-align: center;
+  margin-bottom: 7px;
+  margin-top: 17px;
+
+  p.title {
+    margin: 0;
+  }
+
+  .title {
+    position: relative;
+    margin: -$marginMainBlock $marginMainBlock $marginMainBlock 0;
+
+    .name, .mark, .flag {
+      position: absolute;
+      z-index: 100;
+    }
+
+    .flag {
+      line-height: 5em;
+      width: 5em;
+      font-weight: 600;
+      color: #14120E;
+      background: #fff;
+      left: 0;
+      text-align: center;
+    }
+
+    .name {
+      left: 5em;
+      padding: 0 1em;
+      color: #1E1C18;
+      font-weight: 600;
+    }
+
+    .mark {
+      right: 0;
+    }
+
+  }
+
+  .description {
+    text-align: left;
+    font-size: 1.2em;
+    color: #3B3A36;
+
+    .button {
+      background: #fff;
+    }
+
+    .title {
+      font-weight: 600;
+    }
+
+    .footer {
+
+      font-size: 0.8em;
+
+      .left-data, .right-data {
+        display: inline-block;
+        width: 49%;
+      }
+
+      .left-data {
+
+        text-align: left;
+
+        .icon {
+          height: 100%;
+          border-right: solid 1px $colorShipping;
+        }
+        .data {
+          color: $colorShipping;
+          min-height: 1em;
+          padding: 0;
+          font-size: 1.4em;
+
+          .description {
+            font-size: 0.8em;
+          }
+
+          .title {
+            font-size: 0.9em;
+          }
+
+          .title, .description {
+            color: $colorShipping;
+            line-height: 1em;
+          }
+
+          div {
+            display: inline-block;
+            padding-right: 5px;
+          }
+        }
+
+        .button-footer {
+          width: 100%;
+          font-size: 1.2em;
+          min-height: 2.5em;
+          line-height: 2.7em;
+        }
+      }
+
+      .right-data {
+        text-align: right;
+
+        .data {
+          line-height: 2em;
+          font-size: 1.1em;
+          color: #000;
+          font-weight: 600;
+          min-height: 3em;
+        }
+      }
+
+      .button-footer {
+        font-size: 1em;
+        border: solid 1px #D2CECE;
+        margin-top: 10px;
+        line-height: 3em;
+        min-height: 2.5em;
+        width: 41%;
+
+        i {
+          font-size: 1.6em;
+          color: #000;
+        }
+      }
+
     }
   }
 }

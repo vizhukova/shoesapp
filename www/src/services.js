@@ -18,9 +18,6 @@ angular.module('starter.services', [])
 })
 
 
-
-.service('Content', function ($http, $q, URL) {})
-
 .service('Brand', function($http, localStorageService) {
 
   // Some fake testing data
@@ -53,9 +50,75 @@ angular.module('starter.services', [])
 
   ];
 
+  var products = [
+    {
+      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
+      brand: 'Green Wing',
+      title: 'Postman Oxford Oro',
+      cost: 269,
+      discount: false,
+      ribbon: '48% OFF'
+    },
+    {
+      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
+      brand: 'Green Wing',
+      title: 'Postman Oxford Oro',
+      cost: 269,
+      discount: '160'
+    },
+    {
+      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
+      brand: 'Green Wing',
+      title: 'Postman Oxford Oro',
+      cost: 269,
+      discount: '160'
+    },
+    {
+      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
+      brand: 'Green Wing',
+      title: 'Postman Oxford Oro',
+      cost: 269,
+      discount: '160'
+    },
+    {
+      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
+      brand: 'Green Wing',
+      title: 'Postman Oxford Oro',
+      cost: 269,
+      discount: '160'
+    },
+    {
+      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
+      brand: 'Green Wing',
+      title: 'Postman Oxford Oro',
+      cost: 269,
+      discount: '160'
+    },
+    {
+      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
+      brand: 'Green Wing',
+      title: 'Postman Oxford Oro',
+      cost: 269,
+      discount: '160'
+    },
+    {
+      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
+      brand: 'Green Wing',
+      title: 'Postman Oxford Oro',
+      cost: 269,
+      discount: '160'
+    }
+  ];
+
   this.get = function(){
 
     return brands;
+
+  };
+
+  this.getProducts = function() {
+
+    return products;
 
   };
 
@@ -112,7 +175,7 @@ angular.module('starter.services', [])
 
 
 
-.service('Widgets', function ($http, $q, URL) {
+.service('Content', function ($http, $q, URL) {
 
   var categories = {};
   var category;
@@ -543,6 +606,4 @@ angular.module('starter.services', [])
     })
   }
 });
-
-
 

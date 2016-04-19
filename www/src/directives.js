@@ -287,5 +287,79 @@ angular.module('starter.directives', [])
   }
 })
 
+.directive('brandSlider', function () {
+
+  return {
+    scope: {},
+    restrict: 'E',
+    replace: true,
+    templateUrl: './src/brands/subtabs/brand.slider.html',
+    controller: 'BrandsCtrl',
+
+    link: (scope, element, attrs) => {
+
+
+      // Width of scrollable area depend on count items
+      scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+
+    }
+  }
+})
+
+  .directive('productSlider', function () {
+
+  return {
+    scope: {},
+    restrict: 'E',
+    replace: true,
+    templateUrl: './src/brands/subtabs/product.slider.html',
+    controller: 'BrandsCtrl'
+
+  }
+})
+
+ .directive('brandPicture', function () {
+
+   return {
+     scope: {},
+     restrict: 'E',
+     replace: true,
+     templateUrl: './src/brands/subtabs/brand.picture.html',
+     controller: 'BrandsCtrl'
+
+   }
+ })
+
+ .directive('productRecommend', function () {
+
+   return {
+     scope: {},
+     restrict: 'E',
+     //replace: true,
+     templateUrl: './src/brands/subtabs/product.recommend.html',
+     controller: 'BrandsCtrl',
+
+     link: (scope, element, attrs) => {
+      scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+    }
+
+   }
+ })
+
+  .directive('brandFollow', function () {
+
+   return {
+     scope: {},
+     restrict: 'E',
+     //replace: true,
+     templateUrl: './src/brands/subtabs/brand.follow.html',
+     controller: 'BrandsCtrl',
+
+     link: (scope, element, attrs) => {
+      scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+    }
+   }
+ })
+
 
 

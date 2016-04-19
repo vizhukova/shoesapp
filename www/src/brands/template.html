@@ -2,9 +2,9 @@
   <ion-content>
     <ion-scroll direction="y">
       <div class="container">
-
-        <div class="title">Start following</div>
         <div class="content">
+        <div class="title">Start following</div>
+        <div class="post-title">
           <p>Get started by following some of the top brands.</p>
 
           <div class="brand-block" ng-class="{'selected': isSelected($index) }" ng-repeat="brand in brands track by $index" ng-click="onBlindChange($index)">
@@ -31,8 +31,22 @@
 
           </div>
         </div>
+        </div>
+      </div>
+      <div class="line-title">
+        <span>Latest updates</span>
+        <brand-slider widget="widget"></brand-slider>
+        <product-slider></product-slider>
+        <brand-picture></brand-picture>
+        <product-recommend widget="widget"></product-recommend>
+        <brand-follow widget="widget"></brand-follow>
+
+        <img src="./../img/uniqlo.jpg" width="100%" height="auto" alt="">
+
+      <div>
+      </div>
       </div>
     </ion-scroll>
   </ion-content>
-  <div class="button" ng-click="update()">Done</div>
+  <div class="button button-done" ng-click="update()">Done</div>
 </ion-view>

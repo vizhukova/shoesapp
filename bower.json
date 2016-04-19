@@ -6,7 +6,6 @@
     "ionic-platform-web-client": "~0.7.1"
   },
   "dependencies": {
-    "ng-parallax": "~0.1.8",
     "jquery": "~2.2.3",
     "ionic-scroll-sista": "~1.0.7",
     "swiper": "~3.3.1"
