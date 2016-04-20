@@ -122,6 +122,12 @@ angular.module('starter.services', [])
 
   };
 
+  this.getBrandProducts = function() {
+
+    return products;
+
+  };
+
   this.saveInLocalStorage = (chosenBrands) => {
 
      localStorageService.set('chosenBrands', chosenBrands);

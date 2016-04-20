@@ -1,0 +1,44 @@
+.category-popover {
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  height:100%;
+  width: 100%;
+  opacity: 1;
+  background: rgb(228, 228, 228);
+  margin: 0!important;
+
+  div.popover-arrow {
+    display: none;
+  }
+
+  button.close-btn {
+    width: 40px;
+    height: 40px;
+    top: 15px;
+    left:15px;
+    z-index: 5;
+    position: absolute;
+  }
+
+  ul.category-list {
+    width: 100%;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    padding: 50px 0;
+
+    li.cat-item {
+      text-align: center;
+      font-size: 40px;
+      height: 2em;
+      line-height: 2em;
+    }
+  }
+}

@@ -105,6 +105,7 @@ angular.module('starter', [
           }
         }
       })
+
       .state('tab.brand', {
         url: '/brand/:id',
         views: {

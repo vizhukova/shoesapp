@@ -1092,6 +1092,17 @@
       background-color: #eee;
       //background: url("../img/slider1.jpg") center center no-repeat;
       background-size: 100% 100%;
+      position: relative;
+
+      .button-like {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #fff;
+        font-size: 2em;
+        padding: 10px;
+      }
+
     }
 
     span {
@@ -1161,6 +1172,54 @@ button.join {
     }
   }
 
+}
+
+.brand-popover-item {
+  @extend .brand-popover;
+
+  font-size: 0.83em;
+  padding: 0 1em;
+
+  .product-slider {
+    border-bottom: solid 1px #D2CECE;
+    padding-bottom: 1em;
+  }
+
+  .title {
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 3em;
+  }
+
+  .line {
+    border-bottom: solid 1px #D2CECE;
+    width: 20%;
+    margin: 0 auto 1em auto;
+  }
+
+}
+
+.brand-list {
+  @extend .liked-slider;
+
+  .scrolling, .brand-follow .scrolling, .brand-list .scrolling {
+    height: 10em;
+  }
+
+  .scrolling div.thing div.holder .img, .scrolling div.thing div.holder, .scrolling div.thing {
+    width: 7em ;
+    height: 7em;
+  }
+
+  .holder {
+    border-radius: 100%;
+    overflow: hidden;
+    border: solid 1px #BBBABA;
+  }
+
+  .more {
+    font-size: 3em;
+  }
 }
 
 

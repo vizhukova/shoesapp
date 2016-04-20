@@ -1,0 +1,53 @@
+.brand-popover {
+  @extend .category-popover;
+  background: #fff !important;
+
+  .header {
+    font-size: 1.2em;
+
+    .button {
+      float: left;
+      font-size: 2em;
+      color: #000;
+    }
+
+    .name {
+      text-transform: uppercase;
+      font-weight: 600;
+      text-align: center;
+      line-height: 3em;
+      border-bottom: solid 1px #E4E4E4;
+    }
+  }
+
+  .main-title {
+    text-align: center;
+    width: 70%;
+    margin: 5px auto;
+
+    .name, .title, .description {
+      margin: 0;
+    }
+
+    .name, .title {
+      text-transform: uppercase;
+    }
+
+    .name {
+      font-size: 0.73em;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+    }
+
+    .title {
+      font-size: 1.5em;
+      font-weight: 100;
+    }
+
+  }
+
+  .content {
+    padding: 5px;
+  }
+
+}

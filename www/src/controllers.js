@@ -41,11 +41,30 @@ angular.module('starter.controllers', [])
 
 .controller('ShowcaseCtrl', ShowcaseCtrl)
   // Product in showcase
-  .controller('productCtrl', ($scope, $state)=> {
+  .controller('productCtrl', ($scope, $state, $ionicPopover)=> {
 
-    $scope.openProduct = () => {
-      $state.go("tab.product")
+    $scope.openProduct = (type, $event) => {
+
+      console.log(type)
+
+      if(type === 'brand'){
+        //$state.go("tab.brand-item");
+
+        $ionicPopover.fromTemplateUrl('src/brands/subtabs/brand-item.html', {
+          scope: $scope,
+          animation: $scope.animation
+        }).then((popover)=>{
+          $scope.popover = popover;
+          $scope.popover.show($event);
+        });
+      }
+      else {
+        $state.go("tab.product");
+      }
+
     }
+
+
   })
 
 // Product subtab
@@ -103,7 +122,9 @@ angular.module('starter.controllers', [])
 
 
   $ionicPopover.fromTemplateUrl('./src/shop/category-popover.html', {
+
     scope: $scope
+
   }).then(function(popover) {
     $scope.popover = popover;
   });
@@ -114,8 +135,10 @@ angular.module('starter.controllers', [])
 
 
   $scope.toShowcase = () => {
+
     $scope.popover.hide();
     $state.go("tab.showcase")
+
   };
 
     // Call Widget service method to

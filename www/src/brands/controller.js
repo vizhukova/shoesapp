@@ -2,9 +2,11 @@ import _ from 'lodash'
 
 export default function($scope, $state, $ionicPopover, $sce, Brand) {
 
+  $scope.animation = 'slide-in-up';
   $scope.chosenBrands = [];
   $scope.brands = Brand.get();
   $scope.products = Brand.getProducts();
+  $scope.brandProducts = Brand.getBrandProducts();
 
   $scope.widget = {
     title: 'On sale',
@@ -12,7 +14,14 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
     postheader: 'Recomended for you',
     sale: true,
     items: $scope.products
-  }
+  };
+
+  $scope.brandPopover = {
+    name: 'Brand name',
+    title: 'Title',
+    description: 'description description description description',
+    products: $scope.brandProducts
+  };
 
   $scope.onBlindChange = (index) => {
 
@@ -28,9 +37,20 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
 
   };
 
-  $scope.trustSrc = function(src) {
-    return $sce.trustAsResourceUrl(src);
-  };
+   $ionicPopover.fromTemplateUrl('src/brands/subtabs/brand-popover.html', {
+      scope: $scope,
+      animation: $scope.animation
+    }).then((popover)=>{
+      $scope.popover = popover;
+    });
+
+    $scope.openPopover = ($event)=>{
+      $scope.popover.show($event);
+    };
+
+    $scope.trustSrc = function(src) {
+      return $sce.trustAsResourceUrl(src);
+    };
 
   $scope.toBrand = () => {
 
