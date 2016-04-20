@@ -293,7 +293,7 @@ angular.module('starter.directives', [])
     scope: {},
     restrict: 'E',
     replace: true,
-    templateUrl: './src/brands/subtabs/brand.slider.html',
+    templateUrl: './src/brands/directives/brand.slider.html',
     controller: 'BrandsCtrl',
 
     link: (scope, element, attrs) => {
@@ -312,7 +312,7 @@ angular.module('starter.directives', [])
     scope: {},
     restrict: 'E',
     replace: true,
-    templateUrl: './src/brands/subtabs/product.slider.html',
+    templateUrl: './src/brands/directives/product.slider.html',
     controller: 'BrandsCtrl'
 
   }
@@ -324,7 +324,7 @@ angular.module('starter.directives', [])
      scope: {},
      restrict: 'E',
      replace: true,
-     templateUrl: './src/brands/subtabs/brand.picture.html',
+     templateUrl: './src/brands/directives/brand.picture.html',
      controller: 'BrandsCtrl'
 
    }
@@ -336,7 +336,7 @@ angular.module('starter.directives', [])
      scope: {},
      restrict: 'E',
      //replace: true,
-     templateUrl: './src/brands/subtabs/product.recommend.html',
+     templateUrl: './src/brands/directives/product.recommend.html',
      controller: 'BrandsCtrl',
 
      link: (scope, element, attrs) => {
@@ -352,7 +352,7 @@ angular.module('starter.directives', [])
      scope: {},
      restrict: 'E',
      //replace: true,
-     templateUrl: './src/brands/subtabs/brand.follow.html',
+     templateUrl: './src/brands/directives/brand.follow.html',
      controller: 'BrandsCtrl',
 
      link: (scope, element, attrs) => {

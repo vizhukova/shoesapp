@@ -109,7 +109,7 @@ angular.module('starter', [
         url: '/brand/:id',
         views: {
           'tab-brands': {
-            templateUrl: 'src/brands/subtabs/brand.html'
+            templateUrl: 'src/brands/directives/brand.html'
           }
         }
       })
