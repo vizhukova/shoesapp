@@ -45,7 +45,7 @@ angular.module('starter.controllers', [])
 
     $scope.openProduct = (type, $event) => {
 
-      console.log(type)
+      console.log('openProduct type=', type)
 
       if(type === 'brand'){
         //$state.go("tab.brand-item");

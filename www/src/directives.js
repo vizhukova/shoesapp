@@ -192,8 +192,7 @@ angular.module('starter.directives', [])
       templateUrl: './src/showcase/template.html',
       controller: 'ShowcaseCtrl',
       scope: {
-        type: '=',
-        brandPopover: '='
+        type: '='
       },
       link: (scope) => {
         console.log(scope.brandPopover)
@@ -402,7 +401,9 @@ angular.module('starter.directives', [])
   .directive('productsPage', function () {
 
     return {
-      scope: {},
+      scope: {
+        type: '='
+      },
       restrict: 'E',
       //replace: true,
       templateUrl: './templates/products.page.html',

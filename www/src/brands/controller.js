@@ -33,8 +33,7 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
 
   var popups = [
     {name: 'brandPopover', url: 'src/brands/subtabs/brand-popover.html'},
-    {name: 'subtabShowcase', url: 'templates/subtab-showcase.html'},
-    {name: 'brandItem', url: 'src/brands/subtabs/brand-item.html'}
+    {name: 'subtabShowcase', url: 'templates/subtab-showcase.html'}
   ];
 
   popups.map((popup)=>{
