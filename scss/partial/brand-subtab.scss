@@ -1,0 +1,46 @@
+.Brand-subtab {
+  .brand-slide {
+    height: 13em;
+    width: 100%;
+    background: url("../img/run.jpg") center center no-repeat;
+    background-size: contain;
+    border-bottom: 1px solid  #DDDDDD;
+    position: relative;
+
+    div.follow {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 90px;
+      height: 30px;
+      background: #fff;
+      line-height: 30px;
+      text-align: center;
+      border: 1px solid black;
+      border-radius: 7px;
+      font-size: 0.7em;
+      font-weight: 600;
+    }
+  }
+
+  .to-category {
+    background: #fff;
+    padding: 0 2em 0 1em;
+    margin: 0 -1em;
+
+    li {
+      border-bottom: solid 1px #DDDDDD;
+      text-align: left;
+      line-height: 3em;
+    }
+
+    i {
+      float: right;
+    }
+
+    .title {
+      font-weight: 600;
+    }
+
+  }
+}

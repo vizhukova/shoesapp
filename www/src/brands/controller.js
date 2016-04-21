@@ -8,6 +8,12 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
   $scope.products = Brand.getProducts();
   $scope.brandProducts = Brand.getBrandProducts();
 
+  $scope.goToBrand = () => {
+     $state.go("tab.brand");
+  };
+
+  $scope.test = 'test';
+
   $scope.widget = {
     title: 'On sale',
     subtitle: 'Subtitle',
@@ -16,12 +22,54 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
     items: $scope.products
   };
 
-  $scope.brandPopover = {
+  $scope.brandPopoverData = {
     name: 'Brand name',
     title: 'Title',
     description: 'description description description description',
     products: $scope.brandProducts
   };
+
+  $scope.categories = ['Dresses', 'Tops', 'All Women'];
+
+  var popups = [
+    {name: 'brandPopover', url: 'src/brands/subtabs/brand-popover.html'},
+    {name: 'subtabShowcase', url: 'templates/subtab-showcase.html'},
+    {name: 'brandItem', url: 'src/brands/subtabs/brand-item.html'}
+  ];
+
+  popups.map((popup)=>{
+    $ionicPopover.fromTemplateUrl(popup.url, {
+      scope: $scope,
+      animation: $scope.animation
+    }).then((popover)=>{
+      $scope[popup.name] = popover;
+    });
+
+    $scope[`open${popup.name}`] = ()=>{
+      $scope[popup.name].show();
+    };
+
+    $scope.trustSrc = function(src) {
+      return $sce.trustAsResourceUrl(src);
+    };
+  })
+
+  $scope.toBrandProducts = () => {
+
+    //$scope.popover.hide();
+    $state.go("tab.brand-products")
+
+  };
+
+  $scope.isCategoryChosen = (index) => {
+    return $scope.categories[index].chosen;
+  };
+
+  $scope.setCategoryChosen = (index) => {
+    $scope.categories.map((item) => item.chosen = false);
+    $scope.categories[index].chosen = true;
+  };
+
 
   $scope.onBlindChange = (index) => {
 
@@ -34,27 +82,6 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
       $scope.chosenBrands = _.filter($scope.chosenBrands, (item) => item != index);
 
     }
-
-  };
-
-   $ionicPopover.fromTemplateUrl('src/brands/subtabs/brand-popover.html', {
-      scope: $scope,
-      animation: $scope.animation
-    }).then((popover)=>{
-      $scope.popover = popover;
-    });
-
-    $scope.openPopover = ($event)=>{
-      $scope.popover.show($event);
-    };
-
-    $scope.trustSrc = function(src) {
-      return $sce.trustAsResourceUrl(src);
-    };
-
-  $scope.toBrand = () => {
-
-    $state.go("tab.brand");
 
   };
 

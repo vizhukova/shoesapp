@@ -3,16 +3,19 @@
   <!--<div class="close-btn"><i class="ion-android-close"></i></div>-->
   <ion-scroll direction="y" style="width: 100%; height: 100%">
     <div class="header">
-      <button ng-click="popover.hide()" class="button button-icon ion-ios-close-empty"></button>
-      <p class="name">{{brandPopover.name}}</p>
+      <button ng-click="brandPopover.hide()" class="button button-icon ion-ios-close-empty"></button>
+      <p class="name">{{brandPopoverData.name}}</p>
     </div>
    <div class="main-title">
-     <p class="name">{{brandPopover.name}}</p>
-     <p class="title">{{brandPopover.title}}</p>
-     <p class="description">{{brandPopover.description}}</p>
+     <p class="name">{{brandPopoverData.name}}</p>
+     <p class="title">{{brandPopoverData.title}}</p>
+     <p class="description">{{brandPopoverData.description}}</p>
    </div>
    <div class="content">
-     <showcase products="brandPopover.products" type="'brand'"></showcase>
+     <div class="showcase" ng-repeat="product in products">
+      <product type="type"></product>
+    </div>
+
    </div>
   </ion-scroll>
 

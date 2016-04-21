@@ -1203,13 +1203,23 @@ button.join {
   @extend .liked-slider;
 
   .scrolling, .brand-follow .scrolling, .brand-list .scrolling {
-    height: 10em;
+    height: 4.5em;
+    margin: 1em 0;
   }
 
   .scrolling div.thing div.holder .img, .scrolling div.thing div.holder, .scrolling div.thing {
-    width: 7em ;
-    height: 7em;
+    width: 4.5em ;
+    height: 4.5em;
   }
+
+  .scrolling div.thing {
+     margin: 0 0 0 0.5em;
+   }
+
+  .scrolling div.thing div.holder div.img {
+      border: none;
+    }
+
 
   .holder {
     border-radius: 100%;
@@ -1220,6 +1230,24 @@ button.join {
   .more {
     font-size: 3em;
   }
+}
+
+.brand-picture2 {
+  @extend .brand-picture;
+
+  padding: 0.5em;
+
+  .name {
+    opacity: 1;
+    top: 40%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    margin: auto;
+  }
+
 }
 
 

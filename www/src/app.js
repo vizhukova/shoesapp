@@ -86,6 +86,7 @@ angular.module('starter', [
           }
         }
       })
+
       .state('tab.product', {
         url: '/product/:id',
         views: {
@@ -110,7 +111,18 @@ angular.module('starter', [
         url: '/brand/:id',
         views: {
           'tab-brands': {
-            templateUrl: 'src/brands/directives/brand.html'
+            templateUrl: 'src/brands/directives/brand.html',
+            controller: 'BrandsCtrl'
+          }
+        }
+      })
+
+      .state('tab.brand-products', {
+        url: '/brand/:id/products',
+        views: {
+          'tab-brands': {
+            templateUrl: 'templates/subtab-brand.html',
+            controller: 'ShowcaseCtrl'
           }
         }
       })

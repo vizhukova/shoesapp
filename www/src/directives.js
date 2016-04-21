@@ -192,7 +192,11 @@ angular.module('starter.directives', [])
       templateUrl: './src/showcase/template.html',
       controller: 'ShowcaseCtrl',
       scope: {
-        type: '='
+        type: '=',
+        brandPopover: '='
+      },
+      link: (scope) => {
+        console.log(scope.brandPopover)
       }
     }
   })
@@ -332,7 +336,19 @@ angular.module('starter.directives', [])
       restrict: 'E',
       replace: true,
       templateUrl: './src/brands/directives/brand.picture.html',
-      controller: 'BrandsCtrl'
+      link: (scope) => {
+        console.log(scope)
+      }
+    }
+  })
+
+  .directive('brandPicture2', function () {
+
+    return {
+      scope: {},
+      restrict: 'E',
+      replace: true,
+      templateUrl: './src/brands/directives/brand.picture2.html'
 
     }
   })
@@ -378,8 +394,19 @@ angular.module('starter.directives', [])
       controller: 'BrandsCtrl',
 
       link: (scope, element, attrs) => {
-        scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+        scope.width = (1 + scope.widget.items.length) * 5 + 1 + 'em';
       }
+    }
+  })
+
+  .directive('productsPage', function () {
+
+    return {
+      scope: {},
+      restrict: 'E',
+      //replace: true,
+      templateUrl: './templates/products.page.html',
+      controller: 'ShowcaseCtrl'
     }
   })
 

@@ -1,14 +1,37 @@
-<ion-view view-title="Brand Name" class="Brand-subtab">
+<ion-view view-title="Brand Name" class="Brand-subtab Brands Shop">
   <ion-content>
+    <div class="brand-first-page">
       <div class="brand-slide">
-        <div class="follow">FOLLOW</div>
+        <div class="follow">
+          <i class="ion-ios-plus-empty"></i>
+          <span>FOLLOW</span>
+        </div>
       </div>
-    <div class="filter">
-      <div class="box" ng-click="opensortPopover()">sort</div>
-      <div class="box" ng-click="openfilterPopover()">filter</div>
-      <div class="box" ng-click="openfilterPopover()">filter</div>
-      <div class="box" ng-click="openfilterPopover()">filter</div>
+      <div class="bar bar-subheader">
+        <categories></categories>
+      </div>
+      </ul>
+      <div class="container">
+        <div class="button button-main" ng-click="toBrandProducts()"> Shop all</div>
+        <brand-picture2 ng-click="openbrandPopover()"></brand-picture2>
+        <ul class="to-category">
+          <li ng-click="toBrandProducts()">
+            <span class="title">Shop category name</span>
+            <i class="ion-ios-arrow-right"></i>
+          </li>
+          <li ng-repeat="category in categories" ng-click="toBrandProducts()">
+            <span>{{category}}</span>
+            <i class="ion-ios-arrow-right"></i>
+          </li>
+        </ul>
+      </div>
+      <!--<div class="filter">
+        <div class="box" ng-click="opensortPopover()">sort</div>
+        <div class="box" ng-click="openfilterPopover()">filter</div>
+        <div class="box" ng-click="openfilterPopover()">filter</div>
+        <div class="box" ng-click="openfilterPopover()">filter</div>
+      </div>
+      <showcase></showcase>-->
     </div>
-    <showcase></showcase>
   </ion-content>
 </ion-view>

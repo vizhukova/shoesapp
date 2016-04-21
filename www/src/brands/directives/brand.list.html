@@ -2,7 +2,7 @@
   <ion-scroll direction="x" delegate-handle="horizontal">
     <div class="scrolling" ng-style="{width: width}">
       <div class="thing" ng-repeat="brand in brands track by $index">
-        <div class="holder">
+        <div class="holder" ng-click="goToBrand()">
           <img class="img" ng-src="http://brand.open-xchange.com/assets/images/color_bubbles.png">
         </div>
       </div>

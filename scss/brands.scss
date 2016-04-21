@@ -201,10 +201,14 @@
       color: #000;
     }
   }
+
+  .bar-subheader {
+    position: inherit;
+  }
 }
 
 
-.picture {
+.brand-picture {
 
   position: relative;
   padding: 0.5em 4em;
@@ -213,6 +217,11 @@
     position: absolute;
     opacity: 0.7;
     top: 40%;
+    width: calc(100% - 8em);
+  }
+
+  .content-profile {
+    height: 1em;
   }
 
   .image {
@@ -230,27 +239,37 @@
   }
 }
 
-.Brand-subtab {
-  .brand-slide {
-    height: 13em;
-    width: 100%;
-    background: url("../img/run.jpg") center center no-repeat;
-    background-size: contain;
-    border-bottom: 1px solid grey;
-    position: relative;
-    div.follow {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      width: 90px;
-      height: 30px;
-      background: #fff;
-      line-height: 30px;
-      text-align: center;
-      border: 1px solid black;
-      border-radius: 7px;
-    }
+.categories {
+  li {
+    display: inline-block;
+    padding: 1em 2em;
+    color: #988F8F;
   }
+
+  .chosen {
+    color: black;
+    font-weight: 600;
+    border-bottom: solid black 0.2em;
+  }
+}
+
+.brand-first-page {
+
+  .container {
+    background: #DDDDDD;
+    padding: 1.5em 0.5em;
+  }
+
+  .button-main {
+    text-transform: uppercase;
+    color: #000;
+    background: #fff;
+    border: solid 1px #D0CDCD;
+    width: 100%;
+    font-weight: 600;
+    font-size: 1em;
+  }
+
 }
 
 $marginMainBlock: 10px;
