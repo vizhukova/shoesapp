@@ -77,6 +77,7 @@ angular.module('starter', [
           }
         }
       })
+
       .state('tab.showcase', {
         url: '/showcase',
         views: {
@@ -122,7 +123,17 @@ angular.module('starter', [
         views: {
           'tab-brands': {
             templateUrl: 'templates/subtab-brand.html',
-            controller: 'ShowcaseCtrl'
+            controller: 'BrandsCtrl'
+          }
+        }
+      })
+
+      .state('tab.brand-follow', {
+        url: '/brand/:id/follow',
+        views: {
+          'tab-brands': {
+            templateUrl: 'src/brands/subtabs/brand-follow-page.html',
+            controller: 'BrandsCtrl'
           }
         }
       })
@@ -217,7 +228,6 @@ angular.module('starter', [
         }
       })
 
-
       .state('tab.me-brands', {
         url: '/me/brands',
         views: {
@@ -236,7 +246,7 @@ angular.module('starter', [
             controller: 'MeCtrl'
           }
         }
-      });
+      })
 
 
     // if none of the above states are matched, use this as the fallback

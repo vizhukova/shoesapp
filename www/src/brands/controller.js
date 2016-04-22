@@ -33,7 +33,8 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
 
   var popups = [
     {name: 'brandPopover', url: 'src/brands/subtabs/brand-popover.html'},
-    {name: 'subtabShowcase', url: 'templates/subtab-showcase.html'}
+    {name: 'subtabShowcase', url: 'templates/subtab-showcase.html'},
+    {name: 'moreInfo', url: 'src/brands/subtabs/more-info.html'}
   ];
 
   popups.map((popup)=>{
@@ -55,8 +56,13 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
 
   $scope.toBrandProducts = () => {
 
-    //$scope.popover.hide();
     $state.go("tab.brand-products")
+
+  };
+
+  $scope.goToBrandFollowPage = () => {
+
+    $state.go("tab.brand-follow")
 
   };
 

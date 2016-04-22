@@ -7,19 +7,46 @@
     border-bottom: 1px solid  #DDDDDD;
     position: relative;
 
-    div.follow {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      width: 90px;
-      height: 30px;
-      background: #fff;
-      line-height: 30px;
-      text-align: center;
-      border: 1px solid black;
-      border-radius: 7px;
-      font-size: 0.7em;
-      font-weight: 600;
+    .details-under-picture {
+      position: relative;
+      height: calc(100% - 1em);
+      margin: 1em;
+
+      .send {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 1.5em;
+      }
+
+      .follow {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 90px;
+        height: 30px;
+        background: #fff;
+        line-height: 30px;
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 7px;
+        font-size: 0.7em;
+        font-weight: 600;
+      }
+
+      .more-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-size: 0.8em;
+        line-height: 0.9em;
+        text-align: left;
+
+        .point {
+          font-size: 0.5em;
+        }
+
+      }
     }
   }
 

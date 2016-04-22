@@ -41,31 +41,7 @@ angular.module('starter.controllers', [])
 
 .controller('ShowcaseCtrl', ShowcaseCtrl)
   // Product in showcase
-  .controller('productCtrl', ($scope, $state, $ionicPopover)=> {
-
-    $scope.openProduct = (type, $event) => {
-
-      console.log('openProduct type=', type)
-
-      if(type === 'brand'){
-        //$state.go("tab.brand-item");
-
-        $ionicPopover.fromTemplateUrl('src/brands/subtabs/brand-item.html', {
-          scope: $scope,
-          animation: $scope.animation
-        }).then((popover)=>{
-          $scope.popover = popover;
-          $scope.popover.show($event);
-        });
-      }
-      else {
-        $state.go("tab.product");
-      }
-
-    }
-
-
-  })
+  .controller('productCtrl', ProductCtrl)
 
 // Product subtab
 .controller('ProductCtrl', ProductCtrl)
@@ -116,6 +92,32 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+})
+
+
+  .controller('SearchPanelCtrl', function($scope) {
+
+    $scope.isSearchOnFocus = false;
+
+    $scope.onFocus = (e) => {
+
+      $scope.isSearchOnFocus = true;
+
+      if($scope.$parent.onFocus) {
+        $scope.$parent.onFocus(e);
+      }
+
+    };
+
+    $scope.onCancelClick = (e) => {
+
+      $scope.isSearchOnFocus = false;
+
+      if($scope.$parent.onCancelClick) {
+        $scope.$parent.onCancelClick(e);
+      }
+    };
+
 })
 
 .controller('CategoryContentCtrl', function($scope, $ionicPopover, $state,  Content) {

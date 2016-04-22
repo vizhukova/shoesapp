@@ -10,6 +10,7 @@ export default function($scope, $ionicPopover) {
     {name: 'detailPopover', url: 'src/product/directives/detail.popover.html'}
   ];
 
+
   popups.map((popup)=>{
     $ionicPopover.fromTemplateUrl(popup.url, {
       scope: $scope,
@@ -22,4 +23,26 @@ export default function($scope, $ionicPopover) {
       $scope[popup.name].show();
     };
   })
+
+
+  $scope.openProduct = (type, $event) => {
+
+
+      if(type === 'brand'){
+        //$state.go("tab.brand-item");
+
+        $ionicPopover.fromTemplateUrl('src/brands/subtabs/brand-item.html', {
+          scope: $scope,
+          animation: $scope.animation
+        }).then((popover)=>{
+          $scope.popover = popover;
+          $scope.popover.show($event);
+        });
+      }
+      else {
+        $state.go("tab.product");
+      }
+
+    }
+
 }

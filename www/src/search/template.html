@@ -1,15 +1,6 @@
 <ion-view view-title="SEARCH" class="Search">
   <ion-content>
-    <div class="search-panel row">
-      <label ng-class="{'item-reduce': isSearchOnFocus}" class="item item-input sample-show-hide">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" class="sample-show-hide" placeholder="Search everything on site" ng-focus="onSearchFocus()">
-      </label>
-      <div ng-show="isSearchOnFocus"
-           ng-class="{'button-increase': isSearchOnFocus}"
-           ng-click="onCancelClick()"
-           class="button sample-show-hide ng-hide">Cancel</div>
-    </div>
+    <search-panel></search-panel>
 
     <div class="searches-list recent-searches check-element sample-show-hide ng-hide"
          ng-show="isSearchOnFocus && isRecentSearchesShow"

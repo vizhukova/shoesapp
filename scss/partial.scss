@@ -1251,4 +1251,84 @@ button.join {
 }
 
 
+.brand-follow-page {
+
+  font-size: 0.85em;
+
+  &.search-panel {
+    .item {
+      margin-top: 0.2em !important;
+    }
+
+    .button {
+      padding-top: 3px;
+    }
+  }
+
+}
+
+
+.more-info-popover {
+  @extend .category-popover;
+
+  $mainTextColor: #000;
+  $otherTextColor: #5B5E61;
+
+  background: #fff;
+  opacity: 0.95;
+  text-align: center;
+
+  .container {
+
+     padding: 2em;
+
+    .close-btn, .description {
+      color:  $otherTextColor;
+    }
+
+    .close-btn {
+      text-align: left;
+      font-size: 1.5em;
+    }
+
+    .block-line {
+      line-height: 3em;
+    }
+
+    .button {
+      background: #000;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 0.9em;
+      font-weight: 600;
+      min-height: 35px;
+
+      i {
+        font-size: 2em;
+        vertical-align: middle;
+        padding-right: 0.5em;
+      }
+
+    }
+
+    .connect {
+      border-top: solid 1px $otherTextColor;
+      border-bottom: solid 1px $otherTextColor;
+      margin: 0 -2em;
+
+        .icon {
+          font-size: 2em;
+          padding: 0 0.5em;
+        }
+    }
+
+    .update {
+      .description {
+        line-height: 1em;
+      }
+    }
+  }
+}
+
+
 

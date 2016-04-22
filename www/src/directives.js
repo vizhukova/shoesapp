@@ -319,11 +319,15 @@ angular.module('starter.directives', [])
   .directive('productSlider', function () {
 
     return {
-      scope: {},
+      //scope: true,
       restrict: 'E',
       replace: true,
       templateUrl: './src/brands/directives/product.slider.html',
-      controller: 'BrandsCtrl'
+      controller: 'productCtrl',
+
+      link: (scope) => {
+        console.log(scope)
+      }
 
     }
   })
@@ -401,15 +405,28 @@ angular.module('starter.directives', [])
   .directive('productsPage', function () {
 
     return {
-      scope: {
-        type: '='
-      },
       restrict: 'E',
       //replace: true,
       templateUrl: './templates/products.page.html',
-      controller: 'ShowcaseCtrl'
+      controller: 'ShowcaseCtrl',
+       scope: {
+        type: '='
+      }
+
     }
   })
+
+.directive('searchPanel', function () {
+
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: './src/partial/search.panel.html',
+      scope: true,
+      controller: 'SearchPanelCtrl'
+    }
+
+  });
 
 
 

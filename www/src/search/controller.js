@@ -10,7 +10,7 @@ export default function($scope, $ionicPopover, Category) {
     lifestyle: 'ion-bug'
   };
 
-  $scope.isSearchOnFocus = false;
+ // $scope.isSearchOnFocus = false;
   $scope.isRecentSearchesShow = false;
 
   $scope.includes = {
@@ -34,12 +34,12 @@ export default function($scope, $ionicPopover, Category) {
     };
 
 
-  $scope.onSearchFocus = (e) => {
-    $scope.isSearchOnFocus = $scope.isRecentSearchesShow = true;
+  $scope.onFocus = (e) => {
+    $scope.isRecentSearchesShow = true;
   }
 
   $scope.onCancelClick = (e) => {
-    $scope.isSearchOnFocus = $scope.isRecentSearchesShow = false;
+   $scope.isRecentSearchesShow = false;
   }
 
   $scope.onCloseResentSearchClick = (e) => {

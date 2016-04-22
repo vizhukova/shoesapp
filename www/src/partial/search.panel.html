@@ -1,0 +1,10 @@
+<div class="search-panel row">
+  <label ng-class="{'item-reduce': isSearchOnFocus}" class="item item-input sample-show-hide">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" class="sample-show-hide" placeholder="Search everything on site" ng-focus="onFocus()">
+  </label>
+  <div ng-show="isSearchOnFocus"
+       ng-class="{'button-increase': isSearchOnFocus}"
+       ng-click="onCancelClick()"
+       class="button sample-show-hide ng-hide">Cancel</div>
+</div>

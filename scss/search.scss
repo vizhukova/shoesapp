@@ -21,49 +21,6 @@
     font-size: 0.7em;
   }
 
-  .search-panel {
-    height: 4em;
-    line-height: 4em;
-    vertical-align: middle;
-    text-align: center;
-    border-bottom: 1px solid gainsboro;
-
-    .item {
-      width: 90%;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      -khtml-border-radius: 5px;
-      border-radius: 5px;
-      background: #ECECEC;
-      height: 2em;
-      display: inline-flex;
-      padding: 0 14%;
-      float: left;
-      margin: 15px;
-    }
-
-    .item-reduce {
-      width: 70%;
-      padding: 0 3%;
-    }
-
-    .button {
-      background-color: #fff;
-      margin: 0;
-      padding: 7px 9px;
-      min-width: 0px;
-      min-height: 29px;
-      vertical-align: middle;
-      font-size: inherit;
-      color: inherit;
-      word-wrap: initial;
-    }
-
-    .button-increase {
-      min-width: 57px;
-    }
-  }
-
   .category-holder {
     height: 12em;
     width: 100%;
@@ -142,15 +99,6 @@
     .container {
       padding: 0px 15px;
     }
-  }
-
-  .sample-show-hide {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
-  }
-
-  .sample-show-hide.ng-hide {
-    opacity:0;
   }
 
   .recent-searches {
