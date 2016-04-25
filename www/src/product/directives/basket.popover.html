@@ -1,0 +1,61 @@
+<ion-popover-view class="basket-popover" ng-class="{'chose-type': !!chosenType}">
+
+  <div class="nav-panel">
+    <span><b>Free shipping. </b>On everything.</span>
+  </div>
+
+   <div  ng-if="!chosenType || chosenType == 'size'" ng-click="setChosenType('size')" class="content">
+
+     <div>
+       <span ><b>Size</b></span>
+       <span ng-if="!chosenType" class="pull-right">M
+       <i class="ion-ios-plus-empty plus-icon"></i>
+       </span>
+        <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
+     </div>
+
+   </div>
+
+    <div ng-if="!chosenType || chosenType == 'address'" ng-click="setChosenType('address')" class="content">
+     <span ><b>Ship to</b></span>
+     <span ng-if="!chosenType" class="pull-right">Add Address
+        <i class="ion-ios-plus-empty plus-icon"></i>
+     </span>
+       <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
+     </span>
+   </div>
+
+    <div ng-if="!chosenType || chosenType == 'card'" ng-click="setChosenType('card')" class="content">
+     <span ><b>Payment</b></span>
+       <span ng-if="!chosenType" class="pull-right">Add Card
+        <i class="ion-ios-plus-empty plus-icon"></i>
+     </span>
+       <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
+   </div>
+
+    <div ng-if="!chosenType || chosenType == 'shipping'" ng-click="setChosenType('shipping')" class="content">
+     <span ><b>Shipping</b></span>
+     <span class="pull-right">Address Required
+     <i class="ion-ios-plus-empty plus-icon"></i>
+     </span>
+   </div>
+
+    <div ng-if="!chosenType || chosenType == 'est'" ng-click="setChosenType('est')" class="content">
+     <div >
+       <span ><b>Est. Total</b></span>
+       <span class="pull-right">
+         <b>43.20</b>
+         <i class="ion-ios-plus-empty plus-icon"></i>
+       </span>
+     </div>
+   </div>
+
+  <p  ng-if="!chosenType" class="comment">some comment</p>
+
+  <div class="container">
+    <product-option ng-if="chosenType=='size'"></product-option>
+    <address-fields ng-if="chosenType=='address'"></address-fields>
+    <payment ng-if="chosenType=='card'"></payment>
+  </div>
+
+</ion-popover-view>

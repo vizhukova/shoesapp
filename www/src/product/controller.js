@@ -1,4 +1,4 @@
-export default function($scope, $ionicPopover) {
+export default function($scope, $ionicPopover, $state) {
 
   $scope.animation = 'slide-in-up';
 
@@ -7,8 +7,12 @@ export default function($scope, $ionicPopover) {
   var popups = [
     {name: 'optionPopover', url: 'src/shop/productOption-popover.html'},
     {name: 'signunPopover', url: 'src/login/directives/signun.popover.html'},
-    {name: 'detailPopover', url: 'src/product/directives/detail.popover.html'}
+    {name: 'detailPopover', url: 'src/product/directives/detail.popover.html'},
+    {name: 'basketPopover', url: 'src/product/directives/basket.popover.html'}
   ];
+
+   $scope.chosenType = undefined;
+   $scope.isOpenCardPage = false;
 
 
   popups.map((popup)=>{
@@ -24,9 +28,10 @@ export default function($scope, $ionicPopover) {
     };
   })
 
+  $scope.openProductOptionFunc = $scope.opensignunPopover;
+
 
   $scope.openProduct = (type, $event) => {
-
 
       if(type === 'brand'){
         //$state.go("tab.brand-item");
@@ -44,5 +49,17 @@ export default function($scope, $ionicPopover) {
       }
 
     }
+
+
+    $scope.setChosenType = (type) => {
+
+      $scope.chosenType = $scope.chosenType == type ? undefined : type;
+      console.log($scope.chosenType)
+
+    };
+
+  $scope.openCardData = (data) => {
+      $scope.isOpenCardPage = data;
+  }
 
 }

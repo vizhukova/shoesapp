@@ -1,0 +1,20 @@
+<div class="payment">
+
+  <div class="button payment-option" ng-click="openCardData(true)">
+    <span>Card</span>
+    <i class="ion-card"></i>
+  </div>
+
+  <div class="button payment-option">
+    <span>Cash</span>
+    <i class="ion-cash"></i>
+  </div>
+
+  <div class="payment-fields" ng-if="isOpenCardPage">
+    <button ng-click="openCardData(false)" class="close-btn button button-icon icon ion-android-close"></button>
+    <input type="text" placeholder="Enter Card Number" />
+    <input type="text" placeholder="CVV" class="cvv" />
+  </div>
+
+</div>
+

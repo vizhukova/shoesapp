@@ -41,10 +41,10 @@ angular.module('starter.controllers', [])
 
 .controller('ShowcaseCtrl', ShowcaseCtrl)
   // Product in showcase
-  .controller('productCtrl', ProductCtrl)
+  .controller('ProductCtrl', ProductCtrl)
 
+  .controller('productCtrl', ProductCtrl)
 // Product subtab
-.controller('ProductCtrl', ProductCtrl)
 
 // Brands tab
 .controller('BrandsCtrl', BrandsCtrl)
@@ -147,5 +147,13 @@ angular.module('starter.controllers', [])
     // fetch data by current category
 
   Content.fetch('/man').then(data => {$scope.widgets = data})
+})
+
+  .controller('BasketCtrl', function($scope, $ionicPopover, $state,  Content) {
+
+    $scope.chosenType = undefined;
+
+    $scope.openProductOptionFunc = () => {};
+
 });
 

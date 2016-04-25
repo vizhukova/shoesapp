@@ -426,6 +426,39 @@ angular.module('starter.directives', [])
       controller: 'SearchPanelCtrl'
     }
 
+  })
+
+  .directive('productOption', function () {
+
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/product/directives/product.option.html',
+      scope: true
+    }
+
+  })
+
+  .directive('addressFields', function () {
+
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/partial/addressFields.html',
+      scope: true
+    }
+
+  })
+
+  .directive('payment', function () {
+
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/partial/payment.html',
+      scope: true
+    }
+
   });
 
 

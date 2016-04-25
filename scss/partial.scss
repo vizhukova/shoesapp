@@ -1330,5 +1330,144 @@ button.join {
   }
 }
 
+.basket-popover {
+  @extend .popover;
+
+  top: 30%;
+
+  &.chose-type {
+    background: #F3F0F0 !important;
+  }
+
+  .nav-panel {
+    height: 2em;
+    line-height: 2em;
+    background: #CCBF78;
+    border-top: solid 2px #E5E5E5;
+    color: #fff;
+    text-align: center;
+  }
+
+  .content {
+    padding: 1em;
+    border-bottom: solid 1px #E5E5E5;
+
+      .plus-icon {
+        font-size: 1.3em;
+        padding-left: 0.5em;
+      }
+  }
+
+   .comment {
+     text-align: center;
+     font-size: 0.9em;
+     padding: 0.5em;
+     border-bottom: solid 1px #E5E5E5;
+   }
+
+  .container {
+
+  }
+
+}
+
+.product-option {
+  .size {
+      position: absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      height:90px;
+      width: 90px;
+      border-radius: 45px;
+      background: #000;
+      opacity: 1;
+      margin: auto;
+      color: #ffffff;
+      line-height: 90px;
+      text-align: center;
+      font-size: 30px;
+    }
+}
+
+.address-fields {
+
+  background: inherit;
+  padding: 0.5em;
+
+  input[type='text'] {
+    border: 0;
+    width: 100%;
+    margin-bottom: 0.7em;
+    padding: 1em;
+    height: 3em;
+    display: inline-block;
+  }
+
+  input.zip {
+    width: 40%;
+  }
+
+  input.city {
+    width: 20%;
+  }
+
+  input.state {
+    width: 37%;
+  }
+
+  .btn-done {
+    background: #131313;
+    color: #fff;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    min-height: 1em;
+    height: 3em;
+  }
+}
+
+
+.payment {
+  text-align: center;
+  padding: 1em;
+
+  .payment-option {
+    border: solid 1px black;
+    margin: 0 1em;
+    font-size: 1.5em;
+    span {
+      font-size: 0.8em;
+    }
+  }
+
+  .payment-fields {
+    text-align: left;
+    position: absolute;
+    top: 19%;
+    left: 1em;
+    right: 1em;
+    margin: auto;
+    background: #F3F0F0;
+
+    input[type=text] {
+      height: 3em;
+      padding: 1em;
+      margin-bottom: 1em;
+      width: 100%;
+    }
+
+    input.cvv {
+      width: 40%;
+    }
+
+    .close-btn {
+      margin-bottom: 1em;
+    }
+  }
+}
 
 
