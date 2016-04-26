@@ -30,6 +30,27 @@ export default function($scope, $ionicPopover, $state) {
 
   $scope.openProductOptionFunc = $scope.opensignunPopover;
 
+  $scope.chosenProduct  =  {
+    quantity: 0,
+    price: 255
+  };
+
+  $scope.shipTo = [];
+
+  $scope.addShipAddress = (data) => {
+    console.log($scope.addressForm);
+  };
+
+  $scope.changeQuantityProduct = (value) => {
+
+    if( (value < 0 && $scope.chosenProduct.quantity > 0) || value > 0) {
+
+      $scope.chosenProduct.quantity += value;
+
+    }
+
+  };
+
 
   $scope.openProduct = (type, $event) => {
 
@@ -48,7 +69,7 @@ export default function($scope, $ionicPopover, $state) {
         $state.go("tab.product");
       }
 
-    }
+    };
 
 
     $scope.setChosenType = (type) => {

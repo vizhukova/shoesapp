@@ -3,16 +3,30 @@ import _ from 'lodash'
 export default function($scope, $state, $ionicPopover, $sce, Brand) {
 
   $scope.animation = 'slide-in-up';
+  $scope.chosenBrand = {};
   $scope.chosenBrands = [];
-  $scope.brands = Brand.get();
   $scope.products = Brand.getProducts();
   $scope.brandProducts = Brand.getBrandProducts();
+
+  Brand.get().then((brands) => {
+    $scope.brands = brands;
+  });
+
+  Brand.get({feature: 'new'}).then((brands) => {
+    $scope.brandsNew = brands;
+  });
+
+  Brand.get({feature: 'sales'}).then((brands) => {
+    $scope.brandsSales = brands;
+  });
+
+  Brand.get({feature: 'popular'}).then((brands) => {
+    $scope.brandsPopular = brands;
+  });
 
   $scope.goToBrand = () => {
      $state.go("tab.brand");
   };
-
-  $scope.test = 'test';
 
   $scope.widget = {
     title: 'On sale',
@@ -45,14 +59,31 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
       $scope[popup.name] = popover;
     });
 
-    $scope[`open${popup.name}`] = ()=>{
+    /*$scope[`open${popup.name}`] = ()=>{
+
       $scope[popup.name].show();
-    };
+    };*/
 
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
     };
   })
+
+  $scope.openbrandPopover = (brand_id) => {
+    Brand.getProducts({id:brand_id}).then((products) => {
+      $scope.chosenBrand = products;
+      $scope.brandPopover.show();
+      console.log('$scope.chosenBrand', $scope.chosenBrand)
+    });
+  }
+
+  $scope.opensubtabShowcase = () => {
+    $scope.subtabShowcase.show();
+  }
+
+  $scope.openmoreInfo = () => {
+    $scope.moreInfo.show();
+  }
 
   $scope.toBrandProducts = () => {
 

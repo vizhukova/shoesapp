@@ -183,7 +183,6 @@ angular.module('starter.directives', [])
     }
   })
 
-
   // Showcase with products directive
   .directive('showcase', function () {
 
@@ -262,7 +261,7 @@ angular.module('starter.directives', [])
 
     return {
       restrict: 'E',
-      templateUrl: './src/shop/image-loader.html',
+      templateUrl: './src/partial/image-loader.html',
       replace: true,
       scope: {
         width: '@',
@@ -335,12 +334,14 @@ angular.module('starter.directives', [])
   .directive('brandPicture', function () {
 
     return {
-      scope: {},
+      scope: {
+        brand: '='
+      },
       restrict: 'E',
       replace: true,
       templateUrl: './src/brands/directives/brand.picture.html',
       link: (scope) => {
-        console.log(scope)
+
       }
     }
   })
@@ -390,15 +391,28 @@ angular.module('starter.directives', [])
   .directive('brandList', function () {
 
     return {
-      scope: {},
       restrict: 'E',
       replace: true,
       templateUrl: './src/brands/directives/brand.list.html',
       controller: 'BrandsCtrl',
+      scope: {
+        itemLength: '='
+      },
 
       link: (scope, element, attrs) => {
-        scope.width = (1 + scope.widget.items.length) * 5 + 1 + 'em';
+        scope.width = (1 + scope.itemLength) * 5 + 1 + 'em';
       }
+    }
+  })
+
+  .directive('brandBlock', function () {
+
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: './src/brands/directives/brand.block.html',
+      controller: 'BrandsCtrl',
+      scope: true
     }
   })
 
@@ -444,7 +458,7 @@ angular.module('starter.directives', [])
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'src/partial/addressFields.html',
+      templateUrl: 'src/order/directives/addressFields.html',
       scope: true
     }
 
@@ -455,7 +469,29 @@ angular.module('starter.directives', [])
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'src/partial/payment.html',
+      templateUrl: 'src/order/directives/payment.html',
+      scope: true
+    }
+
+  })
+
+  .directive('shippingFields', function () {
+
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/order/directives/shippingFields.html',
+      scope: true
+    }
+
+  })
+
+  .directive('totalFields', function () {
+
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/order/directives/totalFields.html',
       scope: true
     }
 

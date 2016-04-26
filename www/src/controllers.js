@@ -41,9 +41,9 @@ angular.module('starter.controllers', [])
 
 .controller('ShowcaseCtrl', ShowcaseCtrl)
   // Product in showcase
-  .controller('ProductCtrl', ProductCtrl)
+.controller('ProductCtrl', ProductCtrl)
 
-  .controller('productCtrl', ProductCtrl)
+.controller('productCtrl', ProductCtrl)
 // Product subtab
 
 // Brands tab
@@ -86,16 +86,13 @@ angular.module('starter.controllers', [])
 
 })
 
-
-
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
 })
 
-
-  .controller('SearchPanelCtrl', function($scope) {
+.controller('SearchPanelCtrl', function($scope) {
 
     $scope.isSearchOnFocus = false;
 
@@ -146,14 +143,8 @@ angular.module('starter.controllers', [])
     // Call Widget service method to
     // fetch data by current category
 
-  Content.fetch('/man').then(data => {$scope.widgets = data})
+  //Content.fetch('/man').then(data => {$scope.widgets = data})
 })
 
-  .controller('BasketCtrl', function($scope, $ionicPopover, $state,  Content) {
 
-    $scope.chosenType = undefined;
-
-    $scope.openProductOptionFunc = () => {};
-
-});
 

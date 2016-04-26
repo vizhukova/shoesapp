@@ -34,20 +34,20 @@
    </div>
 
     <div ng-if="!chosenType || chosenType == 'shipping'" ng-click="setChosenType('shipping')" class="content">
-     <span ><b>Shipping</b></span>
-     <span class="pull-right">Address Required
-     <i class="ion-ios-plus-empty plus-icon"></i>
-     </span>
+        <span ><b>Shipping</b></span>
+         <span ng-if="!chosenType" class="pull-right">Address Required
+            <i class="ion-ios-plus-empty plus-icon"></i>
+         </span>
+       <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
    </div>
 
     <div ng-if="!chosenType || chosenType == 'est'" ng-click="setChosenType('est')" class="content">
-     <div >
        <span ><b>Est. Total</b></span>
-       <span class="pull-right">
-         <b>43.20</b>
-         <i class="ion-ios-plus-empty plus-icon"></i>
-       </span>
-     </div>
+         <span ng-if="!chosenType" class="pull-right">
+            <b>43.20</b>
+            <i class="ion-ios-plus-empty plus-icon"></i>
+         </span>
+       <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
    </div>
 
   <p  ng-if="!chosenType" class="comment">some comment</p>
@@ -56,6 +56,8 @@
     <product-option ng-if="chosenType=='size'"></product-option>
     <address-fields ng-if="chosenType=='address'"></address-fields>
     <payment ng-if="chosenType=='card'"></payment>
+    <shipping-fields ng-if="chosenType=='shipping'"></shipping-fields>
+    <total-fields ng-if="chosenType=='est'"></total-fields>
   </div>
 
 </ion-popover-view>

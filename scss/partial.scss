@@ -1391,19 +1391,38 @@ button.join {
     }
 }
 
+.fields {
+  .btn-done {
+    background: #131313;
+    color: #fff;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    min-height: 1em;
+    height: 3em;
+  }
+
+  input[type=text] {
+    height: 2.5em;
+    padding: 1em;
+    margin-bottom: 1em;
+    width: 100%;
+    border: 0;
+    display: inline-block;
+  }
+
+
+}
+
+
 .address-fields {
 
   background: inherit;
   padding: 0.5em;
 
-  input[type='text'] {
-    border: 0;
-    width: 100%;
-    margin-bottom: 0.7em;
-    padding: 1em;
-    height: 3em;
-    display: inline-block;
-  }
+  @extend .fields;
 
   input.zip {
     width: 40%;
@@ -1417,17 +1436,6 @@ button.join {
     width: 37%;
   }
 
-  .btn-done {
-    background: #131313;
-    color: #fff;
-    width: 100%;
-    text-transform: uppercase;
-    font-size: 1em;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    min-height: 1em;
-    height: 3em;
-  }
 }
 
 
@@ -1453,15 +1461,16 @@ button.join {
     margin: auto;
     background: #F3F0F0;
 
-    input[type=text] {
-      height: 3em;
-      padding: 1em;
-      margin-bottom: 1em;
-      width: 100%;
-    }
+
+    @extend .fields;
 
     input.cvv {
       width: 40%;
+    }
+
+    .form {
+      border: solid 1px #D2CECE;
+      padding: 1em;
     }
 
     .close-btn {
@@ -1469,5 +1478,25 @@ button.join {
     }
   }
 }
+
+.shipping-fields {
+  @extend .fields;
+
+  .content {
+    padding: 1em;
+  }
+
+  .content * {
+    padding: 0.2em;
+  }
+
+  .btn-done {
+    margin: 0 1em;
+    width: calc(100% - 2em);
+  }
+}
+
+
+
 
 

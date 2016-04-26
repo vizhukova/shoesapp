@@ -1,0 +1,23 @@
+<div class="brand-block" ng-class="{'selected': isSelected($index) }"  ng-click="onBlindChange($index)">
+
+  <div style="position:relative">
+
+    <i class="ion-plus-circled blind-on" ng-show="!isSelected($index)"></i>
+
+    <i class="ion-checkmark-circled blind-on" ng-show="isSelected($index)"></i>
+
+  <div class="brand-name sample-show-hide">
+    <p>{{brand.name}}</p>
+  </div>
+
+  <div class="blind sample-show-hide">
+  </div>
+
+  <image-loader width="100%"
+                height="100px"
+                src="{{trustSrc(brand.icon)}}">
+
+  </image-loader>
+  </div>
+
+</div>

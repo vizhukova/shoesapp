@@ -17,114 +17,57 @@ angular.module('starter.services', [])
   }
 })
 
+.service('Brand', function($http, $q, localStorageService, URL, Cash) {
 
-.service('Brand', function($http, localStorageService) {
+  this.get = (data) => {
 
-  // Some fake testing data
-  var brands = [
-    {
-      name: 'Brand name',
-      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
-    }, {
-      name: 'Brand name',
-      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
-    }, {
-      name: 'Brand name',
-      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
-    }, {
-      name: 'Brand name',
-      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
-    }, {
-      name: 'Brand name',
-      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
-    }, {
-      name: 'Brand name',
-      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
-    }, {
-      name: 'Brand name',
-      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
-    }, {
-      name: 'Brand name',
-      src: "http://www.fashion-brands.ru/MyWeb-Image/table/article_photos/field/photo/content-field/photo_content/content-type-field/photo_type/equality-field/id/equality/58796/width/460/1/1.jpg"
+    data = data || {};
+
+    var url = 'section.filter';
+
+    if(data.id) {
+      url += '/?id=' + data.id;
+    }
+    if(data.feature) {
+
+      if(Object.keys(data).length > 1) url += '&feature=' + data.feature;
+      else url += '/?feature=' + data.feature;
+
     }
 
-  ];
+    var brands = Cash.get(url);
 
-  var products = [
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: false,
-      ribbon: '48% OFF'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
+    if(!brands) {
+      return this.fetch(url);
+    } else {
+      return brands;
     }
-  ];
-
-  this.get = function(){
-
-    return brands;
 
   };
 
-  this.getProducts = function() {
+  this.getProducts = function(data) {
 
-    return products;
+    data = data || {};
+
+    var url = 'brand.get';
+
+    if(data.id) {
+      url += '/' + data.id;
+    }
+
+    var items = Cash.get(url);
+
+    if(!items) {
+      return this.fetch(url);
+    } else {
+      return items;
+    }
 
   };
 
   this.getBrandProducts = function() {
 
-    return products;
+    return [];
 
   };
 
@@ -133,9 +76,46 @@ angular.module('starter.services', [])
      localStorageService.set('chosenBrands', chosenBrands);
 
   };
+
+  this.fetch = (data) => {
+
+    return $q((resolve, reject) => {
+
+      $http({
+        method: 'GET',
+        url: URL + data
+      }).then((response) => {
+
+        resolve(response.data.result);
+
+      }, (error) => {
+        console.warn('error', error);
+        reject(error);
+      });
+
+    })
+  };
+
+  this.fetchProducts = (data) => {
+
+    return $q((resolve, reject) => {
+
+      $http({
+        method: 'GET',
+        url: URL + data
+      }).then((response) => {
+
+        resolve(response.data.result);
+
+      }, (error) => {
+        console.warn('error', error);
+        reject(error);
+      });
+
+    })
+  }
+
 })
-
-
 
 .service('Settings', function($http, localStorageService) {
 
@@ -178,8 +158,6 @@ angular.module('starter.services', [])
 
   this.saveInLocalStorage();
 })
-
-
 
 .service('Content', function ($http, $q, URL) {
 
@@ -611,5 +589,14 @@ angular.module('starter.services', [])
       })
     })
   }
+})
+
+.service('Cash', function ($http, $q, URL) {
+
+  var cash = {};
+
+  this.get = (key) => { return cash[key]; };
+  this.set = (key, data) => {  cash[key] = data; };
+
 });
 

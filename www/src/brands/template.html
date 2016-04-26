@@ -6,40 +6,16 @@
         <div class="title">Start following</div>
         <div class="post-title">
           <p>Get started by following some of the top brands.</p>
-
-          <div class="brand-block" ng-class="{'selected': isSelected($index) }" ng-repeat="brand in brands track by $index" ng-click="onBlindChange($index)">
-
-            <div style="position:relative">
-
-              <i class="ion-plus-circled blind-on" ng-show="!isSelected($index)"></i>
-
-              <i class="ion-checkmark-circled blind-on" ng-show="isSelected($index)"></i>
-
-            <div class="brand-name">
-              <p>{{brand.name}}</p>
-            </div>
-
-            <div class="blind sample-show-hide">
-            </div>
-
-            <image-loader width="100%"
-                          height="100px"
-                          src="{{trustSrc(brand.src)}}">
-
-            </image-loader>
-            </div>
-
-          </div>
+          <brand-block ng-repeat="brand in brands track by $index"></brand-block>
         </div>
         </div>
       </div>
-      <brand-list></brand-list>
+      <brand-list itemLength="{{brands.length}}"></brand-list>
       <div class="line-title">
         <span>Latest updates</span>
-        {{brandPopoverData.name}}
-        <brand-slider widget="widget"></brand-slider>
+        <brand-picture ng-repeat="brand in brandsNew" brand="brand" ng-click="openbrandPopover(brand.id)"></brand-picture>
+        <brand-slider widget="{{brandsNew}}"></brand-slider>
         <product-slider></product-slider>
-        <brand-picture ng-click="openbrandPopover()"></brand-picture>
         <brand-picture2 ng-click="openbrandPopover()"></brand-picture2>
         <product-recommend ng-click="goToBrand()" widget="widget"></product-recommend>
         <brand-follow  ng-click="goToBrand()" widget="widget"></brand-follow>
