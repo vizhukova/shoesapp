@@ -68,7 +68,13 @@ angular.module('starter.controllers', [])
 
 .controller('ShopCtrl', function($scope, Category) {
 
-  $scope.cats = Category.get();
+  //$scope.cats = Category.get();
+
+  Category.get().then((data) => {
+
+    $scope.cats = data;
+
+  })
 })
 
 // Join header controller with join button
@@ -117,8 +123,17 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('CategoryContentCtrl', function($scope, $ionicPopover, $state,  Content) {
+.controller('CategoryContentCtrl', function($scope, $ionicPopover, $state,  Content, Category) {
 
+  Category.get().then((data) => {
+
+    $scope.cats = data;
+
+  });
+
+  Content.get().then((dara) => {
+    $scope.items = data;
+  });
 
   $ionicPopover.fromTemplateUrl('./src/shop/category-popover.html', {
 
@@ -143,7 +158,7 @@ angular.module('starter.controllers', [])
     // Call Widget service method to
     // fetch data by current category
 
-  //Content.fetch('/man').then(data => {$scope.widgets = data})
+  Content.get().then((data) => {$scope.items = {title: 'title', items: data}})
 })
 
 

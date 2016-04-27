@@ -1,8 +1,8 @@
 <div class="brand-list">
   <ion-scroll direction="x" delegate-handle="horizontal">
     <div class="scrolling" ng-style="{width: width}">
-      <div class="thing" ng-repeat="brand in brands track by $index">
-        <div class="holder" ng-click="goToBrand()">
+      <div class="thing" ng-repeat="brand in items track by $index">
+        <div class="holder" ng-click="goto(brand.id)">
           <img class="img" ng-src={{brand.icon}}>
         </div>
       </div>
@@ -10,7 +10,7 @@
         <div class="holder">
           <div class="img">
             <div class="center">
-              <i class="ion-ios-plus-empty more" ng-click="goToBrandFollowPage()"></i>
+              <i class="ion-ios-plus-empty more" ng-click="gotofollowpage()"></i>
             </div>
           </div>
         </div>

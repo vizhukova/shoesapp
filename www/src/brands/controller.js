@@ -1,31 +1,53 @@
 import _ from 'lodash'
 
-export default function($scope, $state, $ionicPopover, $sce, Brand) {
+export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand, Category) {
 
   $scope.animation = 'slide-in-up';
-  $scope.chosenBrand = {};
   $scope.chosenBrands = [];
-  $scope.products = Brand.getProducts();
-  $scope.brandProducts = Brand.getBrandProducts();
 
-  Brand.get().then((brands) => {
+  console.log('$stateParams', $stateParams);
+
+  Category.get().then((data) => {
+    $scope.cats = data;
+  });
+
+  Brand.get().then((data) => {
+    $scope.products = data;
+  });
+
+  Brand.get().then((data) => {
+    $scope.brandProducts = data;
+  });
+
+  Brand.getFiltered().then((brands) => {
     $scope.brands = brands;
   });
 
-  Brand.get({feature: 'new'}).then((brands) => {
+  Brand.getFiltered({feature: 'new'}).then((brands) => {
     $scope.brandsNew = brands;
   });
 
-  Brand.get({feature: 'sales'}).then((brands) => {
+  Brand.getFiltered({feature: 'sales'}).then((brands) => {
     $scope.brandsSales = brands;
   });
 
-  Brand.get({feature: 'popular'}).then((brands) => {
+  Brand.getFiltered({feature: 'popular'}).then((brands) => {
     $scope.brandsPopular = brands;
   });
 
-  $scope.goToBrand = () => {
-     $state.go("tab.brand");
+  if($stateParams) {
+     Brand.get({id: $stateParams.id}).then((data) => {
+
+       $scope.chosenBrand = data;
+
+    });
+  }
+
+
+  $scope.goToBrand = (brand_id) => {
+
+    $state.go("tab.brand", {id: brand_id});
+
   };
 
   $scope.widget = {
@@ -42,8 +64,6 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
     description: 'description description description description',
     products: $scope.brandProducts
   };
-
-  $scope.categories = ['Dresses', 'Tops', 'All Women'];
 
   var popups = [
     {name: 'brandPopover', url: 'src/brands/subtabs/brand-popover.html'},
@@ -92,9 +112,7 @@ export default function($scope, $state, $ionicPopover, $sce, Brand) {
   };
 
   $scope.goToBrandFollowPage = () => {
-
     $state.go("tab.brand-follow")
-
   };
 
   $scope.isCategoryChosen = (index) => {

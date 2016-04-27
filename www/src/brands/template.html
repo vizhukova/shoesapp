@@ -10,17 +10,19 @@
         </div>
         </div>
       </div>
-      <brand-list itemLength="{{brands.length}}"></brand-list>
+      <brand-list items="brands" goTo="goToBrand" goToFollowPage="goToBrandFollowPage"></brand-list>
       <div class="line-title">
         <span>Latest updates</span>
-        <brand-picture ng-repeat="brand in brandsNew" brand="brand" ng-click="openbrandPopover(brand.id)"></brand-picture>
+        <product-recommend
+          ng-repeat="brand in brandsSales" ng-click="goToBrand(brand.id)" widget="brand"></product-recommend>
+        <!--<brand-picture ng-repeat="brand in brandsNew" brand="brand" ng-click="openbrandPopover(brand.id)"></brand-picture>
         <brand-slider widget="{{brandsNew}}"></brand-slider>
         <product-slider></product-slider>
         <brand-picture2 ng-click="openbrandPopover()"></brand-picture2>
         <product-recommend ng-click="goToBrand()" widget="widget"></product-recommend>
         <brand-follow  ng-click="goToBrand()" widget="widget"></brand-follow>
 
-        <img src="./../img/uniqlo.jpg" width="100%" height="auto" alt="">
+        <img src="./../img/uniqlo.jpg" width="100%" height="auto" alt="">-->
 
       <div>
       </div>

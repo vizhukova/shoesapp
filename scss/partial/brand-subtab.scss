@@ -2,15 +2,32 @@
   .brand-slide {
     height: 13em;
     width: 100%;
-    background: url("../img/run.jpg") center center no-repeat;
     background-size: contain;
     border-bottom: 1px solid  #DDDDDD;
     position: relative;
+    background: #DDDDDD;
 
-    .details-under-picture {
-      position: relative;
-      height: calc(100% - 1em);
+    .details {
+      height: calc(100% - 2em);
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
       margin: 1em;
+
+      .base-img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+
+      .details-under-picture {
+
+       margin: 1em;
 
       .send {
         position: absolute;
@@ -36,10 +53,11 @@
 
       .more-info {
         position: absolute;
-        bottom: 0;
+        bottom: 1.3em;
         left: 0;
         font-size: 0.8em;
         line-height: 0.9em;
+        height: 0.9em;
         text-align: left;
 
         .point {
@@ -48,6 +66,9 @@
 
       }
     }
+
+    }
+
   }
 
   .to-category {

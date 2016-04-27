@@ -10,42 +10,45 @@ angular.module('starter.directives', [])
       link: (scope) => {
 
         // Get categories [...] from Category service
-        scope.cats = Category.get();
-        scope.activeCat = scope.cats[0];
+        if(scope.cats) {
 
-        var underline = $('.active-line');
+          scope.activeCat = scope.cats[0].id;
 
-        // Init underline width & left
-        $timeout(()=> {
 
-          var text = $('.cat-text');
+          var underline = $('.active-line');
 
-          underline.animate({
-            width: text.width(),
-            left: text.offset().left
+          // Init underline width & left
+          $timeout(()=> {
+
+            var text = $('.cat-text');
+
+            underline.animate({
+              width: text.width(),
+              left: text.offset().left
+            });
           });
-        });
 
-        // Set active category
-        scope.setActive = (index) => {
-          scope.activeCat = scope.cats[index];
-          scope.animate(index)
-        };
+          // Set active category
+          scope.setActive = (index) => {
+            scope.activeCat = scope.cats[index];
+            scope.animate(index)
+          };
 
-        // Animate navigation menu underline
-        scope.animate = (index) => {
+          // Animate navigation menu underline
+          scope.animate = (index) => {
 
-          var item = $('.cat-text').get(index);
+            var item = $('.cat-text').get(index);
 
-          underline.animate({
-            left: $(item).offset().left - 1,
-            width: $(item).width() + 2
-          }, 300)
+            underline.animate({
+              left: $(item).offset().left - 1,
+              width: $(item).width() + 2
+            }, 300)
 
-        };
+          };
 
-        // Set active class for category navigation menu
-        scope.isActive = (cat) => cat === scope.activeCat;
+          // Set active class for category navigation menu
+          scope.isActive = (cat) => cat === scope.activeCat;
+        }
       }
     }
   })
@@ -322,7 +325,7 @@ angular.module('starter.directives', [])
       restrict: 'E',
       replace: true,
       templateUrl: './src/brands/directives/product.slider.html',
-      controller: 'productCtrl',
+      controller: 'brandCtrl',
 
       link: (scope) => {
         console.log(scope)
@@ -394,13 +397,14 @@ angular.module('starter.directives', [])
       restrict: 'E',
       replace: true,
       templateUrl: './src/brands/directives/brand.list.html',
-      controller: 'BrandsCtrl',
       scope: {
-        itemLength: '='
+        items: '=',
+        goto: '=',
+        gotofollowpage: '='
       },
 
       link: (scope, element, attrs) => {
-        scope.width = (1 + scope.itemLength) * 5 + 1 + 'em';
+        scope.width = (1 + scope.items.length) * 5 + 1 + 'em';
       }
     }
   })
@@ -430,7 +434,7 @@ angular.module('starter.directives', [])
     }
   })
 
-.directive('searchPanel', function () {
+  .directive('searchPanel', function () {
 
     return {
       restrict: 'E',

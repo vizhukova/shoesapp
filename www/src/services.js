@@ -1,602 +1,183 @@
+import Promise from 'bluebird';
+import _ from 'lodash';
+
 angular.module('starter.services', [])
 
-.service('Category', function($http) {
-
-  // Some fake testing data
-  var categories = ['Women', 'Men', 'Kids', 'Beauty', 'Lifestyle'];
-
-  // $http.get('').then(function(c){
-  //
-  //   categories = c;
-  // });
+  .service('Category', function (Common) {
 
 
-  this.get = function(){
+    this.get = function (data) {
 
-    return categories;
-  }
-})
+      data = data || {};
 
-.service('Brand', function($http, $q, localStorageService, URL, Cash) {
-
-  this.get = (data) => {
-
-    data = data || {};
-
-    var url = 'section.filter';
-
-    if(data.id) {
-      url += '/?id=' + data.id;
+      return Common.get('section.filter', data);
     }
-    if(data.feature) {
+  })
 
-      if(Object.keys(data).length > 1) url += '&feature=' + data.feature;
-      else url += '/?feature=' + data.feature;
+  .service('Brand', function ($http, $q, localStorageService, URL, Common) {
 
-    }
+    this.getFiltered = function (data) {
 
-    var brands = Cash.get(url);
+      return Common.get('brand.filter', data);
+    };
 
-    if(!brands) {
-      return this.fetch(url);
-    } else {
-      return brands;
-    }
+    this.get = function (data) {
 
-  };
+      return Common.get('brand.get', data);
 
-  this.getProducts = function(data) {
+    };
 
-    data = data || {};
+    this.getBrandProducts = function () {
 
-    var url = 'brand.get';
+      return [];
 
-    if(data.id) {
-      url += '/' + data.id;
-    }
+    };
 
-    var items = Cash.get(url);
+    this.saveInLocalStorage = (chosenBrands) => {
 
-    if(!items) {
-      return this.fetch(url);
-    } else {
-      return items;
-    }
+      localStorageService.set('chosenBrands', chosenBrands);
 
-  };
+    };
 
-  this.getBrandProducts = function() {
+  })
 
-    return [];
+  .service('Settings', function ($http, localStorageService) {
 
-  };
+    var settings = {
 
-  this.saveInLocalStorage = (chosenBrands) => {
+      sexObj: {
+        sex: ['Women', 'Men', 'Both'],
+        chosenIndex: 0
+      },
 
-     localStorageService.set('chosenBrands', chosenBrands);
+      faq: 'test text faq',
+      shippingAndReturns: 'test text shippingAndReturns',
+      privacyPolicy: 'test text privacyPolicy',
+      termsOfService: 'test text termsOfService'
+    };
 
-  };
+    this.saveInLocalStorage = function () {
 
-  this.fetch = (data) => {
+      localStorageService.set('Settings', settings);
 
-    return $q((resolve, reject) => {
+    };
 
-      $http({
-        method: 'GET',
-        url: URL + data
-      }).then((response) => {
+    this.get = function () {
 
-        resolve(response.data.result);
+      return settings;
+    };
 
-      }, (error) => {
-        console.warn('error', error);
-        reject(error);
-      });
+    this.getSexObj = function () {
 
-    })
-  };
+      return settings.sexObj;
 
-  this.fetchProducts = (data) => {
+    };
 
-    return $q((resolve, reject) => {
+    this.setCurrenctSexIndex = function (index) {
 
-      $http({
-        method: 'GET',
-        url: URL + data
-      }).then((response) => {
+      settings.sexObj.chosenIndex = index;
+      this.saveInLocalStorage();
 
-        resolve(response.data.result);
+    };
 
-      }, (error) => {
-        console.warn('error', error);
-        reject(error);
-      });
-
-    })
-  }
-
-})
-
-.service('Settings', function($http, localStorageService) {
-
-  var settings = {
-
-    sexObj : {
-      sex : ['Women', 'Men', 'Both'],
-      chosenIndex: 0
-    },
-
-    faq: 'test text faq',
-    shippingAndReturns: 'test text shippingAndReturns',
-    privacyPolicy: 'test text privacyPolicy',
-    termsOfService: 'test text termsOfService'
-  };
-
-  this.saveInLocalStorage = function() {
-
-     localStorageService.set('Settings', settings);
-
-  };
-
-  this.get = function(){
-
-    return settings;
-  };
-
-  this.getSexObj = function() {
-
-    return settings.sexObj;
-
-  };
-
-  this.setCurrenctSexIndex = function(index) {
-
-    settings.sexObj.chosenIndex = index;
     this.saveInLocalStorage();
+  })
 
-  };
+  .service('Content', function ($http, $q, URL, Common) {
 
-  this.saveInLocalStorage();
-})
+    this.get = function (data) {
 
-.service('Content', function ($http, $q, URL) {
+      data = data || {};
 
-  var categories = {};
-  var category;
-
-  var items = [
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: false,
-      ribbon: '48% OFF'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
-    },
-    {
-      src: 'http://moderoute.com/wp-content/uploads/oxford-shoes-2.jpg',
-      brand: 'Green Wing',
-      title: 'Postman Oxford Oro',
-      cost: 269,
-      discount: '160'
+      return Common.get('item.filter', data);
     }
-  ];
 
-  this.setCategory = (category) => {
+  })
 
-  };
+  .service('Cache', function () {
 
-  // Get current category widgets content
-  this.fetch = (currentCategory) => {
-    return $q((resolve, reject)=> {
-      $http.get(URL+currentCategory).then((response)=>{}, (error)=>{
-        categories[currentCategory] = [
-          {
-            type: 'likedCat'
-          },
-          {
-            type: 'likedSlider',
-            title: 'BEST SELLERS',
-            items: items,
-            count: 150,
-            query: {}
-          },
-          {
-            type: 'likedSlider',
-            title: 'SHOES ON SALE',
-            items: items,
-            count: 40,
-            sale: true,
-            query: {}
-          },
-          {
-            type: 'gallerySlider',
-            title: 'TOP 10 WOMEN BRANDS',
-            items: [
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-            ],
-            sale: false
+    var cache = {};
 
-          },
-          {
-            type: 'gallerySlider',
-            title: 'NEW ON SPRING',
-            items: [
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-            ],
-            sale: false
+    this.get = (key) => {
+      return cache[key];
+    };
+    this.set = (key, data) => {
+      cache[key] = data;
+    };
 
-          },
-          {
-            type: 'gallerySlider',
-            title: '10 TERRIFIC BRANDS ON SALE',
-            items: [
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-            ],
-            sale: true
+  })
 
-          },
-          {
-            type: 'tileSlider',
-            title: 'MEET A NEW SHOES',
-            subtitle: 'Can you handle these shoes?',
-            items: [
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              }
-            ],
-            count: 48,
-            query: {}
-          },
-          {
-            type: 'tileSlider',
-            title: 'MEET A NEW SHOES',
-            subtitle: 'Can you handle these shoes?',
-            items: [
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              },
-              {
-                src: 'http://kanyewestshoes.us.com/94-570-thickbox/kanye-west-shoes-women-originals-kanye-west-yeezy-750-boost-grey-b35309.jpg'
-              }
-            ],
-            count: 48,
-            query: {}
-          },
-          {
-            type: 'thematicSlider',
-            title: 'TOP THEMATIC SHOES',
-            items: [
-              {
-                suptitle: 'SHOES RULE',
-                title: 'Some them text here',
-                subtitle: 'Shop Now',
-                footer: 'By Simon Isaack, Co-Founder of Fatherly.com',
-                src: 'http://media.new.mensxp.com/media/content/2016/Feb/indian-custom-made-shoe-brands-that-provide-world-class-quality980-1456481998_980x457.jpg'
-              },
-              {
-                suptitle: 'SHOES RULE',
-                title: 'Some them text here',
-                subtitle: 'Shop Now',
-                footer: 'By Simon Isaack, Co-Founder of Fatherly.com',
-                src: 'http://media.new.mensxp.com/media/content/2016/Feb/indian-custom-made-shoe-brands-that-provide-world-class-quality980-1456481998_980x457.jpg'
-              },
-              {
-                suptitle: 'SHOES RULE',
-                title: 'Some them text here',
-                subtitle: 'Shop Now',
-                footer: 'By Simon Isaack, Co-Founder of Fatherly.com',
-                src: 'http://media.new.mensxp.com/media/content/2016/Feb/indian-custom-made-shoe-brands-that-provide-world-class-quality980-1456481998_980x457.jpg'
-              },
-              {
-                suptitle: 'SHOES RULE',
-                title: 'Some them text here',
-                subtitle: 'Shop Now',
-                footer: 'By Simon Isaack, Co-Founder of Fatherly.com',
-                src: 'http://media.new.mensxp.com/media/content/2016/Feb/indian-custom-made-shoe-brands-that-provide-world-class-quality980-1456481998_980x457.jpg'
-              }
-            ],
-            count: 48,
-            query: {}
-          },
-          {
-            type: 'gallerySlider',
-            title: 'LUXURY BRANDS WE LOVE',
-            items: [
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-            ],
-            sale: false
+  .service('Server', function ($http, $q, URL) {
 
-          },
-          {
-            type: 'gallerySlider',
-            title: '11 EMERGING BRANDS TO KNOW',
-            items: [
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-            ],
-            sale: false
+    this.fetch = (url) => {
 
-          },
-          {
-            type: 'gallerySlider',
-            title: 'STANDOUT SHOES BRANDS',
-            items: [
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              },
-              {
-                src: 'http://looks-awesome.com/wp-content/uploads/2015/06/Shopkeeper-----Responsive-WordPress-Theme.jpg'
-              }
-            ],
-            sale: false
+      return new Promise((resolve, reject) => {
 
-          },
-          {
-            type: 'categoryMenu'
-          }
-        ]
-        resolve(categories[currentCategory])
+        $http({
+          method: 'GET',
+          url: URL + url
+        }).then((response) => {
+
+          resolve(response.data.result);
+
+        }, (error) => {
+          console.warn('error', error);
+          reject(error);
+        });
+
       })
-    })
-  }
-})
+    };
 
-.service('Cash', function ($http, $q, URL) {
+  })
 
-  var cash = {};
+  .service('Common', function ($http, $q, Cache, Server) {
 
-  this.get = (key) => { return cash[key]; };
-  this.set = (key, data) => {  cash[key] = data; };
+    this.get = function (url, data) {
 
-});
+      return new Promise((resolve, reject) => {
+
+        data = data || {};
+
+        if (data.id) {
+          url += '/id=' + data.id;
+          data = _.omit(data, ['id']);
+        }
+        if (data.feature) {
+
+          if (Object.keys(data).length > 1 ) {
+
+            url += '&feature=' + data.feature;
+
+          } else {
+
+            url += '/?feature=' + data.feature;
+
+          }
+
+        }
+
+        var items = Cache.get(url);
+
+        if (!items) {
+
+          var promise = Server.fetch(url);
+
+          promise.then((data) => {
+            Cache.set(url, data);
+          });
+
+          resolve(promise);
+
+        } else {
+          resolve(items);
+        }
+
+      })
+
+
+    };
+
+  });
+
+
 

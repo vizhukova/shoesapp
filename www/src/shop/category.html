@@ -2,8 +2,8 @@
   <div
     class="tab-item cat-item"
     ng-repeat="cat in cats track by $index"
-    ng-class="{'active': isActive(cat)}"
-    ng-click="setActive($index)"
-  ><span class="cat-text">{{cat}}</span></div>
+    ng-class="{'active': isActive(cat.id)}"
+    ng-click="setActive(cat.id)"
+  ><span class="cat-text">{{cat.name}}</span></div>
   <div class="active-line"></div>
 </div>

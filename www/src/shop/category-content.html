@@ -5,8 +5,10 @@
   <button class="button by-cat-btn" ng-click="openPopover()">
     BROWSE BY CATEGORY
   </button>
+{{items}}
+   <thematic-slider widget="items"></thematic-slider>
 
-  <div ng-repeat="widget in widgets track by $index">
+  <!--<div ng-repeat="widget in widgets track by $index">
 
     <div ng-if="widget.type=='likedCat'"><liked-cat></liked-cat></div>
 
@@ -18,5 +20,5 @@
 
     <div ng-if="widget.type=='categoryMenu'"><category-menu></category-menu></div>
 
-  </div>
+  </div>-->
 </div>

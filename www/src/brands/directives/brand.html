@@ -1,8 +1,10 @@
-<ion-view view-title="Brand Name" class="Brand-subtab Brands Shop">
+<ion-view view-title="{{chosenBrand.name}}" class="Brand-subtab Brands Shop">
   <ion-content>
     <div class="brand-first-page">
       <div class="brand-slide">
-        <div class="details-under-picture">
+        <img class="base-img" src="{{chosenBrand.img}}" width="100%" height="100%" alt="">
+        <div class="details">
+          <div class="details-under-picture">
           <div class="follow">
             <i class="ion-ios-plus-empty"></i>
             <span>FOLLOW</span>
@@ -11,7 +13,7 @@
             <i class="ion-ios-upload-outline"></i>
           </div>
           <div class="more-info" ng-click="openmoreInfo()">
-            <p class="title">Some title</p>
+            <p class="title">{{chosenBrand.desc_short}}</p>
             <p>
               <span>See more</span>
               <i class="ion-android-radio-button-off point"></i>
@@ -19,22 +21,23 @@
               <i class="ion-android-radio-button-off point"></i>
             </p>
           </div>
+          </div>
         </div>
       </div>
       <div class="bar bar-subheader">
-        <categories></categories>
+        <categories cats="cats"></categories>
       </div>
       </ul>
       <div class="container">
         <div class="button button-main" ng-click="toBrandProducts()"> Shop all</div>
-        <brand-picture2 ng-click="openbrandPopover()"></brand-picture2>
+        <brand-picture2 widget="chosenBrand" ng-click="openbrandPopover()"></brand-picture2>
         <ul class="to-category">
           <li ng-click="toBrandProducts()">
             <span class="title">Shop category name</span>
             <i class="ion-ios-arrow-right"></i>
           </li>
-          <li ng-repeat="category in categories" ng-click="toBrandProducts()">
-            <span>{{category}}</span>
+          <li ng-repeat="category in cats" ng-click="toBrandProducts()">
+            <span>{{category.name}}</span>
             <i class="ion-ios-arrow-right"></i>
           </li>
         </ul>
