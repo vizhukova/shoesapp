@@ -66,9 +66,17 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ShopCtrl', function($scope, Category) {
+.controller('ShopCtrl', function($scope, $state, Category) {
 
-  //$scope.cats = Category.get();
+  $scope.products = [1, 2, 3,4 ,5 ,6, 7, 8,9, 0];
+
+  $scope.goToAlerts = () => {
+    $state.go('tab.alerts');
+  };
+
+  $scope.goToAlert = () => {
+    $state.go('tab.alert');
+  };
 
   Category.get().then((data) => {
 
@@ -131,7 +139,7 @@ angular.module('starter.controllers', [])
 
   });
 
-  Content.get().then((dara) => {
+  Content.get().then((data) => {
     $scope.items = data;
   });
 
@@ -158,7 +166,7 @@ angular.module('starter.controllers', [])
     // Call Widget service method to
     // fetch data by current category
 
-  Content.get().then((data) => {$scope.items = {title: 'title', items: data}})
+  Content.get().then((data) => {console.log(data);$scope.items = {title: 'title', items: data}})
 })
 
 

@@ -3,6 +3,24 @@ import _ from 'lodash';
 
 angular.module('starter.services', [])
 
+    .service('User', function (Server) {
+  /*
+  curl --data "{"email":"test@test.ru","pass":"asdfsfd","firstName":"Ivan"}"  http://shoes.mikero.ru/api/auth.signUp --header "Content-Type:application/json"
+  */
+    this.signIn = function(data) {
+      return Server.post('auth.signIn', data);
+    };
+
+    this.signUp = function(data) {
+      return Server.post('auth.signUp', data);
+    };
+
+    this.forgotPassword = function(data) {
+      return Server.post('auth.forgotPassword', data);
+    };
+
+  })
+
   .service('Category', function (Common) {
 
 
@@ -117,7 +135,25 @@ angular.module('starter.services', [])
           method: 'GET',
           url: URL + url
         }).then((response) => {
+          resolve(response.data.result);
 
+        }, (error) => {
+          console.warn('error', error);
+          reject(error);
+        });
+
+      })
+    };
+
+    this.post = (url, data) => {
+
+      return new Promise((resolve, reject) => {
+
+        $http({
+          method: 'POST',
+          url: URL + url,
+          data: JSON.stringify(data)
+        }).then((response) => {
           resolve(response.data.result);
 
         }, (error) => {
@@ -173,10 +209,7 @@ angular.module('starter.services', [])
         }
 
       })
-
-
     };
-
   });
 
 

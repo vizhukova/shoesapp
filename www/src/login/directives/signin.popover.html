@@ -7,17 +7,17 @@
   <div ng-if="!recovery">
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Email">
+        <input type="text" placeholder="Email" ng-model="user.email">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Password">
+        <input type="text" placeholder="Password" ng-model="user.pass">
       </label>
     </div>
     <button class="button button-clear button-light forgot" ng-click="openRecovery()">
       Forgot Your Password?
     </button>
     <br>
-    <button class="button button-dark sign" ng-click="toShop()">
+    <button class="button button-dark sign" ng-click="signIn()">
       SIGN INTO SPRING
     </button>
   </div>
@@ -25,10 +25,10 @@
   <div ng-if="recovery">
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Email">
+        <input type="text" placeholder="Email" ng-model="email">
       </label>
     </div>
-    <button class="button button-dark recover">
+    <button class="button button-dark recover" ng-click="forgotPassword()">
       RECOVER PASSWORD
     </button>
   </div>

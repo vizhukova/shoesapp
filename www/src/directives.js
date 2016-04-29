@@ -92,9 +92,12 @@ angular.module('starter.directives', [])
       templateUrl: './src/shop/liked.slider.html',
       link: (scope, element, attrs) => {
 
-
         // Width of scrollable area depend on count items
-        scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+        scope.$watch('widget', function(newValue, oldValue) {
+            if(newValue && newValue.items) {
+              scope.width = (1 + newValue.items.length) * 11 + 1 + 'em';
+            }
+        });
 
       }
     }
@@ -496,6 +499,17 @@ angular.module('starter.directives', [])
       restrict: 'E',
       replace: true,
       templateUrl: 'src/order/directives/totalFields.html',
+      scope: true
+    }
+
+  })
+
+  .directive('alertItem', function () {
+
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/alerts/directives/alert.item.list.html',
       scope: true
     }
 

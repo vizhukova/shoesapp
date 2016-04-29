@@ -248,6 +248,26 @@ angular.module('starter', [
         }
       })
 
+      .state('tab.alerts', {
+        url: '/alert',
+        views: {
+          'tab-shop': {
+            templateUrl: 'src/alerts/template.html',
+            controller: 'ShopCtrl'
+          }
+        }
+      })
+
+      .state('tab.alert', {
+        url: '/alert/:id',
+        views: {
+          'tab-shop': {
+            templateUrl: 'src/alerts/directives/alert.item.html',
+            controller: 'ShopCtrl'
+          }
+        }
+      })
+
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
