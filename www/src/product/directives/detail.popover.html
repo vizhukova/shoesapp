@@ -5,9 +5,11 @@
   </div>
 
   <div class="product-detail">
-    <div class="img"></div>
-    <p class="title">A La Mer Tote Shoes</p>
-    <p class="delivery">Expected Delivery Apr 18-20</p>
+    <div class="img">
+      <img src="{{item.imgs[0]}}" width="100%" height="auto" alt="">
+    </div>
+    <p class="title">{{item.name}}</p>
+    <p class="delivery"></p>
   </div>
 
   <div class="body">
@@ -15,11 +17,7 @@
       <a class="button">DETAILS</a>
       <a class="button">RETURNS</a>
     </div>
-    <div class="info">
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    </div>
+    <div class="info">{{item.descLong}}</div>
   </div>
 
   <div class="footer">

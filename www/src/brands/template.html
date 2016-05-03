@@ -13,8 +13,12 @@
       <brand-list items="brands" goTo="goToBrand" goToFollowPage="goToBrandFollowPage"></brand-list>
       <div class="line-title">
         <span>Latest updates</span>
+       <product-recommend
+          ng-repeat="brand in brandSales" ng-click="goToBrand(brand.id)" widget="brand"></product-recommend>
         <product-recommend
-          ng-repeat="brand in brandsSales" ng-click="goToBrand(brand.id)" widget="brand"></product-recommend>
+          ng-repeat="brand in newArrivals" ng-click="goToBrand(brand.id)" widget="brand"></product-recommend>
+        <buy-product item="brand.items[0]" brand="{icon: brand.icon, name: brand.name}" ng-repeat="brand in brands"></buy-product>
+        <div style="height:200px"></div>
         <!--<brand-picture ng-repeat="brand in brandsNew" brand="brand" ng-click="openbrandPopover(brand.id)"></brand-picture>
         <brand-slider widget="{{brandsNew}}"></brand-slider>
         <product-slider></product-slider>

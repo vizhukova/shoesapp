@@ -1,9 +1,10 @@
 import Promise from 'bluebird';
 import _ from 'lodash';
+import moment from 'moment';
 
 angular.module('starter.services', [])
 
-    .service('User', function (Server) {
+  .service('User', function (Server) {
   /*
   curl --data "{"email":"test@test.ru","pass":"asdfsfd","firstName":"Ivan"}"  http://shoes.mikero.ru/api/auth.signUp --header "Content-Type:application/json"
   */
@@ -32,11 +33,203 @@ angular.module('starter.services', [])
     }
   })
 
-  .service('Brand', function ($http, $q, localStorageService, URL, Common) {
+  .service('Item', function ($http, $q, URL, Common, Server, localStorageService) {
+
+    var likes = [];
 
     this.getFiltered = function (data) {
 
-      return Common.get('brand.filter', data);
+      data = data || {};
+
+      return new Promise((resolve, reject) => {
+
+        Common.get('item.filter', data).then((items) => {
+
+          items.map((item) => {
+
+            item.isLiked = likes.filter((id) => item.id === id).length > 0;
+
+          });
+
+          resolve(items);
+
+        })
+
+      });
+
+    };
+
+    this.get = function (data) {
+
+      data = data || {};
+
+      return new Promise((resolve, reject) => {
+
+         Common.get('item.get', data).then((item) => {
+           item.isLiked = likes.filter((id) => item.id === id).length > 0;
+           resolve(item);
+         })
+
+      })
+    };
+
+    this.like = function(data) {
+
+      debugger
+      data.love = 1;
+
+      return Server.post('item.love', data).then(() => {
+
+        likes.push(data.id);
+        localStorageService.set('likedItems', likes);
+
+      });
+
+    };
+
+    this.dislike = function(data) {
+
+      debugger
+      data.love = 0;
+
+      return Server.post('item.love', data).then(() => {
+
+        likes = likes.filter((item) => item != data.id);
+        localStorageService.set('likedItems', likes);
+
+      })
+
+    };
+
+
+
+  })
+
+  .service('Brand', function ($http, $q, localStorageService, URL, Common, Item) {
+
+    this.getFiltered = function (data) {
+
+      var brands = {};
+
+      return new Promise((resolve, reject) => {
+
+        Common.get('brand.filter', data).then((b) => {
+
+          brands = b;
+
+          Promise.map(brands, (brand, index) => {
+
+            return Item.getFiltered({brandId: brand.id}).then((products, i) => {
+
+              brands[index].items = products;
+
+              return Item.get({id: products[0].id}).then((product) => {
+
+                brands[index].items[0] = product;
+
+              })
+
+            })
+
+          }).then(() => {
+
+            resolve(brands);
+
+          })
+
+        })
+
+      })
+    };
+
+    this.getSales = function (data) {
+
+      var brands = {};
+
+      return new Promise((resolve, reject) => {
+
+        Common.get('brand.filter', {feature: 'sales'}).then((b) => {
+
+          brands = b;
+
+          Promise.map(brands, (brand, index) => {
+
+            return Item.getFiltered({feature: 'sales', brandId: brand.id}).then((products) => {
+
+              brands[index].items = products;
+              brands[index].sale = true;
+              brands[index].title = 'Sale';
+
+            })
+
+          }).then((result) => {
+
+            resolve(brands);
+
+          })
+
+        })
+
+      })
+
+    };
+
+    this.getNewArrivals = function (data) {
+
+      var brands = {};
+
+      return new Promise((resolve, reject) => {
+
+        Common.get('brand.filter', {feature: 'new'}).then((b) => {
+
+          brands = b;
+
+          Promise.map(brands, (brand, index) => {
+
+            return Item.getFiltered({feature: 'new', brandId: brand.id}).then((products) => {
+
+              brands[index].items = products;
+              brands[index].title = 'New Arrivals';
+
+            })
+
+          }).then((result) => {
+
+            resolve(brands);
+
+          })
+
+        })
+
+      })
+
+    };
+
+    this.getItems = function(data) {
+
+      var brand = {};
+
+      return new Promise((resolve, reject) => {
+
+        Common.get('brand.get', data.brandFilter).then((b) => {
+
+          brand = b;
+
+            return Item.getFiltered(data.itemFilter).then((products, i) => {
+
+              brand.items = products;
+
+
+          }).then(() => {
+
+            resolve(brand);
+
+          })
+
+        })
+
+      })
+
     };
 
     this.get = function (data) {
@@ -101,13 +294,13 @@ angular.module('starter.services', [])
     this.saveInLocalStorage();
   })
 
-  .service('Content', function ($http, $q, URL, Common) {
+  .service('Alert', function ($http, $q, URL, Common) {
 
     this.get = function (data) {
 
       data = data || {};
 
-      return Common.get('item.filter', data);
+      return Common.get('alert.filter', data);
     }
 
   })
@@ -117,10 +310,34 @@ angular.module('starter.services', [])
     var cache = {};
 
     this.get = (key) => {
-      return cache[key];
+
+      var dataToReturn = cache[key];
+      if(dataToReturn) {
+
+        var today = moment();
+
+        if(moment.max(today, dataToReturn.endTime) == today) {
+
+          return undefined;
+
+        } else {
+          return dataToReturn.data;
+
+        }
+      } else {
+
+        return undefined;
+
+      }
+
     };
+
     this.set = (key, data) => {
-      cache[key] = data;
+
+      cache[key] = {
+        data: data.result,
+        endTime: moment().add(data.ttl, 's')
+      }
     };
 
   })
@@ -135,7 +352,7 @@ angular.module('starter.services', [])
           method: 'GET',
           url: URL + url
         }).then((response) => {
-          resolve(response.data.result);
+          resolve(response.data);
 
         }, (error) => {
           console.warn('error', error);
@@ -154,7 +371,7 @@ angular.module('starter.services', [])
           url: URL + url,
           data: JSON.stringify(data)
         }).then((response) => {
-          resolve(response.data.result);
+          resolve(response.data);
 
         }, (error) => {
           console.warn('error', error);
@@ -178,31 +395,21 @@ angular.module('starter.services', [])
           url += '/id=' + data.id;
           data = _.omit(data, ['id']);
         }
-        if (data.feature) {
 
-          if (Object.keys(data).length > 1 ) {
+        Object.keys(data).map((key, index) => {
 
-            url += '&feature=' + data.feature;
+          url += `${index === 0 ? '/?' : '&'}${key}=${data[key]}`;
 
-          } else {
-
-            url += '/?feature=' + data.feature;
-
-          }
-
-        }
+        });
 
         var items = Cache.get(url);
 
         if (!items) {
 
-          var promise = Server.fetch(url);
-
-          promise.then((data) => {
+          Server.fetch(url).then((data) => {
             Cache.set(url, data);
+            resolve(data.result);
           });
-
-          resolve(promise);
 
         } else {
           resolve(items);

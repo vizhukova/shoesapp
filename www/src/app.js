@@ -119,7 +119,7 @@ angular.module('starter', [
       })
 
       .state('tab.brand-products', {
-        url: '/brand/:id/products',
+        url: '/brand/:id/products/:categoryId',
         views: {
           'tab-brands': {
             templateUrl: 'templates/subtab-brand.html',
@@ -253,7 +253,7 @@ angular.module('starter', [
         views: {
           'tab-shop': {
             templateUrl: 'src/alerts/template.html',
-            controller: 'ShopCtrl'
+            controller: 'AlertCtrl'
           }
         }
       })
@@ -263,7 +263,7 @@ angular.module('starter', [
         views: {
           'tab-shop': {
             templateUrl: 'src/alerts/directives/alert.item.html',
-            controller: 'ShopCtrl'
+            controller: 'AlertCtrl'
           }
         }
       })

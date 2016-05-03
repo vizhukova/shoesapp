@@ -4,8 +4,8 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
 
   $scope.animation = 'slide-in-up';
   $scope.chosenBrands = [];
+  $scope.chosenBrand = {};
 
-  console.log('$stateParams', $stateParams);
 
   Category.get().then((data) => {
     $scope.cats = data;
@@ -23,24 +23,35 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     $scope.brands = brands;
   });
 
-  Brand.getFiltered({feature: 'new'}).then((brands) => {
-    $scope.brandsNew = brands;
+  Brand.getSales().then((data) => {
+     $scope.brandSales = data;
   });
 
-  Brand.getFiltered({feature: 'sales'}).then((brands) => {
-    $scope.brandsSales = brands;
+  Brand.getNewArrivals().then((data) => {
+     $scope.newArrivals = data;
   });
 
-  Brand.getFiltered({feature: 'popular'}).then((brands) => {
-    $scope.brandsPopular = brands;
-  });
 
   if($stateParams) {
-     Brand.get({id: $stateParams.id}).then((data) => {
 
-       $scope.chosenBrand = data;
+    console.log('$stateParams', $stateParams)
 
-    });
+    if($stateParams.id && $stateParams.categoryId) {
+
+       Brand.getItems({brandFilter: {id: $stateParams.id}, itemFilter: {sectionId: $stateParams.categoryId, brandId: $stateParams.id}}).then((data) => {
+        $scope.chosenBrand = data;
+         console.log('!!!!', data)
+      });
+
+    }
+
+    else if($stateParams.id) {
+
+      Brand.get({id: $stateParams.id}).then((data) => {
+        $scope.chosenBrand = data;
+      });
+
+    }
   }
 
 
@@ -50,13 +61,12 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
 
   };
 
-  $scope.widget = {
-    title: 'On sale',
-    subtitle: 'Subtitle',
-    postheader: 'Recomended for you',
-    sale: true,
-    items: $scope.products
+  $scope.toBrandProducts = (category_id) => {
+
+    $state.go("tab.brand-products", {id: $stateParams.id, categoryId: category_id})
+
   };
+
 
   $scope.brandPopoverData = {
     name: 'Brand name',
@@ -89,6 +99,7 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     };
   })
 
+
   $scope.openbrandPopover = (brand_id) => {
     Brand.getProducts({id:brand_id}).then((products) => {
       $scope.chosenBrand = products;
@@ -104,12 +115,6 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
   $scope.openmoreInfo = () => {
     $scope.moreInfo.show();
   }
-
-  $scope.toBrandProducts = () => {
-
-    $state.go("tab.brand-products")
-
-  };
 
   $scope.goToBrandFollowPage = () => {
     $state.go("tab.brand-follow")

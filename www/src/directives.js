@@ -321,19 +321,106 @@ angular.module('starter.directives', [])
     }
   })
 
-  .directive('productSlider', function () {
+  .directive('buyProduct', function ($ionicPopover, Item) {
 
     return {
-      //scope: true,
       restrict: 'E',
       replace: true,
-      templateUrl: './src/brands/directives/product.slider.html',
-      controller: 'brandCtrl',
+      templateUrl: './src/brands/directives/buy.product.html',
+      scope: {
+        item: '=',
+        brand: '='
+      },
 
       link: (scope) => {
-        console.log(scope)
-      }
 
+      scope.animation = 'slide-in-up';
+
+      var popups = [
+        {name: 'detailPopover', url: './src/product/directives/detail.popover.html'},
+        {name: 'basketPopover', url: './src/product/directives/basket.popover.html'}
+      ];
+
+        popups.map((popup)=>{
+        $ionicPopover.fromTemplateUrl(popup.url, {
+          scope: scope,
+          animation: scope.animation
+        }).then((popover)=>{
+          scope[popup.name] = popover;
+        });
+
+        scope[`open${popup.name}`] = ()=>{
+          scope[popup.name].show();
+        };
+
+      });
+
+
+    scope.chosenProduct  =  {
+      quantity: 1,
+      price: scope.item.price
+    };
+
+    scope.shipTo = [];
+
+    scope.addShipAddress = (data) => {
+      console.log(scope.addressForm);
+    };
+
+    scope.changeQuantityProduct = (value) => {
+
+      if( (value < 0 && scope.chosenProduct.quantity > 0) || value > 0) {
+        scope.chosenProduct.quantity += value;
+      }
+    };
+
+    scope.openProduct = (type, $event) => {
+
+        if(type === 'brand'){
+          //$state.go("tab.brand-item");
+
+          $ionicPopover.fromTemplateUrl('src/brands/subtabs/brand-item.html', {
+            scope: scope,
+            animation: scope.animation
+          }).then((popover)=>{
+            scope.popover = popover;
+            scope.popover.show($event);
+          });
+        }
+        else {
+          $state.go("tab.product");
+        }
+
+      };
+
+    scope.setChosenType = (type) => {
+
+        scope.chosenType = scope.chosenType == type ? undefined : type;
+        console.log(scope.chosenType)
+
+      };
+
+    scope.openCardData = (data) => {
+          scope.isOpenCardPage = data;
+      };
+
+    scope.like = (isLiked, id) => {
+
+      new Promise((resove, reject) => {
+
+        if(isLiked) {
+          return Item.like({id: id});
+        } else {
+          return Item.dislike({id: id});
+        }
+
+      }).then((data) => {
+        debugger
+      })
+
+    };
+
+    }
     }
   })
 
@@ -366,14 +453,17 @@ angular.module('starter.directives', [])
   .directive('productRecommend', function () {
 
     return {
-      scope: {},
+      scope: {
+        widget: '='
+      },
       restrict: 'E',
-      //replace: true,
+      replace: true,
       templateUrl: './src/brands/directives/product.recommend.html',
-      controller: 'BrandsCtrl',
+      //controller: 'BrandsCtrl',
 
       link: (scope, element, attrs) => {
         scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+
       }
 
     }
@@ -510,7 +600,9 @@ angular.module('starter.directives', [])
       restrict: 'E',
       replace: true,
       templateUrl: 'src/alerts/directives/alert.item.list.html',
-      scope: true
+      scope: {
+        widget: '='
+      }
     }
 
   });

@@ -84,13 +84,17 @@
   .slider-header {
     height: 4em;
     line-height: 4em;
-    margin: 0 0 1em 0;
+    margin: 0;
     text-align: center;
     font-size: 17px;
     letter-spacing: 0.2em;
 
     &.red {
       color: red;
+    }
+
+    &.blue {
+      color: #387EF5;
     }
 
     i:before {
@@ -242,7 +246,7 @@
         &.cost {
 
           .price {
-            color: #ddd;
+            color: #9C9292;
 
             &.old {
               font-size: 13px;
@@ -1121,28 +1125,6 @@
   background: url("../img/bg2.jpg") center center no-repeat;
   background-size: cover;
   padding: 1.2em 1em 1.5em;
-  .imageLoader {
-
-    .spinner {
-      background: gray;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-
-    svg {
-      stroke: #444;
-      fill: #444;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      margin: auto;
-    }
-  }
 }
 
 p.title {
@@ -1541,6 +1523,28 @@ button.join {
     }
   }
 
+   .imageLoader {
+
+    .spinner {
+      background: gray;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    svg {
+      stroke: #444;
+      fill: #444;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+    }
+  }
 
 
 
