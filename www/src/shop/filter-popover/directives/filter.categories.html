@@ -1,0 +1,10 @@
+<div class="filter-category">
+  <div ng-repeat="categoryTree in categories track by $index">
+    <div class="block" ng-repeat="category in categoryTree"
+         ng-class="{'main chosen' : category.deptLevel === 0, 'chosen': category.id == filter}"
+         ng-click="click(category.id)">
+      <span>{{category.name}}</span>
+      <i ng-if="categoryTree.length > 1 && $index > 0 && categoryTree.length - 1 !== $index" class="ion-ios-close chosen"></i>
+    </div>
+  </div>
+</div>

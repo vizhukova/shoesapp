@@ -7,6 +7,8 @@
       </div>
       <div class="container">
         <product-slider widget="chosenBrand"></product-slider>
+        {{chosenBrand}}
+        <buy-product item="brand.items[0]" brand="{icon: brand.icon, name: brand.name}" ng-repeat="brand in brands"></buy-product>
         <p class="title">More like this</p>
         <div class="line"></div>
         <showcase></showcase>

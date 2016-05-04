@@ -1010,6 +1010,48 @@
       background: #fff;
       width: 100%;
       border-bottom: 2px solid grey;
+
+      .nav {
+        display: inline-block;
+        width: 35%;
+        height: 100%;
+        background: lightgrey;
+
+        p {
+          text-transform: uppercase;
+          color: #545353;
+          line-height: 3.5em;
+          margin: 0;
+          font-size: 0.9em;
+          padding: 0 1em;
+        }
+
+        p.chosen {
+          background: white;
+          color: #000;
+        }
+      }
+
+      .content {
+        display: inline-block;
+        width: 60%;
+        vertical-align: top;
+
+        .block {
+          margin: 0;
+          line-height: 3em;
+          border-bottom: solid 1px lightgrey;
+        }
+
+        .main {
+          text-transform: uppercase;
+        }
+
+        .chosen {
+          color: #387EF5;
+        }
+      }
+
     }
 
     div.footer {
@@ -1102,7 +1144,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        color: #fff;
+        color: #E6E1E1;
         font-size: 2em;
         padding: 10px;
       }

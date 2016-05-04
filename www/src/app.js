@@ -102,7 +102,7 @@ angular.module('starter', [
         url: '/brands',
         views: {
           'tab-brands': {
-            templateUrl: 'src/brands/template.html',
+            templateUrl: 'src/brands/tabs/brand.main.page.html',
             controller: 'BrandsCtrl'
           }
         }
@@ -112,7 +112,7 @@ angular.module('starter', [
         url: '/brand/:id',
         views: {
           'tab-brands': {
-            templateUrl: 'src/brands/directives/brand.html',
+            templateUrl: 'src/brands/tabs/brand.page.html',
             controller: 'BrandsCtrl'
           }
         }
@@ -122,7 +122,7 @@ angular.module('starter', [
         url: '/brand/:id/products/:categoryId',
         views: {
           'tab-brands': {
-            templateUrl: 'templates/subtab-brand.html',
+            templateUrl: 'src/brands/tabs/brand.products.html',
             controller: 'BrandsCtrl'
           }
         }

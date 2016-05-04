@@ -28,12 +28,69 @@ angular.module('starter.services', [])
     this.get = function (data) {
 
       data = data || {};
+      var categories = [];
 
-      return Common.get('section.filter', data);
+      return new Promise((resolve, reject) => {
+
+         Common.get('section.filter', data).then((c) => {
+           console.log(c)
+           categories = c.filter((item) => {
+             if(item.deptLevel === 0) {
+               item.items = c.filter((it) => it.deptLevel === 1 && it.parentId === item.id);
+               return item;
+             }
+           });
+
+           resolve(categories);
+         })
+
+      })
     }
+
+    this.getArrayTree = function(category_id) {
+
+      debugger
+
+      var categories = [];
+      var arr = [];
+
+      return new Promise((resolve, reject) => {
+
+         Common.get('section.filter', {}).then((c) => {
+
+           categories = c;
+
+          var cat = _.find(categories, {id: category_id});
+
+          if(cat.parentId) {
+
+             arr = getTree(cat.id, []);
+
+          } else {
+
+            arr.push([cat]);
+
+          }
+
+          var chieldCat = categories.filter((item) => item.parentId === cat.id);
+          arr.push(chieldCat);
+          resolve(arr);
+
+         });
+
+      })
+
+      function getTree(category_id, arr) {
+        var category = _.find(categories, {id: category_id});
+        arr.unshift([category]);
+        if(category.parentId) return getTree(category.parentId, arr);
+        else return arr;
+      }
+    }
+
   })
 
-  .service('Item', function ($http, $q, URL, Common, Server, localStorageService) {
+  .service('Item', function ($http, $q, URL, Common, Server,  localStorageService) {
 
     var likes = [];
 
@@ -75,7 +132,6 @@ angular.module('starter.services', [])
 
     this.like = function(data) {
 
-      debugger
       data.love = 1;
 
       return Server.post('item.love', data).then(() => {
@@ -89,7 +145,6 @@ angular.module('starter.services', [])
 
     this.dislike = function(data) {
 
-      debugger
       data.love = 0;
 
       return Server.post('item.love', data).then(() => {

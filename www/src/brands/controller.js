@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand, Category) {
+export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand, Category, Item) {
 
   $scope.animation = 'slide-in-up';
   $scope.chosenBrands = [];
@@ -13,10 +13,6 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
 
   Brand.get().then((data) => {
     $scope.products = data;
-  });
-
-  Brand.get().then((data) => {
-    $scope.brandProducts = data;
   });
 
   Brand.getFiltered().then((brands) => {
@@ -39,8 +35,15 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     if($stateParams.id && $stateParams.categoryId) {
 
        Brand.getItems({brandFilter: {id: $stateParams.id}, itemFilter: {sectionId: $stateParams.categoryId, brandId: $stateParams.id}}).then((data) => {
-        $scope.chosenBrand = data;
-         console.log('!!!!', data)
+
+         $scope.chosenBrand = {
+           name: data.name
+         }
+
+         $scope.products = data.items;
+
+         console.log('!!!!', $scope.products)
+
       });
 
     }
@@ -151,4 +154,16 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
   };
 
   $scope.isSelected = (index) => _.indexOf($scope.chosenBrands, index) !== -1
+
+  $scope.filter = function(params) {
+    debugger
+    if($stateParams.id) params.brandId = $stateParams.id;
+
+    Item.getFiltered(params).then((data) => {
+
+      $scope.products = data;
+
+    });
+  }
+
 }

@@ -1,7 +1,16 @@
-<ion-view view-title="GFF" class="product-tab">
-  <div class="follow-btn">follow</div>
-  <ion-content>
-    <product-container></product-container>
-    <showcase></showcase>
+
+  <ion-content class="class="product-tab"">
+    <div class="follow-btn">follow</div>
+    <ion-scroll direction="y">
+      <buy-product item="chosenProduct" brand="{icon: brand.icon, name: brand.name}"></buy-product>
+      <showcase></showcase>
+     <ion-scroll direction="y">
   </ion-content>
-</ion-view>
+
+
+  <!--
+        margin-top: 3em;
+    background: #fff;
+    margin-bottom: 3.5em;
+      -->
+

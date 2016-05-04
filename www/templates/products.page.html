@@ -1,9 +1,10 @@
     <div class="filter">
-      <div class="box" ng-click="opensortPopover()">sort</div>
-      <div class="box" ng-click="openfilterPopover()">filter</div>
-      <div class="box" ng-click="openfilterPopover()">filter</div>
-      <div class="box" ng-click="openfilterPopover()">filter</div>
+      <!--<div class="box" ng-click="opensortPopover()">sort</div>-->
+      <div class="box" ng-click="openfilterPopover(filter)" ng-repeat="filter in filterBy">
+        <p class="header">{{filter}}</p>
+        <p><span>All</span> <i class="ion-ios-arrow-down"></i> </p>
+      </div>
     </div>
-    <showcase type="type"></showcase>
+    <showcase></showcase>
 
 

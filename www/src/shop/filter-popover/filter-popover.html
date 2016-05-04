@@ -1,0 +1,31 @@
+<ion-popover-view class="filter-popover">
+
+  <div class="nav-panel">
+    <button ng-click="filterPopover.hide()" class="close-btn button button-icon icon ion-android-close"></button>
+    <span class="title">Refine</span>
+    <span class="reset" ng-click="reset()">RESET</span>
+  </div>
+
+  <div class="body">
+
+    <div class="nav">
+      <p class="{{chosenMenuItem.name == filter ? 'chosen' : ''}}" ng-click="setChosenFilter(filter)" ng-repeat="filter in filterBy">{{filter}}</p>
+    </div>
+
+    <div class="content">
+      <filter-category ng-if="chosenMenuItem.name == 'Category'"
+                       categories="categories"
+                       click="getCategoryTree"
+                       filter="chosenFilter.sectionId"
+      ></filter-category>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <button class="button button-positive" ng-click="showResult()">
+      SHOW RESULT
+    </button>
+  </div>
+
+</ion-popover-view>
