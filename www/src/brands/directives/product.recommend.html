@@ -1,9 +1,9 @@
 <div class="recommend-slider">
-    <p ng-class="widget.sale ? 'slider-header red' : 'slider-header blue'">{{widget.title}} <i class="ion-chevron-right"></i></p>
+    <p ng-class="widget.sale ? 'slider-header red' : 'slider-header blue'" ng-click="click(widget.id)" >{{widget.title}} <i class="ion-chevron-right"></i></p>
     <p class="subheader">{{widget.subtitle}}</p>
   <ion-scroll direction="x" delegate-handle="horizontal">
     <div class="scrolling" ng-style="{width: width}">
-      <div class="thing" ng-repeat="product in widget.items track by $index">
+      <div class="thing" ng-repeat="product in widget.items track by $index" ng-click="openProduct(product)">
         <div class="holder">
           <img class="img" ng-src="{{product.img}}">
           <div class="ribbon" ng-if="product.ribbon"><h2>{{product.ribbon}}</h2></div>

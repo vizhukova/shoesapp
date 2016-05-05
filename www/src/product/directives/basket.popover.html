@@ -8,7 +8,7 @@
 
      <div>
        <span ><b>Size</b></span>
-       <span ng-if="!chosenType" class="pull-right">M
+       <span ng-if="!chosenType" class="pull-right">{{basketData.size.name}}
        <i class="ion-ios-plus-empty plus-icon"></i>
        </span>
         <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
@@ -53,7 +53,7 @@
   <p  ng-if="!chosenType" class="comment">some comment</p>
 
   <div class="container">
-    <product-option ng-if="chosenType=='size'"></product-option>
+    <size ng-if="chosenType=='size'"></size>
     <address-fields ng-if="chosenType=='address'"></address-fields>
     <payment ng-if="chosenType=='card'"></payment>
     <shipping-fields ng-if="chosenType=='shipping'"></shipping-fields>

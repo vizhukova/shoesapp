@@ -24,7 +24,6 @@ angular.module('starter.services', [])
 
   .service('Category', function (Common) {
 
-
     this.get = function (data) {
 
       data = data || {};
@@ -33,7 +32,6 @@ angular.module('starter.services', [])
       return new Promise((resolve, reject) => {
 
          Common.get('section.filter', data).then((c) => {
-           console.log(c)
            categories = c.filter((item) => {
              if(item.deptLevel === 0) {
                item.items = c.filter((it) => it.deptLevel === 1 && it.parentId === item.id);
@@ -48,8 +46,6 @@ angular.module('starter.services', [])
     }
 
     this.getArrayTree = function(category_id) {
-
-      debugger
 
       var categories = [];
       var arr = [];
@@ -123,7 +119,7 @@ angular.module('starter.services', [])
       return new Promise((resolve, reject) => {
 
          Common.get('item.get', data).then((item) => {
-           item.isLiked = likes.filter((id) => item.id === id).length > 0;
+           if(item) item.isLiked = likes.filter((id) => item.id === id).length > 0;
            resolve(item);
          })
 
@@ -162,7 +158,9 @@ angular.module('starter.services', [])
 
   .service('Brand', function ($http, $q, localStorageService, URL, Common, Item) {
 
-    this.getFiltered = function (data) {
+    var self = this;
+
+    this.getFiltered =  (data) => {
 
       var brands = {};
 
@@ -197,7 +195,7 @@ angular.module('starter.services', [])
       })
     };
 
-    this.getSales = function (data) {
+    this.getSales = (data) => {
 
       var brands = {};
 
@@ -229,7 +227,7 @@ angular.module('starter.services', [])
 
     };
 
-    this.getNewArrivals = function (data) {
+    this.getNewArrivals = (data) => {
 
       var brands = {};
 
@@ -260,7 +258,7 @@ angular.module('starter.services', [])
 
     };
 
-    this.getItems = function(data) {
+    this.getItems = (data) => {
 
       var brand = {};
 
@@ -287,15 +285,39 @@ angular.module('starter.services', [])
 
     };
 
-    this.get = function (data) {
+    this.get = (data) => {
 
       return Common.get('brand.get', data);
 
     };
 
-    this.getBrandProducts = function () {
+    this.getBrandProducts = () => {
 
       return [];
+
+    };
+
+    this.getFullFiltered = (data) => {
+
+      return new Promise((resolve, reject) => {
+
+        var brands = [];
+
+        this.getFiltered(data).then((data) => {
+
+          Promise.map(data, (brand) => {
+
+            return this.get({id: brand.id}).then((fullBrand) => {
+              brands.push(fullBrand);
+            })
+
+          }).then(() => {
+            resolve(brands);
+          })
+
+        });
+
+      });
 
     };
 
@@ -357,6 +379,60 @@ angular.module('starter.services', [])
 
       return Common.get('alert.filter', data);
     }
+
+  })
+
+  .service('Size', function ($http, $q, URL, Common) {
+
+    this.get = function (data) {
+
+      data = data || {};
+
+      return Common.get('item.getSize', data);
+    }
+
+  })
+
+  .service('Address', function ($http, $q, URL, Common, Server) {
+
+    this.get = (data) => {
+
+      data = data || {};
+
+      return Common.get('item.getSize', data);
+    };
+
+    this.add = (data) => {
+
+      data = data || {};
+
+      return Server.post('account.addAddress', data);
+    };
+
+    this.update = (data) => {
+
+      data = data || {};
+
+      return Server.post('account.updateAddress', data);
+    }
+
+  })
+
+  .service('Location', function ($http, $q, URL, Common) {
+
+    this.getbyZip = function (data) {
+
+      data = data || {};
+
+      return Common.get('shop.getLocationByZip', data);
+    };
+
+    this.getbyName = function (data) {
+
+      data = data || {};
+
+      return Common.get('shop.getLocationByName', data);
+    };
 
   })
 
@@ -473,6 +549,8 @@ angular.module('starter.services', [])
       })
     };
   });
+
+
 
 
 

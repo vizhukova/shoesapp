@@ -1,4 +1,4 @@
-export default function($scope, $state, $ionicPopover, User) {
+export default function($scope, $state, $ionicPopover, $ionicModal, User) {
 
   $scope.animation = 'slide-in-up';
   $scope.recovery = false;
@@ -28,6 +28,12 @@ export default function($scope, $state, $ionicPopover, User) {
     };
   });
 
+  $ionicModal.fromTemplateUrl('./src/login/directives/error.modal.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
   $scope.openRecovery = () => {
     $scope.recovery = true;
     $scope.user = {};
@@ -47,7 +53,16 @@ export default function($scope, $state, $ionicPopover, User) {
 
   $scope.signIn = function() {
 
-    User.signIn($scope.user)
+    User.signIn($scope.user).then((data) => {
+        if(data.err_code) {
+
+          $scope.modal.show();
+
+
+        } else {
+
+        }
+    })
 
   };
 

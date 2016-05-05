@@ -61,7 +61,7 @@ angular.module('starter.directives', [])
       scope: {},
       restrict: 'E',
       templateUrl: './src/shop/category-content.html',
-      controller: 'CategoryContentCtrl'
+      scope: true
     }
   })
 
@@ -87,11 +87,14 @@ angular.module('starter.directives', [])
 
     return {
       scope: {
-        widget: '='
+        widget: '=',
+        click: '='
       },
       restrict: 'E',
       replace: true,
       templateUrl: './src/shop/liked.slider.html',
+      controller: 'ShowcaseCtrl',
+
       link: (scope, element, attrs) => {
 
         // Width of scrollable area depend on count items
@@ -207,7 +210,7 @@ angular.module('starter.directives', [])
     return {
       restrict: 'E',
       templateUrl: './src/showcase/directives/templates/product.html',
-      controller: 'productCtrl',
+      controller: 'ShowcaseCtrl',
       scope: true
     }
   })
@@ -321,82 +324,83 @@ angular.module('starter.directives', [])
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: './src/brands/directives/buy.product.html',
+      templateUrl: './src/product/directives/buy.product.html',
       scope: {
         item: '=',
         brand: '='
       },
+      controller: 'ProductCtrl'
 
-      link: (scope) => {
-
-      scope.animation = 'slide-in-up';
-
-      var popups = [
-        {name: 'detailPopover', url: './src/product/directives/detail.popover.html'},
-        {name: 'basketPopover', url: './src/product/directives/basket.popover.html'}
-      ];
-
-        popups.map((popup)=>{
-        $ionicPopover.fromTemplateUrl(popup.url, {
-          scope: scope,
-          animation: scope.animation
-        }).then((popover)=>{
-          scope[popup.name] = popover;
-        });
-
-        scope[`open${popup.name}`] = ()=>{
-          scope[popup.name].show();
-        };
-
-      });
-
-
-    scope.chosenProduct  =  {
-      quantity: 1,
-      price: scope.item.price
-    };
-
-    scope.shipTo = [];
-
-    scope.addShipAddress = (data) => {
-      console.log(scope.addressForm);
-    };
-
-    scope.changeQuantityProduct = (value) => {
-
-      if( (value < 0 && scope.chosenProduct.quantity > 0) || value > 0) {
-        scope.chosenProduct.quantity += value;
-      }
-    };
-
-    scope.setChosenType = (type) => {
-
-        scope.chosenType = scope.chosenType == type ? undefined : type;
-        console.log(scope.chosenType)
-
-      };
-
-    scope.openCardData = (data) => {
-          scope.isOpenCardPage = data;
-      };
-
-    scope.like = (isLiked, id) => {
-
-      new Promise((resove, reject) => {
-
-        if(isLiked) {
-          return Item.like({id: id});
-        } else {
-          return Item.dislike({id: id});
-        }
-
-      }).then((data) => {
-        debugger
-      })
-
-    };
-
-    }
+    //  link: (scope) => {
+    //
+    //  scope.animation = 'slide-in-up';
+    //
+    //  var popups = [
+    //    {name: 'detailPopover', url: './src/product/directives/detail.popover.html'},
+    //    {name: 'basketPopover', url: './src/product/directives/basket.popover.html'}
+    //  ];
+    //
+    //    popups.map((popup)=>{
+    //    $ionicPopover.fromTemplateUrl(popup.url, {
+    //      scope: scope,
+    //      animation: scope.animation
+    //    }).then((popover)=>{
+    //      scope[popup.name] = popover;
+    //    });
+    //
+    //    scope[`open${popup.name}`] = ()=>{
+    //      scope[popup.name].show();
+    //    };
+    //
+    //  });
+    //
+    //
+    //scope.chosenProduct  =  {
+    //  quantity: 1,
+    //  price: scope.item.price
+    //};
+    //
+    //scope.shipTo = [];
+    //
+    //scope.addShipAddress = (data) => {
+    //  console.log(scope.addressForm);
+    //};
+    //
+    //scope.changeQuantityProduct = (value) => {
+    //
+    //  if( (value < 0 && scope.chosenProduct.quantity > 0) || value > 0) {
+    //    scope.chosenProduct.quantity += value;
+    //  }
+    //};
+    //
+    //scope.setChosenType = (type) => {
+    //
+    //    scope.chosenType = scope.chosenType == type ? undefined : type;
+    //    console.log(scope.chosenType)
+    //
+    //  };
+    //
+    //scope.openCardData = (data) => {
+    //      scope.isOpenCardPage = data;
+    //  };
+    //
+    //scope.like = (isLiked, id) => {
+    //
+    //  new Promise((resove, reject) => {
+    //
+    //    if(isLiked) {
+    //      return Item.like({id: id});
+    //    } else {
+    //      return Item.dislike({id: id});
+    //    }
+    //
+    //  }).then((data) => {
+    //    debugger
+    //  })
+    //
+    //};
+    //
+    //}
     }
   })
 
@@ -430,12 +434,13 @@ angular.module('starter.directives', [])
 
     return {
       scope: {
-        widget: '='
+        widget: '=',
+        click: '='
       },
       restrict: 'E',
       replace: true,
       templateUrl: './src/brands/directives/product.recommend.html',
-      //controller: 'BrandsCtrl',
+      controller: 'ShowcaseCtrl',
 
       link: (scope, element, attrs) => {
         scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
@@ -448,14 +453,16 @@ angular.module('starter.directives', [])
   .directive('brandFollow', function () {
 
     return {
-      scope: {},
       restrict: 'E',
       //replace: true,
       templateUrl: './src/brands/directives/brand.follow.html',
       controller: 'BrandsCtrl',
+      scope: {
+        widget: '='
+      },
 
       link: (scope, element, attrs) => {
-        scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+        if(scope.widget && scope.widget.items) scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
       }
     }
   })
@@ -473,7 +480,7 @@ angular.module('starter.directives', [])
       },
 
       link: (scope, element, attrs) => {
-        scope.width = (1 + scope.items.length) * 5 + 1 + 'em';
+        if(scope.items) scope.width = (1 + scope.items.length) * 5 + 1 + 'em';
       }
     }
   })
@@ -489,89 +496,14 @@ angular.module('starter.directives', [])
     }
   })
 
-  .directive('productsPage', function ($ionicPopover, Category) {
+  .directive('productsPage', function () {
 
     return {
       restrict: 'E',
       templateUrl: './templates/products.page.html',
-      controller: 'ShowcaseCtrl',
-      scope: true,
+      controller: 'ShowcaseCtrl'
+      //scope: true,
 
-      link: (scope) => {
-
-        scope.filterBy = ['Category', 'Size', 'Color'];
-        scope.chosenMenuItem = {};
-        scope.chosenFilter = {};
-        scope.animation = 'slide-in-up';
-
-        scope.sizes = [{
-            "id": 1,
-            "name": "37"
-          },
-          {
-            "id": 2,
-            "name": "38"
-          },
-          {
-            "id": 3,
-            "name": "39"
-          }];
-
-        Category.get().then((data) => {
-
-          scope.categories = data.map((item) => [item]);
-        });
-
-        var popups = [
-          {name: 'sortPopover', url: './src/shop/sort-popover.html'},
-          {name: 'filterPopover', url: './src/shop/filter-popover/filter-popover.html'}
-        ];
-
-          $ionicPopover.fromTemplateUrl('./src/shop/filter-popover/filter-popover.html', {
-            scope: scope,
-            animation: scope.animation
-          }).then((popover)=>{
-            scope['filterPopover'] = popover;
-          });
-
-          scope[`openfilterPopover`] = (filter)=>{
-            scope.chosenMenuItem = {
-              name: filter
-            };
-            scope['filterPopover'].show();
-          };
-
-        scope.setChosenFilter = (name) => {
-          scope.chosenMenuItem = {
-            name: name
-          }
-        }
-
-        scope.getCategoryTree = (category_id) => {
-
-          Category.getArrayTree(category_id).then((data) => {
-
-            var result = _.find(scope.categories[scope.categories.length - 1], data[data.length - 1][0]); // если у выбранной категории нет подкатегорий
-
-            if(! result) scope.categories = data;
-            else scope.chosenFilter['sectionId'] = category_id;
-
-            scope.$digest();
-          })
-        }
-
-        scope.showResult = () => {
-          scope.filterPopover.hide();
-          scope.filter(scope.chosenFilter);
-        }
-
-        scope.reset = () => {
-
-          scope.chosenFilter = {};
-
-        }
-
-      }
     }
   })
 
@@ -587,12 +519,12 @@ angular.module('starter.directives', [])
 
   })
 
-  .directive('productOption', function () {
+  .directive('size', function () {
 
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'src/product/directives/product.option.html',
+      templateUrl: 'src/order/directives/size.html',
       scope: true
     }
 

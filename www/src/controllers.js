@@ -67,29 +67,77 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ShopCtrl', function($scope, $state, Category, Alert) {
+.controller('ShopCtrl', function($scope, $state, $ionicPopover, Category, Item, Brand) {
 
-  $scope.products = [1, 2, 3,4 ,5 ,6, 7, 8,9, 0];
+  Item.getFiltered({feature: 'sale'}).then((data) => {
+    $scope.sales = {
+      title: 'Sale',
+      sale: true,
+      items: data
+    };
+  });
+
+  Item.getFiltered({feature: 'new'}).then((data) => {
+    $scope.newArrivals = {
+      title: 'New Arrivals',
+      items: data
+    };
+  });
+
+  Item.getFiltered({feature: 'popular'}).then((data) => {
+    $scope.popular = {
+      title: 'Popular',
+      items: data
+    };
+  });
+
+  Brand.getFullFiltered({feature: 'sale'}).then((data) => {
+    $scope.brandSales = {
+      title: 'Sale',
+      sale: true,
+      items: data
+    };
+    console.log('brandSales', data)
+  });
+
+  Brand.getFullFiltered({feature: 'new'}).then((data) => {
+    $scope.brandNewArrivals = {
+      title: 'New Arrivals',
+      items: data
+    };
+  });
+
+  Brand.getFullFiltered({feature: 'popular'}).then((data) => {
+    $scope.brandPopular = {
+      title: 'Popular',
+      items: data
+    };
+  });
+
+  Category.get().then((data) => {
+    $scope.categories = data;
+    console.log('categories', data)
+  });
 
   $scope.goToAlerts = () => {
     $state.go('tab.alerts');
   };
-  /*
-  $scope.goToAlert = (brand_id) => {
-    $state.go('tab.brand', {id: brand_id});
+
+  $scope.goToProducts = (category_id) => {
+    $state.go($state.go("tab.brand-products", {sectionId: category_id}));
   };
 
-  Category.get().then((data) => {
+  $ionicPopover.fromTemplateUrl('src/shop/category-popover.html', {
+      scope: $scope,
+      animation: $scope.animation
+    }).then((popover)=>{
+      $scope.popover = popover;
+    });
 
-    $scope.cats = data;
+    $scope.openPopover = ($event)=>{
+      $scope.popover.show($event);
+    };
 
-  });
-
-  Alert.get().then((data) => {
-
-    $scope.alerts = data;
-
-  });*/
 })
 
 // Join header controller with join button
@@ -136,44 +184,6 @@ angular.module('starter.controllers', [])
       }
     };
 
-})
-
-.controller('CategoryContentCtrl', function($scope, $ionicPopover, $state,  Item, Category) {
-
-  Category.get().then((data) => {
-
-    $scope.cats = data;
-
-  });
-
-  Item.get().then((data) => {
-    $scope.items = data;
-  });
-
-  $ionicPopover.fromTemplateUrl('./src/shop/category-popover.html', {
-
-    scope: $scope
-
-  }).then(function(popover) {
-    $scope.popover = popover;
-  });
-
-  $scope.openPopover = function($event) {
-    $scope.popover.show($event);
-  };
-
-
-  $scope.toShowcase = () => {
-
-    $scope.popover.hide();
-    $state.go("tab.showcase")
-
-  };
-
-    // Call Widget service method to
-    // fetch data by current category
-
-  Item.get().then((data) => {console.log(data);$scope.items = {title: 'title', items: data}})
 })
 
 .controller('AlertCtrl', AlertCtrl)

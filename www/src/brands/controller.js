@@ -17,6 +17,7 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
 
   Brand.getFiltered().then((brands) => {
     $scope.brands = brands;
+    console.log('brands!!!', brands)
   });
 
   Brand.getSales().then((data) => {
@@ -28,34 +29,16 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
   });
 
 
-  if($stateParams) {
+  console.log('$stateParams', $stateParams);
 
-    console.log('$stateParams', $stateParams)
+   if($stateParams.id) {
 
-    if($stateParams.id && $stateParams.categoryId) {
+    Brand.get({id: $stateParams.id}).then((data) => {
+      $scope.chosenBrand = data;
+    });
 
-       Brand.getItems({brandFilter: {id: $stateParams.id}, itemFilter: {sectionId: $stateParams.categoryId, brandId: $stateParams.id}}).then((data) => {
-
-         $scope.chosenBrand = {
-           name: data.name
-         }
-
-         $scope.products = data.items;
-
-         console.log('!!!!', $scope.products)
-
-      });
-
-    }
-
-    else if($stateParams.id) {
-
-      Brand.get({id: $stateParams.id}).then((data) => {
-        $scope.chosenBrand = data;
-      });
-
-    }
   }
+
 
 
   $scope.goToBrand = (brand_id) => {
@@ -64,9 +47,12 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
 
   };
 
-  $scope.toBrandProducts = (category_id) => {
+  $scope.toBrandProducts = (id) => {
 
-    $state.go("tab.brand-products", {id: $stateParams.id, categoryId: category_id})
+    var brand_id = $stateParams.id || id;
+    var category_id = $stateParams.id ? id : undefined;
+
+    $state.go("tab.brand-products", {brandId: brand_id, sectionId: category_id});
 
   };
 
@@ -91,11 +77,6 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     }).then((popover)=>{
       $scope[popup.name] = popover;
     });
-
-    /*$scope[`open${popup.name}`] = ()=>{
-
-      $scope[popup.name].show();
-    };*/
 
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
@@ -156,7 +137,7 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
   $scope.isSelected = (index) => _.indexOf($scope.chosenBrands, index) !== -1
 
   $scope.filter = function(params) {
-    debugger
+
     if($stateParams.id) params.brandId = $stateParams.id;
 
     Item.getFiltered(params).then((data) => {

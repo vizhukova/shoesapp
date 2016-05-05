@@ -5,19 +5,23 @@
   <button class="button by-cat-btn" ng-click="openPopover()">
     BROWSE BY CATEGORY
   </button>
-    <liked-slider  widget="items"></liked-slider>
+    <liked-slider  widget="sales"></liked-slider>
+    <liked-slider  widget="newArrivals"></liked-slider>
+    <liked-slider  widget="popular"></liked-slider>
 
-  <!--<div ng-repeat="widget in widgets track by $index">
+    <gallery-slider  widget="brandSales"></gallery-slider>
+    <gallery-slider  widget="brandNewArrivals"></gallery-slider>
+    <gallery-slider  widget="brand"></gallery-slider>
 
-    <div ng-if="widget.type=='likedCat'"><liked-cat></liked-cat></div>
 
-    <liked-slider ng-if="widget.type=='likedSlider'" widget="widget"></liked-slider>
+    <!--<div ><liked-cat></liked-cat></div>
 
-    <gallery-slider ng-if="widget.type=='gallerySlider'" widget="widget"></gallery-slider>
+    <liked-slider  widget="sales"></liked-slider>
 
-    <thematic-slider ng-if="widget.type=='thematicSlider'" widget="widget"></thematic-slider>
+    <gallery-slider  widget="sales"></gallery-slider>
 
-    <div ng-if="widget.type=='categoryMenu'"><category-menu></category-menu></div>
+    <thematic-slider  widget="sales"></thematic-slider>
 
-  </div>-->
+    <div><category-menu></category-menu></div>-->
+
 </div>

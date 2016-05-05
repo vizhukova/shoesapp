@@ -1,9 +1,10 @@
 <div class="brand-follow">
-
-   <div class='content content-profile'>
-      <div class="brand-pic">Brand name</div>
+   <div class='content content-profile' ng-click="goToBrand(brand.id)">
+      <div class="brand-pic">
+        <img src="{{brand.icon}}" width="100%" height="100%" alt="">
+      </div>
       <div class="brand-descr">
-        <div><strong>Brand name</strong></div>
+        <div><strong>{{brand.name}}</strong></div>
         <div>Bottoms, Tops, Bags, Accessori...</div>
       </div>
       <div class="brand-new-items">
@@ -11,24 +12,23 @@
         <p>Follow</p>
       </div>
    </div>
-
   <ion-scroll direction="x" delegate-handle="horizontal">
     <div class="scrolling" ng-style="{width: width}">
       <div class="thing" ng-repeat="product in widget.items track by $index">
         <div class="holder">
-          <img class="img" ng-src="{{product.src}}">
+          <img class="img" ng-src="{{product.img}}">
         </div>
-        <p class="title">{{product.title}}</p>
+        <p class="title">{{product.name}}</p>
         <p class="cost">
-          <span ng-class="{{product.price}}">{{product.cost | currency:"$":00}}</span>
+          <span ng-class="{{product.price}}">{{product.price | currency:product.currency:00}}</span>
         </p>
       </div>
-      <div class="thing">
+      <div class="thing" ng-click="goToBrand(brand.id)">
         <div class="holder">
           <div class="img">
             <div class="center">
               <span class="all">SHOP ALL</span><br>
-              <span>{{widget.count}} <span>items</span></span>
+              <span>{{widget.items.length}} <span>items</span></span>
             </div>
           </div>
         </div>
