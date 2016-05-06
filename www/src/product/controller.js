@@ -3,7 +3,7 @@ import _ from 'lodash';
 export default function($scope, $stateParams, $ionicPopover, $state, Item, Size, Location, Address) {
 
   $scope.animation = 'slide-in-up';
-  debugger
+
   if($stateParams.id) {
 
     Item.get({id: $stateParams.id}).then((data) => {

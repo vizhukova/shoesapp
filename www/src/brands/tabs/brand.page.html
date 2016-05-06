@@ -5,10 +5,17 @@
         <img class="base-img" src="{{chosenBrand.background}}" width="100%" height="100%" alt="">
         <div class="details">
           <div class="details-under-picture">
-          <div class="follow">
-            <i class="ion-ios-plus-empty"></i>
-            <span>FOLLOW</span>
-          </div>
+
+            <div class="follow" ng-if="! chosenBrand.isLiked" ng-click="follow(chosenBrand)">
+              <i class="ion-ios-plus-empty"></i>
+              <span>FOLLOW</span>
+            </div>
+
+            <div class="follow" ng-if="chosenBrand.isLiked" ng-click="follow(chosenBrand)">
+              <i class="ion-ios-minus-empty"></i>
+              <span>UNFOLLOW</span>
+            </div>
+
           <div class="send">
             <i class="ion-ios-upload-outline"></i>
           </div>

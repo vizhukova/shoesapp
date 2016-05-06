@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default function($scope, $ionicPopover, $state, $stateParams, Brand, Category, Item) {
 
   $scope.filterBy = ['Category', 'Size', 'Color'];
@@ -5,6 +7,7 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
   $scope.chosenFilter = {};
   $scope.animation = 'slide-in-up';
 
+  $scope.titleName = '123455';
 
   $scope.sizes = [{
       "id": 1,
@@ -19,11 +22,30 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
       "name": "39"
     }];
 
-  var filterObj = $stateParams;
 
-  Item.getFiltered(filterObj).then((data) => {
-    $scope.products = data;
-  });
+  var filterObj = _.omit($stateParams, Object.keys($stateParams).map((key) => {
+    if($stateParams[key] == undefined) return key;
+  }));
+
+  console.log('filterObj', filterObj);
+
+  setTitle(filterObj);
+
+  if($state.current.name == 'tab.me' && $state.current.url == '/me') {
+
+    Item.getLiked().then((data) => {
+      $scope.products = data;
+    });
+
+  } else {
+
+    Item.getFiltered(filterObj).then((data) => {
+      $scope.products = data;
+      console.log('products', data)
+    });
+
+  }
+
 
 
   Category.get().then((data) => {
@@ -67,7 +89,7 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
 
       $scope.$digest();
     })
-  }
+  };
 
   $scope.showResult = () => {
     $scope.filterPopover.hide();
@@ -78,13 +100,39 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
 
     $scope.chosenFilter = {};
 
-  }
+  };
+
+  $scope.addLiked = (product_id, e) => {
+    e.stopPropagation();
+    Item.addLiked(product_id);
+
+    _.find($scope.products, {id: product_id}).isLiked = true;
+  };
+
+  $scope.removeLiked = (product_id, e) => {
+    e.stopPropagation();
+    Item.removeLiked(product_id);
+
+     _.find($scope.products, {id: product_id}).isLiked = false;
+  };
 
   $scope.openProduct = (product, $event) => {
-    console.log('openProduct', product.id)
     $state.go('tab.shop-product', {id: product.id});
 
   };
+
+  function setTitle(filterObj) {
+    if(filterObj.feature) {
+      switch(filterObj.feature) {
+        case 'new':  $scope.titleName = 'New Arrival';
+              break;
+        case 'popular':  $scope.titleName = 'Popular';
+              break;
+        case 'sale':  $scope.titleName = 'Sale';
+              break;
+      }
+    }
+  }
 
 
 }

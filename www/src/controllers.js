@@ -8,6 +8,7 @@ import MeSettingsCtrl from './settings/settings'
 import MeSettingsPromoCtrl from './settings/promo/promo'
 import MeSettingsShowMeCtrl from './settings/showMe/showMe'
 import AlertCtrl from './alerts/controller'
+import _ from 'lodash';
 
 angular.module('starter.controllers', [])
 
@@ -49,6 +50,41 @@ angular.module('starter.controllers', [])
 
 // Brands tab
 .controller('BrandsCtrl', BrandsCtrl)
+
+.controller('BrandsFollowCtrl', function($scope, $state, $stateParams, Category, Brand){
+
+
+  $scope.activeCat = {};
+
+  $scope.$watch('activeCat', (newVal) => {
+    $scope.activeCat = newVal;
+
+    Category.get().then((data) => {
+    $scope.cats = data;
+
+     var filterBy = _.assign({}, {sectionId: $scope.activeCat.id}, $stateParams);
+
+     Brand.getFiltered(filterBy).then((brands) => {
+       $scope.brands = brands;
+     });
+
+  });
+
+  });
+
+   $scope.goToBrand = (brand_id) => {
+
+    $state.go("tab.brand", {id: brand_id});
+
+  };
+
+   $scope.openProduct = (product, $event) => {
+    $state.go('tab.shop-product', {id: product.id});
+
+  };
+
+
+})
 
 // Search tab
 .controller('SearchCtrl', SearchCtrl)
@@ -123,8 +159,17 @@ angular.module('starter.controllers', [])
     $state.go('tab.alerts');
   };
 
-  $scope.goToProducts = (category_id) => {
-    $state.go($state.go("tab.brand-products", {sectionId: category_id}));
+  $scope.goToProducts = (param) => {
+     $scope.popover.hide();
+    $state.go($state.go("tab.shop-products", param));
+  };
+
+  $scope.goToBrand = (brand_id) => {
+    $state.go("tab.brand", {id: brand_id});
+  };
+
+  $scope.goToBrands = (param) => {
+    $state.go("tab.brand-follow", param)
   };
 
   $ionicPopover.fromTemplateUrl('src/shop/category-popover.html', {

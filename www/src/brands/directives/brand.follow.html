@@ -14,7 +14,7 @@
    </div>
   <ion-scroll direction="x" delegate-handle="horizontal">
     <div class="scrolling" ng-style="{width: width}">
-      <div class="thing" ng-repeat="product in widget.items track by $index">
+      <div class="thing" ng-repeat="product in widget.items track by $index" ng-click="openProduct(product)">
         <div class="holder">
           <img class="img" ng-src="{{product.img}}">
         </div>

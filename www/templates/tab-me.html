@@ -1,4 +1,4 @@
-<ion-view view-title="ME" class="Me">
+<ion-view view-title="ME" cache-view="false" class="Me">
 
     <ion-nav-buttons side="right">
         <button class="button" ng-click="toSettings()">
@@ -15,13 +15,12 @@
             </div>
             <div class="link" ng-click="toBrands()">
                 <i class="icon ion-ios-checkmark-outline"></i>
-                <p>Brands (5)</p>
+                <p>Brands ({{likedBrands.length}})</p>
             </div>
         </div>
 
         <div class="like-list">
-
-            <p>My loves (5)</p>
+            <p>My loves ({{likedProducts.length}})</p>
             <showcase></showcase>
 
         </div>

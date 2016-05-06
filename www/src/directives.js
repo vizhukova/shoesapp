@@ -6,7 +6,10 @@ angular.module('starter.directives', [])
 
     return {
       restrict: 'E',
-      scope: {cats: '='},
+      scope: {
+        cats: '=',
+        activeCat: '&'
+      },
       replace: true,
       templateUrl: './src/shop/category.html',
       link: (scope) => {
@@ -88,7 +91,8 @@ angular.module('starter.directives', [])
     return {
       scope: {
         widget: '=',
-        click: '='
+        titleClick: '=',
+        titleClickParam: '='
       },
       restrict: 'E',
       replace: true,
@@ -112,7 +116,10 @@ angular.module('starter.directives', [])
 
     return {
       scope: {
-        widget: '='
+        widget: '=',
+        titleClick: '=',
+        itemClick: '=',
+        titleClickParam: '='
       },
       restrict: 'E',
       replace: true,
@@ -456,7 +463,7 @@ angular.module('starter.directives', [])
       restrict: 'E',
       //replace: true,
       templateUrl: './src/brands/directives/brand.follow.html',
-      controller: 'BrandsCtrl',
+      controller: 'BrandsFollowCtrl',
       scope: {
         widget: '='
       },

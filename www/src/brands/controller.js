@@ -6,9 +6,9 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
   $scope.chosenBrands = [];
   $scope.chosenBrand = {};
 
-
   Category.get().then((data) => {
     $scope.cats = data;
+    $scope.chosenCategorId = data[0].id;
   });
 
   Brand.get().then((data) => {
@@ -17,7 +17,6 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
 
   Brand.getFiltered().then((brands) => {
     $scope.brands = brands;
-    console.log('brands!!!', brands)
   });
 
   Brand.getSales().then((data) => {
@@ -28,7 +27,6 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
      $scope.newArrivals = data;
   });
 
-
   console.log('$stateParams', $stateParams);
 
    if($stateParams.id) {
@@ -38,7 +36,6 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     });
 
   }
-
 
 
   $scope.goToBrand = (brand_id) => {
@@ -126,6 +123,21 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
 
     }
 
+  };
+
+  $scope.follow = (brand) => {
+
+    if(brand.isLiked) {
+
+      Brand.removeLiked(brand.id);
+      brand.isLiked = false;
+
+    } else {
+
+      Brand.addLiked(brand.id);
+       brand.isLiked = true;
+
+    }
   };
 
   $scope.update = () => {

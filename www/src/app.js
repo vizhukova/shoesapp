@@ -88,6 +88,16 @@ angular.module('starter', [
         }
       })
 
+      .state('tab.shop-products', {
+        url: '/shop/products/?feature&sectionId',
+        views: {
+          'tab-shop': {
+            templateUrl: 'src/brands/tabs/brand.products.html',
+            controller: 'ShopCtrl'
+          }
+        }
+      })
+
       .state('tab.showcase', {
         url: '/showcase',
         views: {
@@ -129,11 +139,11 @@ angular.module('starter', [
       })
 
       .state('tab.brand-products', {
-        url: '/shop/products/?brandId&sectionId',
+        url: '/brands/products/?sectionId',
         views: {
-          'tab-shop': {
-            templateUrl: 'src/brands/tabs/brand.products.html'
-            //controller: 'BrandsCtrl'
+          'tab-brands': {
+            templateUrl: 'src/brands/tabs/brand.products.html',
+            controller: 'BrandsCtrl'
           }
         }
       })
@@ -149,11 +159,11 @@ angular.module('starter', [
       //})
 
       .state('tab.brand-follow', {
-        url: '/brand/follow',
+        url: '/brand/follow/?feature',
         views: {
           'tab-brands': {
             templateUrl: 'src/brands/subtabs/brand-follow-page.html',
-            controller: 'BrandsCtrl'
+            controller: 'BrandsFollowCtrl'
           }
         }
       })
@@ -163,6 +173,16 @@ angular.module('starter', [
         views: {
           'tab-search': {
             templateUrl: 'src/search/template.html',
+            controller: 'SearchCtrl'
+          }
+        }
+      })
+
+       .state('tab.search-products', {
+        url: '/brands/products/?brandId&sectionId&feature',
+        views: {
+          'tab-search': {
+            templateUrl: 'src/brands/tabs/brand.products.html',
             controller: 'SearchCtrl'
           }
         }

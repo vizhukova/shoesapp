@@ -88,7 +88,7 @@ angular.module('starter.services', [])
 
   .service('Item', function ($http, $q, URL, Common, Server,  localStorageService) {
 
-    var likes = [];
+    var likes =  localStorageService.get('likedItems') || [];
 
     this.getFiltered = function (data) {
 
@@ -99,8 +99,7 @@ angular.module('starter.services', [])
         Common.get('item.filter', data).then((items) => {
 
           items.map((item) => {
-
-            item.isLiked = likes.filter((id) => item.id === id).length > 0;
+            item.isLiked = likes.indexOf(item.id) > -1;
 
           });
 
@@ -119,46 +118,68 @@ angular.module('starter.services', [])
       return new Promise((resolve, reject) => {
 
          Common.get('item.get', data).then((item) => {
-           if(item) item.isLiked = likes.filter((id) => item.id === id).length > 0;
+           if(item)  item.isLiked = !!likes.indexOf(item.id) > -1;
            resolve(item);
          })
 
       })
     };
 
-    this.like = function(data) {
+    this.addLiked = (id) => {
 
-      data.love = 1;
+      likes.push(id);
+      localStorageService.set('likedItems', likes);
+       console.log('addLiked', likes)
+      Server.post('item.love', {"brandId": id, "love": 1});
 
-      return Server.post('item.love', data).then(() => {
+    };
 
-        likes.push(data.id);
-        localStorageService.set('likedItems', likes);
+    this.removeLiked = (id) => {
+
+      likes = likes.filter((item) => item != id);
+      localStorageService.set('likedItems', likes);
+      Server.post('item.love', {"brandId": id, "love": 0});
+
+    };
+
+    this.getLiked = () => {
+
+      return new Promise((resolve, reject) => {
+
+        var products = [];
+
+        this.getFiltered().then((p) => {
+
+          products = p;
+
+          Common.get('account.getLove').then((data) => {
+
+              likes =  localStorageService.get('likedItems') || [];
+
+              if(! data) {
+                likes.concat( _.difference(likes, data) );
+              }
+
+              var likedProduct = products.filter((item) => likes.indexOf(item.id) > -1);
+
+              resolve(likedProduct);
+          })
+
+        })
 
       });
 
-    };
-
-    this.dislike = function(data) {
-
-      data.love = 0;
-
-      return Server.post('item.love', data).then(() => {
-
-        likes = likes.filter((item) => item != data.id);
-        localStorageService.set('likedItems', likes);
-
-      })
-
-    };
 
 
+
+  };
 
   })
 
-  .service('Brand', function ($http, $q, localStorageService, URL, Common, Item) {
+  .service('Brand', function ($http, $q, localStorageService, URL, Common, Item, Server) {
 
     var self = this;
+    var likes = localStorageService.get('likedBrands') || [];
 
     this.getFiltered =  (data) => {
 
@@ -179,6 +200,7 @@ angular.module('starter.services', [])
               return Item.get({id: products[0].id}).then((product) => {
 
                 brands[index].items[0] = product;
+                brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
 
               })
 
@@ -258,6 +280,37 @@ angular.module('starter.services', [])
 
     };
 
+    this.getPopular = (data) => {
+
+      var brands = {};
+
+      return new Promise((resolve, reject) => {
+
+        Common.get('brand.filter', {feature: 'popular'}).then((b) => {
+
+          brands = b;
+
+          Promise.map(brands, (brand, index) => {
+
+            return Item.getFiltered({feature: 'popular', brandId: brand.id}).then((products) => {
+
+              brands[index].items = products;
+              brands[index].title = 'Popular';
+
+            })
+
+          }).then((result) => {
+
+            resolve(brands);
+
+          })
+
+        })
+
+      })
+
+    };
+
     this.getItems = (data) => {
 
       var brand = {};
@@ -287,8 +340,15 @@ angular.module('starter.services', [])
 
     this.get = (data) => {
 
-      return Common.get('brand.get', data);
 
+      return new Promise((resolve, reject) => {
+         Common.get('brand.get', data).then((brand) => {
+
+          if(brand) brand.isLiked = likes.indexOf(brand.id) > -1;
+           resolve(brand);
+
+        })
+      });
     };
 
     this.getBrandProducts = () => {
@@ -320,6 +380,55 @@ angular.module('starter.services', [])
       });
 
     };
+
+    this.addLiked = (id) => {
+
+      likes.push(+id);
+      localStorageService.set('likedBrands', likes);
+       console.log('addLiked', likes)
+      Server.post('brand.follow', {"brandId": id, "follow": 1});
+
+    };
+
+    this.removeLiked = (id) => {
+
+      likes = likes.filter((item) => item != +id);
+      localStorageService.set('likedBrands', likes);
+      Server.post('brand.follow', {"brandId": +id, "follow": 0});
+
+    };
+
+    this.getLiked = () => {
+
+      return new Promise((resolve, reject) => {
+
+        var products = [];
+
+        this.getFiltered().then((p) => {
+
+          products = p;
+
+          Common.get('account.getBrandFollow').then((data) => {
+
+              likes =  localStorageService.get('likedBrands') || [];
+
+              if(! data) {
+                likes.concat( _.difference(likes, data) );
+              }
+
+              var likedProduct = products.filter((item) => likes.indexOf(item.id) > -1);
+
+              resolve(likedProduct);
+          })
+
+        })
+
+      });
+
+
+
+
+  };
 
     this.saveInLocalStorage = (chosenBrands) => {
 
@@ -479,6 +588,9 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
+     console.log(URL + url)
+
+
         $http({
           method: 'GET',
           url: URL + url
@@ -548,6 +660,7 @@ angular.module('starter.services', [])
 
       })
     };
+
   });
 
 
