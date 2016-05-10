@@ -22,6 +22,10 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
       "name": "39"
     }];
 
+  $scope.$watch('categories', (newVal) => {
+    console.log('categories !!!!!!', newVal)
+  })
+
 
   var filterObj = _.omit($stateParams, Object.keys($stateParams).map((key) => {
     if($stateParams[key] == undefined) return key;
@@ -46,11 +50,35 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
 
   }
 
+  //$scope.categories = [
+  //  {name: 'fdggd1', id: 1, deptLevel: 1, items: [
+  //    {
+  //      name: 'fdggd21', id: 1, deptLevel: 2
+  //    }, {
+  //      name: 'fdggd22', id: 1, deptLevel: 2,
+  //      items : [
+  //        { name: 'fdggd31', id: 1, deptLevel: 3},
+  //        { name: 'fdggd32', id: 1, deptLevel: 3, items: [
+  //          { name: 'fdggd41', id: 1, deptLevel: 4},
+  //          { name: 'fdggd42', id: 1, deptLevel: 4}
+  //        ]}
+  //      ]
+  //    }
+  //  ]}, {name: 'fdggd1', id: 1, deptLevel: 1, items: [
+  //    {
+  //      name: 'fdggd21', id: 1, deptLevel: 2
+  //    }, {
+  //      name: 'fdggd22', id: 1, deptLevel: 2
+  //    }
+  //  ]}
+  //]
+
 
 
   Category.get().then((data) => {
 
-    $scope.categories = data.map((item) => [item]);
+    $scope.categories = data;
+    console.log("CATEGORIES", data)
   });
 
   var popups = [
@@ -82,13 +110,16 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
 
     Category.getArrayTree(category_id).then((data) => {
 
+      debugger
       var result = _.find($scope.categories[$scope.categories.length - 1], data[data.length - 1][0]); // если у выбранной категории нет подкатегорий
 
-      if(! result) $scope.categories = data;
+      if(result) $scope.categories = data;
       else $scope.chosenFilter['sectionId'] = category_id;
 
       $scope.$digest();
     })
+
+    console.log('$scope.categories !!!!!!!!!', $scope.categories)
   };
 
   $scope.showResult = () => {

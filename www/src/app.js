@@ -133,7 +133,7 @@ angular.module('starter', [
         views: {
           'tab-brands': {
             templateUrl: 'src/brands/tabs/brand.page.html',
-            controller: 'BrandsCtrl'
+            controller: 'ItemPageCtrl'
           }
         }
       })
@@ -163,7 +163,7 @@ angular.module('starter', [
         views: {
           'tab-brands': {
             templateUrl: 'src/brands/subtabs/brand-follow-page.html',
-            controller: 'BrandsFollowCtrl'
+            controller: 'FollowPageCtrl'
           }
         }
       })

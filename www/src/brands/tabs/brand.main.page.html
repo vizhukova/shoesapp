@@ -2,7 +2,7 @@
   <ion-content>
     <ion-scroll direction="y">
       <div class="container">
-        <div class="content">
+        <div class="content" ng-if="! likedBrands.length">
         <div class="title">Start following</div>
         <div class="post-title">
           <p>Get started by following some of the top brands.</p>
@@ -10,7 +10,9 @@
         </div>
         </div>
       </div>
-      <brand-list items="brands" goTo="goToBrand" goToFollowPage="goToBrandFollowPage"></brand-list>
+
+      <div ng-if="likedBrands.length">
+         <brand-list items="brands" goTo="goToBrand" goToFollowPage="goToBrandFollowPage"></brand-list>
       <div class="line-title">
         <span>Latest updates</span>
        <product-recommend
@@ -19,6 +21,7 @@
           ng-repeat="brand in newArrivals" click="toBrandProducts" widget="brand"></product-recommend>
         <buy-product item="brand.items[0]" brand="{icon: brand.icon, name: brand.name}" ng-repeat="brand in brands"></buy-product>
         <div style="height:200px"></div>
+      </div>
         <!--<brand-picture ng-repeat="brand in brandsNew" brand="brand" ng-click="openbrandPopover(brand.id)"></brand-picture>
         <brand-slider widget="{{brandsNew}}"></brand-slider>
         <product-slider></product-slider>
@@ -33,5 +36,5 @@
       </div>
     </ion-scroll>
   </ion-content>
-  <div class="button button-done" ng-click="update()">Done</div>
+  <div class="button button-done" ng-if="! likedBrands.length" ng-click="update()">Done</div>
 </ion-view>

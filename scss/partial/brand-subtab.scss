@@ -36,19 +36,39 @@
         font-size: 1.5em;
       }
 
-      .follow {
+      .following, .follow {
         position: absolute;
         bottom: 0;
         right: 0;
         width: 90px;
         height: 30px;
-        background: #fff;
         line-height: 30px;
         text-align: center;
         border: 1px solid black;
         border-radius: 7px;
         font-size: 0.7em;
         font-weight: 600;
+
+        p {
+          line-height: 2em;
+          height: 2em;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        i {
+          font-size: 2em;
+        }
+      }
+
+      .following {
+        background: #000;
+        color: #fff;
+      }
+
+      .follow {
+        background: #fff;
+        color: #000;
       }
 
       .more-info {

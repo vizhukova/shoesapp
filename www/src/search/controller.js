@@ -1,8 +1,7 @@
-export default function($scope, $ionicPopover, Category) {
+export default function($scope, $state, $ionicPopover, Category) {
 
   Category.get().then((data) => {
     $scope.categories = data;
-    console.log(data)
   });
 
   $scope.icons = {
@@ -35,15 +34,20 @@ export default function($scope, $ionicPopover, Category) {
 
   $scope.onFocus = (e) => {
     $scope.isRecentSearchesShow = true;
-  }
+  };
 
   $scope.onCancelClick = (e) => {
    $scope.isRecentSearchesShow = false;
-  }
+  };
 
   $scope.onCloseResentSearchClick = (e) => {
     $scope.isRecentSearchesShow = false;
-  }
+  };
+
+  $scope.goToProducts = (param) => {
+     $scope.popover.hide();
+    $state.go($state.go("tab.shop-products", param));
+  };
 
 
 }

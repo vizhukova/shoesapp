@@ -606,9 +606,19 @@ angular.module('starter.directives', [])
         filter: '='
       },
 
+      link: (scope) => {
+
+        scope.$watch('categories', (newVal, oldVal) => {
+          scope.height = (newVal.countItems || newVal.length) * 43 + 'px';
+          console.log('HEIGHT', scope.height)
+        })
+
+      }
+
     }
 
-  });
+  })
+
 
 
 

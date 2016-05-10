@@ -1037,6 +1037,9 @@
         display: inline-block;
         width: 60%;
         vertical-align: top;
+        position: relative;
+        height: 100%;
+
 
         .block {
           margin: 0;
@@ -1604,6 +1607,15 @@ button.join {
      margin: auto;
      left: 0;
      right: 0;
+   }
+
+   .filter-category {
+     .scroll {
+       height: 100%;
+       position: absolute;
+       bottom: 4em;
+       top: 0;
+     }
    }
 
 

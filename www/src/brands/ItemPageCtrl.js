@@ -3,7 +3,6 @@ import _ from 'lodash'
 export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand, Category, Item) {
 
   $scope.animation = 'slide-in-up';
-  $scope.chosenBrands = [];
   $scope.chosenBrand = {};
 
   Category.get().then((data) => {
@@ -11,23 +10,14 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     $scope.chosenCategorId = data[0].id;
   });
 
-  Brand.get().then((data) => {
-    $scope.products = data;
-  });
-
   Brand.getFiltered().then((brands) => {
     $scope.brands = brands;
   });
 
-  Brand.getSales().then((data) => {
-     $scope.brandSales = data;
+  Brand.getLiked().then((data) => {
+    $scope.likedBrands = data;
+    console.log('likedBrands', data)
   });
-
-  Brand.getNewArrivals().then((data) => {
-     $scope.newArrivals = data;
-  });
-
-  console.log('$stateParams', $stateParams);
 
    if($stateParams.id) {
 
@@ -36,7 +26,6 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     });
 
   }
-
 
   $scope.goToBrand = (brand_id) => {
 
@@ -54,12 +43,12 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
   };
 
 
-  $scope.brandPopoverData = {
-    name: 'Brand name',
-    title: 'Title',
-    description: 'description description description description',
-    products: $scope.brandProducts
-  };
+  //$scope.brandPopoverData = {
+  //  name: 'Brand name',
+  //  title: 'Title',
+  //  description: 'description description description description',
+  //  products: $scope.brandProducts
+  //};
 
   var popups = [
     {name: 'brandPopover', url: 'src/brands/subtabs/brand-popover.html'},
@@ -97,10 +86,6 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     $scope.moreInfo.show();
   }
 
-  $scope.goToBrandFollowPage = () => {
-    $state.go("tab.brand-follow")
-  };
-
   $scope.isCategoryChosen = (index) => {
     return $scope.categories[index].chosen;
   };
@@ -111,19 +96,19 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
   };
 
 
-  $scope.onBlindChange = (index) => {
-
-    if( _.indexOf($scope.chosenBrands, index) == -1 ) {
-
-      $scope.chosenBrands.push(index);
-
-    } else {
-
-      $scope.chosenBrands = _.filter($scope.chosenBrands, (item) => item != index);
-
-    }
-
-  };
+  //$scope.onBlindChange = (index) => {
+  //
+  //  if( _.indexOf($scope.chosenBrands, index) == -1 ) {
+  //
+  //    $scope.chosenBrands.push(index);
+  //
+  //  } else {
+  //
+  //    $scope.chosenBrands = _.filter($scope.chosenBrands, (item) => item != index);
+  //
+  //  }
+  //
+  //};
 
   $scope.follow = (brand) => {
 
@@ -140,23 +125,23 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     }
   };
 
-  $scope.update = () => {
-
-    Brand.saveInLocalStorage($scope.chosenBrands);
-
-  };
+  //$scope.update = () => {
+  //
+  //  Brand.saveInLocalStorage($scope.chosenBrands);
+  //
+  //};
 
   $scope.isSelected = (index) => _.indexOf($scope.chosenBrands, index) !== -1
 
-  $scope.filter = function(params) {
-
-    if($stateParams.id) params.brandId = $stateParams.id;
-
-    Item.getFiltered(params).then((data) => {
-
-      $scope.products = data;
-
-    });
-  }
+  //$scope.filter = function(params) {
+  //
+  //  if($stateParams.id) params.brandId = $stateParams.id;
+  //
+  //  Item.getFiltered(params).then((data) => {
+  //
+  //    $scope.products = data;
+  //
+  //  });
+  //}
 
 }

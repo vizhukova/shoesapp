@@ -8,12 +8,12 @@
 
             <div class="follow" ng-if="! chosenBrand.isLiked" ng-click="follow(chosenBrand)">
               <i class="ion-ios-plus-empty"></i>
-              <span>FOLLOW</span>
+              <p>FOLLOW</p>
             </div>
 
-            <div class="follow" ng-if="chosenBrand.isLiked" ng-click="follow(chosenBrand)">
-              <i class="ion-ios-minus-empty"></i>
-              <span>UNFOLLOW</span>
+            <div class="following" ng-if="chosenBrand.isLiked" ng-click="follow(chosenBrand)">
+              <i class="ion-ios-checkmark-empty"></i>
+              <p>FOLLOWING</p>
             </div>
 
           <div class="send">

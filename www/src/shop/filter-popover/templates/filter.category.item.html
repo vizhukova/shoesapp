@@ -1,0 +1,7 @@
+<div>
+  <div class="block"  ng-click="click(data.id)">
+    <span>{{data.name}}</span>
+    <i ng-if="data.items.length > 0" class="ion-ios-close chosen"></i>
+  </div>
+  <div ng-repeat="data in data.items" ng-include="'./src/shop/filter-popover/templates/filter.category.item.html'"></div>
+</div>

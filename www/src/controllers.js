@@ -1,6 +1,7 @@
 import ShowcaseCtrl from './showcase/controller'
 import ProductCtrl from './product/controller'
-import BrandsCtrl from './brands/controller'
+import BrandsCtrl from './brands/MainPageCtrl'
+import FollowPageCtrl from './brands/FollowPageCtrl'
 import SearchCtrl from './search/controller'
 import MeCtrl from './me/controller'
 import LoginCtrl from './login/controller'
@@ -51,40 +52,7 @@ angular.module('starter.controllers', [])
 // Brands tab
 .controller('BrandsCtrl', BrandsCtrl)
 
-.controller('BrandsFollowCtrl', function($scope, $state, $stateParams, Category, Brand){
-
-
-  $scope.activeCat = {};
-
-  $scope.$watch('activeCat', (newVal) => {
-    $scope.activeCat = newVal;
-
-    Category.get().then((data) => {
-    $scope.cats = data;
-
-     var filterBy = _.assign({}, {sectionId: $scope.activeCat.id}, $stateParams);
-
-     Brand.getFiltered(filterBy).then((brands) => {
-       $scope.brands = brands;
-     });
-
-  });
-
-  });
-
-   $scope.goToBrand = (brand_id) => {
-
-    $state.go("tab.brand", {id: brand_id});
-
-  };
-
-   $scope.openProduct = (product, $event) => {
-    $state.go('tab.shop-product', {id: product.id});
-
-  };
-
-
-})
+.controller('FollowPageCtrl', FollowPageCtrl)
 
 // Search tab
 .controller('SearchCtrl', SearchCtrl)
@@ -152,7 +120,6 @@ angular.module('starter.controllers', [])
 
   Category.get().then((data) => {
     $scope.categories = data;
-    console.log('categories', data)
   });
 
   $scope.goToAlerts = () => {
@@ -232,6 +199,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AlertCtrl', AlertCtrl)
+
+
 
 
 

@@ -33,12 +33,36 @@ angular.module('starter.services', [])
 
          Common.get('section.filter', data).then((c) => {
            categories = c.filter((item) => {
-             if(item.deptLevel === 0) {
-               item.items = c.filter((it) => it.deptLevel === 1 && it.parentId === item.id);
-               return item;
-             }
-           });
 
+             item.deptLevel = +item.deptLevel;
+             item.id = +item.id;
+             if(item.parentId) item.parentId = +item.parentId;
+             if(item.deptLevel === 1) return item;
+
+             //if(item.deptLevel === 1) {
+             //  item.items = c.filter((it) => it.deptLevel === 2 && it.parentId === item.id);
+             //  return item;
+             //}
+           });
+           resolve(categories);
+         })
+
+      })
+    }
+
+    this.getAll = function (data) {
+
+      data = data || {};
+      var categories = [];
+
+      return new Promise((resolve, reject) => {
+
+         Common.get('section.filter', data).then((c) => {
+           categories = c.filter((item) => {
+             item.id = +item.id;
+             if(item.parentId) item.parentId = +item.parentId;
+              return item;
+           });
            resolve(categories);
          })
 
@@ -48,11 +72,11 @@ angular.module('starter.services', [])
     this.getArrayTree = function(category_id) {
 
       var categories = [];
-      var arr = [];
+      var tree = {};
 
       return new Promise((resolve, reject) => {
 
-         Common.get('section.filter', {}).then((c) => {
+         this.getAll().then((c) => {
 
            categories = c;
 
@@ -60,27 +84,27 @@ angular.module('starter.services', [])
 
           if(cat.parentId) {
 
-             arr = getTree(cat.id, []);
+             tree = getTree(cat.id, [cat]);
 
           } else {
 
-            arr.push([cat]);
+            tree = cat;
 
           }
 
           var chieldCat = categories.filter((item) => item.parentId === cat.id);
-          arr.push(chieldCat);
-          resolve(arr);
+          tree.items = chieldCat;
+          resolve([tree]);
 
          });
 
       })
 
-      function getTree(category_id, arr) {
+      function getTree(category_id, items) {
         var category = _.find(categories, {id: category_id});
-        arr.unshift([category]);
-        if(category.parentId) return getTree(category.parentId, arr);
-        else return arr;
+        category.items = items;
+        if(category.parentId) return getTree(category.parentId, [category]);
+        else return category;
       }
     }
 
@@ -99,8 +123,10 @@ angular.module('starter.services', [])
         Common.get('item.filter', data).then((items) => {
 
           items.map((item) => {
-            item.isLiked = likes.indexOf(item.id) > -1;
-
+            if(item) {
+              item.id = + item.id;
+              item.isLiked = likes.indexOf(item.id) > -1;
+            }
           });
 
           resolve(items);
@@ -118,7 +144,10 @@ angular.module('starter.services', [])
       return new Promise((resolve, reject) => {
 
          Common.get('item.get', data).then((item) => {
-           if(item)  item.isLiked = !!likes.indexOf(item.id) > -1;
+           if(item)  {
+             item.id = + item.id;
+             item.isLiked = !!likes.indexOf(item.id) > -1;
+           }
            resolve(item);
          })
 
@@ -193,16 +222,20 @@ angular.module('starter.services', [])
 
           Promise.map(brands, (brand, index) => {
 
-            return Item.getFiltered({brandId: brand.id}).then((products, i) => {
+            return Item.getFiltered({brandId: +brand.id}).then((products, i) => {
 
               brands[index].items = products;
 
-              return Item.get({id: products[0].id}).then((product) => {
+              if(products[0]) {
 
-                brands[index].items[0] = product;
-                brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
+                return Item.get({id: products[0].id}).then((product) => {
 
-              })
+                  brands[index].items[0] = product;
+                  brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
+
+                })
+
+              }
 
             })
 
@@ -229,11 +262,12 @@ angular.module('starter.services', [])
 
           Promise.map(brands, (brand, index) => {
 
-            return Item.getFiltered({feature: 'sales', brandId: brand.id}).then((products) => {
+            return Item.getFiltered({feature: 'sales', brandId: +brand.id}).then((products) => {
 
               brands[index].items = products;
               brands[index].sale = true;
               brands[index].title = 'Sale';
+              brands[index].id = +brands[index].id;
 
             })
 
@@ -261,10 +295,11 @@ angular.module('starter.services', [])
 
           Promise.map(brands, (brand, index) => {
 
-            return Item.getFiltered({feature: 'new', brandId: brand.id}).then((products) => {
+            return Item.getFiltered({feature: 'new', brandId: +brand.id}).then((products) => {
 
               brands[index].items = products;
               brands[index].title = 'New Arrivals';
+              brands[index].id = +brands[index].id;
 
             })
 
@@ -292,10 +327,11 @@ angular.module('starter.services', [])
 
           Promise.map(brands, (brand, index) => {
 
-            return Item.getFiltered({feature: 'popular', brandId: brand.id}).then((products) => {
+            return Item.getFiltered({feature: 'popular', brandId: +brand.id}).then((products) => {
 
               brands[index].items = products;
               brands[index].title = 'Popular';
+              brands[index].id = +brands[index].id;
 
             })
 
@@ -344,7 +380,10 @@ angular.module('starter.services', [])
       return new Promise((resolve, reject) => {
          Common.get('brand.get', data).then((brand) => {
 
-          if(brand) brand.isLiked = likes.indexOf(brand.id) > -1;
+          if(brand) {
+            brand.id = +brand.id;
+            brand.isLiked = likes.indexOf(brand.id) > -1;
+          }
            resolve(brand);
 
         })
@@ -367,7 +406,7 @@ angular.module('starter.services', [])
 
           Promise.map(data, (brand) => {
 
-            return this.get({id: brand.id}).then((fullBrand) => {
+            return this.get({id: +brand.id}).then((fullBrand) => {
               brands.push(fullBrand);
             })
 
@@ -386,7 +425,7 @@ angular.module('starter.services', [])
       likes.push(+id);
       localStorageService.set('likedBrands', likes);
        console.log('addLiked', likes)
-      Server.post('brand.follow', {"brandId": id, "follow": 1});
+      Server.post('brand.follow', {"brandId": +id, "follow": 1});
 
     };
 
@@ -402,11 +441,11 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-        var products = [];
+        var brands = [];
 
-        this.getFiltered().then((p) => {
+        this.getFiltered().then((b) => {
 
-          products = p;
+          brands =  b;
 
           Common.get('account.getBrandFollow').then((data) => {
 
@@ -416,9 +455,9 @@ angular.module('starter.services', [])
                 likes.concat( _.difference(likes, data) );
               }
 
-              var likedProduct = products.filter((item) => likes.indexOf(item.id) > -1);
+              var likedBrands = brands.filter((item) => likes.indexOf(+item.id) > -1);
 
-              resolve(likedProduct);
+              resolve(likedBrands);
           })
 
         })
