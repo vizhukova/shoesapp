@@ -1504,6 +1504,11 @@ button.join {
       width: 40%;
     }
 
+    input.data {
+      width: 50%;
+      float: right;
+    }
+
     .form {
       border: solid 1px #D2CECE;
       padding: 1em;
@@ -1616,6 +1621,12 @@ button.join {
        bottom: 4em;
        top: 0;
      }
+   }
+
+   .back-button {
+     position: absolute;
+     left: 0;
+     bottom: 0;
    }
 
 

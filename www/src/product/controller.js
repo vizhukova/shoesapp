@@ -4,6 +4,19 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
 
   $scope.animation = 'slide-in-up';
 
+   $scope.product = {};
+   $scope.chosenType = undefined;
+   $scope.isOpenCardPage = false;
+   $scope.chosenProduct  =  {
+     quantity: 1,
+     price: $scope.product.price
+   };
+   $scope.shipTo = [];
+   $scope.basketData = {};
+   $scope.city = {};
+   $scope.shipAddress = {};
+   $scope.cardData  = {};
+
   if($stateParams.id) {
 
     Item.get({id: $stateParams.id}).then((data) => {
@@ -19,7 +32,7 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
 
     if(newVal && newVal.id) {
 
-      Size.get({id: newVal.id}).then((s) => {
+      Size.getByItem({id: newVal.id}).then((s) => {
 
       $scope.sizes = s;
        $scope.basketData = {
@@ -36,18 +49,6 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
     {name: 'detailPopover', url: './src/product/directives/detail.popover.html'},
     {name: 'basketPopover', url: './src/product/directives/basket.popover.html'}
   ];
-
-   $scope.product = {};
-   $scope.chosenType = undefined;
-   $scope.isOpenCardPage = false;
-   $scope.chosenProduct  =  {
-     quantity: 1,
-     price: $scope.product.price
-   };
-   $scope.shipTo = [];
-   $scope.basketData = {};
-   $scope.city = {};
-   $scope.shipAddress = {};
 
   popups.map((popup)=>{
     $ionicPopover.fromTemplateUrl(popup.url, {
@@ -110,19 +111,15 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
      $scope.chosenType = undefined;
     };
 
-    $scope.like = (isLiked, id) => {
+    $scope.like = (product) => {
 
-      new Promise((resove, reject) => {
+      if(product.isLiked) {
+        Item.addLiked(product.id);
+      } else {
+        Item.removeLiked(product.id);
+      }
 
-        if(isLiked) {
-          return Item.like({id: id});
-        } else {
-          return Item.dislike({id: id});
-        }
-
-      }).then((data) => {
-        debugger
-      })
+      product.isLiked = !product.isLiked;
 
     };
 

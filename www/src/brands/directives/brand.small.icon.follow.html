@@ -1,0 +1,35 @@
+<div class="brand-item" ng-repeat="brand in brands">
+
+  <span ng-click="$parent.goToBrand(brand.id)">
+
+    <div class="img">
+      <img src="{{brand.icon}}" width="100%" height="100%" alt=""/>
+    </div>
+
+    <div class="text">
+      <p>{{brand.name}}</p>
+      <div>
+        <span ng-repeat="category in brand.categories track by $index">
+          <span>{{category.name}}</span>
+          <span ng-if="$index !== brand.categories.length - 1">,</span>
+        </span>
+      </div>
+  </div>
+
+  </span>
+
+  <div class="follow-button" ng-click="$parent.follow(brand, $event)">
+
+    <div ng-if="brand.isLiked">
+      <i class="icon ion-ios-checkmark"></i>
+      <p>Following</p>
+    </div>
+
+    <div ng-if="! brand.isLiked">
+      <i class="ion-ios-plus-outline"></i>
+      <p>Follow</p>
+    </div>
+
+  </div>
+
+</div>

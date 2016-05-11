@@ -6,23 +6,23 @@ navigation history that also transitions its views in and out.
 <ion-tabs class="tabs-icon-top tabs-color tabs-color-active-positive">
 
   <!-- Shop Tab -->
-  <ion-tab title="SHOP" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/shop">
+  <ion-tab title="SHOP" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/shop" ng-click="deselect('shop')">
     <ion-nav-view name="tab-shop"></ion-nav-view>
   </ion-tab>
 
   <!-- Brands Tab -->
-  <ion-tab title="MY BRANDS" icon-off="ion-ios-star-outline" icon-on="ion-ios-star" href="#/tab/brands">
+  <ion-tab title="MY BRANDS" icon-off="ion-ios-star-outline" icon-on="ion-ios-star" href="#/tab/brands" ng-click="deselect('brands')">
     <ion-nav-view name="tab-brands"></ion-nav-view>
   </ion-tab>
 
   <!-- Search Tab -->
-  <ion-tab title="SEARCH" icon-off="ion-ios-search" icon-on="ion-ios-search-strong" href="#/tab/search">
+  <ion-tab title="SEARCH" icon-off="ion-ios-search" icon-on="ion-ios-search-strong" href="#/tab/search" ng-click="deselect('search')">
     <ion-nav-view name="tab-search"></ion-nav-view>
   </ion-tab>
 
 
   <!-- ME Tab -->
-  <ion-tab title="ME" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/me">
+  <ion-tab title="ME" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/me" ng-click="deselect('me')">
     <ion-nav-view name="tab-me"></ion-nav-view>
   </ion-tab>
 

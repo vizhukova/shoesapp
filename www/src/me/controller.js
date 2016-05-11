@@ -6,6 +6,7 @@ export default function($scope, $state, Item, Brand) {
 
   Brand.getLiked().then((data) => {
     $scope.likedBrands = data;
+    console.log(data)
   });
 
 

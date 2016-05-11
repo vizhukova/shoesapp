@@ -463,7 +463,7 @@ angular.module('starter.directives', [])
       restrict: 'E',
       //replace: true,
       templateUrl: './src/brands/directives/brand.follow.html',
-      controller: 'BrandsFollowCtrl',
+      controller: 'FollowPageCtrl',
       scope: {
         widget: '='
       },
@@ -532,7 +532,10 @@ angular.module('starter.directives', [])
       restrict: 'E',
       replace: true,
       templateUrl: 'src/order/directives/size.html',
-      scope: true
+      scope: true,
+      link: (scope) => {
+        debugger
+      }
     }
 
   })
@@ -609,8 +612,10 @@ angular.module('starter.directives', [])
       link: (scope) => {
 
         scope.$watch('categories', (newVal, oldVal) => {
-          scope.height = (newVal.countItems || newVal.length) * 43 + 'px';
-          console.log('HEIGHT', scope.height)
+          if(newVal) {
+             scope.height = (newVal.countItems || newVal.length) * 43 + 'px';
+             console.log('HEIGHT', scope.height)
+          }
         })
 
       }
@@ -618,6 +623,96 @@ angular.module('starter.directives', [])
     }
 
   })
+
+  .directive('filterSize', function () {
+
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/shop/filter-popover/directives/filter.sizes.html',
+      scope: {
+        sizes: '=',
+        click: '=',
+        filter: '='
+      },
+
+      link: (scope) => {
+
+        scope.$watch('sizes', (newVal, oldVal) => {
+          if(newVal) {
+            scope.height = (newVal.length) * 43 + 'px';
+            console.log('HEIGHT', scope.height)
+          }
+        })
+
+      }
+
+    }
+
+  })
+
+ .directive('filterColor', function () {
+
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/shop/filter-popover/directives/filter.colors.html',
+      scope: {
+        colors: '=',
+        click: '=',
+        filter: '='
+      },
+
+      link: (scope) => {
+
+        scope.$watch('colors', (newVal, oldVal) => {
+          if(newVal) {
+            scope.height = (newVal.length) * 43 + 'px';
+            console.log('HEIGHT', scope.height)
+          }
+        })
+
+      }
+
+    }
+
+  })
+
+ .directive('back', function () {
+   return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/partial/back.html',
+
+      link: (scope) => {
+
+        scope.click = () => {
+          history.back();
+        }
+
+      }
+
+    }
+  })
+
+  .directive('smallFollowBrand', function () {
+   return {
+     restrict: 'E',
+     replace: true,
+     templateUrl: 'src/brands/directives/brand.small.icon.follow.html',
+     controller: 'SmallFollowBrandCtrl',
+     scope: {
+      brands: '='
+     },
+
+     link: (scope) => {
+      scope.test = () => {
+        debugger
+      }
+    }
+    }
+  })
+
 
 
 

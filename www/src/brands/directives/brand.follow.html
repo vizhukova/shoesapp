@@ -1,20 +1,10 @@
 <div class="brand-follow">
-   <div class='content content-profile' ng-click="goToBrand(widget.id)">
-      <div class="brand-pic">
-        <img src="{{widget.icon}}" width="100%" height="100%" alt="">
-      </div>
-      <div class="brand-descr">
-        <div><strong>{{widget.name}}</strong></div>
-        <div>Bottoms, Tops, Bags, Accessori...</div>
-      </div>
-      <div class="brand-new-items">
-        <i class="ion-ios-plus-outline"></i>
-        <p>Follow</p>
-      </div>
-   </div>
+
+  <small-follow-brand brands="widget" class='content content-profile'></small-follow-brand>
+
   <ion-scroll direction="x" delegate-handle="horizontal">
     <div class="scrolling" ng-style="{width: width}">
-      <div class="thing" ng-repeat="product in widget.items track by $index" ng-click="openProduct(product)">
+      <div class="thing" ng-repeat="product in widget.items" ng-click="openProduct(product)">
         <div class="holder">
           <img class="img" ng-src="{{product.img}}">
         </div>

@@ -49,5 +49,4 @@ export default function($scope, $state, $ionicPopover, Category) {
     $state.go($state.go("tab.shop-products", param));
   };
 
-
 }

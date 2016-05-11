@@ -78,9 +78,16 @@ angular.module('starter.services', [])
 
          this.getAll().then((c) => {
 
-           categories = c;
+           categories = _.cloneDeep(c);
+           var cat = _.find(categories, {id: category_id});
 
-          var cat = _.find(categories, {id: category_id});
+
+          var chieldCat = categories.filter((item) => item.parentId === cat.id);
+
+           if(! chieldCat.length) {
+             resolve(undefined);
+             return;
+           }
 
           if(cat.parentId) {
 
@@ -92,21 +99,56 @@ angular.module('starter.services', [])
 
           }
 
-          var chieldCat = categories.filter((item) => item.parentId === cat.id);
           tree.items = chieldCat;
           resolve([tree]);
 
          });
 
       })
+    }
 
-      function getTree(category_id, items) {
+    this.closeNode = function(siblingNodeId) {
+
+      var tree = {};
+      var categories = [];
+
+      return new Promise((resolve, reject) => {
+
+         this.getAll().then((c) => {
+
+         categories = _.cloneDeep(c);
+
+          var cat = _.find(categories, {id: siblingNodeId});
+
+          if(cat.parentId) {
+
+             tree = getTree(cat.id, [cat]);
+
+          } else {
+
+            tree = categories.filter((item) => {
+              if( item.deptLevel === 1 ) {
+                item.items = [];
+                return item;
+              }
+            });
+
+          }
+
+          resolve(tree);
+
+         });
+
+      })
+    };
+
+
+    function getTree(category_id, items) {
         var category = _.find(categories, {id: category_id});
         category.items = items;
         if(category.parentId) return getTree(category.parentId, [category]);
         else return category;
       }
-    }
 
   })
 
@@ -121,6 +163,8 @@ angular.module('starter.services', [])
       return new Promise((resolve, reject) => {
 
         Common.get('item.filter', data).then((items) => {
+
+          items = items || [];
 
           items.map((item) => {
             if(item) {
@@ -205,7 +249,7 @@ angular.module('starter.services', [])
 
   })
 
-  .service('Brand', function ($http, $q, localStorageService, URL, Common, Item, Server) {
+  .service('Brand', function ($http, $q, localStorageService, URL, Common, Item, Category, Server) {
 
     var self = this;
     var likes = localStorageService.get('likedBrands') || [];
@@ -226,17 +270,23 @@ angular.module('starter.services', [])
 
               brands[index].items = products;
 
-              if(products[0]) {
+              return Category.get({brandId: brand.id}).then((data) => {
 
-                return Item.get({id: products[0].id}).then((product) => {
+                brands[index].categories = data;
 
-                  brands[index].items[0] = product;
-                  brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
+              }).then(() => {
 
-                })
+                if (products[0]) {
 
-              }
+                  return Item.get({id: products[0].id}).then((product) => {
 
+                    brands[index].items[0] = product;
+                    brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
+
+                  })
+                }
+
+              })
             })
 
           }).then(() => {
@@ -442,6 +492,7 @@ angular.module('starter.services', [])
       return new Promise((resolve, reject) => {
 
         var brands = [];
+        var likedBrands = [];
 
         this.getFiltered().then((b) => {
 
@@ -455,9 +506,23 @@ angular.module('starter.services', [])
                 likes.concat( _.difference(likes, data) );
               }
 
-              var likedBrands = brands.filter((item) => likes.indexOf(+item.id) > -1);
+              likedBrands = brands.filter((item) => likes.indexOf(+item.id) > -1);
+
+          }).then(() => {
+
+            return Promise.map(likedBrands, (brand) => {
+
+              brand.isLiked = true;
+              Category.get({brandId: brand.id}).then((c) => {
+                brand.categories = c;
+              })
+
+            }).then(() => {
 
               resolve(likedBrands);
+
+            });
+
           })
 
         })
@@ -532,11 +597,27 @@ angular.module('starter.services', [])
 
   .service('Size', function ($http, $q, URL, Common) {
 
-    this.get = function (data) {
+    this.getByItem = function (data) {
 
       data = data || {};
 
       return Common.get('item.getSize', data);
+    }
+
+    this.get = function() {
+
+      return Common.get('reference.getSize');
+
+    }
+
+  })
+
+  .service('Color', function ($http, $q, URL, Common) {
+
+    this.get = function() {
+
+      return Common.get('reference.getColor');
+
     }
 
   })
@@ -580,6 +661,17 @@ angular.module('starter.services', [])
       data = data || {};
 
       return Common.get('shop.getLocationByName', data);
+    };
+
+  })
+
+  .service('Search', function ($http, $q, URL, Common) {
+
+    this.get = function (str) {
+
+      str = str || '';
+
+      return Common.get('item.filter', {q: str});
     };
 
   })

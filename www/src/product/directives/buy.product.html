@@ -38,7 +38,7 @@
             <span>View Details</span>
             <i class="ion-ios-plus-empty"></i>
         </div>
-        <div class="button button-footer" ng-click="like(item.isLiked, item.id)">
+        <div class="button button-footer" ng-click="like(item)">
           <i ng-if="item.isLiked" class="ion-ios-heart"></i>
           <i ng-if="!item.isLiked" class="ion-ios-heart-outline"></i>
           <span>{{item.loveCount}}</span>

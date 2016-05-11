@@ -3,7 +3,7 @@ import _ from 'lodash'
 export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand, Category, Item) {
 
   $scope.animation = 'slide-in-up';
-  $scope.chosenBrands = [];
+  $scope.chosenBrands = [1, 2, 3]; //выбор бредов на главной страницы для подписки, если нет ни одного бренда, на который подписан пользователь
   $scope.chosenBrand = {};
 
   Category.get().then((data) => {
@@ -116,52 +116,61 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
   //};
 
 
-  //$scope.onBlindChange = (index) => {
-  //
-  //  if( _.indexOf($scope.chosenBrands, index) == -1 ) {
-  //
-  //    $scope.chosenBrands.push(index);
-  //
-  //  } else {
-  //
-  //    $scope.chosenBrands = _.filter($scope.chosenBrands, (item) => item != index);
-  //
-  //  }
-  //
-  //};
+  $scope.onBlindChange = (index) => {
 
-  //$scope.follow = (brand) => {
-  //
-  //  if(brand.isLiked) {
-  //
-  //    Brand.removeLiked(brand.id);
-  //    brand.isLiked = false;
-  //
-  //  } else {
-  //
-  //    Brand.addLiked(brand.id);
-  //     brand.isLiked = true;
-  //
-  //  }
-  //};
+    if( $scope.chosenBrands.indexOf(index) == -1 ) {
 
-  //$scope.update = () => {
-  //
-  //  Brand.saveInLocalStorage($scope.chosenBrands);
-  //
-  //};
+      debugger
+      //$scope.chosenBrands.push(index);
+       $scope.chosenBrands = [12,3,5,6,8,9]
+    } else {
 
-  //$scope.isSelected = (index) => _.indexOf($scope.chosenBrands, index) !== -1
-  //
-  //$scope.filter = function(params) {
-  //
-  //  if($stateParams.id) params.brandId = $stateParams.id;
-  //
-  //  Item.getFiltered(params).then((data) => {
-  //
-  //    $scope.products = data;
-  //
-  //  });
-  //}
+      debugger
+      $scope.chosenBrands = _.filter($scope.chosenBrands, (item) => item != index);
+
+    }
+
+  };
+
+  $scope.follow = (brand) => {
+
+    if(brand.isLiked) {
+
+      Brand.removeLiked(brand.id);
+      brand.isLiked = false;
+
+    } else {
+
+      Brand.addLiked(brand.id);
+       brand.isLiked = true;
+
+    }
+  };
+
+  $scope.update = () => {
+
+    debugger
+    console.log($scope.chosenBrands)
+    Brand.saveInLocalStorage($scope.chosenBrands);
+
+    Brand.getLiked().then((data) => {
+      $scope.likedBrands = data;
+      console.log('likedBrands', data)
+    });
+
+  };
+
+  $scope.isSelected = (index) => $scope.chosenBrands.indexOf(index) !== -1
+
+  $scope.filter = function(params) {
+
+    if($stateParams.id) params.brandId = $stateParams.id;
+
+    Item.getFiltered(params).then((data) => {
+
+      $scope.products = data;
+
+    });
+  }
 
 }

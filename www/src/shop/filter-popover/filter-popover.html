@@ -16,6 +16,18 @@
                        click="getCategoryTree"
                        filter="chosenFilter.sectionId"
       ></filter-category>
+
+      <filter-size ng-if="chosenMenuItem.name == 'Size'"
+                   sizes="sizes"
+                   click="setChosenSize"
+                   filter="chosenFilter.size"
+      ></filter-size>
+
+      <filter-color ng-if="chosenMenuItem.name == 'Color'"
+                   colors="colors"
+                   click="setChosenColor"
+                   filter="chosenFilter.color"
+      ></filter-color>
     </div>
 
   </div>

@@ -1,31 +1,29 @@
 import _ from 'lodash';
 
-export default function($scope, $ionicPopover, $state, $stateParams, Brand, Category, Item) {
+export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item, Category, Size, Color) {
 
   $scope.filterBy = ['Category', 'Size', 'Color'];
   $scope.chosenMenuItem = {};
-  $scope.chosenFilter = {};
+  $scope.chosenFilter = {};   // для фильтрации
+  var chosenCategory = {}; //для отображения дерева категорий
   $scope.animation = 'slide-in-up';
 
   $scope.titleName = '123455';
 
-  $scope.sizes = [{
-      "id": 1,
-      "name": "37"
-    },
-    {
-      "id": 2,
-      "name": "38"
-    },
-    {
-      "id": 3,
-      "name": "39"
-    }];
+  Size.get().then((data) => {
+    $scope.sizes = data;
+  });
 
-  $scope.$watch('categories', (newVal) => {
-    console.log('categories !!!!!!', newVal)
-  })
+  Color.get().then((data) => {
+    $scope.colors = data;
+  });
 
+  Category.get().then((data) => {
+
+    $scope.categories = data;
+    console.log("CATEGORIES", data)
+
+  });
 
   var filterObj = _.omit($stateParams, Object.keys($stateParams).map((key) => {
     if($stateParams[key] == undefined) return key;
@@ -50,6 +48,7 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
 
   }
 
+  //данные для тестирования отображения дерева категори й
   //$scope.categories = [
   //  {name: 'fdggd1', id: 1, deptLevel: 1, items: [
   //    {
@@ -73,13 +72,6 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
   //  ]}
   //]
 
-
-
-  Category.get().then((data) => {
-
-    $scope.categories = data;
-    console.log("CATEGORIES", data)
-  });
 
   var popups = [
     {name: 'sortPopover', url: './src/shop/sort-popover.html'},
@@ -110,22 +102,44 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
 
     Category.getArrayTree(category_id).then((data) => {
 
-      debugger
-      var result = _.find($scope.categories[$scope.categories.length - 1], data[data.length - 1][0]); // если у выбранной категории нет подкатегорий
+      if(! data) {
+        $scope.chosenFilter['sectionId'] = category_id;
+        chosenCategory.id = category_id;
+      }
 
-      if(result) $scope.categories = data;
-      else $scope.chosenFilter['sectionId'] = category_id;
+      else if( chosenCategory.id ===  category_id) {
+
+        Category.closeNode(category_id).then((data) => {
+          $scope.categories = data;
+          chosenCategory.id = undefined;
+          $scope.$digest();
+        });
+
+      }
+
+      else {
+        $scope.categories = data;
+        chosenCategory.id = category_id;
+      }
 
       $scope.$digest();
-    })
+    });
 
     console.log('$scope.categories !!!!!!!!!', $scope.categories)
+  };  //получение нового дерева категорий и сохранение фильтра по выбранной категории
+
+  $scope.setChosenSize = (size_id) => { // сохранение фильтра по выбранному размеру
+     $scope.chosenFilter['size'] = size_id;
+  };
+
+  $scope.setChosenColor = (color_id) => { // сохранение фильтра по выбранному размеру
+     $scope.chosenFilter['color'] = color_id;
   };
 
   $scope.showResult = () => {
     $scope.filterPopover.hide();
     $scope.filter($scope.chosenFilter);
-  }
+  };
 
   $scope.reset = () => {
 
@@ -165,5 +179,14 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Cate
     }
   }
 
+  $scope.filter = () => {
+    var filterBy = _.assign(filterObj, $scope.chosenFilter);
+
+     Item.getFiltered(filterBy).then((data) => {
+      $scope.products = data;
+      console.log('products', data)
+    });
+
+  }
 
 }

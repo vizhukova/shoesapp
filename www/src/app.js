@@ -70,6 +70,7 @@ angular.module('starter', [
 
       .state('tab.shop', {
         url: '/shop',
+        cache: false,
         views: {
           'tab-shop': {
             templateUrl: 'templates/tab-shop.html',
@@ -80,6 +81,7 @@ angular.module('starter', [
 
       .state('tab.shop-product', {
         url: '/shop/product/:id',
+        cache: false,
         views: {
           'tab-shop': {
             templateUrl: 'src/product/template.html',
@@ -90,6 +92,7 @@ angular.module('starter', [
 
       .state('tab.shop-products', {
         url: '/shop/products/?feature&sectionId',
+        cache: false,
         views: {
           'tab-shop': {
             templateUrl: 'src/brands/tabs/brand.products.html',
@@ -100,6 +103,7 @@ angular.module('starter', [
 
       .state('tab.showcase', {
         url: '/showcase',
+        cache: false,
         views: {
           'tab-shop': {
             templateUrl: 'templates/subtab-showcase.html',
@@ -110,6 +114,7 @@ angular.module('starter', [
 
       .state('tab.product', {
         url: '/product/:id',
+        cache: false,
         views: {
           'tab-shop': {
             templateUrl: 'src/product/template.html',
@@ -120,6 +125,7 @@ angular.module('starter', [
 
       .state('tab.brands', {
         url: '/brands',
+        cache: false,
         views: {
           'tab-brands': {
             templateUrl: 'src/brands/tabs/brand.main.page.html',
@@ -130,6 +136,7 @@ angular.module('starter', [
 
       .state('tab.brand', {
         url: '/brand/:id',
+        cache: false,
         views: {
           'tab-brands': {
             templateUrl: 'src/brands/tabs/brand.page.html',
@@ -140,6 +147,7 @@ angular.module('starter', [
 
       .state('tab.brand-products', {
         url: '/brands/products/?sectionId',
+        cache: false,
         views: {
           'tab-brands': {
             templateUrl: 'src/brands/tabs/brand.products.html',
@@ -160,6 +168,7 @@ angular.module('starter', [
 
       .state('tab.brand-follow', {
         url: '/brand/follow/?feature',
+        cache: false,
         views: {
           'tab-brands': {
             templateUrl: 'src/brands/subtabs/brand-follow-page.html',
@@ -170,6 +179,7 @@ angular.module('starter', [
 
       .state('tab.search', {
         url: '/search',
+        cache: false,
         views: {
           'tab-search': {
             templateUrl: 'src/search/template.html',
@@ -179,17 +189,19 @@ angular.module('starter', [
       })
 
        .state('tab.search-products', {
-        url: '/brands/products/?brandId&sectionId&feature',
+        url: '/brands/products/?q',
+        cache: false,
         views: {
           'tab-search': {
             templateUrl: 'src/brands/tabs/brand.products.html',
-            controller: 'SearchCtrl'
+            controller: 'SearchProductsCtrl'
           }
         }
       })
 
       .state('tab.me', {
         url: '/me',
+        cache: false,
         views: {
           'tab-me': {
             templateUrl: 'templates/tab-me.html',
@@ -200,6 +212,7 @@ angular.module('starter', [
 
       .state('tab.me-settings', {
         url: '/me/settings',
+        cache: false,
         views: {
           'tab-me': {
             templateUrl: 'templates/me/settings.html',
@@ -210,6 +223,7 @@ angular.module('starter', [
 
       .state('tab.me-settings-promo', {
         url: '/me/settings/promo',
+        cache: false,
         views: {
           'tab-me': {
             templateUrl: 'src/settings/promo/template.html',
@@ -220,6 +234,7 @@ angular.module('starter', [
 
       .state('tab.me-settings-showMe', {
         url: '/me/settings/show_me',
+        cache: false,
         views: {
           'tab-me': {
             templateUrl: 'src/settings/showMe/template.html',
@@ -230,6 +245,7 @@ angular.module('starter', [
 
       .state('tab.me-settings-faq', {
         url: '/me/settings/faq',
+        cache: false,
         views: {
           'tab-me': {
             templateUrl: 'src/settings/directives/faq.html',
@@ -240,6 +256,7 @@ angular.module('starter', [
 
       .state('tab.me-settings-shippingAndReturns', {
         url: '/me/settings/shipping_and_returns',
+        cache: false,
         views: {
           'tab-me': {
             templateUrl: 'src/settings/directives/shippingAndReturns.html',
@@ -250,6 +267,7 @@ angular.module('starter', [
 
       .state('tab.me-settings-privacyPolicy', {
         url: '/me/settings/privacy_policy',
+        cache: false,
         views: {
           'tab-me': {
             templateUrl: 'src/settings/directives/privacyPolicy.html',
@@ -260,6 +278,7 @@ angular.module('starter', [
 
       .state('tab.me-settings-termsOfService', {
         url: '/me/settings/terms_of_service',
+        cache: false,
         views: {
           'tab-me': {
             templateUrl: 'src/settings/directives/termsOfService.html',
@@ -270,6 +289,7 @@ angular.module('starter', [
 
       .state('tab.me-brands', {
         url: '/me/brands',
+        cache: false,
         views: {
           'tab-me': {
             templateUrl: 'templates/me/brand-list.html',
@@ -280,6 +300,7 @@ angular.module('starter', [
 
       .state('tab.me-orders', {
         url: '/me/orders',
+        cache: false,
         views: {
           'tab-me': {
             templateUrl: 'templates/me/order-list.html',
@@ -290,6 +311,7 @@ angular.module('starter', [
 
       .state('tab.alerts', {
         url: '/alert',
+        cache: false,
         views: {
           'tab-shop': {
             templateUrl: 'src/alerts/template.html',
@@ -300,6 +322,7 @@ angular.module('starter', [
 
       .state('tab.alert', {
         url: '/alert/:id',
+        cache: false,
         views: {
           'tab-shop': {
             templateUrl: 'src/alerts/directives/alert.item.html',

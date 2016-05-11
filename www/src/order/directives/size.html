@@ -1,4 +1,8 @@
 <div class="product-option">
-  <div class="size" ng-repeat="size in sizes" ng-click="setBasketData({size: size})">{{size.name}}</div>
+  <ion-scroll class="scroll" direction="y">
+    <div ng-style="{height: height}">
+      <div class="size" ng-repeat="size in sizes" ng-click="setBasketData({size: size})">{{size.name}}</div>
+    </div>
+  </ion-scroll>
 </div>
 
