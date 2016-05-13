@@ -1368,7 +1368,8 @@ button.join {
 .basket-popover {
   @extend .popover;
 
-  top: 30%;
+  top: 25%;
+  height: 500px;
 
   &.chose-type {
     background: #F3F0F0 !important;
@@ -1381,6 +1382,17 @@ button.join {
     border-top: solid 2px #E5E5E5;
     color: #fff;
     text-align: center;
+  }
+
+  .main-title, .details {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+  }
+
+  .details {
+    width: 50%;
+    text-align: right;
   }
 
   .content {
@@ -1400,8 +1412,17 @@ button.join {
      border-bottom: solid 1px #E5E5E5;
    }
 
-  .container {
-
+   .btn-done {
+    background: #131313;
+    color: #fff;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    min-height: 1em;
+    height: 3.1em;
+    border-radius: 0;
   }
 
 }
@@ -1459,8 +1480,16 @@ button.join {
 
   @extend .fields;
 
+  input.error-field {
+    border: solid 1px red;
+  }
+
   input.zip, input.build {
     width: 40%;
+  }
+
+  input.other {
+    width: 32%;
   }
 
   input.city, input.street {
@@ -1470,6 +1499,26 @@ button.join {
 
   input.state {
     width: 37%;
+  }
+
+  .content {
+    p {
+      margin: 0;
+    }
+
+    .mark {
+      width: 20%;
+      display: inline-block;
+      vertical-align: top;
+      text-align: right;
+      float: right;
+    }
+
+    .address {
+      width: 60%;
+      display: inline-block;
+    }
+
   }
 
 }
@@ -1606,12 +1655,38 @@ button.join {
   }
 
    .error-modal {
-     width: 80%;
-     position: absolute;
-     top: 25%;
-     margin: auto;
-     left: 0;
-     right: 0;
+
+     background-color: rgba(23, 23, 23, 0.31);
+
+     .content {
+      position: absolute;
+      bottom: 50%;
+      left: 10%;
+      right: 10%;
+      background: #fff;
+      text-align: center;
+      overflow-y: scroll;
+      padding: 2em;
+      height: 35%;
+      font-size: 1.5em;
+      border-radius: 5%;
+     }
+
+     .dark {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+     }
+
+     .bar-footer {
+       background: rgba(255, 255, 255, 0);
+       border-top: solid 1px #DEDEDE;
+       border-bottom: none;
+     }
+
    }
 
    .filter-category {
@@ -1629,6 +1704,37 @@ button.join {
      bottom: 0;
    }
 
+   .sign-in-by {
+       position: absolute;
+       bottom: 40%;
+       //top: 33em;
+       left: 0;
+       right: 0;
+       text-align: center;
+
+       button {
+         width: 95%;
+
+         &.join {
+           margin-bottom: 1.5em;
+         }
+     }
+
+     p:not(.terms) {
+      margin: 24px 0;
+
+      span {
+        text-decoration: underline;
+      }
+
+       span.guest-btn {
+        color: #068DB3;
+        text-decoration: none !important;
+      }
+
+    }
+
+   }
 
 
 

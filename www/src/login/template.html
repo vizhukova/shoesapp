@@ -13,13 +13,15 @@
   </ion-slide-box>
 
   <div class="footer">
-    <button class="button button-calm join" ng-click="opensignunPopover()">
-      JOIN WITH EMAIL
-    </button>
-    <button class="button icon-left ion-social-facebook-outline button-positive" ng-click="toShop()">
-      CONTINUE WITH FACEBOOK
-    </button>
-    <p><span class="signin-btn" ng-click="opensigninPopover()">Sign in</span> or <span class="guest-btn" ng-click="toShop()">Continue as guest</span></p>
+    <div class="sign-in-by">
+       <button class="button button-calm join" ng-click="opensignunPopover()">
+          JOIN WITH EMAIL
+        </button>
+        <button class="button icon-left ion-social-facebook-outline button-positive" ng-click="toShop()">
+          CONTINUE WITH FACEBOOK
+        </button>
+        <p><span class="signin-btn" ng-click="opensigninPopover()">Sign in</span> or <span ng-click="toShop()">Continue as guest</span></p>
+    </div>
     <p class="terms">By joining you agree to our <span class="terms">Terms</span> & <span class="policy">Privacy Policy</span></p>
   </div>
 </div>

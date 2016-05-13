@@ -1,10 +1,10 @@
-<div class="brand-block" ng-class="{'selected': isSelected($index) }"  ng-click="onBlindChange($index)">
+<div class="brand-block" ng-class="{'selected': isSelected(brand.id) }"  ng-click="onBlindChange(brand.id)">
 
   <div style="position:relative">
 
-    <i class="ion-plus-circled blind-on" ng-show="!isSelected($index)"></i>
+    <i class="ion-plus-circled blind-on" ng-show="!isSelected(brand.id)"></i>
 
-    <i class="ion-checkmark-circled blind-on" ng-show="isSelected($index)"></i>
+    <i class="ion-checkmark-circled blind-on" ng-show="isSelected(brand.id)"></i>
 
   <div class="brand-name sample-show-hide">
     <p>{{brand.name}}</p>

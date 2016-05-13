@@ -243,46 +243,12 @@ angular.module('starter', [
         }
       })
 
-      .state('tab.me-settings-faq', {
-        url: '/me/settings/faq',
-        cache: false,
+      .state('tab.me-static-page', {
+        url: '/me/settings/:id',
         views: {
           'tab-me': {
-            templateUrl: 'src/settings/directives/faq.html',
-            controller: 'MeSettingsCtrl'
-          }
-        }
-      })
-
-      .state('tab.me-settings-shippingAndReturns', {
-        url: '/me/settings/shipping_and_returns',
-        cache: false,
-        views: {
-          'tab-me': {
-            templateUrl: 'src/settings/directives/shippingAndReturns.html',
-            controller: 'MeSettingsCtrl'
-          }
-        }
-      })
-
-      .state('tab.me-settings-privacyPolicy', {
-        url: '/me/settings/privacy_policy',
-        cache: false,
-        views: {
-          'tab-me': {
-            templateUrl: 'src/settings/directives/privacyPolicy.html',
-            controller: 'MeSettingsCtrl'
-          }
-        }
-      })
-
-      .state('tab.me-settings-termsOfService', {
-        url: '/me/settings/terms_of_service',
-        cache: false,
-        views: {
-          'tab-me': {
-            templateUrl: 'src/settings/directives/termsOfService.html',
-            controller: 'MeSettingsCtrl'
+            templateUrl: 'src/settings/directives/staticPage.html',
+            controller: 'StaticPageCtrl'
           }
         }
       })

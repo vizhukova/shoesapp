@@ -4,16 +4,56 @@ import moment from 'moment';
 
 angular.module('starter.services', [])
 
-  .service('User', function (Server) {
+  .service('User', function (Server, localStorageService) {
   /*
   curl --data "{"email":"test@test.ru","pass":"asdfsfd","firstName":"Ivan"}"  http://shoes.mikero.ru/api/auth.signUp --header "Content-Type:application/json"
   */
     this.signIn = function(data) {
-      return Server.post('auth.signIn', data);
+      //return Server.post('auth.signIn', data);
+
+      return new Promise((resolve, reject) => {
+
+        Server.post('auth.signIn', data).then((result) => {
+
+          if(result.err_code) {
+
+            reject(result.message)
+
+          } else {
+
+            localStorageService.set('token', result.token);
+            resolve();
+            console.log(result.token)
+
+          }
+
+        })
+
+      })
+
     };
 
     this.signUp = function(data) {
-      return Server.post('auth.signUp', data);
+
+      return new Promise((resolve, reject) => {
+
+        Server.post('auth.signUp', data).then((result) => {
+
+          if(result.err_code) {
+
+            reject(result.message)
+
+          } else {
+
+            localStorageService.set('token', result.token);
+            resolve();
+            console.log('token', result.token)
+          }
+
+        })
+
+      })
+
     };
 
     this.forgotPassword = function(data) {
@@ -266,7 +306,7 @@ angular.module('starter.services', [])
 
           Promise.map(brands, (brand, index) => {
 
-            return Item.getFiltered({brandId: +brand.id}).then((products, i) => {
+            return Item.getFiltered({brandId: brand.id}).then((products, i) => {
 
               brands[index].items = products;
 
@@ -312,12 +352,11 @@ angular.module('starter.services', [])
 
           Promise.map(brands, (brand, index) => {
 
-            return Item.getFiltered({feature: 'sales', brandId: +brand.id}).then((products) => {
+            return Item.getFiltered({feature: 'sales', brandId: brand.id}).then((products) => {
 
               brands[index].items = products;
               brands[index].sale = true;
               brands[index].title = 'Sale';
-              brands[index].id = +brands[index].id;
 
             })
 
@@ -345,11 +384,11 @@ angular.module('starter.services', [])
 
           Promise.map(brands, (brand, index) => {
 
-            return Item.getFiltered({feature: 'new', brandId: +brand.id}).then((products) => {
+            return Item.getFiltered({feature: 'new', brandId: brand.id}).then((products) => {
 
               brands[index].items = products;
               brands[index].title = 'New Arrivals';
-              brands[index].id = +brands[index].id;
+              brands[index].id = brands[index].id;
 
             })
 
@@ -377,11 +416,10 @@ angular.module('starter.services', [])
 
           Promise.map(brands, (brand, index) => {
 
-            return Item.getFiltered({feature: 'popular', brandId: +brand.id}).then((products) => {
+            return Item.getFiltered({feature: 'popular', brandId: brand.id}).then((products) => {
 
               brands[index].items = products;
               brands[index].title = 'Popular';
-              brands[index].id = +brands[index].id;
 
             })
 
@@ -456,7 +494,7 @@ angular.module('starter.services', [])
 
           Promise.map(data, (brand) => {
 
-            return this.get({id: +brand.id}).then((fullBrand) => {
+            return this.get({id: brand.id}).then((fullBrand) => {
               brands.push(fullBrand);
             })
 
@@ -472,18 +510,18 @@ angular.module('starter.services', [])
 
     this.addLiked = (id) => {
 
-      likes.push(+id);
+      likes.push(id);
       localStorageService.set('likedBrands', likes);
        console.log('addLiked', likes)
-      Server.post('brand.follow', {"brandId": +id, "follow": 1});
+      Server.post('brand.follow', {"brandId": id, "follow": 1});
 
     };
 
     this.removeLiked = (id) => {
 
-      likes = likes.filter((item) => item != +id);
+      likes = likes.filter((item) => item != id);
       localStorageService.set('likedBrands', likes);
-      Server.post('brand.follow', {"brandId": +id, "follow": 0});
+      Server.post('brand.follow', {"brandId": id, "follow": 0});
 
     };
 
@@ -506,7 +544,7 @@ angular.module('starter.services', [])
                 likes.concat( _.difference(likes, data) );
               }
 
-              likedBrands = brands.filter((item) => likes.indexOf(+item.id) > -1);
+              likedBrands = brands.filter((item) => likes.indexOf(item.id) > -1);
 
           }).then(() => {
 
@@ -534,15 +572,15 @@ angular.module('starter.services', [])
 
   };
 
-    this.saveInLocalStorage = (chosenBrands) => {
+    this.saveInLocalStorage = (likedBrands) => {
 
-      localStorageService.set('chosenBrands', chosenBrands);
+      localStorageService.set('likedBrands', likedBrands);
 
     };
 
   })
 
-  .service('Settings', function ($http, localStorageService) {
+  .service('Settings', function ($http, localStorageService, Common) {
 
     var settings = {
 
@@ -557,31 +595,43 @@ angular.module('starter.services', [])
       termsOfService: 'test text termsOfService'
     };
 
-    this.saveInLocalStorage = function () {
+    this.saveInLocalStorage =  () => {
 
       localStorageService.set('Settings', settings);
 
     };
 
-    this.get = function () {
+    this.getStaticPage =  (data) => {
 
-      return settings;
+      data = data || {};
+
+      return Common.get('shop.staticPage', data);
     };
 
-    this.getSexObj = function () {
+    this.getSexObj =  () => {
 
       return settings.sexObj;
 
     };
 
-    this.setCurrenctSexIndex = function (index) {
+    this.setCurrenctSexIndex =  (index) => {
 
       settings.sexObj.chosenIndex = index;
       this.saveInLocalStorage();
 
     };
 
+    this.signOut = () => {
+      localStorageService.remove('token');
+    }
+
+    this.isLogIn = () => {
+      var result = !!localStorageService.get('token');
+      return result;
+    }
+
     this.saveInLocalStorage();
+
   })
 
   .service('Alert', function ($http, $q, URL, Common) {
@@ -628,14 +678,52 @@ angular.module('starter.services', [])
 
       data = data || {};
 
-      return Common.get('item.getSize', data);
+      return new Promise((resolve, reject) => {
+
+        Common.get('account.getAddress', data).then((data) => {
+          if(data.err_code) {
+
+            reject(data.message);
+
+          }
+          else {
+
+            resolve([data]);
+
+          }
+        })
+
+      })
     };
 
     this.add = (data) => {
 
-      data = data || {};
+      var address = data;
+      var toSend = {
+        location: data.city.id,
+        street: data.street,
+        house: data.build,
+        zip: data.zip,
+        phone: data.phone,
+        fullname: data.fullname,
+        email: data.email,
+        building: data.building,
+        flat: data.flat,
+        entrance: data.entrance
+      };
 
-      return Server.post('account.addAddress', data);
+      return new Promise((resolve, reject) => {
+
+        Server.post('account.addAddress', toSend).then((result) => {
+
+          if(result.err_code) reject(result.message);
+          else {
+            resolve();
+          }
+
+        });
+
+      })
     };
 
     this.update = (data) => {
@@ -665,6 +753,28 @@ angular.module('starter.services', [])
 
   })
 
+  .service('Delivery', function ($http, $q, URL, Common) {
+
+      this.get = function (data) {
+
+        data = data || {};
+
+        return Common.get('shop.getDelivery', data);
+      };
+
+    })
+
+  .service('Payment', function ($http, $q, URL, Common) {
+
+      this.get = function (data) {
+
+        data = data || {};
+
+        return Common.get('shop.getPayment', data);
+      };
+
+    })
+
   .service('Search', function ($http, $q, URL, Common) {
 
     this.get = function (str) {
@@ -672,6 +782,42 @@ angular.module('starter.services', [])
       str = str || '';
 
       return Common.get('item.filter', {q: str});
+    };
+
+  })
+
+  .service('Order', function ($http, $q, URL, Common, Server) {
+
+    this.add = function (data) {
+
+      return new Promise((resolve, reject) => {
+
+        debugger
+        Server.post('basket.set', {
+          sizeId: data.size.id,
+          count: data.quantity
+        }).then((basket) => {
+
+          debugger
+          return Server.post('order.new', {
+            paymentId: data.payment.id,
+            deliveryId: data.deliveryId,
+            addressId: data.address.addressId,
+            price: data.price
+          });
+
+        }).then((order) => {
+
+          //debugger
+          //if(order.err_code) reject();
+          //else resolve();
+
+          resolve();
+
+        })
+
+      })
+
     };
 
   })
@@ -713,7 +859,7 @@ angular.module('starter.services', [])
 
   })
 
-  .service('Server', function ($http, $q, URL) {
+  .service('Server', function ($http, $q, URL, localStorageService) {
 
     this.fetch = (url) => {
 
@@ -724,7 +870,10 @@ angular.module('starter.services', [])
 
         $http({
           method: 'GET',
-          url: URL + url
+          url: URL + url,
+          headers: {
+            'token': localStorageService.get('token')
+          }
         }).then((response) => {
           resolve(response.data);
 
@@ -743,6 +892,9 @@ angular.module('starter.services', [])
         $http({
           method: 'POST',
           url: URL + url,
+          headers: {
+            'token': localStorageService.get('token')
+          },
           data: JSON.stringify(data)
         }).then((response) => {
           resolve(response.data);

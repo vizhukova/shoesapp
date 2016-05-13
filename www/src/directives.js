@@ -498,7 +498,6 @@ angular.module('starter.directives', [])
       restrict: 'E',
       replace: true,
       templateUrl: './src/brands/directives/brand.block.html',
-      controller: 'BrandsCtrl',
       scope: true
     }
   })
@@ -710,6 +709,18 @@ angular.module('starter.directives', [])
         debugger
       }
     }
+    }
+  })
+
+  .directive('login', function () {
+   return {
+     restrict: 'E',
+     replace: true,
+     templateUrl: 'src/login/directives/login.template.html',
+     controller: 'LoginCtrl',
+     scope: {
+       callback: '='
+     }
     }
   })
 

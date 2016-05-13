@@ -1,14 +1,15 @@
-<ion-view class="brand-follow-page Shop Brand-subtab Brands" cache-view="false">
+<ion-view class="brand-follow-page Shop Brand-subtab Brands" >
 
-  <ion-nav-title>
+  <!--<ion-nav-title>
     <back></back>
     <search-panel class="brand-follow-page"></search-panel>
-  </ion-nav-title>
+  </ion-nav-title>-->
 
   <ion-content>
 
   <div class="bar-subheader">
     <categories cats="cats" activeCat="activeCat"></categories>
+
     <brand-follow ng-repeat="brand in brands" widget="brand"></brand-follow>
   </div>
 

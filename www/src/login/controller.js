@@ -9,6 +9,7 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
     {name: 'signunPopover', url: 'src/login/directives/signun.popover.html'}
   ];
 
+
   popups.map((popup)=>{
     $ionicPopover.fromTemplateUrl(popup.url, {
       scope: $scope,
@@ -50,25 +51,46 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
     $state.go('tab.shop')
   };
 
-
   $scope.signIn = function() {
 
     User.signIn($scope.user).then((data) => {
-        if(data.err_code) {
 
-          $scope.modal.show();
+      $scope.signinPopover.hide();
 
+      if($scope.callback) {
+        $scope.callback();
+      } else {
+        $scope.toShop();
+      }
 
-        } else {
+    }).catch((err_message) => {
 
-        }
+      $scope.err_message = err_message;
+      $scope.modal.show();
+
     })
 
   };
 
   $scope.signUp = function() {
 
-    User.signUp($scope.user)
+    User.signUp($scope.user).then((data) => {
+
+      $scope.signinPopover.hide();
+      $scope.signunPopover.hide();
+
+      if($scope.callback) {
+        $scope.callback();
+      } else {
+        $scope.toShop();
+      }
+
+    }).catch((err_message) => {
+
+      $scope.err_message = err_message;
+      $scope.modal.show();
+
+    })
 
   };
 

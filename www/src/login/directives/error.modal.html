@@ -1,6 +1,18 @@
 <ion-modal-view class="error-modal">
-  <ion-content class="padding">
-    some error message
+  <ion-content>
+
+    <div class="dark" ng-click="modal.hide()"></div>
+
+    <div class="content">
+        <div>
+           <ion-scroll direction="y" style="width: 100%; height: 100%">
+              {{err_message}}
+           </ion-scroll>
+        </div>
+        <ion-footer-bar align-title="right" ng-click="modal.hide()">
+          OK
+        </ion-footer-bar>
+    </div>
   </ion-content>
-  <ion-footer-bar>OK</ion-footer-bar>
+
 </ion-modal-view>

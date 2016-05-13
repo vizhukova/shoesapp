@@ -35,6 +35,12 @@
       span {
         text-decoration: underline;
       }
+
+    }
+
+    span.guest-btn {
+      color: #068DB3;
+      text-decoration: none !important;
     }
   }
 
@@ -52,6 +58,11 @@
     background: #fff;
     margin: 0!important;
     text-align: center;
+
+    span.guest-btn {
+      color: #068DB3;
+      text-decoration: none !important;
+    }
 
     div.popover-arrow {
       display: none;

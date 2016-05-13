@@ -1,9 +1,13 @@
 import _ from 'lodash'
 
-export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand, Category, Item) {
+export default function($stateParams, $scope, $state, $ionicPopover, $ionicHistory, $sce, Brand, Category, Item) {
 
   $scope.animation = 'slide-in-up';
   $scope.chosenBrand = {};
+
+  $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
 
   Category.get().then((data) => {
     $scope.cats = data;

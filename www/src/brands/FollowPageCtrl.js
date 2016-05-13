@@ -1,7 +1,10 @@
 import _ from 'lodash'
 
-export default function($scope, $state, $stateParams, Category, Brand) {
+export default function($scope, $state, $stateParams, $ionicHistory, Category, Brand) {
 
+  $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
 
   $scope.activeCat = {};
 

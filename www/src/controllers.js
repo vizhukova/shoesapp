@@ -6,7 +6,7 @@ import ItemPageCtrl from './brands/ItemPageCtrl'
 import SearchCtrl from './search/controller'
 import MeCtrl from './me/controller'
 import LoginCtrl from './login/controller'
-import MeSettingsCtrl from './settings/settings'
+import MeSettingsCtrl from './settings/controller'
 import MeSettingsPromoCtrl from './settings/promo/promo'
 import MeSettingsShowMeCtrl from './settings/showMe/showMe'
 import AlertCtrl from './alerts/controller'
@@ -74,6 +74,14 @@ angular.module('starter.controllers', [])
       $scope.likedBrands = data;
       console.log(data)
     });
+
+  })
+
+  .controller('StaticPageCtrl', function ($scope, $state, $stateParams, Settings) {
+
+   Settings.getStaticPage($stateParams).then((data) => {
+     $scope.page = data;
+   })
 
   })
 
