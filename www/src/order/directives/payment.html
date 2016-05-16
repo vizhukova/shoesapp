@@ -6,12 +6,12 @@
     <p ng-if="paym.id === chosenPayment">{{paym.description}}</p>
   </div>-->
 
-  <div class="button payment-option" ng-click="openCardData(true)">
+  <div class="button payment-option" ng-click="choosePayment('4'); openCardData(true);">
     <span>Card</span>
     <i class="ion-card"></i>
   </div>
 
-  <div class="button payment-option">
+  <div class="button payment-option" ng-click="choosePayment('1'); setChosenType();">
     <span>Cash</span>
     <i class="ion-cash"></i>
   </div>

@@ -41,7 +41,7 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
   Brand.getLiked().then((data) => {
 
     $scope.likedBrands = data;
-    $scope.digest();
+    $scope.$digest();
 
     console.log('likedBrands', data)
   });

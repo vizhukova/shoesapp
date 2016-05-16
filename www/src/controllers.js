@@ -10,6 +10,7 @@ import MeSettingsCtrl from './settings/controller'
 import MeSettingsPromoCtrl from './settings/promo/promo'
 import MeSettingsShowMeCtrl from './settings/showMe/showMe'
 import AlertCtrl from './alerts/controller'
+import ProductsPageCtrl from './productsPage/controller'
 import _ from 'lodash';
 
 angular.module('starter.controllers', [])
@@ -191,6 +192,7 @@ angular.module('starter.controllers', [])
 
     $scope.searchStr = '';
     $scope.isSearchOnFocus = false;
+    $scope.placeholder = $scope.placeholder || "Search everything on site";
 
     $scope.onFocus = (e) => {
 
@@ -218,6 +220,9 @@ angular.module('starter.controllers', [])
   })
 
   .controller('SearchProductsCtrl', function ($scope, $stateParams, Item) {
+
+    console.log('searchPhrase', $stateParams.q)
+    $scope.searchPhrase = $stateParams.q;
 
     Item.getFiltered($stateParams).then((data) => {
       $scope.products = data;
@@ -265,6 +270,8 @@ angular.module('starter.controllers', [])
   })
 
   .controller('AlertCtrl', AlertCtrl)
+
+  .controller('ProductsPageCtrl', ProductsPageCtrl)
 
 
 

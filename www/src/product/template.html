@@ -1,7 +1,16 @@
+<ion-view hide-back-button="true">
+  <ion-nav-title>
+    <back></back>
+   {{brand.name}}
+  </ion-nav-title>
+
   <ion-content class="product-tab">
+
     <!--<div class="follow-btn">follow</div>-->
-    <ion-scroll direction="y">
+    <ion-scroll direction="y" style="height: 100%;">
      <buy-product item="product" brand="{icon: brand.icon, name: brand.name}"></buy-product>
-      <!--<showcase></showcase>-->
+     <showcase></showcase>
      </ion-scroll>
   </ion-content>
+
+</ion-view>

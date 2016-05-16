@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function($scope, $stateParams, $ionicPopover, $state, Item, Size, Location, Address, Settings, Delivery, Payment, Order) {
+export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
 
   $scope.animation = 'slide-in-up';
   $scope.errors = {};
@@ -8,16 +8,13 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
    $scope.product = {};
    $scope.chosenType = undefined; // переменная для хранения выбранного пункта меню корзины
    $scope.isOpenCardPage = false;
-   $scope.chosenProduct  =  {
-     quantity: 1,
-     price: $scope.product.price
+   $scope.basketData = {//даные для отправки в сервис для оформления заказа
+     quantity: 1
    };
-   $scope.basketData = {};//даные для отправки в сервис для оформления заказа
     var city = {}; // объект для сохранения данных о городе при сохранении нового адреса
    $scope.shipAddress = {}; // объект для сохранения нового адреса
    $scope.cardData  = {};// объект для соханения новых данных по карте
    $scope.addresses  = []; // все адреса данного пользователя
-   $scope.chosenAddress = {}; // переменная для хранения выбранного существующего адреса доставки
    $scope.delivery = []; //переменная для хранения вариантов доставки
 
   if($stateParams.id) {
@@ -26,6 +23,12 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
 
       $scope.item = data;
       $scope.$digest();
+
+      return Brand.get({id: data.brandId});
+
+    }).then((brand) => {
+
+      $scope.brand = brand;
 
     })
   }
@@ -40,9 +43,8 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
       Size.getByItem({id: newVal.id}).then((s) => {
 
       $scope.sizes = s || [];
-       $scope.basketData = {
-         size: s[0]
-       };
+      $scope.basketData.size = $scope.sizes[0];
+
     });
     }
 
@@ -94,6 +96,12 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
 
   };
 
+  $ionicModal.fromTemplateUrl('./src/login/directives/error.modal.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
   $scope.loginCallback = () => {
 
     $scope['login'].hide();
@@ -107,7 +115,7 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
 
       if(! data) {
         $scope.errors = {zip: true};
-        $scope.digest();
+        $scope.$digest();
         return;
       }
 
@@ -123,11 +131,18 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
         toSend.city = city;
 
         Address.add(toSend).then((data) => {
+
           $scope.chosenType = '';
           $scope.shipAddress = {};
-          $scope.digest();
-          getAddressData();
+           getAddressData();
           console.log('Юху!!!!')
+          $scope.$digest();
+
+        }).catch(() => {
+
+          $scope.err_message = 'Проверьте правильность введенных данных';
+          $scope.modal.show();
+
         })
 
       }
@@ -137,8 +152,8 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
 
   $scope.changeQuantityProduct = (value) => {
 
-    if( (value < 0 && $scope.chosenProduct.quantity > 0) || value > 0) {
-      $scope.chosenProduct.quantity += value;
+    if( (value < 0 && $scope.basketData.quantity > 0) || value > 0) {
+      $scope.basketData.quantity += value;
     }
   };
 
@@ -151,15 +166,15 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
   };
 
   $scope.chooseShippingMethod = (id) => {
-    $scope.basketData.deliveryId  =  id;
+    $scope.basketData.delivery  =  _.find($scope.delivery, {id: id});
   };
 
   $scope.choosePayment = (id) => {
-    $scope.chosenPayment = id;
+    $scope.basketData.payment = _.find($scope.payments, {id: id});
   }
 
   $scope.chooseAddress = (id) => {
-    $scope.chosenAddress = _.find($scope.addresses, {addressId: id});
+    $scope.basketData.address = _.find($scope.addresses, {addressId: id});
   };
 
   $scope.openCardData = (data) => {
@@ -185,16 +200,16 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
 
   $scope.checkout = () => {
 
-    debugger
-    $scope.basketData.size = {id: 35};
-    $scope.basketData.quantity = $scope.chosenProduct.quantity;
-    $scope.basketData.payment = {id: 1};
-    $scope.basketData.address = $scope.chosenAddress;
-    $scope.basketData.price = $scope.chosenProduct.price;
-
       Order.add($scope.basketData).then(() => {
 
         $scope['basketPopover'].hide();
+         $scope.err_message = 'Заказ успешно оформлен';
+         $scope.modal.show();
+
+      }).catch(() => {
+
+         $scope.err_message = 'Ошибка оформления заказа';
+         $scope.modal.show();
 
       })
 
@@ -203,8 +218,9 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
   function getAddressData() {
 
     Address.get().then((data) => {
+      debugger
     $scope.addresses = data;
-    $scope.chosenAddress = data[data.length - 1];
+    $scope.basketData.address = data[data.length - 1];
     console.log('ADDDRESSSSSS', data)
 
     return Delivery.get({id: data[data.length - 1].addressId});
@@ -213,13 +229,14 @@ export default function($scope, $stateParams, $ionicPopover, $state, Item, Size,
 
     $scope.delivery = delivery;
 
-    $scope.basketData.deliveryId = delivery[delivery.length - 1].id;
+    $scope.basketData.delivery = delivery[delivery.length - 1];
 
     return Payment.get({id: delivery.id})
 
-  }).then((payment) => {
+  }).then((payments) => {
 
-      $scope.payment = payment;
+      $scope.payments = payments;
+      console.log('PAYMENT', payments)
 
   })
 

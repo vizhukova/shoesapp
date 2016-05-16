@@ -1,5 +1,5 @@
 <div>
-  <div class="block"  ng-click="click(data.id)" ng-class="{'main chosen' : data.deptLevel === 1, 'chosen': data.id == filter}">
+  <div class="block"  ng-click="click(data.id)" ng-class="{'main chosen' : data.deptLevel === '1', 'chosen': data.id == filter}">
     <span>{{data.name}}</span>
     <i ng-if="data.items.length > 0" class="ion-ios-close chosen"></i>
   </div>

@@ -1,24 +1,28 @@
 <div class="shipping-fields">
 
   <div class="content">
-    <span>Qty. x{{chosenProduct.price}}$</span>
+    <span>Qty. x{{basketData.size.price}}$</span>
     <div class="pull-right">
       <i class="ion-ios-minus-empty" ng-click="changeQuantityProduct(-1)"></i>
-      <span>{{chosenProduct.quantity}}</span>
+      <span>{{basketData.quantity}}</span>
       <i class="ion-ios-plus-empty" ng-click="changeQuantityProduct(1)"></i>
     </div>
   </div>
 
   <div class="content">
     <span>Shipping</span>
-    <span class="pull-right">Address</span>
+     <div  class="details pull-right">
+        <p>{{chosenAddress.fullname}}</p>
+        <p>{{chosenAddress.street}} {{chosenAddress.house}}</p>
+        <p>{{chosenAddress.location}}, {{chosenAddress.zip}}</p>
+      </div>
   </div>
 
   <div class="content">
     <span>Total</span>
-    <span class="pull-right">{{chosenProduct.price * chosenProduct.quantity}} {{chosenProduct.currency}}</span>
+    <span class="pull-right">{{basketData.size.price * basketData.quantity}} {{basketData.size.currency}}</span>
   </div>
 
-  <div class="button  btn-done">Done</div>
+  <div class="button  btn-done" ng-click="setChosenType()">Done</div>
 </div>
 

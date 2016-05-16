@@ -1,0 +1,26 @@
+<ion-view view-title="Brands" class="Me" hide-back-button="true">
+
+  <ion-nav-title>
+    <back></back>
+    ORDERS
+  </ion-nav-title>
+
+    <ion-content>
+      <div class="row header">
+      <span class="col">ORDER ID</span>
+      <span class="col">PRICE</span>
+      <span class="col">DELIVERY PRICE</span>
+      </div>
+
+      <div ng-repeat="order in orders" class="row">
+        <span class="col">{{order.id}}</span>
+        <span class="col">{{order.price}}</span>
+        <span class="col">{{order.deliveryPrice}}</span>
+      </div>
+
+      <div class="contact">
+          <button>Contact us</button>
+      </div>
+    </ion-content>
+
+</ion-view>

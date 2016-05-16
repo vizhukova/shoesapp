@@ -1,9 +1,12 @@
 <div class="shipping-fields">
 
   <div class="content" ng-repeat="del in delivery" ng-click="chooseShippingMethod(del.id)">
-    <p><b>{{del.name}}</b></p>
-    <p ng-if="basketData.deliveryId === del.id ">{{del.description}}</p>
+    <p>
+      <b>{{del.name}}</b>
+      <i ng-if="basketData.delivery.id === del.id" class="ion-ios-checkmark-outline pull-right"></i>
+    </p>
+    <p ng-if="basketData.delivery.id === del.id">{{del.description}}</p>
   </div>
-  <div class="button  btn-done">Done</div>
+  <div class="button  btn-done" ng-click="setChosenType()">Done</div>
 </div>
 

@@ -208,7 +208,9 @@ angular.module('starter.directives', [])
       restrict: 'E',
       templateUrl: './src/showcase/template.html',
       controller: 'ShowcaseCtrl',
-      scope: true
+      scope: {
+        products: '='
+      }
     }
   })
   //Product item in showcase
@@ -506,9 +508,8 @@ angular.module('starter.directives', [])
 
     return {
       restrict: 'E',
-      templateUrl: './templates/products.page.html',
-      controller: 'ShowcaseCtrl'
-      //scope: true,
+      templateUrl: './src/productsPage/template.html',
+      controller: 'ProductsPageCtrl'
 
     }
   })
@@ -519,7 +520,9 @@ angular.module('starter.directives', [])
       restrict: 'E',
       replace: true,
       templateUrl: './src/partial/search.panel.html',
-      scope: true,
+      scope: {
+        placeholder: '='
+      },
       controller: 'SearchPanelCtrl'
     }
 

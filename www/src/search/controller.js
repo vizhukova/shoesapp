@@ -1,16 +1,8 @@
-export default function($scope, $state, $ionicPopover, Category) {
+export default function($scope, $state, $ionicPopover, $stateParams, Category) {
 
   Category.get().then((data) => {
     $scope.categories = data;
   });
-
-  $scope.icons = {
-    women: 'ion-woman',
-    men: 'ion-man',
-    kids: 'ion-ios-football',
-    beauty: 'ion-ios-rose',
-    lifestyle: 'ion-bug'
-  };
 
  // $scope.isSearchOnFocus = false;
   $scope.isRecentSearchesShow = false;
@@ -46,7 +38,7 @@ export default function($scope, $state, $ionicPopover, Category) {
 
   $scope.goToProducts = (param) => {
      $scope.popover.hide();
-    $state.go($state.go("tab.shop-products", param));
+    $state.go($state.go("tab.search-products", param));
   };
 
 }

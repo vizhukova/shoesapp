@@ -96,7 +96,7 @@ angular.module('starter', [
         views: {
           'tab-shop': {
             templateUrl: 'src/brands/tabs/brand.products.html',
-            controller: 'ShopCtrl'
+            controller: 'ProductsPageCtrl'
           }
         }
       })
@@ -151,7 +151,7 @@ angular.module('starter', [
         views: {
           'tab-brands': {
             templateUrl: 'src/brands/tabs/brand.products.html',
-            controller: 'BrandsCtrl'
+            controller: 'ProductsPageCtrl'
           }
         }
       })
@@ -188,12 +188,12 @@ angular.module('starter', [
         }
       })
 
-       .state('tab.search-products', {
-        url: '/brands/products/?q',
+      .state('tab.search-products', {
+        url: '/search/products/?q',
         cache: false,
         views: {
           'tab-search': {
-            templateUrl: 'src/brands/tabs/brand.products.html',
+            templateUrl: 'src/search/tabs/search.products.html',
             controller: 'SearchProductsCtrl'
           }
         }
@@ -215,7 +215,7 @@ angular.module('starter', [
         cache: false,
         views: {
           'tab-me': {
-            templateUrl: 'templates/me/settings.html',
+            templateUrl: './src/me/tabs/settings.html',
             controller: 'MeSettingsCtrl'
           }
         }
@@ -258,7 +258,7 @@ angular.module('starter', [
         cache: false,
         views: {
           'tab-me': {
-            templateUrl: 'templates/me/brand-list.html',
+            templateUrl: './src/me/tabs/brand-list.html',
             controller: 'MeBrandsCtrl'
           }
         }
@@ -269,7 +269,7 @@ angular.module('starter', [
         cache: false,
         views: {
           'tab-me': {
-            templateUrl: 'templates/me/order-list.html',
+            templateUrl: './src/me/tabs/order-list.html',
             controller: 'MeCtrl'
           }
         }

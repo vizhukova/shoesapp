@@ -8,22 +8,21 @@
 
     <ion-content>
 
-        <div class="me-tabs">
-            <div class="link" ng-click="toOrders()">
-                <i class="icon ion-cube"></i>
-                <p>Orders (0)</p>
-            </div>
-            <div class="link" ng-click="toBrands()">
-                <i class="icon ion-ios-checkmark-outline"></i>
-                <p>Brands ({{likedBrands.length}})</p>
-            </div>
+    <div class="me-tabs">
+        <div class="link" ng-click="toOrders()">
+            <i class="icon ion-cube"></i>
+            <p>Orders ({{orderLength}})</p>
         </div>
-
-        <div class="like-list">
-            <p>My loves ({{likedProducts.length}})</p>
-            <showcase></showcase>
-
+        <div class="link" ng-click="toBrands()">
+            <i class="icon ion-ios-checkmark-outline"></i>
+            <p>Brands ({{likedBrands.length}})</p>
         </div>
+    </div>
+
+      <div class="like-list">
+          <p>My loves ({{likedProducts.length}})</p>
+          <showcase products="likedProducts"></showcase>
+      </div>
 
     </ion-content>
 </ion-view>

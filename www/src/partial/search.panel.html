@@ -4,7 +4,7 @@
       <span ng-click="search()">
         <i class="icon ion-search placeholder-icon"></i>
       </span>
-        <input type="text" class="sample-show-hide" placeholder="Search everything on site" ng-model="searchStr" ng-focus="onFocus()">
+        <input type="text" class="sample-show-hide" placeholder={{placeholder}} ng-model="searchStr" ng-focus="onFocus()">
     </label>
   </form>
   <div ng-show="isSearchOnFocus"

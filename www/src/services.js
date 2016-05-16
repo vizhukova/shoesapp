@@ -74,10 +74,7 @@ angular.module('starter.services', [])
          Common.get('section.filter', data).then((c) => {
            categories = c.filter((item) => {
 
-             item.deptLevel = +item.deptLevel;
-             item.id = +item.id;
-             if(item.parentId) item.parentId = +item.parentId;
-             if(item.deptLevel === 1) return item;
+             if(item.deptLevel === '1') return item;
 
              //if(item.deptLevel === 1) {
              //  item.items = c.filter((it) => it.deptLevel === 2 && it.parentId === item.id);
@@ -99,8 +96,6 @@ angular.module('starter.services', [])
 
          Common.get('section.filter', data).then((c) => {
            categories = c.filter((item) => {
-             item.id = +item.id;
-             if(item.parentId) item.parentId = +item.parentId;
               return item;
            });
            resolve(categories);
@@ -167,7 +162,7 @@ angular.module('starter.services', [])
           } else {
 
             tree = categories.filter((item) => {
-              if( item.deptLevel === 1 ) {
+              if( item.deptLevel === '1' ) {
                 item.items = [];
                 return item;
               }
@@ -181,7 +176,6 @@ angular.module('starter.services', [])
 
       })
     };
-
 
     function getTree(category_id, items) {
         var category = _.find(categories, {id: category_id});
@@ -267,6 +261,7 @@ angular.module('starter.services', [])
 
           Common.get('account.getLove').then((data) => {
 
+
               likes =  localStorageService.get('likedItems') || [];
 
               if(! data) {
@@ -276,6 +271,7 @@ angular.module('starter.services', [])
               var likedProduct = products.filter((item) => likes.indexOf(item.id) > -1);
 
               resolve(likedProduct);
+
           })
 
         })
@@ -562,7 +558,6 @@ angular.module('starter.services', [])
             });
 
           })
-
         })
 
       });
@@ -788,37 +783,38 @@ angular.module('starter.services', [])
 
   .service('Order', function ($http, $q, URL, Common, Server) {
 
-    this.add = function (data) {
+    this.add = (data) => {
 
       return new Promise((resolve, reject) => {
 
-        debugger
         Server.post('basket.set', {
           sizeId: data.size.id,
           count: data.quantity
         }).then((basket) => {
 
-          debugger
           return Server.post('order.new', {
             paymentId: data.payment.id,
-            deliveryId: data.deliveryId,
+            deliveryId: data.delivery.id,
             addressId: data.address.addressId,
-            price: data.price
+            price: data.size.price
           });
 
         }).then((order) => {
 
-          //debugger
-          //if(order.err_code) reject();
-          //else resolve();
-
-          resolve();
+          if(order.err_code) reject();
+          else  resolve();
 
         })
 
       })
 
     };
+
+    this.get = (data) => {
+
+      return Common.get('order.filter', data);
+
+    }
 
   })
 
@@ -855,6 +851,7 @@ angular.module('starter.services', [])
         data: data.result,
         endTime: moment().add(data.ttl, 's')
       }
+
     };
 
   })
@@ -875,11 +872,24 @@ angular.module('starter.services', [])
             'token': localStorageService.get('token')
           }
         }).then((response) => {
-          resolve(response.data);
 
-        }, (error) => {
-          console.warn('error', error);
-          reject(error);
+
+          if(response.data.err_code) {
+
+            if(response.data.err_code == 306) {
+              localStorageService.remove('token');
+              resolve({});
+
+            } else {
+              reject(new Error({message: response.data.message, err_code: response.data.err_code}));
+            }
+
+          } else {
+
+            resolve(response.data);
+
+          }
+
         });
 
       })
@@ -897,11 +907,23 @@ angular.module('starter.services', [])
           },
           data: JSON.stringify(data)
         }).then((response) => {
-          resolve(response.data);
 
-        }, (error) => {
-          console.warn('error', error);
-          reject(error);
+          if(response.data.err_code) {
+
+            if(response.data.err_code == 306) {
+              localStorageService.remove('token');
+              resolve({});
+
+            } else {
+              reject(new Error({message: response.data.message, err_code: response.data.err_code}));
+            }
+
+          } else {
+
+            resolve(response.data);
+
+          }
+
         });
 
       })
@@ -918,7 +940,7 @@ angular.module('starter.services', [])
         data = data || {};
 
         if (data.id) {
-          url += '/id=' + data.id;
+          url += `/${data.id}`;
           data = _.omit(data, ['id']);
         }
 

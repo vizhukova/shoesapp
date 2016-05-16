@@ -9,7 +9,7 @@
 
        <div>
          <span ><b>Size</b></span>
-         <span ng-if="!chosenType" class="pull-right">{{basketData.size.name}}
+         <span ng-if="!chosenType" class="pull-right">{{basketData.size.size}}
          <i class="ion-ios-plus-empty plus-icon"></i>
          </span>
           <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
@@ -19,38 +19,49 @@
 
       <div ng-if="!chosenType || chosenType == 'address'" ng-click="setChosenType('address')" class="content">
        <div class="main-title"><b>Ship to</b></div>
-       <div ng-if="!chosenAddress">Add Address
+       <div class="details pull-right" ng-if="!basketData.address.location && !chosenType">Add Address
           <i class="ion-ios-plus-empty plus-icon"></i>
        </div>
-        <div  class="details" ng-if="chosenAddress && !chosenType">
-          <p>{{chosenAddress.fullname}}</p>
-          <p>{{chosenAddress.street}} {{chosenAddress.house}}</p>
-          <p>{{chosenAddress.location}}, {{chosenAddress.zip}}</p>
+        <div  class="details pull-right" ng-if="basketData.address.location && !chosenType">
+          <p>{{basketData.address.fullname}}</p>
+          <p>{{basketData.address.street}} {{basketData.address.house}}</p>
+          <p>{{basketData.address.location}}, {{basketData.address.zip}}</p>
         </div>
          <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
        </span>
      </div>
 
-      <div ng-if="!chosenType || chosenType == 'card'" ng-click="setChosenType('card')" class="content">
+
+      <div ng-if="!chosenType || chosenType == 'payment'" ng-click="setChosenType('payment')" class="content">
        <span ><b>Payment</b></span>
-         <span ng-if="!chosenType" class="pull-right">Add Card
+
+        <span ng-if="!chosenType && !basketData.payment" class="pull-right">Add Card
           <i class="ion-ios-plus-empty plus-icon"></i>
        </span>
+
+        <span class="pull-right" ng-if="!chosenType && basketData.payment">{{basketData.payment.name}}</span>
+
          <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
      </div>
 
+
       <div ng-if="!chosenType || chosenType == 'shipping'" ng-click="setChosenType('shipping')" class="content">
           <span ><b>Shipping</b></span>
-           <span ng-if="!chosenType" class="pull-right">Address Required
+
+           <span ng-if="!chosenType && !basketData.delivery" class="pull-right">Address Required
               <i class="ion-ios-plus-empty plus-icon"></i>
            </span>
+
+           <span ng-if="!chosenType && basketData.delivery" class="pull-right">{{basketData.delivery.name}}</span>
+
          <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
      </div>
+
 
       <div ng-if="!chosenType || chosenType == 'est'" ng-click="setChosenType('est')" class="content">
          <span ><b>Est. Total</b></span>
            <span ng-if="!chosenType" class="pull-right">
-              <b>{{chosenProduct.price * chosenProduct.quantity}} {{chosenProduct.currency}}</b>
+              <b>{{basketData.size.price * basketData.quantity}} {{basketData.size.currency}}</b>
               <i class="ion-ios-plus-empty plus-icon"></i>
            </span>
          <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
@@ -64,7 +75,7 @@
     <div class="container">
       <size ng-if="chosenType=='size'"></size>
       <address-fields ng-if="chosenType=='address' || chosenType=='newAddress'"></address-fields>
-      <payment ng-if="chosenType=='card'"></payment>
+      <payment ng-if="chosenType=='payment'"></payment>
       <shipping-fields ng-if="chosenType=='shipping'"></shipping-fields>
       <total-fields ng-if="chosenType=='est'"></total-fields>
     </div>
