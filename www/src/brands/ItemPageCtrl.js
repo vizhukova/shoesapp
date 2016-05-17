@@ -11,7 +11,8 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
 
   Category.get().then((data) => {
     $scope.cats = data;
-    $scope.chosenCategorId = data[0].id;
+    console.log('CATEGORIES', data)
+    $scope.chosenCategoryId = data[0].id;
   });
 
   Brand.getFiltered().then((brands) => {
@@ -30,6 +31,17 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
     });
 
   }
+
+  $scope.$watch('chosenCategoryId', (newVal, oldVal) => {
+    if(newVal) {
+
+      return Category.getArrayTree(newVal).then((cats) => {
+        $scope.categoryTree = cats;
+        console.log('categoryTree', cats)
+      });
+
+    }
+  });
 
   $scope.goToBrand = (brand_id) => {
 

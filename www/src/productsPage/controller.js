@@ -12,6 +12,11 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
     if($stateParams[key] == undefined) return key;
   }));
 
+  getTitle().then((title) => {
+    $scope.tabTitle = title;
+    console.log('TITLEEEEE', title)
+  })
+
   Size.get().then((data) => {
     $scope.sizes = data;
   });
@@ -22,8 +27,6 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
 
   Category.get().then((data) => {
     $scope.categories = data;
-
-    $scope.tabTitle = getTitle();
   })
 
   Item.getFiltered(filterObj).then((data) => {
@@ -149,27 +152,41 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
 
   function getTitle() {
 
-    var title = '';
+    return new Promise((resolve, reject) => {
+      var title = '';
 
-    debugger
+      debugger
 
-    if(filterObj.feature) {
-      switch(filterObj.feature) {
-        case 'new':  title = 'New Arrival';
-              break;
-        case 'popular':  title = 'Popular';
-              break;
-        case 'sale':  title = 'Sale';
-              break;
+      if(filterObj.feature) {
+        switch(filterObj.feature) {
+          case 'new':  title = 'New Arrival';
+                break;
+          case 'popular':  title = 'Popular';
+                break;
+          case 'sale':  title = 'Sale';
+                break;
+        }
+
+        resolve(title);
       }
-    }
 
-    else if(filterObj.sectionId) {
+      else if(filterObj.sectionId) {
+          Category.getById(filterObj.sectionId).then((category) => {
+            resolve(category.name);
+          })
+      }
 
-      title = _.find($scope.categories, {id: filterObj.sectionId}).name;
-    }
+      else if(filterObj.brandId) {
+        Brand.get({id: filterObj.brandId}).then((brand) => {
+          resolve(brand.name);
+        })
+      }
 
-    return title;
+      else {
+        resolve('');
+      }
+    })
+
   };
 
   $scope.filter = () => {

@@ -38,22 +38,26 @@
         </div>
       </div>
       <div class="bar bar-subheader">
-        <categories cats="cats"></categories>
+        <categories cats="cats" activeCat="chosenCategoryId"></categories>
       </div>
       </ul>
       <div class="container">
         <div class="button button-main" ng-click="toBrandProducts()"> Shop all</div>
         <brand-picture2 widget="chosenBrand" ng-click="toBrandProducts()"></brand-picture2>
+
         <ul class="to-category">
-          <li ng-click="toBrandProducts()">
-            <span class="title">Shop category name</span>
-            <i class="ion-ios-arrow-right"></i>
-          </li>
-          <li ng-repeat="category in cats" ng-click="toBrandProducts(category.id)">
-            <span>{{category.name}}</span>
-            <i class="ion-ios-arrow-right"></i>
-          </li>
+          <span ng-repeat="category in categoryTree">
+            <li  ng-click="toBrandProducts(category.id)">
+              <span class="title">{{category.name}}</span>
+              <i class="ion-ios-arrow-right"></i>
+            </li>
+             <li ng-repeat="item in category.items" ng-click="toBrandProducts(item.id)">
+              <span>{{item.name}}</span>
+              <i class="ion-ios-arrow-right"></i>
+            </li>
+          </span>
         </ul>
+
       </div>
       <!--<div class="filter">
         <div class="box" ng-click="opensortPopover()">sort</div>

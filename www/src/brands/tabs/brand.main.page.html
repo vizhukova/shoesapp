@@ -2,7 +2,7 @@
   <ion-content>
     <ion-scroll direction="y">
       <div class="container">
-        <div class="content" ng-if="! likedBrands.length">
+        <div class="content" ng-if="! hasLiked">
         <div class="title">Start following</div>
         <div class="post-title">
           <p>Get started by following some of the top brands.</p>
@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <div ng-if="likedBrands.length">
+      <div ng-if="hasLiked">
          <brand-list items="brands" goTo="goToBrand" goToFollowPage="goToBrandFollowPage"></brand-list>
       <div class="line-title">
         <span>Latest updates</span>
@@ -39,5 +39,5 @@
       </div>
     </ion-scroll>
   </ion-content>
-  <div class="button button-done" ng-if="! likedBrands.length" ng-click="update()">Done</div>
+  <div class="button button-done" ng-if="! hasLiked" ng-click="update()">Done</div>
 </ion-view>

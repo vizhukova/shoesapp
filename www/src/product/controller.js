@@ -223,7 +223,15 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
     $scope.basketData.address = data[data.length - 1];
     console.log('ADDDRESSSSSS', data)
 
-    return Delivery.get({id: data[data.length - 1].addressId});
+    if(data.length === 0) {
+
+      throw new Error();
+
+    } else {
+
+      return Delivery.get({id: data[data.length - 1].addressId});
+
+    }
 
   }).then((delivery) => {
 
@@ -237,6 +245,8 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
 
       $scope.payments = payments;
       console.log('PAYMENT', payments)
+
+  }).catch((error) => {
 
   })
 

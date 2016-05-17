@@ -15,17 +15,13 @@ angular.module('starter.services', [])
 
         Server.post('auth.signIn', data).then((result) => {
 
-          if(result.err_code) {
-
-            reject(result.message)
-
-          } else {
-
             localStorageService.set('token', result.token);
             resolve();
             console.log(result.token)
 
-          }
+        }).catch((error) => {
+
+          reject(error.message);
 
         })
 
@@ -39,16 +35,15 @@ angular.module('starter.services', [])
 
         Server.post('auth.signUp', data).then((result) => {
 
-          if(result.err_code) {
 
-            reject(result.message)
+          localStorageService.set('token', result.token);
+          resolve();
+          console.log('token', result.token)
 
-          } else {
 
-            localStorageService.set('token', result.token);
-            resolve();
-            console.log('token', result.token)
-          }
+        }).catch((error) => {
+
+          reject(error.message)
 
         })
 
@@ -64,7 +59,7 @@ angular.module('starter.services', [])
 
   .service('Category', function (Common) {
 
-    this.get = function (data) {
+    this.get =  (data) => {
 
       data = data || {};
       var categories = [];
@@ -87,7 +82,26 @@ angular.module('starter.services', [])
       })
     }
 
-    this.getAll = function (data) {
+    this.getById = (id) => {
+
+      return new Promise((resolve, reject) => {
+
+        this.getAll().then((categories) => {
+
+          var category = _.find(categories, {id: id});
+          resolve(category);
+
+        }).catch((err) => {
+
+          reject(err);
+
+        });
+
+      })
+
+    };
+
+    this.getAll = (data) => {
 
       data = data || {};
       var categories = [];
@@ -104,7 +118,7 @@ angular.module('starter.services', [])
       })
     }
 
-    this.getArrayTree = function(category_id) {
+    this.getArrayTree = (category_id) => {
 
       var categories = [];
       var tree = {};
@@ -142,7 +156,7 @@ angular.module('starter.services', [])
       })
     }
 
-    this.closeNode = function(siblingNodeId) {
+    this.closeNode = (siblingNodeId) => {
 
       var tree = {};
       var categories = [];
@@ -336,65 +350,56 @@ angular.module('starter.services', [])
       })
     };
 
-    this.getSales = (data) => {
+    this.getSales = (array) => {
 
-      var brands = {};
+      var brandsArr = _.cloneDeep(array);
 
       return new Promise((resolve, reject) => {
 
-        Common.get('brand.filter', {feature: 'sales'}).then((b) => {
-
-          brands = b;
-
-          Promise.map(brands, (brand, index) => {
+          Promise.map(brandsArr, (brand, index) => {
 
             return Item.getFiltered({feature: 'sales', brandId: brand.id}).then((products) => {
 
-              brands[index].items = products;
-              brands[index].sale = true;
-              brands[index].title = 'Sale';
+              brandsArr[index].items = products;
+              brandsArr[index].sale = true;
+              brandsArr[index].title = 'Sale';
 
             })
 
           }).then((result) => {
 
-            resolve(brands);
+            resolve(brandsArr);
 
           })
 
-        })
+
 
       })
 
     };
 
-    this.getNewArrivals = (data) => {
+    this.getNewArrivals = (array) => {
 
-      var brands = {};
+      var brandsArr = _.cloneDeep(array);
 
-      return new Promise((resolve, reject) => {
+     return new Promise((resolve, reject) => {
 
-        Common.get('brand.filter', {feature: 'new'}).then((b) => {
+          Promise.map(brandsArr, (brand, index) => {
 
-          brands = b;
+            return Item.getFiltered({feature: 'sales', brandId: brand.id}).then((products) => {
 
-          Promise.map(brands, (brand, index) => {
-
-            return Item.getFiltered({feature: 'new', brandId: brand.id}).then((products) => {
-
-              brands[index].items = products;
-              brands[index].title = 'New Arrivals';
-              brands[index].id = brands[index].id;
+              brandsArr[index].items = products;
+              brandsArr[index].title = 'New Arrivals';
 
             })
 
           }).then((result) => {
 
-            resolve(brands);
+            resolve(brandsArr);
 
           })
 
-        })
+
 
       })
 
@@ -465,7 +470,6 @@ angular.module('starter.services', [])
          Common.get('brand.get', data).then((brand) => {
 
           if(brand) {
-            brand.id = +brand.id;
             brand.isLiked = likes.indexOf(brand.id) > -1;
           }
            resolve(brand);
@@ -566,6 +570,11 @@ angular.module('starter.services', [])
 
 
   };
+
+    this.hasLiked = () => {
+      var likes = localStorageService.get('likedBrands') || [];
+      return !!likes.length;
+    };
 
     this.saveInLocalStorage = (likedBrands) => {
 
@@ -676,16 +685,16 @@ angular.module('starter.services', [])
       return new Promise((resolve, reject) => {
 
         Common.get('account.getAddress', data).then((data) => {
-          if(data.err_code) {
 
-            reject(data.message);
+          var response = [];
+          if(data) response.push(data);
 
-          }
-          else {
+          resolve(response);
 
-            resolve([data]);
+        }).catch((error) => {
 
-          }
+          reject(error);
+
         })
 
       })
@@ -711,12 +720,13 @@ angular.module('starter.services', [])
 
         Server.post('account.addAddress', toSend).then((result) => {
 
-          if(result.err_code) reject(result.message);
-          else {
-            resolve();
-          }
+          resolve(result);
 
-        });
+        }).catch((error) => {
+
+          reject(error);
+
+        })
 
       })
     };
@@ -801,8 +811,11 @@ angular.module('starter.services', [])
 
         }).then((order) => {
 
-          if(order.err_code) reject();
-          else  resolve();
+            resolve();
+
+        }).catch((error) => {
+
+          reject(error);
 
         })
 
@@ -955,9 +968,15 @@ angular.module('starter.services', [])
         if (!items) {
 
           Server.fetch(url).then((data) => {
+
             Cache.set(url, data);
             resolve(data.result);
-          });
+
+          }).catch((err) => {
+
+            reject(err);
+
+          })
 
         } else {
           resolve(items);
