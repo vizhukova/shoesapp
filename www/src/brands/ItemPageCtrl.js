@@ -28,6 +28,8 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
 
     Brand.get({id: $stateParams.id}).then((data) => {
       $scope.chosenBrand = data;
+    }).catch((error) => {
+
     });
 
   }

@@ -77,17 +77,18 @@
         }
 
         .blind-on {
-          background: #fff;
+          background: #4B4B4B;
           border-radius: 100%;
-          color: #4B4B4B;
+          color: #fff;
           width: 25px;
           height: 25px;
-          font-size: 2em;
+          font-size: 1.75em;
           display: inline-block;
           position: absolute;
           bottom: 10%;
           right: 10%;
           z-index: 100;
+          border: 2px solid #fff;
         }
 
         .blind {

@@ -189,7 +189,7 @@ angular.module('starter', [
       })
 
       .state('tab.search-products', {
-        url: '/search/products/?q',
+        url: '/search/products/?q&sectionId',
         cache: false,
         views: {
           'tab-search': {

@@ -19,6 +19,12 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
 
   };
 
+  $scope.toBrandProducts = (id) => {
+
+    $state.go("tab.brand-products", {brandId: id});
+
+  };
+
 
   $scope.$watch('activeCat', (newVal) => {
     $scope.activeCat = newVal;

@@ -77,6 +77,11 @@
     vertical-align: top;
     padding-left: 1.5em;
     font-size: 14px;
+    width: 55%;
+    text-overflow: ellipsis;
+    height: 3.5em;
+    overflow: hidden;
+    white-space: nowrap;
 
     p{
       font-weight: 700;
@@ -95,9 +100,21 @@
     padding-right: 0.5em;
     padding-top: 0.8em;
     font-size: 12px;
+    width: 20%;
+    position: relative;
 
     i{
       font-size: 18px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    p {
+      top: 1.7em;
+      position: absolute;
     }
   }
 }

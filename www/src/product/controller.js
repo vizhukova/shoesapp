@@ -30,6 +30,8 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
 
       $scope.brand = brand;
 
+    }).catch((error) => {
+
     })
   }
 
@@ -49,6 +51,12 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
     }
 
   });
+
+  $scope.goToBrand = (brand_id) => {
+
+    $state.go("tab.brand", {id: brand_id});
+
+  };
 
 
   var popups = [
@@ -189,12 +197,16 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
   $scope.like = (product) => {
 
       if(product.isLiked) {
-        Item.addLiked(product.id);
+        Item.addLiked(product.id).catch(() => {
+
+        })
       } else {
-        Item.removeLiked(product.id);
+        Item.removeLiked(product.id).catch(() => {
+
+        })
       }
 
-      product.isLiked = !product.isLiked;
+    product.isLiked = !product.isLiked;
 
     };
 

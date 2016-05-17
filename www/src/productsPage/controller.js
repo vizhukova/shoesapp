@@ -29,6 +29,10 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
     $scope.categories = data;
   })
 
+  Category.getAll().then((data) => {
+    $scope.allCategories = data;
+  })
+
   Item.getFiltered(filterObj).then((data) => {
     $scope.products = data;
   });
@@ -82,7 +86,30 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
     $scope.chosenMenuItem = {
       name: name
     }
-  }
+  };
+
+  $scope.getFilterName = (name) => {
+
+    var nameToReturn;
+
+    switch(name) {
+      case 'Category': if($scope.chosenFilter['sectionId']) {
+                        nameToReturn = _.find($scope.allCategories, {id: $scope.chosenFilter['sectionId']}).name;
+                      }
+                  break;
+      case 'Size': if($scope.chosenFilter['size']) {
+                      nameToReturn = _.find($scope.sizes, {id: $scope.chosenFilter['size']}).name;
+                    }
+                  break;
+      case 'Color': if($scope.chosenFilter['color']) {
+                      nameToReturn = _.find($scope.colors, {id: $scope.chosenFilter['color']}).name;
+                    }
+                  break;
+
+    }
+
+    return nameToReturn || 'All';
+  };
 
   $scope.getCategoryTree = (category_id) => {  //получение нового дерева категорий и сохранение фильтра по выбранной категории
 

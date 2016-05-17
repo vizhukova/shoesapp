@@ -96,7 +96,22 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
 
   $scope.forgotPassword = function() {
 
-    User.forgotPassword($scope.user)
+    User.forgotPassword($scope.user).then((data) => {
+
+      debugger
+      $scope.recovery = false;
+      $scope.user = {};
+      $scope.err_message = 'Your password was recovered';
+      $scope.modal.show();
+      $scope.$digest();
+
+    }).catch((error) => {
+
+      debugger
+      $scope.err_message = error.message;
+      $scope.modal.show();
+
+    })
 
   };
 }

@@ -220,7 +220,8 @@ angular.module('starter.directives', [])
       restrict: 'E',
       templateUrl: './src/showcase/directives/templates/product.html',
       controller: 'ShowcaseCtrl',
-      scope: true
+      scope: true,
+      replace: true
     }
   })
 
@@ -295,6 +296,8 @@ angular.module('starter.directives', [])
           };
 
           thePic.onerror = function (err) {
+            scope.src = 'http://mymacrotools.com/wp-content/themes/nucleare-pro/images/no-image-box.png';
+            callback();
             console.error('Error load image in PreLoadImage', err)
           };
 
@@ -328,7 +331,7 @@ angular.module('starter.directives', [])
     }
   })
 
-  .directive('buyProduct', function ($ionicPopover, Item) {
+  .directive('buyProduct', function () {
 
     return {
       restrict: 'E',

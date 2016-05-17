@@ -52,7 +52,9 @@ angular.module('starter.services', [])
     };
 
     this.forgotPassword = function(data) {
+
       return Server.post('auth.forgotPassword', data);
+
     };
 
   })
@@ -251,7 +253,7 @@ angular.module('starter.services', [])
       likes.push(id);
       localStorageService.set('likedItems', likes);
        console.log('addLiked', likes)
-      Server.post('item.love', {"brandId": id, "love": 1});
+      return Server.post('item.love', {"id": id, "love": 1});
 
     };
 
@@ -259,7 +261,7 @@ angular.module('starter.services', [])
 
       likes = likes.filter((item) => item != id);
       localStorageService.set('likedItems', likes);
-      Server.post('item.love', {"brandId": id, "love": 0});
+      return Server.post('item.love', {"id": id, "love": 0});
 
     };
 
@@ -465,7 +467,6 @@ angular.module('starter.services', [])
 
     this.get = (data) => {
 
-
       return new Promise((resolve, reject) => {
          Common.get('brand.get', data).then((brand) => {
 
@@ -474,7 +475,11 @@ angular.module('starter.services', [])
           }
            resolve(brand);
 
-        })
+        }).catch((error) => {
+
+           reject(error);
+
+         })
       });
     };
 
@@ -894,7 +899,7 @@ angular.module('starter.services', [])
               resolve({});
 
             } else {
-              reject(new Error({message: response.data.message, err_code: response.data.err_code}));
+              reject(new Error(response.data.message, response.data.err_code));
             }
 
           } else {
@@ -928,7 +933,7 @@ angular.module('starter.services', [])
               resolve({});
 
             } else {
-              reject(new Error({message: response.data.message, err_code: response.data.err_code}));
+              reject(new Error(response.data.message, response.data.err_code));
             }
 
           } else {
