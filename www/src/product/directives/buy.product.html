@@ -8,7 +8,7 @@
     <div class="mark">7d</div>
   </div>
   <ion-slide-box show-pager="true" does-continue="true" class="main-slider">
-    <ion-slide ng-repeat="image in item.imgs">
+    <ion-slide ng-repeat="image in item.imgs track by $index"  >
       <img src="{{image}}" width="auto" height="85%" alt="">
     </ion-slide>
   </ion-slide-box>

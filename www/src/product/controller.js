@@ -218,7 +218,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
   function getAddressData() {
 
     Address.get().then((data) => {
-      debugger
+
     $scope.addresses = data;
     $scope.basketData.address = data[data.length - 1];
     console.log('ADDDRESSSSSS', data)

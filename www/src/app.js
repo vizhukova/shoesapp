@@ -146,7 +146,7 @@ angular.module('starter', [
       })
 
       .state('tab.brand-products', {
-        url: '/brands/products/?sectionId',
+        url: '/brands/products/?feature&sectionId',
         cache: false,
         views: {
           'tab-brands': {

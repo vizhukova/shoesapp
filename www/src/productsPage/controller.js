@@ -151,6 +151,8 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
 
     var title = '';
 
+    debugger
+
     if(filterObj.feature) {
       switch(filterObj.feature) {
         case 'new':  title = 'New Arrival';

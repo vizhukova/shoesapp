@@ -444,7 +444,8 @@ angular.module('starter.directives', [])
     return {
       scope: {
         widget: '=',
-        click: '='
+        click: '=',
+        paramstoclick: '='
       },
       restrict: 'E',
       replace: true,

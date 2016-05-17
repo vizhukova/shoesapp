@@ -8,13 +8,13 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
 
    console.log('$stateParams', $stateParams);
 
-   if($stateParams.id) {
-
-    Brand.get({id: $stateParams.id}).then((data) => {
-      $scope.chosenBrand = data;
-    });
-
-  }
+  // if($stateParams.id) {
+  //
+  //  Brand.get({id: $stateParams.id}).then((data) => {
+  //    $scope.chosenBrand = data;
+  //  });
+  //
+  //}
 
 
   Category.get().then((data) => {
@@ -22,9 +22,9 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     $scope.chosenCategorId = data[0].id;
   });
 
-  Brand.get().then((data) => {
-    $scope.products = data;
-  });
+  //Brand.get().then((data) => {
+  //  $scope.products = data;
+  //});
 
   Brand.getFiltered().then((brands) => {
     $scope.brands = brands;
@@ -52,12 +52,13 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
 
   };
 
-  $scope.toBrandProducts = (id) => {
+  $scope.toBrandProducts = (id, params) => {
 
     var brand_id = $stateParams.id || id;
-    var category_id = $stateParams.id ? id : undefined;
+    //var category_id = $stateParams.id ? id : undefined;
 
-    $state.go("tab.brand-products", {brandId: brand_id, sectionId: category_id});
+    var toSend = _.assign({}, params, {brandId: brand_id});
+    $state.go("tab.brand-products", toSend);
 
   };
 
