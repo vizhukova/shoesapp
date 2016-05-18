@@ -944,13 +944,25 @@
 }
 
 
-
 // Showcase with products
-.showcase {
+.case-item {
+
+  width: 48%;
+  margin: 1%;
+
+
   .items-list {
     width: 100%;
   }
 }
+
+  .showcase:nth-child(2n+1) {
+    float: left;
+  }
+
+  .showcase:nth-child(2n) {
+    float: right;
+  }
 
   // Popover in showcase
   .filter-popover {
@@ -1129,11 +1141,15 @@
 
   // Product in showcase
   .case-item {
-    width: 50%;
-    margin: .3em 0 0 0;
+    width: 48%;
+    margin: 1%;
     float: left;
     text-align: center;
     border-bottom: 1px solid rgba(230, 221, 221, 0.87);
+
+    &:nth-child(2n+3){
+      clear: both;
+    }
 
     div.img {
       display: inline-block;
@@ -1368,7 +1384,7 @@ button.join {
 .basket-popover {
   @extend .popover;
 
-  top: 25%;
+  top: 40%;
   height: 500px;
 
   &.chose-type {
@@ -1764,6 +1780,13 @@ button.join {
      }
     }
 
+   .nav-button {
+     position: absolute;
+     right: 0;
+     top: 0;
+     bottom: 0;
+     margin: auto;
+   }
 
 
 

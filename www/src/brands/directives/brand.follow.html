@@ -7,11 +7,11 @@
     <div class="scrolling" ng-style="{width: width}">
       <div class="thing" ng-repeat="product in widget.items" ng-click="openProduct(product)">
         <div class="holder">
-          <img class="img" ng-src="{{product.img}}">
+          <img class="img" ng-src="{{::product.img}}">
         </div>
-        <p class="title">{{product.name}}</p>
+        <p class="title">{{::product.name}}</p>
         <p class="cost">
-          <span ng-class="{{product.price}}">{{product.price | currency:product.currency:00}}</span>
+          <span>{{::product.price | currency:product.currency:00}}</span>
         </p>
       </div>
       <div class="thing" ng-click="toBrandProducts(widget.id)">
@@ -19,7 +19,7 @@
           <div class="img">
             <div class="center">
               <span class="all">SHOP ALL</span><br>
-              <span>{{widget.items.length}} <span>items</span></span>
+              <span>{{::widget.items.length}} <span>items</span></span>
             </div>
           </div>
         </div>

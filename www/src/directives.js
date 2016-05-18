@@ -7,43 +7,34 @@ angular.module('starter.directives', [])
     return {
       restrict: 'E',
       scope: {
-        cats: '=',
-        activeCat: '&'
+        cats: '='
       },
       replace: true,
       templateUrl: './src/shop/category.html',
       link: (scope) => {
 
-        // Get categories [...] from Category service
-        if(scope.cats) {
+        var underline = $('.active-line');
+        var text = $('.cat-text');
 
-          scope.activeCat = scope.cats[0].id;
+        scope.$watch('cats', (newVal, oldVal) => {
 
+          // Get categories [...] from Category service
+        if(newVal && newVal.length) {
 
-          var underline = $('.active-line');
+           underline = $('.active-line');
+           text = $('.cat-text');
 
-          // Init underline width & left
-          $timeout(()=> {
+          scope.setActive(0);
+         }
 
-            var text = $('.cat-text');
+        });
 
-            underline.animate({
-              width: text.width(),
-              left: text.offset().left
-            });
-          });
-
-          // Set active category
-          scope.setActive = (index) => {
-            scope.activeCat = scope.cats[index];
-            scope.animate(index)
-          };
-
-          // Animate navigation menu underline
+         // Animate navigation menu underline
           scope.animate = (index) => {
 
             var item = $('.cat-text').get(index);
 
+            // Init underline width & left
             underline.animate({
               left: $(item).offset().left - 1,
               width: $(item).width() + 2
@@ -51,9 +42,18 @@ angular.module('starter.directives', [])
 
           };
 
-          // Set active class for category navigation menu
-          scope.isActive = (cat) => cat === scope.activeCat;
-        }
+          // Set active category
+          scope.setActive = (index) => {
+            scope.activeCat = scope.cats[index].id;
+            Category.setActive(scope.cats[index]);
+            scope.animate(index)
+          };
+
+         // Set active class for category navigation menu
+          scope.isActive = (index) => {
+            return scope.cats[index].id === scope.activeCat;
+          }
+
       }
     }
   })
@@ -126,16 +126,21 @@ angular.module('starter.directives', [])
       templateUrl: './src/shop/gallery.slider.html',
       link: (scope, element, attrs) => {
 
-        $timeout(()=> {
-          var mySwiper = new Swiper('.swiper-container', {
-            // Optional parameters
-            direction: 'horizontal',
-            slidesPerView: 'auto',
-            centeredSlides: true,
-            spaceBetween: 7,
-            loop: true
-          })
-        })
+        scope.$watch('widget', (newVal, oldVal) => {
+
+          if(newVal) {
+            var mySwiper = new Swiper('.swiper-container', {
+              // Optional parameters
+              direction: 'horizontal',
+              slidesPerView: 'auto',
+              centeredSlides: true,
+              spaceBetween: 7,
+              loop: true
+            })
+          }
+
+        });
+
       }
     }
   })
@@ -208,6 +213,7 @@ angular.module('starter.directives', [])
       restrict: 'E',
       templateUrl: './src/showcase/template.html',
       controller: 'ShowcaseCtrl',
+      replace: true,
       scope: {
         products: '='
       }
@@ -342,77 +348,6 @@ angular.module('starter.directives', [])
         brand: '='
       },
       controller: 'ProductCtrl'
-
-    //  link: (scope) => {
-    //
-    //  scope.animation = 'slide-in-up';
-    //
-    //  var popups = [
-    //    {name: 'detailPopover', url: './src/product/directives/detail.popover.html'},
-    //    {name: 'basketPopover', url: './src/product/directives/basket.popover.html'}
-    //  ];
-    //
-    //    popups.map((popup)=>{
-    //    $ionicPopover.fromTemplateUrl(popup.url, {
-    //      scope: scope,
-    //      animation: scope.animation
-    //    }).then((popover)=>{
-    //      scope[popup.name] = popover;
-    //    });
-    //
-    //    scope[`open${popup.name}`] = ()=>{
-    //      scope[popup.name].show();
-    //    };
-    //
-    //  });
-    //
-    //
-    //scope.chosenProduct  =  {
-    //  quantity: 1,
-    //  price: scope.item.price
-    //};
-    //
-    //scope.shipTo = [];
-    //
-    //scope.addShipAddress = (data) => {
-    //  console.log(scope.addressForm);
-    //};
-    //
-    //scope.changeQuantityProduct = (value) => {
-    //
-    //  if( (value < 0 && scope.chosenProduct.quantity > 0) || value > 0) {
-    //    scope.chosenProduct.quantity += value;
-    //  }
-    //};
-    //
-    //scope.setChosenType = (type) => {
-    //
-    //    scope.chosenType = scope.chosenType == type ? undefined : type;
-    //    console.log(scope.chosenType)
-    //
-    //  };
-    //
-    //scope.openCardData = (data) => {
-    //      scope.isOpenCardPage = data;
-    //  };
-    //
-    //scope.like = (isLiked, id) => {
-    //
-    //  new Promise((resove, reject) => {
-    //
-    //    if(isLiked) {
-    //      return Item.like({id: id});
-    //    } else {
-    //      return Item.dislike({id: id});
-    //    }
-    //
-    //  }).then((data) => {
-    //    debugger
-    //  })
-    //
-    //};
-    //
-    //}
     }
   })
 
@@ -538,10 +473,7 @@ angular.module('starter.directives', [])
       restrict: 'E',
       replace: true,
       templateUrl: 'src/order/directives/size.html',
-      scope: true,
-      link: (scope) => {
-        debugger
-      }
+      scope: true
     }
 
   })
@@ -608,7 +540,7 @@ angular.module('starter.directives', [])
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'src/shop/filter-popover/directives/filter.categories.html',
+      templateUrl: 'src/productsPage/filter-popover/directives/filter.categories.html',
       scope: {
         categories: '=',
         click: '=',
@@ -635,7 +567,7 @@ angular.module('starter.directives', [])
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'src/shop/filter-popover/directives/filter.sizes.html',
+      templateUrl: 'src/productsPage/filter-popover/directives/filter.sizes.html',
       scope: {
         sizes: '=',
         click: '=',
@@ -662,7 +594,7 @@ angular.module('starter.directives', [])
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'src/shop/filter-popover/directives/filter.colors.html',
+      templateUrl: 'src/productsPage/filter-popover/directives/filter.colors.html',
       scope: {
         colors: '=',
         click: '=',
@@ -709,13 +641,7 @@ angular.module('starter.directives', [])
      controller: 'SmallFollowBrandCtrl',
      scope: {
       brands: '='
-     },
-
-     link: (scope) => {
-      scope.test = () => {
-        debugger
-      }
-    }
+     }
     }
   })
 

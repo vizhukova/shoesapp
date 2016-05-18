@@ -1,15 +1,20 @@
-<ion-view view-title="MY BRANDS" class="Brands">
+<ion-view view-title="MY BRANDS" cache-view="false" class="Brands">
   <ion-content>
     <ion-scroll direction="y">
       <div class="container">
+
         <div class="content" ng-if="! hasLiked">
-        <div class="title">Start following</div>
-        <div class="post-title">
-          <p>Get started by following some of the top brands.</p>
-          <brand-block ng-repeat="brand in brands"></brand-block>
+
+          <div class="title">Start following</div>
+          <div class="post-title">
+            <p>Get started by following some of the top brands.</p>
+            <div class="blocks-container">
+              <brand-block ng-repeat="brand in brands"></brand-block>
+            </div>
+          </div>
+          </div>
+
         </div>
-        </div>
-      </div>
 
       <div ng-if="hasLiked">
          <brand-list items="brands" goTo="goToBrand" goToFollowPage="goToBrandFollowPage"></brand-list>
@@ -39,5 +44,5 @@
       </div>
     </ion-scroll>
   </ion-content>
-  <div class="button button-done" ng-if="! hasLiked" ng-click="update()">Done</div>
+  <div class="button button-done" ng-if="! hasLiked && chosenBrands.length > 0" ng-click="update()">Done</div>
 </ion-view>

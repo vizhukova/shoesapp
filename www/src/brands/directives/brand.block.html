@@ -1,13 +1,13 @@
 <div class="brand-block" ng-class="{'selected': isSelected(brand.id) }"  ng-click="onBlindChange(brand.id)">
 
-  <div style="position:relative">
+  <div class="data">
 
     <i class="ion-ios-plus-empty blind-on" ng-show="!isSelected(brand.id)"></i>
 
     <i class="ion-ios-checkmark-empty blind-on" ng-show="isSelected(brand.id)"></i>
 
   <div class="brand-name sample-show-hide">
-    <p>{{brand.name}}</p>
+    <p>{{::brand.name}}</p>
   </div>
 
   <div class="blind sample-show-hide">
@@ -15,7 +15,7 @@
 
   <image-loader width="100%"
                 height="100px"
-                src="{{trustSrc(brand.icon)}}">
+                src="{{::trustSrc(brand.icon)}}">
 
   </image-loader>
   </div>

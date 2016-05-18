@@ -49,11 +49,20 @@
       padding-top: 10px;
       letter-spacing: 0.05em;
 
+      .blocks-container {
+        text-align: left;
+      }
+
       .brand-block {
         width: 45%;
         display: inline-block;
         margin: 0px 2.5px 5px 2.5px;
         position: relative;
+
+        .data {
+          position:relative;
+          text-align: center
+        }
 
         .brand-name {
           color: #fff;

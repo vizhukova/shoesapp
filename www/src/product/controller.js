@@ -35,9 +35,6 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
     })
   }
 
-
-  getAddressData();
-
   $scope.$watch('item', (newVal, oldVal) => {
 
     if(newVal && newVal.id) {
@@ -94,6 +91,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
     if(isLogIn) {
 
       $scope['basketPopover'].show();
+      getAddressData();
 
     } else {
 
@@ -196,7 +194,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
 
   $scope.like = (product) => {
 
-      if(product.isLiked) {
+      if(! product.isLiked) {
         Item.addLiked(product.id).catch(() => {
 
         })

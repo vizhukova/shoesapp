@@ -88,53 +88,68 @@ angular.module('starter.controllers', [])
 
   .controller('ShopCtrl', function ($scope, $state, $ionicPopover, Category, Item, Brand) {
 
-    Item.getFiltered({feature: 'sale'}).then((data) => {
-      $scope.sales = {
-        title: 'Sale',
-        sale: true,
-        items: data
-      };
-    });
+    var categoryId;
 
-    Item.getFiltered({feature: 'new'}).then((data) => {
-      $scope.newArrivals = {
-        title: 'New Arrivals',
-        items: data
-      };
-    });
-
-    Item.getFiltered({feature: 'popular'}).then((data) => {
-      $scope.popular = {
-        title: 'Popular',
-        items: data
-      };
-    });
-
-    Brand.getFullFiltered({feature: 'sale'}).then((data) => {
-      $scope.brandSales = {
-        title: 'Sale',
-        sale: true,
-        items: data
-      };
-      console.log('brandSales', data)
-    });
-
-    Brand.getFullFiltered({feature: 'new'}).then((data) => {
-      $scope.brandNewArrivals = {
-        title: 'New Arrivals',
-        items: data
-      };
-    });
-
-    Brand.getFullFiltered({feature: 'popular'}).then((data) => {
-      $scope.brandPopular = {
-        title: 'Popular',
-        items: data
-      };
-    });
+    $scope.categoryService = Category;
 
     Category.get().then((data) => {
       $scope.categories = data;
+    });
+
+
+     $scope.$watch('categoryService.getActive()', (newVal) => {
+
+      if(newVal) {
+
+        categoryId = newVal.id;
+
+        Item.getFiltered({feature: 'sale', sectionId: categoryId}).then((data) => {
+          $scope.sales = {
+            title: 'Sale',
+            sale: true,
+            items: data
+          };
+        });
+
+        Item.getFiltered({feature: 'new', sectionId: categoryId}).then((data) => {
+          $scope.newArrivals = {
+            title: 'New Arrivals',
+            items: data
+          };
+        });
+
+        Item.getFiltered({feature: 'popular', sectionId: categoryId}).then((data) => {
+          $scope.popular = {
+            title: 'Popular',
+            items: data
+          };
+        });
+
+        Brand.getFullFiltered({feature: 'sale', sectionId: categoryId}).then((data) => {
+          $scope.brandSales = {
+            title: 'Sale',
+            sale: true,
+            items: data
+          };
+          console.log('brandSales', data)
+        });
+
+        Brand.getFullFiltered({feature: 'new', sectionId: categoryId}).then((data) => {
+          $scope.brandNewArrivals = {
+            title: 'New Arrivals',
+            items: data
+          };
+        });
+
+        Brand.getFullFiltered({feature: 'popular', sectionId: categoryId}).then((data) => {
+          $scope.brandPopular = {
+            title: 'Popular',
+            items: data
+          };
+        });
+
+      }
+
     });
 
     $scope.goToAlerts = () => {

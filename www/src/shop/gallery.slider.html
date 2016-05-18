@@ -1,13 +1,13 @@
 <div class="gallerySlider">
   <p ng-class="widget.sale ? 'slider-header red' : 'slider-header' "
-     ng-click="titleClick(titleClickParam)">{{widget.title}} <i class="ion-chevron-right"></i></p>
+     ng-click="titleClick(titleClickParam)">{{::widget.title}} <i class="ion-chevron-right"></i></p>
 
   <!-- Slider main container -->
   <div class="swiper-container">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
-      <div class="swiper-slide" ng-repeat="item in widget.items" ng-click="itemClick(item.id)"><img ng-src="{{item.logo}}" alt=""></div>
+      <div class="swiper-slide" ng-repeat="item in widget.items" ng-click="itemClick(item.id)"><img ng-src="{{::item.logo}}" alt=""></div>
     </div>
   </div>
 

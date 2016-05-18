@@ -98,7 +98,6 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
 
     User.forgotPassword($scope.user).then((data) => {
 
-      debugger
       $scope.recovery = false;
       $scope.user = {};
       $scope.err_message = 'Your password was recovered';
@@ -107,7 +106,6 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
 
     }).catch((error) => {
 
-      debugger
       $scope.err_message = error.message;
       $scope.modal.show();
 

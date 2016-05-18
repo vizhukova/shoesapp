@@ -4,6 +4,7 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
 
   $scope.animation = 'slide-in-up';
   $scope.chosenBrand = {};
+  $scope.categoryService = Category;
 
   $ionicHistory.nextViewOptions({
     disableBack: true
@@ -12,7 +13,7 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
   Category.get().then((data) => {
     $scope.cats = data;
     console.log('CATEGORIES', data)
-    $scope.chosenCategoryId = data[0].id;
+    //$scope.chosenCategoryId = data[0].id;
   });
 
   Brand.getFiltered().then((brands) => {
@@ -34,10 +35,11 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
 
   }
 
-  $scope.$watch('chosenCategoryId', (newVal, oldVal) => {
-    if(newVal) {
+  $scope.$watch('categoryService.getActive()', (newVal, oldVal) => {
 
-      return Category.getArrayTree(newVal).then((cats) => {
+    if(newVal && newVal.id) {
+
+      return Category.getArrayTree(newVal.id).then((cats) => {
         $scope.categoryTree = cats;
         console.log('categoryTree', cats)
       });

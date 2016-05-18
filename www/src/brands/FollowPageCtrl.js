@@ -2,11 +2,13 @@ import _ from 'lodash'
 
 export default function($scope, $state, $stateParams, $ionicHistory, Category, Brand) {
 
-  $ionicHistory.nextViewOptions({
-    disableBack: true
-  });
 
-  $scope.activeCat = {};
+  var filterBy = {};
+  $scope.categoryService = Category;
+
+  Category.get().then((data) => {
+    $scope.cats = data;
+  });
 
    $scope.goToBrand = (brand_id) => {
 
@@ -26,19 +28,21 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
   };
 
 
-  $scope.$watch('activeCat', (newVal) => {
-    $scope.activeCat = newVal;
+  $scope.$watch('categoryService.getActive()', (newVal) => {
 
-    Category.get().then((data) => {
-    $scope.cats = data;
+    if(newVal) {
 
-     var filterBy = _.assign({}, {sectionId: $scope.activeCat.id}, $stateParams);
+      filterBy = _.assign({}, {sectionId: newVal.id}, $stateParams);
 
-     Brand.getFiltered(filterBy).then((brands) => {
-       $scope.brands = brands;
-     });
+      filterBy = _.omit(filterBy, Object.keys(filterBy).map((key) => {
+        if(filterBy[key] == undefined) return key;
+      }));
 
-  });
+       Brand.getFiltered(filterBy).then((brands) => {
+         $scope.brands = brands;
+       });
+
+    }
 
   })
 }

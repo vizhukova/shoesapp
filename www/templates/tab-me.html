@@ -1,27 +1,36 @@
-<ion-view view-title="ME" cache-view="false" class="Me">
+<ion-view cache-view="false" class="Me" hide-back-button="true">
 
-    <ion-nav-buttons side="right">
+    <!--<ion-nav-buttons side="right">
         <button class="button" ng-click="toSettings()">
             <i class="icon ion-ios-gear-outline"></i>
         </button>
-    </ion-nav-buttons>
+    </ion-nav-buttons>-->
+
+  <ion-nav-title>
+     ME
+     <button class="button nav-button" ng-click="toSettings()">
+        <i class="icon ion-ios-gear-outline"></i>
+    </button>
+   </ion-nav-title>
 
     <ion-content>
 
     <div class="me-tabs">
         <div class="link" ng-click="toOrders()">
             <i class="icon ion-cube"></i>
-            <p>Orders ({{orderLength}})</p>
+            <p>Orders ({{::orderLength}})</p>
         </div>
         <div class="link" ng-click="toBrands()">
             <i class="icon ion-ios-checkmark-outline"></i>
-            <p>Brands ({{likedBrands.length}})</p>
+            <p>Brands ({{::likedBrands.length}})</p>
         </div>
     </div>
 
       <div class="like-list">
-          <p>My loves ({{likedProducts.length}})</p>
+          <p>My loves ({{::likedProducts.length}})</p>
+        <div>
           <showcase products="likedProducts"></showcase>
+        </div>
       </div>
 
     </ion-content>

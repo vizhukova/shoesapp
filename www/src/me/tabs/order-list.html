@@ -13,9 +13,9 @@
       </div>
 
       <div ng-repeat="order in orders" class="row">
-        <span class="col">{{order.id}}</span>
-        <span class="col">{{order.price}}</span>
-        <span class="col">{{order.deliveryPrice}}</span>
+        <span class="col">{{::order.id}}</span>
+        <span class="col">{{::order.price}}</span>
+        <span class="col">{{::order.deliveryPrice}}</span>
       </div>
 
       <div class="contact">

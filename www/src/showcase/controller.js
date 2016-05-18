@@ -147,18 +147,16 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
   //
   //};
 
-  $scope.addLiked = (product_id, e) => {
+  $scope.addLiked = (product, e) => {
     e.stopPropagation();
-    Item.addLiked(product_id);
-
-    _.find($scope.products, {id: product_id}).isLiked = true;
+    Item.addLiked(product.id);
+    product.isLiked = true;
   };
 
-  $scope.removeLiked = (product_id, e) => {
+  $scope.removeLiked = (product, e) => {
     e.stopPropagation();
-    Item.removeLiked(product_id);
-
-     _.find($scope.products, {id: product_id}).isLiked = false;
+    Item.removeLiked(product.id);
+    product.isLiked = false;
   };
 
   $scope.openProduct = (product, $event) => {

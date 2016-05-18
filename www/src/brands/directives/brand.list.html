@@ -3,7 +3,7 @@
     <div class="scrolling" ng-style="{width: width}">
       <div class="thing" ng-repeat="brand in items track by $index">
         <div class="holder" ng-click="goto(brand.id)">
-          <img class="img" ng-src={{brand.icon}}>
+          <img class="img" ng-src={{::brand.icon}}>
         </div>
       </div>
       <div class="thing">

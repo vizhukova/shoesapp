@@ -1,10 +1,15 @@
-<ion-view view-title="{{page.name}}" class="StaticPage">
+<ion-view class="StaticPage" hide-back-button="true">
+
+  <ion-nav-title>
+    <back></back>
+     {{::page.name}}
+   </ion-nav-title>
 
   <ion-content>
 
   <div class="content">
-    <div class="title">{{page.text}}</div>
-    <div>{{page.textDetail}}</div>
+    <div class="title">{{::page.text}}</div>
+    <div>{{::page.textDetail}}</div>
   </div>
 
   </ion-content>

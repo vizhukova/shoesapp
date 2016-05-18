@@ -7,9 +7,9 @@
          ng-click="chooseAddress(address.addressId)">
 
      <div class="address">
-        <p>{{address.fullname}}</p>
-        <p>{{address.street}} {{address.house}}</p>
-        <p>{{address.location}}, {{address.zip}}</p>
+        <p>{{::address.fullname}}</p>
+        <p>{{::address.street}} {{::address.house}}</p>
+        <p>{{::address.location}}, {{::address.zip}}</p>
      </div>
       <div class="mark" ng-if="address.addressId === basketData.address.addressId">
         <i class="ion-ios-checkmark-outline"></i>
@@ -23,7 +23,7 @@
 
     <form class="form" ng-if="addresses.length == 0 || chosenType == 'newAddress'" ng-submit="addShipAddress()">
       <input type="text" name="name" placeholder="Full Name" ng-model="shipAddress.fullname" />
-      <input type="text" name="city" placeholder="City" class="city" ng-model="shipAddress.city" value="{{shipAddress.city}}" />
+      <input type="text" name="city" placeholder="City" class="city" ng-model="shipAddress.city" value="{{::shipAddress.city}}" />
       <input type="text" name="zip" placeholder="Zip" class="zip" ng-class="{'error-field': errors.zip}" ng-model="shipAddress.zip" />
       <input type="text" name="street" placeholder="Street" class="street" ng-model="shipAddress.street" />
       <input type="text" name="build" placeholder="Build" class="build" ng-model="shipAddress.house" />

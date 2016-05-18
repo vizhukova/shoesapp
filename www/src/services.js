@@ -61,6 +61,17 @@ angular.module('starter.services', [])
 
   .service('Category', function (Common) {
 
+    var activeCategory; // активная категория в верхнем горизонтальном меню
+
+    this.setActive = (category) => {
+      activeCategory = category;
+      console.log('activeCategory id=', category.id)
+    };
+
+    this.getActive = () => {
+      return activeCategory;
+    };
+
     this.get =  (data) => {
 
       data = data || {};
@@ -204,11 +215,12 @@ angular.module('starter.services', [])
 
   .service('Item', function ($http, $q, URL, Common, Server,  localStorageService) {
 
-    var likes =  localStorageService.get('likedItems') || [];
+    var likes = [];
 
     this.getFiltered = function (data) {
 
       data = data || {};
+      likes =  localStorageService.get('likedItems') || [];
 
       return new Promise((resolve, reject) => {
 
@@ -218,7 +230,6 @@ angular.module('starter.services', [])
 
           items.map((item) => {
             if(item) {
-              item.id = + item.id;
               item.isLiked = likes.indexOf(item.id) > -1;
             }
           });
@@ -234,13 +245,15 @@ angular.module('starter.services', [])
     this.get = function (data) {
 
       data = data || {};
+      likes =  localStorageService.get('likedItems') || [];
+
 
       return new Promise((resolve, reject) => {
 
          Common.get('item.get', data).then((item) => {
            if(item)  {
-             item.id = + item.id;
-             item.isLiked = !!likes.indexOf(item.id) > -1;
+
+             item.isLiked = likes.indexOf(item.id) > -1;
            }
            resolve(item);
          })
@@ -250,6 +263,8 @@ angular.module('starter.services', [])
 
     this.addLiked = (id) => {
 
+      likes =  localStorageService.get('likedItems') || [];
+
       likes.push(id);
       localStorageService.set('likedItems', likes);
        console.log('addLiked', likes)
@@ -258,6 +273,8 @@ angular.module('starter.services', [])
     };
 
     this.removeLiked = (id) => {
+
+      likes =  localStorageService.get('likedItems') || [];
 
       likes = likes.filter((item) => item != id);
       localStorageService.set('likedItems', likes);

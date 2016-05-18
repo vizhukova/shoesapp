@@ -1,8 +1,13 @@
-<ion-view view-title="Settings" class="Settings">
+<ion-view class="Settings" hide-back-button="true">
+
+   <ion-nav-title>
+    <back></back>
+     Settings
+   </ion-nav-title>
 
     <ion-content>
 
-        <div class="label">Promotion</div>
+        <!--<div class="label">Promotion</div>
         <div class="link" ng-click="toPromo()">
           <span>Promo codes</span>
           <div class="arrow">
@@ -16,14 +21,14 @@
             <span>{{sexObj.sex[sexObj.chosenIndex]}}</span>
             <i class="ion-chevron-right"></i>
           </div>
-        </div>
+        </div>-->
         <div class="label">About</div>
 
         <!--<div class="link">Feedback</div>
         <div class="link">Contact us</div>-->
 
         <div class="link" ng-click="toStaticPage(page.id)" ng-repeat="page in staticPages">
-          <span>{{page.name}}</span>
+          <span>{{::page.name}}</span>
           <div class="arrow">
             <i class="ion-chevron-right"></i>
           </div>

@@ -65,10 +65,10 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
 
   var popups = [
     {name: 'sortPopover', url: './src/shop/sort-popover.html'},
-    {name: 'filterPopover', url: './src/shop/filter-popover/filter-popover.html'}
+    {name: 'filterPopover', url: './src/productsPage/filter-popover/filter-popover.html'}
   ];
 
-    $ionicPopover.fromTemplateUrl('./src/shop/filter-popover/filter-popover.html', {
+    $ionicPopover.fromTemplateUrl('./src/productsPage/filter-popover/filter-popover.html', {
       scope: $scope,
       animation: $scope.animation
     }).then((popover)=>{
@@ -181,8 +181,6 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
 
     return new Promise((resolve, reject) => {
       var title = '';
-
-      debugger
 
       if(filterObj.feature) {
         switch(filterObj.feature) {

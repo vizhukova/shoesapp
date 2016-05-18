@@ -60,7 +60,6 @@
 
 .brand-item {
   width: 100%;
-  border-bottom: 1px solid #ccc;
   padding: 5px;
   font-size: 0;
 
@@ -102,6 +101,7 @@
     font-size: 12px;
     width: 20%;
     position: relative;
+    line-height: 4em;
 
     i{
       font-size: 18px;
@@ -114,6 +114,9 @@
 
     p {
       top: 1.7em;
+      left: 0;
+      right: 0;
+      margin: auto;
       position: absolute;
     }
   }
