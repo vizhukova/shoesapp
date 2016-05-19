@@ -42,6 +42,7 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
       return Category.getArrayTree(newVal.id).then((cats) => {
         $scope.categoryTree = cats;
         console.log('categoryTree', cats)
+        $scope.$digest();
       });
 
     }

@@ -6,12 +6,15 @@
     <p class="name" ng-click="goToBrand(brand.id)">{{::brand.name}}</p>
     <div class="mark">{{::item.time}}</div>
   </div>
-  <ion-slide-box show-pager="true" does-continue="true" class="main-slider">
-    <ion-slide ng-repeat="image in item.imgs track by $index"  >
+
+ <!-- <ion-slide-box show-pager="true" does-continue="true" class="main-slider">
+    <ion-slide id="slider" ng-repeat="image in item.imgs track by $index"  >
       <img src="{{::image}}" width="auto" height="85%" alt="">
     </ion-slide>
+  </ion-slide-box>-->
 
-  </ion-slide-box>
+  <big-slider imgs="item.imgs"></big-slider>
+
   <div class="description content-profile">
     <p class="title">{{::item.name}}</p>
     <p>{{::item.descShort}}</p>

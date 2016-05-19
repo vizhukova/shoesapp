@@ -2,7 +2,8 @@
 
    <ion-nav-title>
     <back></back>
-    {{tabTitle}}
+    <span ng-if="tabTitle.length">{{tabTitle}}</span>
+    <search-panel ng-if="! tabTitle.length" class="search-products" placeholder="searchPhrase"></search-panel>
   </ion-nav-title>
 
   <ion-content>

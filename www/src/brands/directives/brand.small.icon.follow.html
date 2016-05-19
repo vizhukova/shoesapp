@@ -10,7 +10,7 @@
       <p>{{brand.name}}</p>
       <div>
         <span ng-repeat="category in brand.categories track by $index">
-          <span>{{::category.name}}</span>
+          <span class="name">{{::category.name}}</span>
           <span ng-if="$index !== brand.categories.length - 1">,</span>
         </span>
       </div>

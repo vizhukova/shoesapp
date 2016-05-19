@@ -234,18 +234,7 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('SearchProductsCtrl', function ($scope, $stateParams, Item) {
-
-    console.log('searchPhrase', $stateParams.q)
-    $scope.searchPhrase = $stateParams.q;
-
-    Item.getFiltered($stateParams).then((data) => {
-      $scope.products = data;
-    })
-
-  })
-
-  .controller('MainController', function ($scope, $state) {
+  .controller('MainController', function ($scope, $state, $rootScope) {
 
     var options = {
       'brands': 'tab.brands',
@@ -254,7 +243,23 @@ angular.module('starter.controllers', [])
       'me': 'tab.me'
     }
 
-    $scope.deselect = (option) => $state.go(options[option])
+    $scope.deselect = (option) => $state.go(options[option]);
+
+    $scope.isShowButton = false;
+
+    $scope.updateLikedBrands = () => {
+
+      $rootScope.updateLikedBrands();
+
+    };
+
+    $rootScope.showDoneButton = (data) => {
+
+      $scope.isShowButton = data;
+
+    };
+
+
   })
 
   .controller('SmallFollowBrandCtrl', function ($scope, $state, Brand) {

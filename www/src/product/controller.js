@@ -22,32 +22,39 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
     Item.get({id: $stateParams.id}).then((data) => {
 
       $scope.item = data;
-      $scope.$digest();
+      $('#slider').update(updateTranslate);
 
       return Brand.get({id: data.brandId});
 
     }).then((brand) => {
 
       $scope.brand = brand;
+      $scope.$digest();
+
+      return Item.getFiltered({sectionId: $scope.item.sectionId});
+
+    }).then((products) => {
+
+      $scope.products = products;
 
     }).catch((error) => {
 
     })
   }
 
-  $scope.$watch('item', (newVal, oldVal) => {
-
-    if(newVal && newVal.id) {
-
-      Size.getByItem({id: newVal.id}).then((s) => {
-
-      $scope.sizes = s || [];
-      $scope.basketData.size = $scope.sizes[0];
-
-    });
-    }
-
-  });
+  //$scope.$watch('item', (newVal, oldVal) => {
+  //
+  //  if(newVal && newVal.id) {
+  //
+  //    Size.getByItem({id: newVal.id}).then((s) => {
+  //
+  //    $scope.sizes = s || [];
+  //    $scope.basketData.size = $scope.sizes[0];
+  //
+  //  });
+  //  }
+  //
+  //});
 
   $scope.goToBrand = (brand_id) => {
 
@@ -91,6 +98,14 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
     if(isLogIn) {
 
       $scope['basketPopover'].show();
+
+      Size.getByItem({id: $scope.item.id}).then((s) => {
+
+        $scope.sizes = s || [];
+        $scope.basketData.size = $scope.sizes[0];
+
+      });
+
       getAddressData();
 
     } else {

@@ -130,7 +130,7 @@ angular.module('starter', [
         cache: false,
         views: {
           'tab-brands': {
-            templateUrl: 'src/brands/tabs/brand.main.page.html',
+            templateUrl: 'templates/tab-brands.html',
             controller: 'BrandsCtrl'
           }
         }
@@ -195,8 +195,8 @@ angular.module('starter', [
         cache: false,
         views: {
           'tab-search': {
-            templateUrl: 'src/search/tabs/search.products.html',
-            controller: 'SearchProductsCtrl'
+            templateUrl: 'src/brands/tabs/brand.products.html',
+            controller: 'ProductsPageCtrl'
           }
         }
       })

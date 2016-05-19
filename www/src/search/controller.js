@@ -1,7 +1,7 @@
 export default function($scope, $state, $ionicPopover, $stateParams, Category) {
 
   Category.get().then((data) => {
-    $scope.categories = data;
+    $scope.categories = $scope.mainCategories = data;
   });
 
  // $scope.isSearchOnFocus = false;
@@ -19,8 +19,14 @@ export default function($scope, $state, $ionicPopover, $stateParams, Category) {
       $scope.popover = popover;
     });
 
-    $scope.openPopover = ($event)=>{
+    $scope.openPopover = (category_id, $event)=>{
+
       $scope.popover.show($event);
+
+      Category.getArrayTree(category_id).then((data) => {
+        $scope.categories = data[0].items;
+        console.log('subCats', data[0].items)
+      })
     };
 
 
@@ -37,6 +43,7 @@ export default function($scope, $state, $ionicPopover, $stateParams, Category) {
   };
 
   $scope.goToProducts = (param) => {
+    debugger
      $scope.popover.hide();
     $state.go($state.go("tab.search-products", param));
   };

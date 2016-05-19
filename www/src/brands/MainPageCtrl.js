@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export default function ($stateParams, $scope, $state, $ionicPopover, $sce, Brand, Category, Item) {
+export default function ($stateParams, $scope, $state, $ionicPopover, $rootScope, $sce, Brand, Category, Item) {
 
   $scope.animation = 'slide-in-up';
   $scope.chosenBrands = []; //выбор бредов на главной страницы для подписки, если нет ни одного бренда, на который подписан пользователь
@@ -23,6 +23,8 @@ export default function ($stateParams, $scope, $state, $ionicPopover, $sce, Bran
     console.log('hasLiked', $scope.hasLiked)
 
     if (newVal) {
+
+      $rootScope.showDoneButton(false);
 
       Category.get().then((data) => {
         $scope.cats = data;
@@ -108,10 +110,20 @@ export default function ($stateParams, $scope, $state, $ionicPopover, $sce, Bran
 
         }
 
+        if(! $scope.chosenBrands.length) {
+
+          $rootScope.showDoneButton(false);
+
+        } else {
+
+          $rootScope.showDoneButton(true);
+
+        }
+
       };
 
 
-      $scope.update = () => {
+      var update = () => {
 
         console.log($scope.chosenBrands)
         Brand.saveInLocalStorage($scope.chosenBrands);
@@ -125,6 +137,8 @@ export default function ($stateParams, $scope, $state, $ionicPopover, $sce, Bran
         //});
 
       };
+
+      $rootScope.updateLikedBrands = update;
 
 
       $scope.isSelected = (index) => $scope.chosenBrands.indexOf(index) !== -1;

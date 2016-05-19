@@ -13,8 +13,8 @@ angular.module('starter.directives', [])
       templateUrl: './src/shop/category.html',
       link: (scope) => {
 
-        var underline = $('.active-line');
-        var text = $('.cat-text');
+        var underline ;
+        var item ;
 
         scope.$watch('cats', (newVal, oldVal) => {
 
@@ -22,7 +22,7 @@ angular.module('starter.directives', [])
         if(newVal && newVal.length) {
 
            underline = $('.active-line');
-           text = $('.cat-text');
+           item = $('.cat-item');
 
           scope.setActive(0);
          }
@@ -30,29 +30,37 @@ angular.module('starter.directives', [])
         });
 
          // Animate navigation menu underline
-          scope.animate = (index) => {
+        var animate = (index) => {
 
-            var item = $('.cat-text').get(index);
+          $(underline).css('left', $(item.get(index)).position().left + 'px');
+          $(underline).width( $(item.get(index)).width() + 15 );
+          console.log('LEFTTTTT', $(item.get(index)).position().left)
 
-            // Init underline width & left
-            underline.animate({
-              left: $(item).offset().left - 1,
-              width: $(item).width() + 2
-            }, 300)
+          //debugger
+          //var item = $('.cat-text').get(index);
+          //console.log('LEFTTTTT', $(item).offset().left)
+          //$(underline).css('left', $(item).offset().left + 'px');
+          //$(underline).width( $(item).width() );
 
-          };
+          // Init underline width & left
+          //underline.animate({
+          //  left: $(item).offset().left - 1,
+          //  width: $(item).width() + 2
+          //}, 300)
 
-          // Set active category
-          scope.setActive = (index) => {
-            scope.activeCat = scope.cats[index].id;
-            Category.setActive(scope.cats[index]);
-            scope.animate(index)
-          };
+        };
 
-         // Set active class for category navigation menu
-          scope.isActive = (index) => {
-            return scope.cats[index].id === scope.activeCat;
-          }
+        // Set active category
+        scope.setActive = (index) => {
+          scope.activeCat = scope.cats[index].id;
+          Category.setActive(scope.cats[index]);
+          animate(index)
+        };
+
+       // Set active class for category navigation menu
+        scope.isActive = (index) => {
+          return scope.cats[index].id === scope.activeCat;
+        }
 
       }
     }
@@ -136,6 +144,41 @@ angular.module('starter.directives', [])
               centeredSlides: true,
               spaceBetween: 7,
               loop: true
+            })
+          }
+
+        });
+
+      }
+    }
+  })
+
+  .directive('bigSlider', function ($timeout) {
+
+    return {
+      scope: {
+        imgs: '=',
+        autoplay: '='
+      },
+      restrict: 'E',
+      replace: true,
+      templateUrl: './src/shop/big.slider.html',
+      link: (scope, element, attrs) => {
+
+        scope.$watch('imgs', (newVal, oldVal) => {
+
+          if(newVal) {
+            var mySwiper = new Swiper('.swiper-container', {
+               //Optional parameters
+              //direction: 'horizontal',
+              //centeredSlides: true,
+              ////spaceBetween: 7,
+              //loop: true
+              //autoplay: scope.autoplay ? 1500 : null,
+              //slidesPerView: 1,
+              //pagination: '<span>o</span>'
+               pagination: '.swiper-pagination',
+               paginationClickable: true
             })
           }
 

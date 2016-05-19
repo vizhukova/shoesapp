@@ -12,6 +12,11 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
     if($stateParams[key] == undefined) return key;
   }));
 
+  if(filterObj.q) {
+     console.log('searchPhrase', $stateParams.q)
+    $scope.searchPhrase = $stateParams.q;
+  }
+
   getTitle().then((title) => {
     $scope.tabTitle = title;
     console.log('TITLEEEEE', title)
@@ -182,7 +187,11 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
     return new Promise((resolve, reject) => {
       var title = '';
 
-      if(filterObj.feature) {
+      if(filterObj.q) {
+        resolve('');
+      }
+
+      else if(filterObj.feature) {
         switch(filterObj.feature) {
           case 'new':  title = 'New Arrival';
                 break;
