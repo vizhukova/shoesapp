@@ -32,7 +32,7 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
   $ionicModal.fromTemplateUrl('./src/login/directives/error.modal.html', {
     scope: $scope
   }).then(function(modal) {
-    $scope.modal = modal;
+    $scope.errorModal = modal;
   });
 
   $scope.openRecovery = () => {
@@ -66,7 +66,7 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
     }).catch((err_message) => {
 
       $scope.err_message = err_message;
-      $scope.modal.show();
+      $scope.errorModal.show();
 
     })
 
@@ -88,7 +88,7 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
     }).catch((err_message) => {
 
       $scope.err_message = err_message;
-      $scope.modal.show();
+      $scope.errorModal.show();
 
     })
 
@@ -101,13 +101,13 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
       $scope.recovery = false;
       $scope.user = {};
       $scope.err_message = 'Your password was recovered';
-      $scope.modal.show();
+      $scope.errorModal.show();
       $scope.$digest();
 
     }).catch((error) => {
 
       $scope.err_message = error.message;
-      $scope.modal.show();
+      $scope.errorModal.show();
 
     })
 

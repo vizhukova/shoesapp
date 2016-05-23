@@ -170,14 +170,6 @@ angular.module('starter.directives', [])
 
           if(newVal) {
             var mySwiper = new Swiper($(element).find('.swiper-container'), {
-               //Optional parameters
-              //direction: 'horizontal',
-              //centeredSlides: true,
-              ////spaceBetween: 7,
-              //loop: true
-              //autoplay: scope.autoplay ? 1500 : null,
-              //slidesPerView: 1,
-              //pagination: '<span>o</span>'
                pagination: '.swiper-pagination',
                paginationClickable: true
             })

@@ -1709,7 +1709,7 @@ button.join {
     }
   }
 
-   .error-modal {
+   .modal {
 
      background-color: rgba(23, 23, 23, 0.31);
 
@@ -1742,6 +1742,28 @@ button.join {
        border-bottom: none;
      }
 
+   }
+
+   .error-modal {
+     @extend .modal;
+   }
+
+   .full-screen-modal {
+     @extend .modal;
+
+     .bigSlider {
+       margin-top: 7em;
+     }
+
+     .button {
+       top: 0.5em;
+       right: 0.5em;
+       position: absolute;
+       z-index: 600;
+       border: 1px solid #444;
+       min-height: 30px;
+       line-height: 30px;
+     }
    }
 
    .filter-category {

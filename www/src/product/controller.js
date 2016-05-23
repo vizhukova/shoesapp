@@ -70,6 +70,11 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
     {name: 'login', url: './src/login/directives/login.popover.html'}
   ];
 
+  var modals = [
+    {name: 'errorModal', url: './src/login/directives/error.modal.html'},
+    {name: 'fullScreenModal', url: './src/product/modal/full.screen.modal.html'}
+  ];
+
   popups.map((popup)=>{
     $ionicPopover.fromTemplateUrl(popup.url, {
       scope: $scope,
@@ -90,6 +95,22 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
   $scope[`openlogin`] = ()=>{
     $scope['login'].show();
   };
+
+  modals.map((modal)=>{
+
+    $ionicModal.fromTemplateUrl(modal.url, {
+      scope: $scope,
+      animation: $scope.animation
+    }).then((mod)=>{
+
+    $scope[modal.name] = mod;
+
+    $scope[`open${modal.name}`] = () => {
+     mod.show();
+    }
+
+    });
+  });
 
   $scope[`openbasketPopover`] = ()=>{
 
@@ -117,11 +138,11 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
 
   };
 
-  $ionicModal.fromTemplateUrl('./src/login/directives/error.modal.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+  //$ionicModal.fromTemplateUrl('./src/login/directives/error.modal.html', {
+  //  scope: $scope
+  //}).then(function(modal) {
+  //  $scope.modal = modal;
+  //});
 
   $scope.loginCallback = () => {
 
@@ -162,7 +183,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
         }).catch(() => {
 
           $scope.err_message = 'Проверьте правильность введенных данных';
-          $scope.modal.show();
+          $scope.openerrorModal();
 
         })
 
@@ -229,12 +250,12 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
 
         $scope['basketPopover'].hide();
          $scope.err_message = 'Заказ успешно оформлен';
-         $scope.modal.show();
+         $scope.openerrorModal();
 
       }).catch(() => {
 
          $scope.err_message = 'Ошибка оформления заказа';
-         $scope.modal.show();
+         $scope.openerrorModal();
 
       })
 
