@@ -136,8 +136,10 @@ angular.module('starter.directives', [])
 
         scope.$watch('widget', (newVal, oldVal) => {
 
+          //debugger
+
           if(newVal) {
-            var mySwiper = new Swiper('.swiper-container', {
+            var mySwiper = new Swiper( $(element).find('.swiper-container'), {
               // Optional parameters
               direction: 'horizontal',
               slidesPerView: 'auto',

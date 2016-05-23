@@ -125,7 +125,8 @@ angular.module('starter.controllers', [])
           };
         });
 
-        Brand.getFullFiltered({feature: 'sale', sectionId: categoryId}).then((data) => {
+        Brand.getF({feature: 'sale', sectionId: categoryId}).then((data) => {
+
           $scope.brandSales = {
             title: 'Sale',
             sale: true,
@@ -134,14 +135,16 @@ angular.module('starter.controllers', [])
           console.log('brandSales', data)
         });
 
-        Brand.getFullFiltered({feature: 'new', sectionId: categoryId}).then((data) => {
+        Brand.getF({feature: 'new', sectionId: categoryId}).then((data) => {
+
           $scope.brandNewArrivals = {
             title: 'New Arrivals',
             items: data
           };
         });
 
-        Brand.getFullFiltered({feature: 'popular', sectionId: categoryId}).then((data) => {
+        Brand.getF({feature: 'popular', sectionId: categoryId}).then((data) => {
+
           $scope.brandPopular = {
             title: 'Popular',
             items: data

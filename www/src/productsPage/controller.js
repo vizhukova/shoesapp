@@ -7,6 +7,7 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
   $scope.chosenFilter = {};   // для фильтрации
   $scope.animation = 'slide-in-up';
   var chosenCategory = {}; //для отображения дерева категорий
+  var oldChosenFilter = {}; //для сохранения старого состояния объекта фильтрации
 
   var filterObj = _.omit($stateParams, Object.keys($stateParams).map((key) => {
     if($stateParams[key] == undefined) return key;
@@ -84,6 +85,8 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
       $scope.chosenMenuItem = {
         name: filter
       };
+
+      oldChosenFilter = _.cloneDeep($scope.chosenFilter);
       $scope['filterPopover'].show();
     };
 
@@ -161,6 +164,11 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
 
   $scope.reset = () => {
     $scope.chosenFilter = {};
+  };
+
+  $scope.hidePopover = () => {
+    $scope.chosenFilter = _.cloneDeep(oldChosenFilter);
+    $scope.filterPopover.hide();
   };
 
   //$scope.addLiked = (product_id, e) => {

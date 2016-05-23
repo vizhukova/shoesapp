@@ -323,6 +323,41 @@ angular.module('starter.services', [])
     var self = this;
     var likes = localStorageService.get('likedBrands') || [];
 
+    this.getF = (data) => {
+
+      return Common.get('brand.filter', data);
+
+    };
+
+    this.getBrandsWithFilteredProducts = (data) => {
+      return new Promise((resolve, reject) => {
+
+        var brands = [];
+
+        Common.get('brand.filter', data).then((b) => {
+
+          brands = b;
+          return Promise.map(brands, (brand, index) => {
+
+            return Item.getFiltered({brandId: brand.id}).then((items) => {
+              brand.items = items;
+            })
+
+          })
+
+        }).then(() => {
+
+          resolve(brands);
+
+        }).catch((err) => {
+
+          reject(err);
+
+        })
+
+      })
+    };
+
     this.getFiltered =  (data) => {
 
       var brands = {};
