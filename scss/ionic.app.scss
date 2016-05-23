@@ -25,3 +25,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   border-bottom: #ECECEC solid 1px;
 }
 
+.scroll-view.scroll-x {
+  overflow-x: auto;
+}
+
+.overflow-scroll, .scroll-view.scroll-y {
+  overflow-y: auto;
+}
+

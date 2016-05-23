@@ -1,6 +1,8 @@
 <ion-popover-view class="signun-popover">
 
-  <div class="nav-panel">
+ <ion-scroll direction="y">
+
+    <div class="nav-panel">
     <button ng-click="signunPopover.hide()" class="close-btn button button-icon icon ion-android-close"></button>
     <span class="title">Sign-un</span>
   </div>
@@ -20,15 +22,17 @@
    <span class="info">Password must contain at least 8 characters,
       an uppercase letter, a lowercase letter and a number.</span>
 
-  <div class="footer">
-    <button class="button button-calm join" ng-click="signUp()">
-      JOIN SPRING
-    </button>
-    <p>or</p>
-    <button class="button icon-left ion-social-facebook-outline button-positive" ng-click="toShop()">
-      CONTINUE WITH FACEBOOK
-    </button>
-    <p class="terms">By joining you agree to our <span class="terms">Terms</span> & <span class="policy">Privacy Policy</span></p>
-  </div>
+    <div class="footer">
+      <button class="button button-calm join" ng-click="signUp()">
+        JOIN SPRING
+      </button>
+      <p>or</p>
+      <button class="button icon-left ion-social-facebook-outline button-positive" ng-click="toShop()">
+        CONTINUE WITH FACEBOOK
+      </button>
+      <p class="terms">By joining you agree to our <span class="terms">Terms</span> & <span class="policy">Privacy Policy</span></p>
+    </div>
+
+ </ion-scroll>
 
 </ion-popover-view>

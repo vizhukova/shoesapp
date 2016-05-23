@@ -15,7 +15,7 @@ angular.module('starter', [
   'starter.services',
   'starter.directives',
   'starter.config',
-  'jett.ionic.scroll.sista',
+  //'jett.ionic.scroll.sista',
   'LocalStorageModule'
 ])
 
@@ -31,7 +31,7 @@ angular.module('starter', [
       // for form inputs)
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        cordova.plugins.Keyboard.disableScroll(true);
+        cordova.plugins.Keyboard.disableScroll(false);
 
       }
       if (window.StatusBar) {

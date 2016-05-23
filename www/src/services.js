@@ -323,86 +323,57 @@ angular.module('starter.services', [])
     var self = this;
     var likes = localStorageService.get('likedBrands') || [];
 
-    this.getF = (data) => {
+    this.getFiltered = (data) => {
 
       return Common.get('brand.filter', data);
 
     };
 
-    this.getBrandsWithFilteredProducts = (data) => {
-      return new Promise((resolve, reject) => {
-
-        var brands = [];
-
-        Common.get('brand.filter', data).then((b) => {
-
-          brands = b;
-          return Promise.map(brands, (brand, index) => {
-
-            return Item.getFiltered({brandId: brand.id}).then((items) => {
-              brand.items = items;
-            })
-
-          })
-
-        }).then(() => {
-
-          resolve(brands);
-
-        }).catch((err) => {
-
-          reject(err);
-
-        })
-
-      })
-    };
-
-    this.getFiltered =  (data) => {
-
-      var brands = {};
-
-      return new Promise((resolve, reject) => {
-
-        Common.get('brand.filter', data).then((b) => {
-
-          brands = b;
-
-          Promise.map(brands, (brand, index) => {
-
-            return Item.getFiltered({brandId: brand.id}).then((products, i) => {
-
-              brands[index].items = products;
-
-              return Category.get({brandId: brand.id}).then((data) => {
-
-                brands[index].categories = data;
-
-              }).then(() => {
-
-                if (products[0]) {
-
-                  return Item.get({id: products[0].id}).then((product) => {
-
-                    brands[index].items[0] = product;
-                    brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
-
-                  })
-                }
-
-              })
-            })
-
-          }).then(() => {
-
-            resolve(brands);
-
-          })
-
-        })
-
-      })
-    };
+    //this.getFiltered =  (data) => {
+    //
+    //  var brands = {};
+    //
+    //  return new Promise((resolve, reject) => {
+    //
+    //    Common.get('brand.filter', data).then((b) => {
+    //
+    //      brands = b;
+    //
+    //      Promise.map(brands, (brand, index) => {
+    //
+    //        return Item.getFiltered({brandId: brand.id}).then((products, i) => {
+    //
+    //          brands[index].items = products;
+    //
+    //          return Category.get({brandId: brand.id}).then((data) => {
+    //
+    //            brands[index].categories = data;
+    //
+    //          }).then(() => {
+    //
+    //            if (products[0]) {
+    //
+    //              return Item.get({id: products[0].id}).then((product) => {
+    //
+    //                brands[index].items[0] = product;
+    //                brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
+    //
+    //              })
+    //            }
+    //
+    //          })
+    //        })
+    //
+    //      }).then(() => {
+    //
+    //        resolve(brands);
+    //
+    //      })
+    //
+    //    })
+    //
+    //  })
+    //};
 
     this.getSales = (array) => {
 
@@ -490,33 +461,6 @@ angular.module('starter.services', [])
 
     };
 
-    this.getItems = (data) => {
-
-      var brand = {};
-
-      return new Promise((resolve, reject) => {
-
-        Common.get('brand.get', data.brandFilter).then((b) => {
-
-          brand = b;
-
-            return Item.getFiltered(data.itemFilter).then((products, i) => {
-
-              brand.items = products;
-
-
-          }).then(() => {
-
-            resolve(brand);
-
-          })
-
-        })
-
-      })
-
-    };
-
     this.get = (data) => {
 
       return new Promise((resolve, reject) => {
@@ -533,36 +477,6 @@ angular.module('starter.services', [])
 
          })
       });
-    };
-
-    this.getBrandProducts = () => {
-
-      return [];
-
-    };
-
-    this.getFullFiltered = (data) => {
-
-      return new Promise((resolve, reject) => {
-
-        var brands = [];
-
-        this.getFiltered(data).then((data) => {
-
-          Promise.map(data, (brand) => {
-
-            return this.get({id: brand.id}).then((fullBrand) => {
-              brands.push(fullBrand);
-            })
-
-          }).then(() => {
-            resolve(brands);
-          })
-
-        });
-
-      });
-
     };
 
     this.addLiked = (id) => {

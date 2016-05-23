@@ -26,7 +26,6 @@ angular.module('starter.directives', [])
            item = $('.cat-item');
            container = $('.categories');
 
-          debugger
           var width = $(container).width() / item.length;
 
           width = width > 150 ? 150 : width;
@@ -137,7 +136,6 @@ angular.module('starter.directives', [])
 
         scope.$watch('widget', (newVal, oldVal) => {
 
-          //debugger
 
           if(newVal) {
             var mySwiper = new Swiper( $(element).find('.swiper-container'), {
@@ -171,7 +169,7 @@ angular.module('starter.directives', [])
         scope.$watch('imgs', (newVal, oldVal) => {
 
           if(newVal) {
-            var mySwiper = new Swiper('.swiper-container', {
+            var mySwiper = new Swiper($(element).find('.swiper-container'), {
                //Optional parameters
               //direction: 'horizontal',
               //centeredSlides: true,
@@ -474,7 +472,9 @@ angular.module('starter.directives', [])
       },
 
       link: (scope, element, attrs) => {
-        if(scope.items) scope.width = (1 + scope.items.length) * 5 + 1 + 'em';
+       scope.$watch('items', (newVal) => {
+        if(newVal) scope.width = (1 + newVal.length) * 5 + 1 + 'em';
+       })
       }
     }
   })

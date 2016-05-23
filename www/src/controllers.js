@@ -125,7 +125,7 @@ angular.module('starter.controllers', [])
           };
         });
 
-        Brand.getF({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
+        Brand.getFiltered({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
 
           $scope.brandSales = {
             title: 'Sale',
@@ -135,7 +135,7 @@ angular.module('starter.controllers', [])
           console.log('brandSales', data)
         });
 
-        Brand.getF({feature: 'new', sectionId: $scope.categoryId}).then((data) => {
+        Brand.getFiltered({feature: 'new', sectionId: $scope.categoryId}).then((data) => {
 
           $scope.brandNewArrivals = {
             title: 'New Arrivals',
@@ -143,7 +143,7 @@ angular.module('starter.controllers', [])
           };
         });
 
-        Brand.getF({feature: 'popular', sectionId: $scope.categoryId}).then((data) => {
+        Brand.getFiltered({feature: 'popular', sectionId: $scope.categoryId}).then((data) => {
 
           $scope.brandPopular = {
             title: 'Popular',

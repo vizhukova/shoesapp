@@ -34,7 +34,21 @@ export default function ($stateParams, $scope, $state, $ionicPopover, $rootScope
       Brand.getLiked().then((data) => {
 
         $scope.brands = data;
+        //$scope.brands.push({id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}, {id: 6}, {id: 7}, {id: 8}, {id: 9})
         $scope.$digest();
+
+        $scope.brands.map((brand) => {
+
+          Item.getFiltered({brandId: brand.id}).then((items) => {
+
+            if(items.length != 0) {
+              return  Item.get({id: items[0].id});
+            }
+          }).then((item) => {
+            brand.items = [item];
+          })
+
+        });
 
          Brand.getSales(data).then((data) => {
           $scope.brandSales = data;
