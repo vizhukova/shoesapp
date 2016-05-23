@@ -21,6 +21,7 @@ export default function($scope, $state, $ionicPopover, $stateParams, Category) {
 
     $scope.openPopover = (category_id, $event)=>{
 
+      $event.stopPropagation();
       $scope.popover.show($event);
 
       Category.getArrayTree(category_id).then((data) => {

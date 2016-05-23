@@ -6,6 +6,10 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
   var filterBy = {};
   $scope.categoryService = Category;
 
+  if(! filterBy.sectionId) {
+    onChangeCategory( $scope.categoryService.getActive() );
+  }
+
   Category.get().then((data) => {
     $scope.cats = data;
   });
@@ -32,17 +36,25 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
 
     if(newVal) {
 
-      filterBy = _.assign({}, {sectionId: newVal.id}, $stateParams);
-
-      filterBy = _.omit(filterBy, Object.keys(filterBy).map((key) => {
-        if(filterBy[key] == undefined) return key;
-      }));
-
-       Brand.getFiltered(filterBy).then((brands) => {
-         $scope.brands = brands;
-       });
+     onChangeCategory(newVal);
 
     }
 
   })
+
+
+  function onChangeCategory(value) {
+
+     filterBy = _.assign({}, {sectionId: value.id}, $stateParams);
+
+    filterBy = _.omit(filterBy, Object.keys(filterBy).map((key) => {
+      if(filterBy[key] == undefined) return key;
+    }));
+
+     Brand.getFiltered(filterBy).then((brands) => {
+       $scope.brands = brands;
+     });
+
+  }
+
 }

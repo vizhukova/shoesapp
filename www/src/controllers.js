@@ -88,7 +88,7 @@ angular.module('starter.controllers', [])
 
   .controller('ShopCtrl', function ($scope, $state, $ionicPopover, Category, Item, Brand) {
 
-    var categoryId;
+    $scope.categoryId;
 
     $scope.categoryService = Category;
 
@@ -101,9 +101,9 @@ angular.module('starter.controllers', [])
 
       if(newVal) {
 
-        categoryId = newVal.id;
+        $scope.categoryId = newVal.id;
 
-        Item.getFiltered({feature: 'sale', sectionId: categoryId}).then((data) => {
+        Item.getFiltered({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
           $scope.sales = {
             title: 'Sale',
             sale: true,
@@ -111,21 +111,21 @@ angular.module('starter.controllers', [])
           };
         });
 
-        Item.getFiltered({feature: 'new', sectionId: categoryId}).then((data) => {
+        Item.getFiltered({feature: 'new', sectionId: $scope.categoryId}).then((data) => {
           $scope.newArrivals = {
             title: 'New Arrivals',
             items: data
           };
         });
 
-        Item.getFiltered({feature: 'popular', sectionId: categoryId}).then((data) => {
+        Item.getFiltered({feature: 'popular', sectionId: $scope.categoryId}).then((data) => {
           $scope.popular = {
             title: 'Popular',
             items: data
           };
         });
 
-        Brand.getF({feature: 'sale', sectionId: categoryId}).then((data) => {
+        Brand.getF({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
 
           $scope.brandSales = {
             title: 'Sale',
@@ -135,7 +135,7 @@ angular.module('starter.controllers', [])
           console.log('brandSales', data)
         });
 
-        Brand.getF({feature: 'new', sectionId: categoryId}).then((data) => {
+        Brand.getF({feature: 'new', sectionId: $scope.categoryId}).then((data) => {
 
           $scope.brandNewArrivals = {
             title: 'New Arrivals',
@@ -143,7 +143,7 @@ angular.module('starter.controllers', [])
           };
         });
 
-        Brand.getF({feature: 'popular', sectionId: categoryId}).then((data) => {
+        Brand.getF({feature: 'popular', sectionId: $scope.categoryId}).then((data) => {
 
           $scope.brandPopular = {
             title: 'Popular',
@@ -214,6 +214,8 @@ angular.module('starter.controllers', [])
 
     $scope.onFocus = (e) => {
 
+      e.stopPropagation();
+
       $scope.isSearchOnFocus = true;
 
       if ($scope.$parent.onFocus) {
@@ -224,6 +226,8 @@ angular.module('starter.controllers', [])
 
     $scope.onCancelClick = (e) => {
 
+      e.stopPropagation();
+
       $scope.isSearchOnFocus = false;
 
       if ($scope.$parent.onCancelClick) {
@@ -231,7 +235,8 @@ angular.module('starter.controllers', [])
       }
     };
 
-    $scope.search = () => {
+    $scope.search = (e) => {
+      e.stopPropagation();
       $state.go($state.go("tab.search-products", {q: $scope.searchStr}));
     }
 

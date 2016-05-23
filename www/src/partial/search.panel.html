@@ -1,14 +1,14 @@
 <div class="search-panel row">
-  <form ng-submit="search()">
+  <form ng-submit="search($event)">
     <label ng-class="{'item-reduce': isSearchOnFocus}" class="item item-input sample-show-hide">
-      <span ng-click="search()">
+      <span ng-click="search($event)">
         <i class="icon ion-search placeholder-icon"></i>
       </span>
-        <input type="text" class="sample-show-hide" placeholder={{placeholder}} ng-model="searchStr" ng-focus="onFocus()">
+        <input type="text" class="sample-show-hide" placeholder={{placeholder}} ng-model="searchStr" ng-focus="onFocus($event)">
     </label>
   </form>
   <div ng-show="isSearchOnFocus"
        ng-class="{'button-increase': isSearchOnFocus}"
-       ng-click="onCancelClick()"
+       ng-click="onCancelClick($event)"
        class="button sample-show-hide ng-hide">Cancel</div>
 </div>

@@ -15,6 +15,7 @@ angular.module('starter.directives', [])
 
         var underline ;
         var item ;
+        var container ;
 
         scope.$watch('cats', (newVal, oldVal) => {
 
@@ -23,8 +24,19 @@ angular.module('starter.directives', [])
 
            underline = $('.active-line');
            item = $('.cat-item');
+           container = $('.categories');
 
-          scope.setActive(0);
+          debugger
+          var width = $(container).width() / item.length;
+
+          width = width > 150 ? 150 : width;
+
+          item.width(width);
+
+          var activeCat = Category.getActive();
+
+          scope.setActive(_.findIndex(scope.cats, activeCat) || 0);
+
          }
 
         });
@@ -33,20 +45,9 @@ angular.module('starter.directives', [])
         var animate = (index) => {
 
           $(underline).css('left', $(item.get(index)).position().left + 'px');
-          $(underline).width( $(item.get(index)).width() + 15 );
+          console.log('WIDTHHHH', $(item.get(index)).width())
+          $(underline).width( $(item.get(index)).width());
           console.log('LEFTTTTT', $(item.get(index)).position().left)
-
-          //debugger
-          //var item = $('.cat-text').get(index);
-          //console.log('LEFTTTTT', $(item).offset().left)
-          //$(underline).css('left', $(item).offset().left + 'px');
-          //$(underline).width( $(item).width() );
-
-          // Init underline width & left
-          //underline.animate({
-          //  left: $(item).offset().left - 1,
-          //  width: $(item).width() + 2
-          //}, 300)
 
         };
 
@@ -54,7 +55,7 @@ angular.module('starter.directives', [])
         scope.setActive = (index) => {
           scope.activeCat = scope.cats[index].id;
           Category.setActive(scope.cats[index]);
-          animate(index)
+          animate(index);
         };
 
        // Set active class for category navigation menu

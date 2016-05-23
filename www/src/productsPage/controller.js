@@ -171,25 +171,6 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
     $scope.filterPopover.hide();
   };
 
-  //$scope.addLiked = (product_id, e) => {
-  //  e.stopPropagation();
-  //  Item.addLiked(product_id);
-  //
-  //  _.find($scope.products, {id: product_id}).isLiked = true;
-  //};
-  //
-  //$scope.removeLiked = (product_id, e) => {
-  //  e.stopPropagation();
-  //  Item.removeLiked(product_id);
-  //
-  //   _.find($scope.products, {id: product_id}).isLiked = false;
-  //};
-
-  //$scope.openProduct = (product, $event) => {
-  //  $state.go('tab.shop-product', {id: product.id});
-  //
-  //};
-
   function getTitle() {
 
     return new Promise((resolve, reject) => {
@@ -215,6 +196,7 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
       else if(filterObj.sectionId) {
           Category.getById(filterObj.sectionId).then((category) => {
             resolve(category.name);
+            $scope.chosenFilter.sectionId = category.id;
           })
       }
 

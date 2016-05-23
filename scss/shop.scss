@@ -20,13 +20,16 @@
 
       .tab-item {
         display: inline-block;
-        margin: 0 .7em;
         position: relative;
 
         &.active {
           font-weight: 600;
           color: black;
           box-sizing: border-box;
+        }
+
+        span {
+           margin: 0 .7em;
         }
       }
 

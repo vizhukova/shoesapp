@@ -5,9 +5,9 @@
   <button class="button by-cat-btn" ng-click="openPopover()">
     BROWSE BY CATEGORY
   </button>
-    <liked-slider  title-click="goToProducts" title-click-param="{feature: 'sale'}" widget="sales"></liked-slider>
-    <liked-slider  title-click="goToProducts" title-click-param="{feature: 'new'}" widget="newArrivals"></liked-slider>
-    <liked-slider  title-click="goToProducts" title-click-param="{feature: 'popular'}" widget="popular"></liked-slider>
+    <liked-slider  title-click="goToProducts" title-click-param="{feature: 'sale', sectionId: categoryId}" widget="sales"></liked-slider>
+    <liked-slider  title-click="goToProducts" title-click-param="{feature: 'new', sectionId: categoryId}" widget="newArrivals"></liked-slider>
+    <liked-slider  title-click="goToProducts" title-click-param="{feature: 'popular', sectionId: categoryId}" widget="popular"></liked-slider>
 
     <gallery-slider title-click="goToBrands" title-click-param="{feature: 'sale'}" item-click="goToBrand" widget="brandSales"></gallery-slider>
     <gallery-slider title-click="goToBrands" title-click-param="{feature: 'new'}" item-click="goToBrand" widget="brandNewArrivals"></gallery-slider>
