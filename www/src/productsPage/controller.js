@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item, Category, Size, Color) {
+export default function($scope, $timeout, $ionicPopover, $state, $stateParams, Brand, Item, Category, Size, Color) {
 
   $scope.filterBy = ['Category', 'Size', 'Color'];
   $scope.chosenMenuItem = {};
@@ -119,7 +119,10 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
     return nameToReturn || 'All';
   };
 
-  $scope.getCategoryTree = (category_id) => {  //получение нового дерева категорий и сохранение фильтра по выбранной категории
+  $scope.getCategoryTree = ($event, category_id) => {  //получение нового дерева категорий и сохранение фильтра по выбранной категории
+
+    debugger
+    $event.stopPropagation();
 
     Category.getArrayTree(category_id).then((data) => {
 
@@ -147,7 +150,7 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
         chosenCategory.id = category_id;
       }
 
-      $scope.$digest();
+      $timeout(() => {$scope.$digest()});
     });
 
     console.log('$scope.categories !!!!!!!!!', $scope.categories)

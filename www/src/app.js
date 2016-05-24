@@ -32,7 +32,6 @@ angular.module('starter', [
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
-        //cordova.plugins.Keyboard.show();
 
       }
       if (window.StatusBar) {

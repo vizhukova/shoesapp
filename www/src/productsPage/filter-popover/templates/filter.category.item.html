@@ -1,6 +1,6 @@
 <div>
-  <div class="block"  ng-click="click(data.id)" ng-class="{'main chosen' : data.deptLevel === '1', 'chosen': data.id == filter}">
-    <span>{{::data.name}}</span>
+  <div class="block" ng-class="{'main chosen' : data.deptLevel === '1', 'chosen': data.id == filter}">
+    <span ng-click="click($event, data.id)" >{{::data.name}}</span>
     <i ng-if="data.items.length > 0" class="ion-ios-close chosen"></i>
   </div>
   <div ng-repeat="data in data.items" ng-include="'./src/productsPage/filter-popover/templates/filter.category.item.html'"></div>
