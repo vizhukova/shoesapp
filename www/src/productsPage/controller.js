@@ -121,11 +121,11 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
 
   $scope.getCategoryTree = ($event, category_id) => {  //получение нового дерева категорий и сохранение фильтра по выбранной категории
 
-    debugger
+
     $event.stopPropagation();
-
+  console.time('getCategoryTree')
     Category.getArrayTree(category_id).then((data) => {
-
+      console.timeEnd('getCategoryTree')
       if( $scope.chosenFilter['sectionId'] == category_id ) {
         $scope.chosenFilter=  _.omit($scope.chosenFilter, ['sectionId']);
       }
@@ -150,7 +150,7 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
         chosenCategory.id = category_id;
       }
 
-      $timeout(() => {$scope.$digest()});
+      $timeout(() => {$scope.$digest()}, 50);
     });
 
     console.log('$scope.categories !!!!!!!!!', $scope.categories)
