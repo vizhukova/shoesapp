@@ -168,7 +168,10 @@ angular.module('starter.directives', [])
           if (newVal) {
             var mySwiper = new Swiper($(element).find('.swiper-container'), {
               pagination: '.swiper-pagination',
-              paginationClickable: true
+              paginationClickable: true,
+              loop: true
+              //preloadImages: true,
+              //updateOnImagesReady: true
             })
           }
 
