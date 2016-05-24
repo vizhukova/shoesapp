@@ -112,6 +112,10 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
     });
   });
 
+  $scope.sliderClick = ($event) => {
+    $event.stopPropagation();
+  };
+
   $scope[`openbasketPopover`] = ()=>{
 
     var isLogIn = Settings.isLogIn();

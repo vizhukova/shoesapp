@@ -1751,16 +1751,48 @@ button.join {
    .full-screen-modal {
      @extend .modal;
 
+     .dark {
+       opacity: 1;
+       padding-top: 7em;
+     }
+
      .bigSlider {
-       margin-top: 7em;
+       /*margin-top: 7em;*/
+
+      .swiper-slide {
+         text-align: center;
+
+        img {
+          padding: 0 !important;
+        }
+
+       }
+
+       .swiper-pagination {
+         position: absolute;
+         bottom: -2em;
+       }
+
+       .swiper-pagination-bullet {
+          background: rgb(0, 0, 0);
+          border: 1px white solid;
+          opacity: 1;
+       }
+
+       .swiper-pagination-bullet-active {
+         background: rgb(255, 255, 255);
+         border: 1px black solid;
+       }
+
      }
 
      .button {
-       top: 0.5em;
+       top: 7.5em;
        right: 0.5em;
        position: absolute;
        z-index: 600;
        border: 1px solid #444;
+       background-color: rgba(248, 248, 248, 0.48);
        min-height: 30px;
        line-height: 30px;
      }

@@ -1,9 +1,12 @@
 <ion-modal-view class="full-screen-modal">
 
-  <div class="dark" ng-click="fullScreenModal.hide()"></div>
-
   <ion-content>
-    <div class="button" ng-click="fullScreenModal.hide()">Done</div>
-    <big-slider imgs="item.imgs"></big-slider>
+    <div class="dark">
+
+      <div class="button" ng-click="fullScreenModal.hide()">Done</div>
+      <big-slider imgs="item.imgs" ng-click="sliderClick($event)"></big-slider>
+
+    </div>
   </ion-content>
+
 </ion-modal-view>
