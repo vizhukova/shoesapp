@@ -1795,6 +1795,7 @@ button.join {
        background-color: rgba(248, 248, 248, 0.48);
        min-height: 30px;
        line-height: 30px;
+       -webkit-transform: translate3d(0,0,0);
      }
    }
 
