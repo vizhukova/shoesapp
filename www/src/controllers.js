@@ -74,6 +74,7 @@ angular.module('starter.controllers', [])
     Brand.getLiked().then((data) => {
       $scope.likedBrands = data;
       console.log(data)
+      $scope.$digest();
     });
 
   })
@@ -180,7 +181,13 @@ angular.module('starter.controllers', [])
     });
 
     $scope.openPopover = ($event)=> {
+
       $scope.popover.show($event);
+
+      Category.getArrayTree( $scope.categoryId).then((data) => {
+        $scope.subCategories = data[0].items;
+      })
+
     };
 
   })
@@ -212,31 +219,31 @@ angular.module('starter.controllers', [])
     $scope.isSearchOnFocus = false;
     $scope.placeholder = $scope.placeholder || "Search everything on site";
 
-    $scope.onFocus = (e) => {
+    $scope.onFocus = ($event) => {
 
-      e.stopPropagation();
+      $event.stopPropagation();
 
       $scope.isSearchOnFocus = true;
 
       if ($scope.$parent.onFocus) {
-        $scope.$parent.onFocus(e);
+        $scope.$parent.onFocus($event);
       }
 
     };
 
-    $scope.onCancelClick = (e) => {
+    $scope.onCancelClick = ($event) => {
 
-      e.stopPropagation();
+      $event.stopPropagation();
 
       $scope.isSearchOnFocus = false;
 
       if ($scope.$parent.onCancelClick) {
-        $scope.$parent.onCancelClick(e);
+        $scope.$parent.onCancelClick($event);
       }
     };
 
-    $scope.search = (e) => {
-      e.stopPropagation();
+    $scope.search = ($event) => {
+      $event.stopPropagation();
       $state.go($state.go("tab.search-products", {q: $scope.searchStr}));
     }
 

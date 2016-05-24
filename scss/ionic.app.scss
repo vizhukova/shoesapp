@@ -33,3 +33,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   overflow-y: auto;
 }
 
+.modal-open .modal, .modal-open .modal-backdrop {
+  z-index: 100;
+}
+

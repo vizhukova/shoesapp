@@ -4,7 +4,7 @@
   <!--<div class="close-btn"><i class="ion-android-close"></i></div>-->
   <ion-scroll direction="y" style="width: 100%; height: 100%">
     <ul class="category-list">
-      <li class="cat-item" ng-repeat="category in categories" ng-click="goToProducts({sectionId: category.id})">{{::category.name}}</li>
+      <li class="cat-item" ng-repeat="category in subCategories" ng-click="goToProducts({sectionId: category.id})">{{::category.name}}</li>
     </ul>
   </ion-scroll>
 

@@ -1,7 +1,7 @@
 export default function($scope, $state, $ionicPopover, $stateParams, Category) {
 
   Category.get().then((data) => {
-    $scope.categories = $scope.mainCategories = data;
+    $scope.categories = data;
   });
 
  // $scope.isSearchOnFocus = false;
@@ -25,19 +25,20 @@ export default function($scope, $state, $ionicPopover, $stateParams, Category) {
       $scope.popover.show($event);
 
       Category.getArrayTree(category_id).then((data) => {
-        $scope.categories = data[0].items;
-        console.log('subCats', data[0].items)
+        $scope.subCategories = data[0].items;
       })
     };
 
 
-  $scope.onFocus = (e) => {
-    $scope.isRecentSearchesShow = true;
-  };
-
-  $scope.onCancelClick = (e) => {
-   $scope.isRecentSearchesShow = false;
-  };
+  //$scope.onFocus = (e) => {
+  //  e.stopPropagation();
+  //  $scope.isRecentSearchesShow = true;
+  //};
+  //
+  //$scope.onCancelClick = (e) => {
+  // e.stopPropagation();
+  // $scope.isRecentSearchesShow = false;
+  //};
 
   $scope.onCloseResentSearchClick = (e) => {
     $scope.isRecentSearchesShow = false;

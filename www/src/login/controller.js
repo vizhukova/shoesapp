@@ -32,7 +32,13 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
   $ionicModal.fromTemplateUrl('./src/login/directives/error.modal.html', {
     scope: $scope
   }).then(function(modal) {
+
     $scope.errorModal = modal;
+
+    $scope.closeerrorModal = () => {
+      modal.hide();
+    }
+
   });
 
   $scope.openRecovery = () => {

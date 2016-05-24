@@ -64,6 +64,7 @@ angular.module('starter.services', [])
     var activeCategory; // активная категория в верхнем горизонтальном меню
 
     this.setActive = (category) => {
+      console.log('service Category setActive == ', category.name);
       activeCategory = category;
       console.log('activeCategory id=', category.id)
     };

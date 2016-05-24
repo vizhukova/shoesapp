@@ -13,40 +13,37 @@ angular.module('starter.directives', [])
       templateUrl: './src/shop/category.html',
       link: (scope) => {
 
-        var underline ;
-        var item ;
-        var container ;
+        var underline;
+        var item;
+        var container;
 
         scope.$watch('cats', (newVal, oldVal) => {
 
           // Get categories [...] from Category service
-        if(newVal && newVal.length) {
+          if (newVal && newVal.length) {
 
-           underline = $('.active-line');
-           item = $('.cat-item');
-           container = $('.categories');
+            underline = $('.active-line');
+            item = $('.cat-item');
+            container = $('.categories');
 
-          var width = $(container).width() / item.length;
+            var width = $(document).width() / newVal.length;
+            width = width > 150 ? 150 : width;
 
-          width = width > 150 ? 150 : width;
 
-          item.width(width);
+            item.width(width);
 
-          var activeCat = Category.getActive();
+            var activeCat = Category.getActive();
 
-          scope.setActive(_.findIndex(scope.cats, activeCat) || 0);
-
-         }
+            scope.setActive(_.findIndex(scope.cats, activeCat) || 0);
+          }
 
         });
 
-         // Animate navigation menu underline
+        // Animate navigation menu underline
         var animate = (index) => {
 
           $(underline).css('left', $(item.get(index)).position().left + 'px');
-          console.log('WIDTHHHH', $(item.get(index)).width())
-          $(underline).width( $(item.get(index)).width());
-          console.log('LEFTTTTT', $(item.get(index)).position().left)
+          $(underline).width($(item.get(index)).width());
 
         };
 
@@ -57,7 +54,7 @@ angular.module('starter.directives', [])
           animate(index);
         };
 
-       // Set active class for category navigation menu
+        // Set active class for category navigation menu
         scope.isActive = (index) => {
           return scope.cats[index].id === scope.activeCat;
         }
@@ -110,10 +107,10 @@ angular.module('starter.directives', [])
       link: (scope, element, attrs) => {
 
         // Width of scrollable area depend on count items
-        scope.$watch('widget', function(newValue, oldValue) {
-            if(newValue && newValue.items) {
-              scope.width = (1 + newValue.items.length) * 11 + 1 + 'em';
-            }
+        scope.$watch('widget', function (newValue, oldValue) {
+          if (newValue && newValue.items) {
+            scope.width = (1 + newValue.items.length) * 11 + 1 + 'em';
+          }
         });
 
       }
@@ -137,8 +134,8 @@ angular.module('starter.directives', [])
         scope.$watch('widget', (newVal, oldVal) => {
 
 
-          if(newVal) {
-            var mySwiper = new Swiper( $(element).find('.swiper-container'), {
+          if (newVal) {
+            var mySwiper = new Swiper($(element).find('.swiper-container'), {
               // Optional parameters
               direction: 'horizontal',
               slidesPerView: 'auto',
@@ -168,10 +165,10 @@ angular.module('starter.directives', [])
 
         scope.$watch('imgs', (newVal, oldVal) => {
 
-          if(newVal) {
+          if (newVal) {
             var mySwiper = new Swiper($(element).find('.swiper-container'), {
-               pagination: '.swiper-pagination',
-               paginationClickable: true
+              pagination: '.swiper-pagination',
+              paginationClickable: true
             })
           }
 
@@ -446,7 +443,7 @@ angular.module('starter.directives', [])
       },
 
       link: (scope, element, attrs) => {
-        if(scope.widget && scope.widget.items) scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+        if (scope.widget && scope.widget.items) scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
       }
     }
   })
@@ -464,9 +461,9 @@ angular.module('starter.directives', [])
       },
 
       link: (scope, element, attrs) => {
-       scope.$watch('items', (newVal) => {
-        if(newVal) scope.width = (1 + newVal.length) * 5 + 1 + 'em';
-       })
+        scope.$watch('items', (newVal) => {
+          if (newVal) scope.width = (1 + newVal.length) * 5 + 1 + 'em';
+        })
       }
     }
   })
@@ -588,9 +585,9 @@ angular.module('starter.directives', [])
       link: (scope) => {
 
         scope.$watch('categories', (newVal, oldVal) => {
-          if(newVal) {
-             scope.height = (newVal.countItems || newVal.length) * 43 + 'px';
-             console.log('HEIGHT', scope.height)
+          if (newVal) {
+            scope.height = (newVal.countItems || newVal.length) * 43 + 'px';
+            console.log('HEIGHT', scope.height)
           }
         })
 
@@ -615,7 +612,7 @@ angular.module('starter.directives', [])
       link: (scope) => {
 
         scope.$watch('sizes', (newVal, oldVal) => {
-          if(newVal) {
+          if (newVal) {
             scope.height = (newVal.length) * 43 + 'px';
             console.log('HEIGHT', scope.height)
           }
@@ -627,7 +624,7 @@ angular.module('starter.directives', [])
 
   })
 
- .directive('filterColor', function () {
+  .directive('filterColor', function () {
 
     return {
       restrict: 'E',
@@ -642,7 +639,7 @@ angular.module('starter.directives', [])
       link: (scope) => {
 
         scope.$watch('colors', (newVal, oldVal) => {
-          if(newVal) {
+          if (newVal) {
             scope.height = (newVal.length) * 43 + 'px';
             console.log('HEIGHT', scope.height)
           }
@@ -654,8 +651,8 @@ angular.module('starter.directives', [])
 
   })
 
- .directive('back', function () {
-   return {
+  .directive('back', function () {
+    return {
       restrict: 'E',
       replace: true,
       templateUrl: 'src/partial/back.html',
@@ -672,26 +669,26 @@ angular.module('starter.directives', [])
   })
 
   .directive('smallFollowBrand', function () {
-   return {
-     restrict: 'E',
-     replace: true,
-     templateUrl: 'src/brands/directives/brand.small.icon.follow.html',
-     controller: 'SmallFollowBrandCtrl',
-     scope: {
-      brands: '='
-     }
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/brands/directives/brand.small.icon.follow.html',
+      controller: 'SmallFollowBrandCtrl',
+      scope: {
+        brands: '='
+      }
     }
   })
 
   .directive('login', function () {
-   return {
-     restrict: 'E',
-     replace: true,
-     templateUrl: 'src/login/directives/login.template.html',
-     controller: 'LoginCtrl',
-     scope: {
-       callback: '='
-     }
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/login/directives/login.template.html',
+      controller: 'LoginCtrl',
+      scope: {
+        callback: '='
+      }
     }
   })
 

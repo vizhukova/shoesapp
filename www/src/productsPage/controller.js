@@ -123,7 +123,11 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
 
     Category.getArrayTree(category_id).then((data) => {
 
-      if(! data) {
+      if( $scope.chosenFilter['sectionId'] == category_id ) {
+        $scope.chosenFilter=  _.omit($scope.chosenFilter, ['sectionId']);
+      }
+
+      else if(! data) {
         $scope.chosenFilter['sectionId'] = category_id;
         chosenCategory.id = category_id;
       }
@@ -150,11 +154,23 @@ export default function($scope, $ionicPopover, $state, $stateParams, Brand, Item
   };
 
   $scope.setChosenSize = (size_id) => { // сохранение фильтра по выбранному размеру
-     $scope.chosenFilter['size'] = size_id;
+
+    if( $scope.chosenFilter['size'] == size_id ) {
+      $scope.chosenFilter =  _.omit($scope.chosenFilter, ['size']);
+    } else {
+      $scope.chosenFilter['size'] = size_id;
+    }
+
   };
 
   $scope.setChosenColor = (color_id) => { // сохранение фильтра по выбранному размеру
-     $scope.chosenFilter['color'] = color_id;
+
+    if( $scope.chosenFilter['color'] == color_id ) {
+      $scope.chosenFilter =  _.omit($scope.chosenFilter, ['color']);
+    } else {
+      $scope.chosenFilter['color'] = color_id;
+    }
+
   };
 
   $scope.showResult = () => {
