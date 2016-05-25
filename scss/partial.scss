@@ -144,6 +144,8 @@
 
       div.holder {
         position: relative;
+        width: 10em;
+        height: 10em;
 
         .img {
           display: inline-block;
@@ -151,18 +153,20 @@
           //background: url("../img/slider1.jpg") center center no-repeat;
           background-size: 100% 100%;
           width: 10em;
-          height: 10em;
+          height: auto;
         }
 
         div.img {
           position: relative;
           border: 1px solid black;
           background: #fff;
+          width: 10em;
+          height: 10em;
 
           div.center {
             position: absolute;
             width: 50%;
-            height: 3em;
+            height: 4em;
             left: 0;
             right: 0;
             top: 0;

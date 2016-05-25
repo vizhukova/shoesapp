@@ -166,16 +166,38 @@ angular.module('starter.directives', [])
         scope.$watch('imgs', (newVal, oldVal) => {
 
           if (newVal) {
-            var mySwiper = new Swiper($(element).find('.swiper-container'), {
-              pagination: '.swiper-pagination',
-              paginationClickable: true,
-              loop: true
-              //preloadImages: true,
-              //updateOnImagesReady: true
+            $timeout(() => {
+
+              var mySwiper = new Swiper($(element).find('.swiper-container'), {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                loop: true
+              })
+
             })
+
           }
 
         });
+
+        function getSlideDataIndex(swipe){
+          var activeIndex = swipe.activeIndex;
+          var slidesLen = swipe.slides.length;
+          if(swipe.params.loop){
+              switch(swipe.activeIndex){
+                  case 0:
+                      activeIndex = slidesLen-3;
+                      break;
+                  case slidesLen-1:
+                      activeIndex = 0;
+                      break;
+                  default:
+                      --activeIndex;
+              }
+          }
+          return  activeIndex;
+      }
+
 
       }
     }
