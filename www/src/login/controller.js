@@ -4,6 +4,9 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
   $scope.recovery = false;
   $scope.user = {};
 
+  var isDisableButton = false;
+
+
   var popups = [
     {name: 'signinPopover', url: 'src/login/directives/signin.popover.html'},
     {name: 'signunPopover', url: 'src/login/directives/signun.popover.html'}
@@ -40,6 +43,7 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
       $scope.closeerrorModal = () => {
         modal.hide();
         modal.remove();
+        isDisableButton = false;
       }
 
       $scope.errorModal.show();
@@ -66,6 +70,10 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
 
   $scope.signIn = function() {
 
+    if(isDisableButton) return;
+
+     isDisableButton = true;
+
     User.signIn($scope.user).then((data) => {
 
       $scope.signinPopover.hide();
@@ -86,6 +94,10 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
   };
 
   $scope.signUp = function() {
+
+    if(isDisableButton) return;
+
+     isDisableButton = true;
 
     User.signUp($scope.user).then((data) => {
 
@@ -108,6 +120,10 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
   };
 
   $scope.forgotPassword = function() {
+
+    if(isDisableButton) return;
+
+    isDisableButton = true;
 
     User.forgotPassword($scope.user).then((data) => {
 
