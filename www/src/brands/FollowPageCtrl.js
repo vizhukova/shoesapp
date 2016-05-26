@@ -51,7 +51,7 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
       if(filterBy[key] == undefined) return key;
     }));
 
-     Brand.getFiltered(filterBy).then((brands) => {
+     Brand.getFullFiltered(filterBy).then((brands) => {
        $scope.brands = brands;
      });
 

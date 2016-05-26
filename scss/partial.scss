@@ -74,57 +74,7 @@
 
 }
 
-
-.recommend-slider {
-  width: 100%;
-  background-color: #fff;
-  margin: .6em 0;
-  position: relative;
-
-  .slider-header {
-    height: 4em;
-    line-height: 4em;
-    margin: 0;
-    text-align: center;
-    font-size: 17px;
-    letter-spacing: 0.2em;
-
-    &.red {
-      color: red;
-    }
-
-    &.blue {
-      color: #387EF5;
-    }
-
-    i:before {
-      font-size: 15px;
-    }
-  }
-
-  .subheader {
-    position: absolute;
-    top: 4em;
-    left: 0;
-    right: 0;
-    margin: auto;
-    font-style: italic;
-    text-transform: capitalize;
-    color: #3A3838;;
-  }
-
-  .postheader {
-    text-transform: none;
-    padding: 1em;
-  }
-
-  .line {
-    width: 25%;
-    border-top: solid 1px #D0CDCD;
-    margin: auto;
-
-
-  }
+.vertical-slider {
 
   .scrolling {
     height: 15em;
@@ -265,6 +215,60 @@
         }
       }
     }
+  }
+
+}
+
+
+.recommend-slider {
+  width: 100%;
+  background-color: #fff;
+  margin: .6em 0;
+  position: relative;
+
+  .slider-header {
+    height: 4em;
+    line-height: 4em;
+    margin: 0;
+    text-align: center;
+    font-size: 17px;
+    letter-spacing: 0.2em;
+
+    &.red {
+      color: red;
+    }
+
+    &.blue {
+      color: #387EF5;
+    }
+
+    i:before {
+      font-size: 15px;
+    }
+  }
+
+   @extend .vertical-slider;
+
+  .subheader {
+    position: absolute;
+    top: 4em;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-style: italic;
+    text-transform: capitalize;
+    color: #3A3838;;
+  }
+
+  .postheader {
+    text-transform: none;
+    padding: 1em;
+  }
+
+  .line {
+    width: 25%;
+    border-top: solid 1px #D0CDCD;
+    margin: auto;
   }
 }
 
@@ -786,7 +790,7 @@
   }
 }
 
-.category-popover {
+/*.category-popover {
   top:0;
   left:0;
   right:0;
@@ -833,7 +837,7 @@
       text-overflow: ellipsis;
     }
   }
-}
+}*/
 
 .promo-popover {
   top:20%;
@@ -1244,7 +1248,7 @@ button.join {
 
 
 .brand-follow {
- @extend .liked-slider;
+ @extend .vertical-slider;
 
   .content .brand-descr {
     width: 60% !important;

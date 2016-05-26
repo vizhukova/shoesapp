@@ -6,16 +6,6 @@ export default function ($stateParams, $scope, $state, $ionicPopover, $rootScope
   $scope.chosenBrands = []; //выбор бредов на главной страницы для подписки, если нет ни одного бренда, на который подписан пользователь
   $scope.chosenBrand = {};
 
-  console.log('$stateParams', $stateParams);
-
-  // if($stateParams.id) {
-  //
-  //  Brand.get({id: $stateParams.id}).then((data) => {
-  //    $scope.chosenBrand = data;
-  //  });
-  //
-  //}
-
    $scope.hasLiked = Brand.hasLiked();
 
   $scope.$watch('hasLiked', (newVal, oldVal) => {
@@ -26,10 +16,10 @@ export default function ($stateParams, $scope, $state, $ionicPopover, $rootScope
 
       $rootScope.showDoneButton(false);
 
-      Category.get().then((data) => {
-        $scope.cats = data;
-        $scope.chosenCategorId = data[0].id;
-      });
+      //Category.get().then((data) => {
+      //  $scope.cats = data;
+      //  $scope.chosenCategorId = data[0].id;
+      //});
 
       Brand.getLiked().then((data) => {
 

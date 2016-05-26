@@ -39,23 +39,12 @@
         height: 2px;
         border-radius: 3px;
         background: #000;
-        left: 0;
+        /*left: 0;*/
         -webkit-transition:all linear 0.5s;
         transition:all linear 0.5s;
         //transform: translate3d(0, 0, 0);
       }
     }
-  }
-
-  .scroll {
-    //height: 100%;
-
-    .header {
-      //height: 3em;
-
-    }
-
-
   }
 
 }

@@ -26,6 +26,8 @@ angular.module('starter.directives', [])
             item = $('.cat-item');
             container = $('.categories');
 
+            if(!Category.getActive()) $(underline).css({left: 0});
+
             var width = $(document).width() / newVal.length;
             width = width > 150 ? 150 : width;
 

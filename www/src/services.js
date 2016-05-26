@@ -330,51 +330,51 @@ angular.module('starter.services', [])
 
     };
 
-    //this.getFiltered =  (data) => {
-    //
-    //  var brands = {};
-    //
-    //  return new Promise((resolve, reject) => {
-    //
-    //    Common.get('brand.filter', data).then((b) => {
-    //
-    //      brands = b;
-    //
-    //      Promise.map(brands, (brand, index) => {
-    //
-    //        return Item.getFiltered({brandId: brand.id}).then((products, i) => {
-    //
-    //          brands[index].items = products;
-    //
-    //          return Category.get({brandId: brand.id}).then((data) => {
-    //
-    //            brands[index].categories = data;
-    //
-    //          }).then(() => {
-    //
-    //            if (products[0]) {
-    //
-    //              return Item.get({id: products[0].id}).then((product) => {
-    //
-    //                brands[index].items[0] = product;
-    //                brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
-    //
-    //              })
-    //            }
-    //
-    //          })
-    //        })
-    //
-    //      }).then(() => {
-    //
-    //        resolve(brands);
-    //
-    //      })
-    //
-    //    })
-    //
-    //  })
-    //};
+    this.getFullFiltered =  (data) => {
+
+      var brands = {};
+
+      return new Promise((resolve, reject) => {
+
+        this.getFiltered(data).then((b) => {
+
+          brands = b;
+
+          Promise.map(brands, (brand, index) => {
+
+            return Item.getFiltered({brandId: brand.id}).then((products, i) => {
+
+              brands[index].items = products;
+
+              return Category.get({brandId: brand.id}).then((data) => {
+
+                brands[index].categories = data;
+
+              }).then(() => {
+
+                if (products[0]) {
+
+                  return Item.get({id: products[0].id}).then((product) => {
+
+                    brands[index].items[0] = product;
+                    brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
+
+                  })
+                }
+
+              })
+            })
+
+          }).then(() => {
+
+            resolve(brands);
+
+          })
+
+        })
+
+      })
+    };
 
     this.getSales = (array) => {
 
@@ -523,7 +523,7 @@ angular.module('starter.services', [])
             return Promise.map(likedBrands, (brand) => {
 
               brand.isLiked = true;
-              Category.get({brandId: brand.id}).then((c) => {
+              return Category.get({brandId: brand.id}).then((c) => {
                 brand.categories = c;
               })
 
