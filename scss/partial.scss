@@ -1754,6 +1754,10 @@ button.join {
 
    .error-modal {
      @extend .modal;
+
+     .content {
+       overflow-y: hidden;
+     }
    }
 
    .full-screen-modal {
