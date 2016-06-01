@@ -1,36 +1,33 @@
-<ion-popover-view class="signun-popover">
+<ion-popover-view class="signup-popover">
 
  <ion-scroll direction="y" style="height: 100%;">
 
-    <div class="nav-panel">
-    <button ng-click="signunPopover.hide()" class="close-btn button button-icon icon ion-android-close"></button>
-    <span class="title">Sign-up</span>
-  </div>
-
   <div class="list signun-list">
     <label class="item item-input">
-      <input type="text" placeholder="First Name" ng-model="user.firstName">
+      <input type="text" placeholder="Имя" ng-model="user.firstName">
+    </label>
+    <label class="item item-input">
+      <input type="text" placeholder="Фамилия" ng-model="user.lastName">
     </label>
     <label class="item item-input">
       <input type="text" placeholder="Email" ng-model="user.email">
     </label>
     <label class="item item-input">
-      <input type="password" placeholder="Create Password" ng-model="user.password">
+      <input type="password" placeholder="Пароль" ng-model="user.password">
     </label>
   </div>
 
-   <span class="info">Password must contain at least 8 characters,
-      an uppercase letter, a lowercase letter and a number.</span>
+   <span class="info">Пароль должен содержать не меньше 8 символов.</span>
 
     <div class="footer">
-      <button class="button button-calm join" ng-click="signUp()">
-        JOIN SPRING
+      <button class="button button-calm join big-button" ng-click="signUp()">
+        Присоединиться
       </button>
       <p>or</p>
-      <button class="button icon-left ion-social-facebook-outline button-positive" ng-click="toShop()">
-        CONTINUE WITH FACEBOOK
+      <button class="button icon-left ion-social-facebook-outline button-positive big-button" ng-click="toShop()">
+        Войти через facebook
       </button>
-      <p class="terms">By joining you agree to our <span class="terms">Terms</span> & <span class="policy">Privacy Policy</span></p>
+      <p class="terms">Присоединяясь к нам вы соглашаетесь с <a href="#" class="terms">условиями</a> и <a href="#" class="policy">положениями</a></p>
     </div>
 
  </ion-scroll>

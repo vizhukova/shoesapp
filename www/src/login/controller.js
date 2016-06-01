@@ -26,11 +26,26 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User) {
       $scope.user = {};
     };
 
-    $scope[`close${popup.name}`] = ()=>{
+    //$scope[`close${popup.name}`] = ()=>{
+    //  $scope.closeRecovery();
+    //  $scope[popup.name].hide();
+    //};
+          console.log('!!!!!')
+
+
+    $scope.$on(`$destroy`, function() {
+      console.log('!!!!!')
       $scope.closeRecovery();
-      $scope[popup.name].hide();
-    };
+    });
   });
+
+  $scope.$on('signinPopover.hidden', function() {
+      console.log('!!!!!')
+      $scope.closeRecovery();
+    });$scope.$on('signinPopover.removed', function() {
+      console.log('!!!!!')
+      $scope.closeRecovery();
+    });
 
   $scope.openerrorModal = () => {
 

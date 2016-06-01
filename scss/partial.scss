@@ -1899,3 +1899,8 @@ button.join {
    }
 
   }
+
+ .big-button {
+   @extend .button;
+   text-transform: uppercase;
+ }

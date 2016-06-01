@@ -2,25 +2,21 @@
 
   <ion-scroll direction="y" style="height: 100%;">
 
-  <div class="panel">
-    <button ng-click="closesigninPopover()" class="close-btn button button-icon icon ion-android-close"></button>
-  </div>
-
   <div ng-if="!recovery">
     <div class="list">
       <label class="item item-input">
         <input type="text" placeholder="Email" ng-model="user.email">
       </label>
       <label class="item item-input">
-        <input type="password" placeholder="Password" ng-model="user.password">
+        <input type="password" placeholder="Пароль" ng-model="user.password">
       </label>
     </div>
     <button class="button button-clear button-light forgot" ng-click="openRecovery()">
-      Forgot Your Password?
+      Забыли пароль?
     </button>
     <br>
-    <button class="button button-dark sign" ng-click="signIn()">
-      SIGN INTO SPRING
+    <button class="button button-dark sign big-button" ng-click="signIn()">
+      Войти
     </button>
       <p class="terms"><span>Don't have an account?</span> <span class="guest-btn" ng-click="opensignunPopover()">Sign up</span></p>
   </div>
@@ -31,8 +27,8 @@
         <input type="text" placeholder="Email" ng-model="user.email">
       </label>
     </div>
-    <button class="button button-dark recover" ng-click="forgotPassword()">
-      RECOVER PASSWORD
+    <button class="button button-dark recover big-button" ng-click="forgotPassword()">
+      Восстановить пароль
     </button>
   </div>
 

@@ -22,7 +22,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
     Item.get({id: $stateParams.id}).then((data) => {
 
       $scope.item = data;
-      $('#slider').update(updateTranslate);
+      //$('#slider').update(updateTranslate);
 
       return Brand.get({id: data.brandId});
 

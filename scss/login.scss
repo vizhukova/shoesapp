@@ -48,51 +48,8 @@
 
   //Sign-in popover in showcase and login page
   .signin-popover {
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    height:100%;
-    width: 100%;
-    opacity: 1;
-    background: #fff;
-    margin: 0!important;
+    top:10% !important;
     text-align: center;
-
-    span.guest-btn {
-      color: #068DB3;
-      text-decoration: none !important;
-    }
-
-    div.popover-arrow {
-      display: none;
-    }
-
-    div.panel {
-      height: 4em;
-      background: #fff;
-      border-bottom: 2px solid #ececec;
-      position: relative;
-      line-height: 4em;
-
-
-      button.close-btn {
-        width: 30px;
-        height: 30px;
-        min-width: 30px;
-        min-height: 30px;
-        top: 0;
-        bottom: 0;
-        left: 15px;
-        z-index: 5;
-        margin: auto;
-        position: absolute;
-
-        &:before {
-          font-size: 18px;
-        }
-      }
-    }
 
     div.list {
       margin-bottom: 10px;
@@ -118,51 +75,11 @@
     }
   }
 
-  .signun-popover {
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    height:100%;
-    width: 100%;
-    opacity: 1;
-    background: #fff;
-    margin: 0!important;
+  .signup-popover {
+
+    @extend .popover;
+    top:10% !important;
     text-align: center;
-
-    div.popover-arrow {
-      display: none;
-    }
-
-    div.nav-panel {
-      height: 4em;
-      line-height: 4em;
-      background: #fff;
-      border-bottom: 2px solid #ececec;
-      position: relative;
-
-
-      button.close-btn {
-        width: 30px;
-        height: 30px;
-        min-width: 30px;
-        min-height: 30px;
-        top: 0;
-        bottom: 0;
-        left: 15px;
-        z-index: 5;
-        margin: auto;
-        position: absolute;
-
-        &:before {
-          font-size: 18px;
-        }
-      }
-
-      span.title {
-        font-size: 18px;
-      }
-    }
 
     div.signun-list {
       border-bottom: 1px solid #ddd;
@@ -189,14 +106,18 @@
         margin: 15px 0;
       }
 
-      p.terms {
-        margin: 27px 0 10px;
-
-        span {
-          text-decoration: underline;
-        }
       }
-    }
 
   }
+
+   p.terms {
+        margin: 27px 0 10px;
+
+        a {
+          text-decoration: underline;
+          color: #000;
+        }
+    }
+
+
 
