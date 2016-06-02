@@ -36,52 +36,27 @@
         font-size: 1.5em;
       }
 
-      .following, .follow {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 90px;
-        height: 30px;
-        line-height: 30px;
-        text-align: center;
-        border: 1px solid black;
-        border-radius: 7px;
-        font-size: 0.7em;
-        font-weight: 600;
-
-        p {
-          line-height: 2em;
-          height: 2em;
-          display: inline-block;
-          vertical-align: middle;
-        }
-
-        i {
-          font-size: 2em;
-        }
-      }
-
-      .following {
-        background: #000;
-        color: #fff;
-      }
-
-      .follow {
-        background: #fff;
-        color: #000;
-      }
-
       .more-info {
         position: absolute;
-        bottom: 1.3em;
+        bottom: 3.3em;
         left: 0;
         font-size: 0.8em;
         line-height: 0.9em;
         height: 0.9em;
         text-align: left;
+        color: #fff;
 
         .point {
           font-size: 0.5em;
+        }
+
+        p.short {
+          width: 21em;
+          line-height: 1em;
+          height: 4em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin: 0;
         }
 
       }
@@ -92,23 +67,6 @@
   }
 
   .to-category {
-    background: #fff;
     padding: 0 2em 0 1em;
-    margin: 0 -1em;
-
-    li {
-      border-bottom: solid 1px #DDDDDD;
-      text-align: left;
-      line-height: 3em;
-    }
-
-    i {
-      float: right;
-    }
-
-    .title {
-      font-weight: 600;
-    }
-
   }
 }

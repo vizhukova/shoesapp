@@ -4,7 +4,7 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
 
   $scope.animation = 'slide-in-up';
   $scope.chosenBrand = {};
-  $scope.categoryService = Category;
+  //$scope.categoryService = Category;
 
   $ionicHistory.nextViewOptions({
     disableBack: true
@@ -13,7 +13,6 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
   Category.get().then((data) => {
     $scope.cats = data;
     console.log('CATEGORIES', data)
-    //$scope.chosenCategoryId = data[0].id;
   });
 
   Brand.getFiltered().then((brands) => {
@@ -35,18 +34,18 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
 
   }
 
-  $scope.$watch('categoryService.getActive()', (newVal, oldVal) => {
-
-    if(newVal && newVal.id) {
-
-      return Category.getArrayTree(newVal.id).then((cats) => {
-        $scope.categoryTree = cats;
-        console.log('categoryTree', cats)
-        $scope.$digest();
-      });
-
-    }
-  });
+  //$scope.$watch('categoryService.getActive()', (newVal, oldVal) => {
+  //
+  //  if(newVal && newVal.id) {
+  //
+  //    return Category.getArrayTree(newVal.id).then((cats) => {
+  //      $scope.categoryTree = cats;
+  //      console.log('categoryTree', cats)
+  //      $scope.$digest();
+  //    });
+  //
+  //  }
+  //});
 
   $scope.goToBrand = (brand_id) => {
 

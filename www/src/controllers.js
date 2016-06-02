@@ -4,11 +4,11 @@ import BrandsCtrl from './brands/MainPageCtrl'
 import FollowPageCtrl from './brands/FollowPageCtrl'
 import ItemPageCtrl from './brands/ItemPageCtrl'
 import SearchCtrl from './search/controller'
-import MeCtrl from './me/controller'
+import MeCtrl from './me/MeCtrl'
 import LoginCtrl from './login/controller'
-import MeSettingsCtrl from './settings/controller'
-import MeSettingsPromoCtrl from './settings/promo/promo'
-import MeSettingsShowMeCtrl from './settings/showMe/showMe'
+import MeSettingsCtrl from './me/SettingsCtrl'
+import MeSettingsPromoCtrl from './me/promo/promo'
+import MeSettingsShowMeCtrl from './me/showMe/showMe'
 import AlertCtrl from './alerts/controller'
 import ProductsPageCtrl from './productsPage/controller'
 import _ from 'lodash';
@@ -106,7 +106,7 @@ angular.module('starter.controllers', [])
 
         Item.getFiltered({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
           $scope.sales = {
-            title: 'Sale',
+            title: 'Распродажа',
             sale: true,
             items: data
           };
@@ -114,14 +114,14 @@ angular.module('starter.controllers', [])
 
         Item.getFiltered({feature: 'new', sectionId: $scope.categoryId}).then((data) => {
           $scope.newArrivals = {
-            title: 'New Arrivals',
+            title: 'Новые поступления',
             items: data
           };
         });
 
         Item.getFiltered({feature: 'popular', sectionId: $scope.categoryId}).then((data) => {
           $scope.popular = {
-            title: 'Popular',
+            title: 'Популярные',
             items: data
           };
         });
@@ -129,7 +129,7 @@ angular.module('starter.controllers', [])
         Brand.getFiltered({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
 
           $scope.brandSales = {
-            title: 'Sale',
+            title: 'Распродажа',
             sale: true,
             items: data
           };
@@ -139,7 +139,7 @@ angular.module('starter.controllers', [])
         Brand.getFiltered({feature: 'new', sectionId: $scope.categoryId}).then((data) => {
 
           $scope.brandNewArrivals = {
-            title: 'New Arrivals',
+            title: 'Новые поступления',
             items: data
           };
         });
@@ -147,7 +147,7 @@ angular.module('starter.controllers', [])
         Brand.getFiltered({feature: 'popular', sectionId: $scope.categoryId}).then((data) => {
 
           $scope.brandPopular = {
-            title: 'Popular',
+            title: 'Популярные',
             items: data
           };
         });
@@ -217,7 +217,7 @@ angular.module('starter.controllers', [])
 
     $scope.searchStr = '';
     $scope.isSearchOnFocus = false;
-    $scope.placeholder = $scope.placeholder || "Search everything on site";
+    $scope.placeholder = $scope.placeholder || "Поиск товаров для покупки";
 
     $scope.onFocus = ($event) => {
 
@@ -307,6 +307,33 @@ angular.module('starter.controllers', [])
   .controller('AlertCtrl', AlertCtrl)
 
   .controller('ProductsPageCtrl', ProductsPageCtrl)
+
+  .controller('CategoryBarCtrl', function ($scope, $state, Category) {
+
+    $scope.$watch('categoryService.getActive()', (newVal, oldVal) => {
+
+      $scope.categoryService = Category;
+
+      $scope.click = $scope.click || $scope.toProducts;
+
+    if(newVal && newVal.id) {
+
+      return Category.getArrayTree(newVal.id).then((cats) => {
+        $scope.categories = cats;
+        console.log('categoryTree', cats)
+        $scope.$digest();
+      });
+
+    }
+
+    $scope.toProducts = (id) => {
+
+      $state.go("tab.brand-products", {sectionId: id});
+
+    };
+  });
+
+  })
 
 
 

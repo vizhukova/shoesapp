@@ -23,6 +23,29 @@ angular.module('starter', [
 
   .run(function ($rootScope) {
      $rootScope._ = window._;
+
+    $rootScope.declension = (num, expressions) => {
+        var result;
+        var count = num % 100;
+
+        if (count >= 5 && count <= 20) {
+            result = expressions['2'];
+        } else {
+            count = count % 10;
+            if (count == 1) {
+                result = expressions['0'];
+            } else if (count >= 2 && count <= 4) {
+                result = expressions['1'];
+            } else {
+                result = expressions['2'];
+            }
+        }
+
+        return result;
+    }
+
+
+
   })
 
   .run(function ($ionicPlatform) {
@@ -228,7 +251,7 @@ angular.module('starter', [
         cache: false,
         views: {
           'tab-me': {
-            templateUrl: 'src/settings/promo/template.html',
+            templateUrl: 'src/me/promo/template.html',
             controller: 'MeSettingsPromoCtrl'
           }
         }
@@ -239,7 +262,7 @@ angular.module('starter', [
         cache: false,
         views: {
           'tab-me': {
-            templateUrl: 'src/settings/showMe/template.html',
+            templateUrl: 'src/me/showMe/template.html',
             controller: 'MeSettingsShowMeCtrl'
           }
         }
@@ -249,7 +272,7 @@ angular.module('starter', [
         url: '/me/settings/:id',
         views: {
           'tab-me': {
-            templateUrl: 'src/settings/directives/staticPage.html',
+            templateUrl: 'src/me/directives/staticPage.html',
             controller: 'StaticPageCtrl'
           }
         }

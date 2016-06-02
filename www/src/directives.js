@@ -93,7 +93,7 @@ angular.module('starter.directives', [])
     }
   })
 
-  .directive('likedSlider', function () {
+  .directive('likedSlider', function ($rootScope) {
 
     return {
       scope: {
@@ -114,6 +114,11 @@ angular.module('starter.directives', [])
             scope.width = (1 + newValue.items.length) * 11 + 1 + 'em';
           }
         });
+
+
+        scope.declension = (num) => {
+          return $rootScope.declension(num, ['товар', 'товара', 'товаров']);
+        }
 
       }
     }
@@ -437,7 +442,7 @@ angular.module('starter.directives', [])
     }
   })
 
-  .directive('productRecommend', function () {
+  .directive('productRecommend', function ($rootScope) {
 
     return {
       scope: {
@@ -453,6 +458,9 @@ angular.module('starter.directives', [])
       link: (scope, element, attrs) => {
         scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
 
+        scope.declension = (num) => {
+          return $rootScope.declension(num, ['товар', 'товара', 'товаров']);
+        }
       }
 
     }
@@ -715,6 +723,28 @@ angular.module('starter.directives', [])
       controller: 'LoginCtrl',
       scope: {
         callback: '='
+      }
+    }
+  })
+
+  .directive('missSomething', function () {
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/login/directives/miss.something.html',
+      controller: 'LoginCtrl',
+      scope: {}
+    }
+  })
+
+  .directive('categoryBar', function () {
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'src/partial/category.bar.html',
+      controller: 'CategoryBarCtrl',
+      scope: {
+        click: '='
       }
     }
   })

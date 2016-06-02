@@ -1,17 +1,11 @@
 <div class="product-slider">
   <div class="title content-profile">
-    <div class="flag" ng-click="goToBrand(brand.id)">
-      <img src="{{::brand.icon}}" width="100%" height="100%" alt="">
+    <div class="flag" ng-click="goToBrand(item.brandId)">
+      <img src="{{::item.brandLogo}}" width="100%" height="100%" alt="">
     </div>
-    <p class="name" ng-click="goToBrand(brand.id)">{{::brand.name}}</p>
+    <p class="name" ng-click="goToBrand(item.brandId)">{{::item.brandName}}</p>
     <div class="mark">{{::item.time}}</div>
   </div>
-
- <!-- <ion-slide-box show-pager="true" does-continue="true" class="main-slider">
-    <ion-slide id="slider" ng-repeat="image in item.imgs track by $index"  >
-      <img src="{{::image}}" width="auto" height="85%" alt="">
-    </ion-slide>
-  </ion-slide-box>-->
 
   <big-slider imgs="item.imgs" ng-click="openfullScreenModal()"></big-slider>
 
@@ -20,7 +14,7 @@
     <p>{{::item.descShort}}</p>
     <div class="footer">
       <div class="left-data">
-        <div class="button data">
+        <!--<div class="button data">
           <div class="icon">
             <div>
               <i class="ion-cube"></i>
@@ -30,9 +24,9 @@
             <p class="title">Shipping data</p>
             <p class="description">some info</p>
           </div>
-        </div>
+        </div>-->
         <div class="button button-footer" ng-click="openbasketPopover()">
-            <em>Buy</em>
+            <em>Купить</em>
             <span>{{::item.price}} {{::item.currency}}</span>
         </div>
       </div>

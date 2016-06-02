@@ -1,3 +1,8 @@
+.tabs {
+  .tab-item {
+    text-transform: uppercase;
+  }
+}
 
 .main-slider {
   height: 24.5em;
@@ -104,6 +109,12 @@
           background-size: 100% 100%;
           width: 10em;
           height: auto;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
         }
 
         div.img {
@@ -115,7 +126,6 @@
 
           div.center {
             position: absolute;
-            width: 50%;
             height: 4em;
             left: 0;
             right: 0;
@@ -127,6 +137,7 @@
             span.all {
               padding-bottom: 2px;
               border-bottom: 1px solid #ddd;
+              word-wrap: normal;
             }
 
             span:not(.all) {
@@ -277,6 +288,7 @@
   width: 100%;
   background-color: #fff;
   margin: .6em 0;
+  padding: 1em 0;
   position: relative;
 
   .slider-header {
@@ -331,24 +343,28 @@
 
       div.holder {
         position: relative;
+        width: 10em;
+        height: 10em;
+        margin-bottom: 1em;
 
         .img {
           display: inline-block;
-          background-color: #eee;
-          //background: url("../img/slider1.jpg") center center no-repeat;
           background-size: 100% 100%;
-          width: 10em;
-          height: 10em;
+          width: 100%;
+          height: auto;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          margin: auto;
         }
 
         div.img {
-          position: relative;
           border: 1px solid black;
-          background: #fff;
 
           div.center {
             position: absolute;
-            width: 50%;
             height: 3em;
             left: 0;
             right: 0;
@@ -360,6 +376,7 @@
             span.all {
               padding-bottom: 2px;
               border-bottom: 1px solid #ddd;
+              word-wrap: normal;
             }
 
             span:not(.all) {
@@ -580,6 +597,12 @@
           background-size: 100% 100%;
           width: 100%;
           height: 100%;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
         }
 
         div.img {
@@ -589,7 +612,6 @@
 
           div.center {
             position: absolute;
-            width: 50%;
             height: 3em;
             left: 0;
             right: 0;
@@ -601,6 +623,7 @@
             span.all {
               padding-bottom: 2px;
               border-bottom: 1px solid #ddd;
+              word-wrap: normal;
             }
 
             span:not(.all) {
@@ -1096,8 +1119,14 @@
 
         .block {
           margin: 0;
-          line-height: 3em;
+          line-height: 3.3em;
+          padding-left: 1em;
           border-bottom: solid 1px lightgrey;
+
+          i {
+            float: right;
+          }
+
         }
 
         .main {
@@ -1187,6 +1216,7 @@
     float: left;
     text-align: center;
     border-bottom: 1px solid rgba(230, 221, 221, 0.87);
+    padding-bottom: 1.5em;
 
     &:nth-child(2n+3){
       clear: both;
@@ -1196,7 +1226,7 @@
       display: inline-block;
       height: 12em;
       width: 95%;
-      background-color: #eee;
+      background-color: #fff;
       //background: url("../img/slider1.jpg") center center no-repeat;
       background-size: 100% 100%;
       position: relative;
@@ -1216,6 +1246,15 @@
        .button-empty-like {
          color: #E6E1E1;
        }
+
+      img {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
 
     }
 
@@ -1904,3 +1943,59 @@ button.join {
    @extend .button;
    text-transform: uppercase;
  }
+
+ .to-category {
+    background: #fff;
+    padding: 0 2em;
+    margin: 0 -1em;
+
+    li {
+      border-bottom: solid 1px #DDDDDD;
+      text-align: left;
+      line-height: 3em;
+    }
+
+    i {
+      float: right;
+    }
+
+    .title {
+      font-weight: 600;
+    }
+
+ }
+
+ .following, .follow {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 7px;
+    font-size: 0.7em;
+    font-weight: 600;
+
+    p {
+      line-height: 2em;
+      height: 2em;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    i {
+      font-size: 2em;
+    }
+  }
+
+  .following {
+    background: #000;
+    color: #fff;
+  }
+
+  .follow {
+    background: #fff;
+    color: #000;
+  }

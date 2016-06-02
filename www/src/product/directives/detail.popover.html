@@ -1,12 +1,12 @@
 <ion-popover-view class="detail-popover">
 
   <div class="nav-panel">
-    <span class="title" >PRODUCT DETAILS</span>
+    <span class="title" >Детали товара</span>
   </div>
 
   <div class="product-detail">
     <div class="img">
-      <img src="{{item.imgs[0]}}" width="100%" height="auto" alt="">
+      <img src="{{item.img}}" width="100%" height="auto" alt="">
     </div>
     <p class="title">{{item.name}}</p>
     <p class="delivery"></p>
@@ -14,15 +14,15 @@
 
   <div class="body">
     <div class="button-bar">
-      <a class="button">DETAILS</a>
-      <a class="button">RETURNS</a>
+      <a class="button">Детали</a>
+      <a class="button">Возврат</a>
     </div>
     <div class="info">{{item.descLong}}</div>
   </div>
 
   <div class="footer">
     <button class="button button-clear button-positive" ng-click="detailPopover.hide()">
-      Close
+      Закрыть
     </button>
   </div>
 

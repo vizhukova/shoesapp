@@ -10,6 +10,29 @@
   margin: 0!important;
   padding: 1em 0;
 
+  div.header {
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 3em;
+
+    .text {
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .line {
+      background: #D2CECE;
+      height: 1px;
+      width: 2em;
+      margin: 0 auto;
+    }
+  }
+
+  .product-slider {
+    margin-top: 3em;
+  }
+
   .scroll {
     height: 90%;
   }
@@ -19,7 +42,6 @@
     width: 50%;
     left: 0;
     right: 0;
-    bottom: -25px;
     margin: auto;
     height: 50px;
     line-height: 50px;

@@ -7,7 +7,7 @@
           <img class="img" ng-src="{{::product.img}}">
           <div class="ribbon" ng-if="::product.ribbon"><h2>{{::product.ribbon}}</h2></div>
         </div>
-        <p class="brand">{{::product.brand || 'brand name'}}</p>
+        <p class="brand">{{::product.brandName}}</p>
         <p class="title">{{::product.name}}</p>
         <p class="cost">
           <span ng-class="product.discount ? 'price old' : 'price'">{{::product.price}} {{::product.currency}}</span>
@@ -18,8 +18,8 @@
         <div class="holder">
           <div class="img">
             <div class="center">
-              <span class="all">SHOP ALL</span><br>
-              <span>{{::widget.items.length}} <span>items</span></span>
+              <span class="all">Просмотреть все</span><br>
+              <span>{{::widget.items.length}} <span>{{::declension(widget.items.length)}}</span></span>
             </div>
           </div>
         </div>

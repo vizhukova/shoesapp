@@ -24,18 +24,12 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
       $scope.item = data;
       //$('#slider').update(updateTranslate);
 
-      return Brand.get({id: data.brandId});
-
-    }).then((brand) => {
-
-      $scope.brand = brand;
-      $scope.$digest();
-
       return Item.getFiltered({sectionId: $scope.item.sectionId});
 
     }).then((products) => {
 
       $scope.products = products;
+      $scope.$digest();
 
     }).catch((error) => {
 

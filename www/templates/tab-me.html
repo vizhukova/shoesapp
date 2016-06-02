@@ -7,7 +7,7 @@
     </ion-nav-buttons>-->
 
   <ion-nav-title>
-     ME
+     Я
      <button class="button nav-button" ng-click="toSettings()">
         <i class="icon ion-ios-gear-outline"></i>
     </button>
@@ -18,16 +18,16 @@
     <div class="me-tabs">
         <div class="link" ng-click="toOrders()">
             <i class="icon ion-cube"></i>
-            <p>Orders ({{::orderLength}})</p>
+            <p>Заказы ({{::orderLength}})</p>
         </div>
         <div class="link" ng-click="toBrands()">
             <i class="icon ion-ios-checkmark-outline"></i>
-            <p>Brands ({{::likedBrands.length}})</p>
+            <p>Бренды ({{::likedBrands.length}})</p>
         </div>
     </div>
 
       <div class="like-list">
-          <p>My loves ({{::likedProducts.length}})</p>
+          <p>Мне нравится ({{::likedProducts.length}})</p>
         <div>
           <showcase products="likedProducts"></showcase>
         </div>

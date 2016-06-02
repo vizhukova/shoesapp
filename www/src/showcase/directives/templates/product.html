@@ -7,7 +7,7 @@
       <i ng-if="! product.isLiked" ng-click="addLiked(product, $event)" class="ion-android-favorite-outline button-empty-like"></i>
       <i ng-if="product.isLiked" ng-click="removeLiked(product, $event)" class="ion-android-favorite-outline button-like"></i>
   </div>
-  <span class="mark"></span>
+  <span class="mark">{{::product.brandName}}</span>
   <span class="title">{{::product.name}}</span>
   <span class="cost">{{::product.price}} {{::product.currency}}</span>
 </div>

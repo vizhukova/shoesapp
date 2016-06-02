@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 export default function($scope, $timeout, $ionicPopover, $state, $stateParams, Brand, Item, Category, Size, Color) {
 
-  $scope.filterBy = ['Category', 'Size', 'Color'];
+  $scope.filterBy = ['Категория', 'Размер', 'Цвет'];
   $scope.chosenMenuItem = {};
   $scope.chosenFilter = {};   // для фильтрации
   $scope.animation = 'slide-in-up';
@@ -101,22 +101,22 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
     var nameToReturn;
 
     switch(name) {
-      case 'Category': if($scope.chosenFilter['sectionId']) {
+      case $scope.filterBy[0]: if($scope.chosenFilter['sectionId']) {
                         nameToReturn = _.find($scope.allCategories, {id: $scope.chosenFilter['sectionId']}).name;
                       }
                   break;
-      case 'Size': if($scope.chosenFilter['size']) {
+      case $scope.filterBy[1]: if($scope.chosenFilter['size']) {
                       nameToReturn = _.find($scope.sizes, {id: $scope.chosenFilter['size']}).name;
                     }
                   break;
-      case 'Color': if($scope.chosenFilter['color']) {
+      case $scope.filterBy[2]: if($scope.chosenFilter['color']) {
                       nameToReturn = _.find($scope.colors, {id: $scope.chosenFilter['color']}).name;
                     }
                   break;
 
     }
 
-    return nameToReturn || 'All';
+    return nameToReturn || 'Все';
   };
 
   $scope.getCategoryTree = ($event, category_id) => {  //получение нового дерева категорий и сохранение фильтра по выбранной категории
@@ -200,11 +200,11 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
 
       else if(filterObj.feature) {
         switch(filterObj.feature) {
-          case 'new':  title = 'New Arrival';
+          case 'new':  title = 'Новые поступления';
                 break;
-          case 'popular':  title = 'Popular';
+          case 'popular':  title = 'Популярные';
                 break;
-          case 'sale':  title = 'Sale';
+          case 'sale':  title = 'Распродажа';
                 break;
         }
 
