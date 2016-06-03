@@ -291,6 +291,10 @@
   padding: 1em 0;
   position: relative;
 
+  .ionic-scroll {
+    padding: 0.3em 0;
+  }
+
   .slider-header {
     height: 4em;
     line-height: 4em;
@@ -514,10 +518,9 @@
 
 .bigSlider {
   position: relative;
-  width: 100%;
+  width: auto;
   background-color: #fff;
-  margin: .6em 0;
-  padding: 0 1em 1em;
+  height: 18em;
 
   .swiper-container {
     width:  100%;
@@ -527,14 +530,44 @@
     .swiper-wrapper {
 
       .swiper-slide {
-        width: 100%;
+       /* width: 100% !important;*/
 
         img {
           height: auto;
-          width: auto;
-          padding: 2em;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
         }
       }
+    }
+  }
+
+}
+
+.bannerSlider {
+
+  @extend .bigSlider;
+
+  .titles {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    padding: 40% 0;
+
+    .titles__title {
+      font-size: 2em;
+      letter-spacing: 0.1em;
+      font-weight: 600;
     }
   }
 
@@ -1224,10 +1257,8 @@
 
     div.img {
       display: inline-block;
-      height: 12em;
       width: 95%;
       background-color: #fff;
-      //background: url("../img/slider1.jpg") center center no-repeat;
       background-size: 100% 100%;
       position: relative;
 
@@ -1246,15 +1277,6 @@
        .button-empty-like {
          color: #E6E1E1;
        }
-
-      img {
-        position: absolute;
-        margin: auto;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-      }
 
     }
 
@@ -1462,18 +1484,34 @@ button.join {
 }
 
 .basket-popover {
-  @extend .popover;
+  /*@extend .popover;
 
   top: 26%;
-  height: 500px;
+  height: 500px;*/
+  top: initial;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  opacity: 1;
+  background: #fff;
+  margin: 0 !important;
+
+  &.close-address {
+    height: 358px;
+  }
+
+  &.open-address {
+    height: 415px;
+  }
 
   &.chose-type {
     background: #F3F0F0 !important;
   }
 
   .nav-panel {
-    height: 2em;
-    line-height: 2em;
+    height: 30px;
+    line-height: 30px;
     background: #CCBF78;
     border-top: solid 2px #E5E5E5;
     color: #fff;
@@ -1489,28 +1527,32 @@ button.join {
     width: 45%;
   }
 
-  .details {
+  /*.details {
     width: 50%;
     text-align: right;
     text-overflow: ellipsis;
     overflow: hidden;
     height: 1.5em;
-  }
+  }*/
 
   .content {
-    padding: 1em;
+    padding: 14px;
     border-bottom: solid 1px #E5E5E5;
 
       .plus-icon {
-        font-size: 1.3em;
-        padding-left: 0.5em;
+        font-size: 17px;
+        padding-left: 5px;
       }
+  }
+
+  .increase {
+    height: 105px;
   }
 
    .comment {
      text-align: center;
-     font-size: 0.9em;
-     padding: 0.5em;
+     font-size: 11px;
+     padding: 6px;
      border-bottom: solid 1px #E5E5E5;
    }
 
@@ -1519,12 +1561,17 @@ button.join {
     color: #fff;
     width: 100%;
     text-transform: uppercase;
-    font-size: 1em;
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: 0.1em;
-    min-height: 1em;
-    height: 3.1em;
+    letter-spacing: 3px;
+    min-height: 42px;
+    height: 42px;
     border-radius: 0;
+  }
+
+  .left-text {
+    width: 40%;
+    text-align: right;
   }
 
 }

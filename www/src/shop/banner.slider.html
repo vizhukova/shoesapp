@@ -1,0 +1,18 @@
+<div class="bannerSlider">
+  <!-- Slider main container -->
+  <div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide" ng-repeat="obj in imgs track by $index">
+        <img ng-src="{{::obj.img}}" alt="">
+        <div class="titles">
+          <p class="titles__title">{{::obj.title}}</p>
+          <p>{{::obj.subTitle}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+</div>

@@ -295,7 +295,6 @@ angular.module('starter.services', [])
 
           Common.get('account.getLove').then((data) => {
 
-
               likes =  localStorageService.get('likedItems') || [];
 
               if(! data) {
@@ -798,6 +797,16 @@ angular.module('starter.services', [])
     this.get = (data) => {
 
       return Common.get('order.filter', data);
+
+    }
+
+  })
+
+  .service('Banner', function ($http, $q, URL, Common) {
+
+    this.getLogin = (data) => {
+
+      return Common.get('banner.filter/?where=signin', data);
 
     }
 

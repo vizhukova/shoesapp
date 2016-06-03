@@ -1,4 +1,13 @@
 
+ p.terms {
+    margin: 27px 0 10px;
+
+    a {
+      text-decoration: underline;
+      color: #000;
+    }
+}
+
 //Login page
 .Login {
   position: relative;
@@ -16,16 +25,21 @@
   div.footer {
     position: absolute;
     bottom: 10px;
-    //top: 33em;
     left: 0;
     right: 0;
     text-align: center;
 
     button {
       width: 95%;
+      font-size: 1em;
 
       &.join {
         margin-bottom: 1.5em;
+      }
+
+      i {
+        float: left;
+        font-size: 1.5em;
       }
     }
 
@@ -42,6 +56,14 @@
       color: #068DB3;
       text-decoration: none !important;
     }
+  }
+
+  .bannerSlider {
+    margin: 2em 0;
+  }
+
+  .sign-in-by {
+    position: relative;
   }
 
 }
@@ -73,6 +95,7 @@
       width: 90%;
       margin: auto;
     }
+
   }
 
   .signup-popover {
@@ -108,16 +131,13 @@
 
       }
 
+    p.terms {
+      margin: 0;
+    }
+
   }
 
-   p.terms {
-        margin: 27px 0 10px;
 
-        a {
-          text-decoration: underline;
-          color: #000;
-        }
-    }
 
 
 

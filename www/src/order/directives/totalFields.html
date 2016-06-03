@@ -2,11 +2,11 @@
 
   <div class="content">
     <span>Qty. x{{::basketData.size.price}}$</span>
-    <div class="pull-right">
-      <i class="ion-ios-minus-empty" ng-click="changeQuantityProduct(-1)"></i>
-      <span>{{basketData.quantity}}</span>
-      <i class="ion-ios-plus-empty" ng-click="changeQuantityProduct(1)"></i>
-    </div>
+    <span class="text-left">
+      <span class="pull-right"><i class="ion-ios-plus-empty" ng-click="changeQuantityProduct(1)"></i></span>
+       <span class="pull-right">{{basketData.quantity}}</span>
+      <span class="pull-right"><i class="ion-ios-minus-empty" ng-click="changeQuantityProduct(-1)"></i></span>
+    </span>
   </div>
 
   <div class="content">

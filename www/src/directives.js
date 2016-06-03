@@ -186,24 +186,76 @@ angular.module('starter.directives', [])
           }
 
         });
+      //
+      //  function getSlideDataIndex(swipe){
+      //    var activeIndex = swipe.activeIndex;
+      //    var slidesLen = swipe.slides.length;
+      //    if(swipe.params.loop){
+      //        switch(swipe.activeIndex){
+      //            case 0:
+      //                activeIndex = slidesLen-3;
+      //                break;
+      //            case slidesLen-1:
+      //                activeIndex = 0;
+      //                break;
+      //            default:
+      //                --activeIndex;
+      //        }
+      //    }
+      //    return  activeIndex;
+      //}
 
-        function getSlideDataIndex(swipe){
-          var activeIndex = swipe.activeIndex;
-          var slidesLen = swipe.slides.length;
-          if(swipe.params.loop){
-              switch(swipe.activeIndex){
-                  case 0:
-                      activeIndex = slidesLen-3;
-                      break;
-                  case slidesLen-1:
-                      activeIndex = 0;
-                      break;
-                  default:
-                      --activeIndex;
-              }
-          }
-          return  activeIndex;
+
       }
+    }
+  })
+
+  .directive('bannerSlider', function ($timeout) {
+
+    return {
+      scope: {
+        imgs: '=',
+        autoplay: '='
+      },
+      restrict: 'E',
+      replace: true,
+      templateUrl: './src/shop/banner.slider.html',
+      link: (scope, element, attrs) => {
+
+        scope.$watch('imgs', (newVal, oldVal) => {
+
+          if (newVal) {
+            $timeout(() => {
+
+              var mySwiper = new Swiper($(element).find('.swiper-container'), {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                loop: true
+              })
+
+            })
+
+          }
+
+        });
+
+      //  function getSlideDataIndex(swipe){
+      //    var activeIndex = swipe.activeIndex;
+      //    var slidesLen = swipe.slides.length;
+      //    if(swipe.params.loop){
+      //        switch(swipe.activeIndex){
+      //            case 0:
+      //                activeIndex = slidesLen-3;
+      //                break;
+      //            case slidesLen-1:
+      //                activeIndex = 0;
+      //                break;
+      //            default:
+      //                --activeIndex;
+      //        }
+      //    }
+      //    return  activeIndex;
+      //}
 
 
       }

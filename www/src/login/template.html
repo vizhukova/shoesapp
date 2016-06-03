@@ -1,6 +1,6 @@
 <ion-view hide-nav-bar="true">
 <div class="Login">
-  <ion-slide-box show-pager="true" does-continue="true" class="main-slider">
+  <!--<ion-slide-box show-pager="true" does-continue="true" class="main-slider">
     <ion-slide>
       <div class="img run"></div>
     </ion-slide>
@@ -10,15 +10,17 @@
     <ion-slide>
       <div class="img cas"></div>
     </ion-slide>
-  </ion-slide-box>
+  </ion-slide-box>-->
 
   <div class="footer">
+    <banner-slider imgs="banners"></banner-slider>
     <div class="sign-in-by">
-        <button class="button icon-left ion-social-facebook-outline button-positive big-button join" ng-click="toShop()">
-          Войти через facebook
+        <button class="button button-positive big-button join" ng-click="toShop()">
+          <i class="ion-social-facebook-outline"></i>
+          <span>Войти через facebook</span>
         </button>
         <button class="button button-calm big-button" ng-click="opensignunPopover()">
-          Присоединиться через email
+          <span>Присоединиться через email</span>
         </button>
         <p><span class="signin-btn" ng-click="opensigninPopover()">Войти</span> или <span ng-click="toShop()">Продолжить как гость</span></p>
     </div>

@@ -103,6 +103,10 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
      mod.show();
     }
 
+    $scope[`close${modal.name}`] = () => {
+     mod.hide();
+    }
+
     });
   });
 
@@ -122,6 +126,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
 
         $scope.sizes = s || [];
         $scope.basketData.size = $scope.sizes[0];
+        $scope.basketData.size.size = $scope.basketData.size.size.replace(/\s/g, '');
 
       });
 
