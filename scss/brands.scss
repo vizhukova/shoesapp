@@ -3,7 +3,6 @@
   $fontStrongColor: #8A8686;
   $fontMainColor: #4E4D4B;
 
-  //background-color: rgba(214, 214, 214, 0.33);
   background: #fff;
 
   em {
@@ -173,7 +172,7 @@
 
 
   .line-title {
-    background: #ECECEC;
+    background: $background;
     color: #8F8C8C;
     text-transform: uppercase;
     font-weight: 600;
@@ -252,7 +251,7 @@
 .brand-first-page {
 
   .container {
-    background: #DDDDDD;
+    background: $background;
     padding: 0.5em;
   }
 

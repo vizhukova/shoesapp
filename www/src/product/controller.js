@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
+export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordovaSocialSharing, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
 
   $scope.animation = 'slide-in-up';
   $scope.errors = {};
@@ -299,6 +299,12 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $state
 
   })
 
+  }
+
+
+  $scope.shareAnywhere = function(item) {
+                              /*socialType, message, image, link*/
+    $cordovaSocialSharing.share('', item.name, item.img, item.img);
   }
 
 }

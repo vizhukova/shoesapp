@@ -3,11 +3,11 @@
     <div class="scrolling" ng-style="{width: width}">
       <div class="thing" ng-repeat="brand in items track by $index">
         <div class="holder" ng-click="goto(brand.id)">
-          <img class="img" ng-src={{::brand.img}}>
+          <img class="img" ng-src={{::brand.img}} />
         </div>
       </div>
       <div class="thing">
-        <div class="holder" ng-click="gotofollowpage()">
+        <div class="holder plus-button" ng-click="gotofollowpage()">
           <div class="img">
             <div class="center">
               <i class="ion-ios-plus-empty more"></i>

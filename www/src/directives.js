@@ -210,12 +210,13 @@ angular.module('starter.directives', [])
     }
   })
 
-  .directive('bannerSlider', function ($timeout) {
+  .directive('bannerSlider', function ($timeout, $state) {
 
     return {
       scope: {
         imgs: '=',
-        autoplay: '='
+        autoplay: '=',
+        isclickable: '='
       },
       restrict: 'E',
       replace: true,
@@ -224,9 +225,8 @@ angular.module('starter.directives', [])
 
         scope.$watch('imgs', (newVal, oldVal) => {
 
-          if (newVal) {
+          if (newVal && newVal.length > 0) {
             $timeout(() => {
-
               var mySwiper = new Swiper($(element).find('.swiper-container'), {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
@@ -238,6 +238,14 @@ angular.module('starter.directives', [])
           }
 
         });
+
+
+        scope.click = (item) => {
+          if(scope.isclickable) {
+            $state.go('tab.shop-products', item);
+          }
+        };
+
 
       //  function getSlideDataIndex(swipe){
       //    var activeIndex = swipe.activeIndex;

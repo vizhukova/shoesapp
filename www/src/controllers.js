@@ -87,9 +87,10 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, Category, Item, Brand) {
+  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, Category, Item, Brand, Banner) {
 
     $scope.categoryId;
+    $scope.mainBanners = [];
 
     $scope.categoryService = Category;
 
@@ -97,12 +98,16 @@ angular.module('starter.controllers', [])
       $scope.categories = data;
     });
 
-
      $scope.$watch('categoryService.getActive()', (newVal) => {
 
       if(newVal) {
 
         $scope.categoryId = newVal.id;
+
+        Banner.getLogin().then((data) => {
+          $scope.mainBanners = data;
+          $scope.$digest();
+        });
 
         Item.getFiltered({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
           $scope.sales = {
@@ -110,6 +115,8 @@ angular.module('starter.controllers', [])
             sale: true,
             items: data
           };
+
+          $scope.$digest();
         });
 
         Item.getFiltered({feature: 'new', sectionId: $scope.categoryId}).then((data) => {
@@ -117,6 +124,8 @@ angular.module('starter.controllers', [])
             title: 'Новые поступления',
             items: data
           };
+
+          $scope.$digest();
         });
 
         Item.getFiltered({feature: 'popular', sectionId: $scope.categoryId}).then((data) => {
@@ -124,6 +133,8 @@ angular.module('starter.controllers', [])
             title: 'Популярные',
             items: data
           };
+
+          $scope.$digest();
         });
 
         Brand.getFiltered({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
@@ -133,6 +144,7 @@ angular.module('starter.controllers', [])
             sale: true,
             items: data
           };
+          $scope.$digest();
           console.log('brandSales', data)
         });
 
@@ -142,6 +154,7 @@ angular.module('starter.controllers', [])
             title: 'Новые поступления',
             items: data
           };
+          $scope.$digest();
         });
 
         Brand.getFiltered({feature: 'popular', sectionId: $scope.categoryId}).then((data) => {
@@ -150,6 +163,7 @@ angular.module('starter.controllers', [])
             title: 'Популярные',
             items: data
           };
+          $scope.$digest();
         });
 
       }

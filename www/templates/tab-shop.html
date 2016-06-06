@@ -1,18 +1,38 @@
 <ion-view view-title="Магазин" class="Shop" hide-back-button="true">
 
-  <ion-nav-buttons side="left">
-      <button class="button" ng-click="goToAlerts()">
-          <i class="icon ion-ios-bell-outline"></i>
+  <ion-scroll direction="y" style="height: 100%">
+
+    <ion-nav-buttons side="left">
+        <button class="button" ng-click="goToAlerts()">
+            <i class="icon ion-ios-bell-outline"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader">
+       <!--<miss-something></miss-something>-->
+      <categories cats="categories" activeCat="activeCategoryId"></categories>
+    </div>
+
+    <ion-content scroll-sista="header" class="has-subheader">
+
+      <banner-slider imgs="mainBanners" isClickable="true"></banner-slider>
+
+      <button class="button by-cat-btn big-button" ng-click="openPopover()">
+        Просмотр по категориям
       </button>
-  </ion-nav-buttons>
 
-  <div class="bar bar-subheader">
-     <!--<miss-something></miss-something>-->
-    <categories cats="categories" activeCat="activeCategoryId"></categories>
-  </div>
+      <liked-slider  title-click="goToProducts" title-click-param="{feature: 'sale', sectionId: categoryId}" widget="sales"></liked-slider>
+      <liked-slider  title-click="goToProducts" title-click-param="{feature: 'new', sectionId: categoryId}" widget="newArrivals"></liked-slider>
+      <liked-slider  title-click="goToProducts" title-click-param="{feature: 'popular', sectionId: categoryId}" widget="popular"></liked-slider>
 
-  <ion-content scroll-sista="header" class="has-subheader">
-    <category-content></category-content>
-    <category-bar></category-bar>
-  </ion-content>
+      <gallery-slider title-click="goToBrands" title-click-param="{feature: 'sale'}" item-click="goToBrand" widget="brandSales"></gallery-slider>
+      <gallery-slider title-click="goToBrands" title-click-param="{feature: 'new'}" item-click="goToBrand" widget="brandNewArrivals"></gallery-slider>
+      <gallery-slider title-click="goToBrands" title-click-param="{feature: 'popular'}" item-click="goToBrand" widget="brandPopular"></gallery-slider>
+
+
+      <category-bar></category-bar>
+    </ion-content>
+
+  </ion-scroll>
+
 </ion-view>

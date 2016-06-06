@@ -104,8 +104,7 @@
 
         .img {
           display: inline-block;
-          background-color: #eee;
-          //background: url("../img/slider1.jpg") center center no-repeat;
+          background-color: $background;
           background-size: 100% 100%;
           width: 10em;
           height: auto;
@@ -552,6 +551,9 @@
 
   @extend .bigSlider;
 
+  overflow-x: hidden;
+  overflow-y: hidden;
+
   .titles {
     position: absolute;
     top: 0;
@@ -810,14 +812,14 @@
   }
 }
 
-.category-content {
+/*.category-content {
   .by-cat-btn {
     margin: .6em;
     width: 90%;
     background-color: #fff;
     border: 1px solid rgba(155, 155, 155, 0.33);
   }
-}
+}*/
 
 .category-menu {
   text-align: left;
@@ -1355,15 +1357,33 @@ button.join {
 .brand-list {
   @extend .liked-slider;
 
+  .img {
+
+  }
+
   .scrolling, .brand-follow .scrolling, .brand-list .scrolling {
     height: 4.5em;
     margin: 1em 0;
   }
 
-  .scrolling div.thing div.holder .img, .scrolling div.thing div.holder, .scrolling div.thing {
+  .scrolling div.thing div.holder, .scrolling div.thing {
     width: 4.5em ;
     height: 4.5em;
   }
+
+  .scrolling div.thing div.holder{
+    background: $background;
+  }
+
+  .scrolling div.thing div.holder.plus-button{
+    background: #fff;
+  }
+
+   .scrolling div.thing div.holder .img {
+     width: 4em;
+     height: auto;
+
+   }
 
   .scrolling div.thing {
      margin: 0 0 0 0.5em;

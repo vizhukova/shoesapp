@@ -16,7 +16,8 @@ angular.module('starter', [
   'starter.directives',
   'starter.config',
   //'jett.ionic.scroll.sista',
-  'LocalStorageModule'
+  'LocalStorageModule',
+  'ngCordova'
 ])
 
   .constant('_', window._)
@@ -116,23 +117,12 @@ angular.module('starter', [
       })
 
       .state('tab.shop-products', {
-        url: '/shop/products/?feature&sectionId',
+        url: '/shop/products/?feature&sectionId&brandId',
         cache: false,
         views: {
           'tab-shop': {
             templateUrl: 'src/brands/tabs/brand.products.html',
             controller: 'ProductsPageCtrl'
-          }
-        }
-      })
-
-      .state('tab.showcase', {
-        url: '/showcase',
-        cache: false,
-        views: {
-          'tab-shop': {
-            templateUrl: 'templates/subtab-showcase.html',
-            controller: 'ShowcaseCtrl'
           }
         }
       })

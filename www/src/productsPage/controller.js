@@ -6,8 +6,10 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   $scope.chosenMenuItem = {};
   $scope.chosenFilter = {};   // для фильтрации
   $scope.animation = 'slide-in-up';
+  $scope.products = []; // массив продуктов
   var chosenCategory = {}; //для отображения дерева категорий
   var oldChosenFilter = {}; //для сохранения старого состояния объекта фильтрации
+  var page = 0; // текущая просматриваемая страница
 
   var filterObj = _.omit($stateParams, Object.keys($stateParams).map((key) => {
     if($stateParams[key] == undefined) return key;
@@ -17,6 +19,8 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
      console.log('searchPhrase', $stateParams.q)
     $scope.searchPhrase = $stateParams.q;
   }
+
+  Item.resetNav();
 
   getTitle().then((title) => {
     $scope.tabTitle = title;
@@ -39,9 +43,7 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
     $scope.allCategories = data;
   })
 
-  Item.getFiltered(filterObj).then((data) => {
-    $scope.products = data;
-  });
+
 
 
   //данные для тестирования отображения дерева категори й
@@ -233,14 +235,33 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
 
   $scope.filter = () => {
     var filterBy = {};
-    _.assign(filterBy, filterObj, $scope.chosenFilter);
+    _.assign(filterBy, filterObj, $scope.chosenFilter, {page: page});
 
-     Item.getFiltered(filterBy).then((data) => {
+     Item.getFilteredNav(filterBy).then((data) => {
       $scope.products = data;
       console.log('products', data)
       $scope.$digest();
     });
 
+    page = 0;
+    Item.resetNav();
+
+    //$scope.loadMore(true);
+
+  };
+
+  $scope.loadMore = () => {
+    page ++;
+
+    var filterBy = {};
+
+    filterBy = _.assign({}, filterObj, {page: page});
+
+    Item.getFilteredNav(filterBy).then((data) => {
+      $scope.products = _.concat($scope.products, data);
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+      //console.log('getFilteredNav',  $scope.products)
+    });
   }
 
 }

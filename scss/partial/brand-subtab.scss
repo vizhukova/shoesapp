@@ -5,7 +5,7 @@
     background-size: contain;
     border-bottom: 1px solid  #DDDDDD;
     position: relative;
-    background: #DDDDDD;
+    background: $background;
 
     .details {
       height: calc(100% - 2em);

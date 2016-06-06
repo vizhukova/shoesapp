@@ -80,7 +80,8 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-         Common.get('section.filter', data).then((c) => {
+         Common.get('section.filter', data).then((data) => {
+           var c = data.result;
            categories = c.filter((item) => {
 
              if(item.deptLevel === '1') return item;
@@ -122,7 +123,8 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-         Common.get('section.filter', data).then((c) => {
+         Common.get('section.filter', data).then((data) => {
+           var c = data.result;
            categories = c.filter((item) => {
               return item;
            });
@@ -217,6 +219,7 @@ angular.module('starter.services', [])
   .service('Item', function ($http, $q, URL, Common, Server,  localStorageService) {
 
     var likes = [];
+    var nav;
 
     this.getFiltered = function (data) {
 
@@ -225,19 +228,58 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-        Common.get('item.filter', data).then((items) => {
+          Common.get('item.filter', data).then((data) => {
 
-          items = items || [];
+            var items = data.result || [];
 
-          items.map((item) => {
-            if(item) {
-              item.isLiked = likes.indexOf(item.id) > -1;
-            }
-          });
+            items.map((item) => {
+              if(item) {
+                item.isLiked = likes.indexOf(item.id) > -1;
+              }
+            });
 
-          resolve(items);
+            resolve(items);
 
-        })
+          })
+
+      });
+
+    };
+
+    this.resetNav = () => {
+      nav = undefined;
+    };
+
+    this.getFilteredNav = function (data) {
+
+      data = data || {};
+      likes =  localStorageService.get('likedItems') || [];
+
+      return new Promise((resolve, reject) => {
+
+        debugger
+        if(nav && nav.pageCurrent >= nav.pageCount && data.page >= nav.pageCount) {
+
+          resolve([]);
+
+        } else {
+
+          Common.get('item.filter', data).then((data) => {
+
+            var items = data.result || [];
+            nav = data.nav || {};
+
+            items.map((item) => {
+              if(item) {
+                item.isLiked = likes.indexOf(item.id) > -1;
+              }
+            });
+
+            resolve(items);
+
+          })
+
+        }
 
       });
 
@@ -251,7 +293,8 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-         Common.get('item.get', data).then((item) => {
+         Common.get('item.get', data).then((data) => {
+           var item = data.result;
            if(item)  {
 
              item.isLiked = likes.indexOf(item.id) > -1;
@@ -295,10 +338,12 @@ angular.module('starter.services', [])
 
           Common.get('account.getLove').then((data) => {
 
+            var result = data.result;
+
               likes =  localStorageService.get('likedItems') || [];
 
-              if(! data) {
-                likes.concat( _.difference(likes, data) );
+              if(! result) {
+                likes.concat( _.difference(likes, result) );
               }
 
               var likedProduct = products.filter((item) => likes.indexOf(item.id) > -1);
@@ -325,7 +370,13 @@ angular.module('starter.services', [])
 
     this.getFiltered = (data) => {
 
-      return Common.get('brand.filter', data);
+      return new Promise((resolve, reject) => {
+        Common.get('brand.filter', data).then((data) => {
+          resolve(data.result);
+        }).catch((error) => {
+          reject(error);
+        })
+      })
 
     };
 
@@ -436,8 +487,9 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-        Common.get('brand.filter', {feature: 'popular'}).then((b) => {
+        Common.get('brand.filter', {feature: 'popular'}).then((data) => {
 
+          var b = data.result;
           brands = b;
 
           Promise.map(brands, (brand, index) => {
@@ -464,7 +516,9 @@ angular.module('starter.services', [])
     this.get = (data) => {
 
       return new Promise((resolve, reject) => {
-         Common.get('brand.get', data).then((brand) => {
+         Common.get('brand.get', data).then((data) => {
+
+           var brand = data.result;
 
           if(brand) {
             brand.isLiked = likes.indexOf(brand.id) > -1;
@@ -509,10 +563,12 @@ angular.module('starter.services', [])
 
           Common.get('account.getBrandFollow').then((data) => {
 
+            var result = data.result;
+
               likes =  localStorageService.get('likedBrands') || [];
 
-              if(! data) {
-                likes.concat( _.difference(likes, data) );
+              if(! result) {
+                likes.concat( _.difference(likes, result) );
               }
 
               likedBrands = brands.filter((item) => likes.indexOf(item.id) > -1);
@@ -580,7 +636,13 @@ angular.module('starter.services', [])
 
       data = data || {};
 
-      return Common.get('shop.staticPage', data);
+      return new Promise((resolve, reject) => {
+        Common.get('shop.staticPage', data).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
     };
 
     this.getSexObj =  () => {
@@ -615,7 +677,13 @@ angular.module('starter.services', [])
 
       data = data || {};
 
-      return Common.get('alert.filter', data);
+      return new Promise((resolve, reject) => {
+        Common.get('alert.filter', data).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
     }
 
   })
@@ -626,12 +694,24 @@ angular.module('starter.services', [])
 
       data = data || {};
 
-      return Common.get('item.getSize', data);
+      return new Promise((resolve, reject) => {
+        Common.get('item.getSize').then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
     }
 
     this.get = function() {
 
-      return Common.get('reference.getSize');
+      return new Promise((resolve, reject) => {
+        Common.get('reference.getSize').then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
 
     }
 
@@ -641,7 +721,13 @@ angular.module('starter.services', [])
 
     this.get = function() {
 
-      return Common.get('reference.getColor');
+      return new Promise((resolve, reject) => {
+       Common.get('reference.getColor').then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
 
     }
 
@@ -657,8 +743,9 @@ angular.module('starter.services', [])
 
         Common.get('account.getAddress', data).then((data) => {
 
+          var result = data.result;
           var response = [];
-          if(data) response.push(data);
+          if(result) response.push(result);
 
           resolve(response);
 
@@ -717,14 +804,28 @@ angular.module('starter.services', [])
 
       data = data || {};
 
-      return Common.get('shop.getLocationByZip', data);
+      return new Promise((resolve, reject) => {
+       Common.get('shop.getLocationByZip', data).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
+
     };
 
     this.getbyName = function (data) {
 
       data = data || {};
 
-      return Common.get('shop.getLocationByName', data);
+      return new Promise((resolve, reject) => {
+      Common.get('shop.getLocationByName', data).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
+
     };
 
   })
@@ -735,7 +836,14 @@ angular.module('starter.services', [])
 
         data = data || {};
 
-        return Common.get('shop.getDelivery', data);
+        return new Promise((resolve, reject) => {
+         Common.get('shop.getDelivery', data).then((data) => {
+            resolve(data.result);
+          }).catch((err) => {
+            reject(err);
+          })
+        })
+
       };
 
     })
@@ -746,7 +854,13 @@ angular.module('starter.services', [])
 
         data = data || {};
 
-        return Common.get('shop.getPayment', data);
+        return new Promise((resolve, reject) => {
+         Common.get('shop.getPayment', data).then((data) => {
+            resolve(data.result);
+          }).catch((err) => {
+            reject(err);
+          })
+        })
       };
 
     })
@@ -757,7 +871,13 @@ angular.module('starter.services', [])
 
       str = str || '';
 
-      return Common.get('item.filter', {q: str});
+      return new Promise((resolve, reject) => {
+        Common.get('item.filter', {q: str}).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
     };
 
   })
@@ -796,7 +916,13 @@ angular.module('starter.services', [])
 
     this.get = (data) => {
 
-      return Common.get('order.filter', data);
+      return new Promise((resolve, reject) => {
+       Common.get('order.filter', data).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
 
     }
 
@@ -806,7 +932,28 @@ angular.module('starter.services', [])
 
     this.getLogin = (data) => {
 
-      return Common.get('banner.filter/?where=signin', data);
+      return new Promise((resolve, reject) => {
+       Common.get('banner.filter', {where: 'signin'}).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
+
+    }
+
+    this.getMain = (data) => {
+
+      var filterBy = data || {};
+      _.assign(filterBy, {where: 'main'});
+
+      return new Promise((resolve, reject) => {
+       Common.get('banner.filter', filterBy).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
 
     }
 
@@ -828,7 +975,7 @@ angular.module('starter.services', [])
           return undefined;
 
         } else {
-          return dataToReturn.data;
+          return {result: dataToReturn.data, nav: dataToReturn.nav};
 
         }
       } else {
@@ -843,7 +990,8 @@ angular.module('starter.services', [])
 
       cache[key] = {
         data: data.result,
-        endTime: moment().add(data.ttl, 's')
+        endTime: moment().add(data.ttl, 's'),
+        nav: data.nav
       }
 
     };
@@ -944,14 +1092,15 @@ angular.module('starter.services', [])
 
         });
 
-        var items = Cache.get(url);
+        var dataToReturn = Cache.get(url);
 
-        if (!items) {
+        if (!dataToReturn) {
 
           Server.fetch(url).then((data) => {
 
             Cache.set(url, data);
-            resolve(data.result);
+             console.log('Server format', {result: data.result, nav: data.nav})
+            resolve({result: data.result, nav: data.nav});
 
           }).catch((err) => {
 
@@ -960,7 +1109,8 @@ angular.module('starter.services', [])
           })
 
         } else {
-          resolve(items);
+          console.log('Cache format', dataToReturn)
+          resolve(dataToReturn);
         }
 
       })

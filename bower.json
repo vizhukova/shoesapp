@@ -8,6 +8,7 @@
   "dependencies": {
     "jquery": "^2.2.4",
     "ionic-scroll-sista": "~1.0.7",
-    "swiper": "~3.3.1"
+    "swiper": "~3.3.1",
+    "ngCordova": "~0.1.26-alpha"
   }
 }
