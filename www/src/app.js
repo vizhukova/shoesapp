@@ -186,7 +186,7 @@ angular.module('starter', [
         cache: false,
         views: {
           'tab-brands': {
-            templateUrl: 'src/brands/subtabs/brand-follow-page.html',
+            templateUrl: 'src/brands/tabs/brand-follow-page.html',
             controller: 'FollowPageCtrl'
           }
         }

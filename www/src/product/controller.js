@@ -36,19 +36,6 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
     })
   }
 
-  //$scope.$watch('item', (newVal, oldVal) => {
-  //
-  //  if(newVal && newVal.id) {
-  //
-  //    Size.getByItem({id: newVal.id}).then((s) => {
-  //
-  //    $scope.sizes = s || [];
-  //    $scope.basketData.size = $scope.sizes[0];
-  //
-  //  });
-  //  }
-  //
-  //});
 
   $scope.goToBrand = (brand_id) => {
 
@@ -121,16 +108,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
     if(isLogIn) {
 
       $scope['basketPopover'].show();
-
-      Size.getByItem({id: $scope.item.id}).then((s) => {
-
-        $scope.sizes = s || [];
-        $scope.basketData.size = $scope.sizes[0];
-        $scope.basketData.size.size = $scope.basketData.size.size.replace(/\s/g, '');
-
-      });
-
-      getAddressData();
+      afterShowBasket();
 
     } else {
 
@@ -141,16 +119,12 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
 
   };
 
-  //$ionicModal.fromTemplateUrl('./src/login/directives/error.modal.html', {
-  //  scope: $scope
-  //}).then(function(modal) {
-  //  $scope.modal = modal;
-  //});
-
   $scope.loginCallback = () => {
 
     $scope['login'].hide();
     $scope['basketPopover'].show();
+
+    afterShowBasket();
 
   };
 
@@ -299,8 +273,19 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
 
   })
 
-  }
+  };
 
+  function afterShowBasket() {
+    Size.getByItem({id: $scope.item.id}).then((s) => {
+
+      $scope.sizes = s || [];
+      $scope.basketData.size = $scope.sizes[0];
+      $scope.basketData.size.size = $scope.basketData.size.size.replace(/\s/g, '');
+
+    });
+
+   getAddressData();
+  }
 
   $scope.shareAnywhere = function(item) {
                               /*socialType, message, image, link*/

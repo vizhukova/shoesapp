@@ -438,7 +438,7 @@ angular.module('starter.services', [])
 
               brandsArr[index].items = products;
               brandsArr[index].sale = true;
-              brandsArr[index].title = 'Sale';
+              brandsArr[index].title = 'Распродажа';
 
             })
 
@@ -465,7 +465,7 @@ angular.module('starter.services', [])
             return Item.getFiltered({feature: 'sales', brandId: brand.id}).then((products) => {
 
               brandsArr[index].items = products;
-              brandsArr[index].title = 'New Arrivals';
+              brandsArr[index].title = 'Новые поступления';
 
             })
 
@@ -695,7 +695,7 @@ angular.module('starter.services', [])
       data = data || {};
 
       return new Promise((resolve, reject) => {
-        Common.get('item.getSize').then((data) => {
+        Common.get('item.getSize', data).then((data) => {
           resolve(data.result);
         }).catch((err) => {
           reject(err);

@@ -96,6 +96,7 @@ angular.module('starter.controllers', [])
 
     Category.get().then((data) => {
       $scope.categories = data;
+      $scope.$digest();
     });
 
      $scope.$watch('categoryService.getActive()', (newVal) => {

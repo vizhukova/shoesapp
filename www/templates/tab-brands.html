@@ -21,11 +21,12 @@
       <div class="line-title">
         <span>Latest updates</span>
 
-       <product-recommend
+       <product-recommend ng-repeat="brand in brandSales" title-click="toBrandProducts" title-click-param="{feature: 'sale'}" widget="brand"></product-recommend>
+       <!--<product-recommend
           ng-repeat="brand in brandSales" click="toBrandProducts" paramsToClick="{feature: 'sale'}" widget="brand"></product-recommend>
 
         <product-recommend
-          ng-repeat="brand in newArrivals" click="toBrandProducts" paramsToClick="{feature: 'new'}" widget="brand"></product-recommend>
+          ng-repeat="brand in newArrivals" click="toBrandProducts" paramsToClick="{feature: 'new'}" widget="brand"></product-recommend>-->
 
         <buy-product item="brand.items[0]" brand="brand" ng-repeat="brand in brands"></buy-product>
 

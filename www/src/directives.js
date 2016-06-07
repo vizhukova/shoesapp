@@ -142,14 +142,16 @@ angular.module('starter.directives', [])
 
 
           if (newVal) {
-            var mySwiper = new Swiper($(element).find('.swiper-container'), {
-              // Optional parameters
-              direction: 'horizontal',
-              slidesPerView: 'auto',
-              centeredSlides: true,
-              spaceBetween: 7,
-              loop: true
-            })
+            $timeout(() => {
+              var mySwiper = new Swiper($(element).find('.swiper-container'), {
+                // Optional parameters
+                direction: 'horizontal',
+                slidesPerView: 'auto',
+                centeredSlides: true,
+                spaceBetween: 7,
+                loop: true
+              })
+            });
           }
 
         });
@@ -504,11 +506,39 @@ angular.module('starter.directives', [])
 
   .directive('productRecommend', function ($rootScope) {
 
+    //return {
+    //  scope: {
+    //    widget: '=',
+    //    click: '=',
+    //    paramstoclick: '='
+    //  },
+    //  restrict: 'E',
+    //  replace: true,
+    //  templateUrl: './src/brands/directives/product.recommend.html',
+    //  controller: 'ShowcaseCtrl',
+    //
+    //  link: (scope, element, attrs) => {
+    //
+    //    // Width of scrollable area depend on count items
+    //    scope.$watch('widget', function (newValue, oldValue) {
+    //      if (newValue && newValue.items) {
+    //        scope.width = (1 + newValue.items.length) * 11 + 1 + 'em';
+    //      }
+    //    });
+    //
+    //
+    //    scope.declension = (num) => {
+    //      return $rootScope.declension(num, ['товар', 'товара', 'товаров']);
+    //    }
+    //
+    //  }
+    //}
+
     return {
       scope: {
         widget: '=',
-        click: '=',
-        paramstoclick: '='
+        titleClick: '=',
+        titleClickParam: '='
       },
       restrict: 'E',
       replace: true,
@@ -516,13 +546,20 @@ angular.module('starter.directives', [])
       controller: 'ShowcaseCtrl',
 
       link: (scope, element, attrs) => {
-        scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+
+        // Width of scrollable area depend on count items
+        scope.$watch('widget', function (newValue, oldValue) {
+          if (newValue && newValue.items) {
+            scope.width = (1 + newValue.items.length) * 11 + 1 + 'em';
+          }
+        });
+
 
         scope.declension = (num) => {
           return $rootScope.declension(num, ['товар', 'товара', 'товаров']);
         }
-      }
 
+      }
     }
   })
 
