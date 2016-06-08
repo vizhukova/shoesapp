@@ -174,7 +174,7 @@ angular.module('starter.directives', [])
 
         scope.$watch('imgs', (newVal, oldVal) => {
 
-          if (newVal) {
+          if (newVal && newVal.length > 0) {
             $timeout(() => {
 
               var mySwiper = new Swiper($(element).find('.swiper-container'), {
@@ -404,7 +404,7 @@ angular.module('starter.directives', [])
     };
   })
 
-  .directive('imageLoader', function () {
+  .directive('imageLoader', function ($sce) {
 
     return {
       restrict: 'E',
@@ -413,15 +413,17 @@ angular.module('starter.directives', [])
       scope: {
         width: '@',
         height: '@',
-        src: '@'
+        source: '@'
       },
       link: function (scope, element, attributes) {
 
         scope.isLoaded = false;
+        console.log(scope.source)
 
         function PreLoadImage(objSettings, callback) {
 
           var thePic = new Image();
+          thePic.src = $sce.trustAsResourceUrl(scope.source);
 
           thePic.onload = function () {
             callback();
@@ -434,7 +436,7 @@ angular.module('starter.directives', [])
             console.error('Error load image in PreLoadImage', err)
           };
 
-          thePic.src = objSettings.src;
+          //thePic.src = objSettings.src;
         }
 
         PreLoadImage(scope, ()=> {
@@ -553,6 +555,13 @@ angular.module('starter.directives', [])
             scope.width = (1 + newValue.items.length) * 11 + 1 + 'em';
           }
         });
+
+
+        scope.click =  () => {
+
+          scope.titleClick(scope.widget.id, scope.titleClickParam);
+
+        };
 
 
         scope.declension = (num) => {

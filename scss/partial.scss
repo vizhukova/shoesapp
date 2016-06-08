@@ -233,6 +233,10 @@
 .recommend-slider {
   @extend .liked-slider;
 
+  .slider-header {
+    color: #387EF5;
+  }
+
   .holder {
     font-weight: 100;
     text-transform: none;
@@ -482,6 +486,8 @@
   width: auto;
   background-color: #fff;
   height: 18em;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   .swiper-container {
     width:  100%;
@@ -495,7 +501,7 @@
 
         img {
           height: auto;
-          width: 100%;
+          width: auto;
           position: absolute;
           top: 0;
           bottom: 0;
@@ -1783,6 +1789,10 @@ button.join {
       left: 0;
       margin: auto;
     }
+
+     img {
+       background: $background;
+     }
   }
 
    .modal {
@@ -1837,7 +1847,8 @@ button.join {
      }
 
      .bigSlider {
-       /*margin-top: 7em;*/
+
+       height: 60%;
 
       .swiper-slide {
          text-align: center;
@@ -1849,8 +1860,8 @@ button.join {
        }
 
        .swiper-pagination {
-         position: absolute;
-         bottom: -2em;
+         /*position: absolute;
+         bottom: -2em;*/
        }
 
        .swiper-pagination-bullet {
@@ -2029,6 +2040,6 @@ button.join {
   }
 
   .bar-footer.button-done {
-    bottom: -1 !important;
+    bottom: -1% !important;
     height: 55px;
   }

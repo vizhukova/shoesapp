@@ -1,5 +1,5 @@
 <div class="imageLoader">
-  <img src="{{src}}" width="{{width}}" height="{{height}}" alt="" />
+  <img ng-src="{{::source}}" width="{{::width}}" height="{{::height}}" alt="" />
   <div class="spinner" ng-if="!isLoaded">
     <ion-spinner icon="spiral"></ion-spinner>
   </div>

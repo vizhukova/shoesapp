@@ -22,10 +22,17 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
 
   Item.resetNav();
 
-  getTitle().then((title) => {
-    $scope.tabTitle = title;
-    console.log('TITLEEEEE', title)
-  })
+  setTitle();
+
+  function setTitle() {
+
+     getTitle().then((title) => {
+      $scope.tabTitle = title;
+      console.log('TITLEEEEE', title)
+      $scope.$digest();
+    });
+
+  }
 
   Size.get().then((data) => {
     $scope.sizes = data;
@@ -123,6 +130,7 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
 
   $scope.getCategoryTree = ($event, category_id) => {  //получение нового дерева категорий и сохранение фильтра по выбранной категории
 
+    debugger
     $event.stopPropagation();
   console.time('getCategoryTree')
     Category.getArrayTree(category_id).then((data) => {
@@ -148,7 +156,7 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
 
       else {
         $scope.categories = data;
-        chosenCategory.id = category_id;
+        chosenCategory.id = $scope.chosenFilter['sectionId'] = category_id;
       }
 
       $timeout(() => {$scope.$digest()}, 50);
@@ -180,10 +188,26 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   $scope.showResult = () => {
     $scope.filterPopover.hide();
     $scope.filter($scope.chosenFilter);
+
+    if($scope.chosenFilter.sectionId || filterObj.sectionId){
+
+      filterObj.sectionId = $scope.chosenFilter.sectionId || filterObj.sectionId;
+
+    }
+    setTitle();
+
   };
 
   $scope.reset = () => {
-    $scope.chosenFilter = {};
+
+    //Category.getFirstLevelParentNode($scope.chosenFilter.sectionId || filterObj.sectionId).then((parentNode) => {
+
+    Item.resetNav();
+      filterObj = {};
+      $scope.chosenFilter = _.omit( $scope.chosenFilter, ['sectionId']);
+      setTitle();
+    //})
+
   };
 
   $scope.hidePopover = () => {
@@ -195,6 +219,8 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
 
     return new Promise((resolve, reject) => {
       var title = '';
+
+      debugger
 
       if(filterObj.q) {
         resolve('');
@@ -214,9 +240,9 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
       }
 
       else if(filterObj.sectionId) {
-          Category.getById(filterObj.sectionId).then((category) => {
+          Category.getFirstLevelParentNode(filterObj.sectionId).then((category) => {
             resolve(category.name);
-            $scope.chosenFilter.sectionId = category.id;
+            $scope.chosenFilter.sectionId = filterObj.sectionId;
           })
       }
 
@@ -243,7 +269,7 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
       $scope.$digest();
     });
 
-    page = 0;
+    page = 1;
     Item.resetNav();
 
     //$scope.loadMore(true);
@@ -254,13 +280,13 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
     page ++;
 
     var filterBy = {};
+    debugger
 
     filterBy = _.assign({}, filterObj, {page: page});
 
     Item.getFilteredNav(filterBy).then((data) => {
       $scope.products = _.concat($scope.products, data);
       $scope.$broadcast('scroll.infiniteScrollComplete');
-      //console.log('getFilteredNav',  $scope.products)
     });
   }
 

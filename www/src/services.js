@@ -132,7 +132,39 @@ angular.module('starter.services', [])
          })
 
       })
-    }
+    };
+
+    this.getFirstLevelParentNode = (childNodeId) => {
+
+      return new Promise((resolve, reject) => {
+
+        Common.get('section.filter').then((c) => {
+
+          var categories = c.result;
+
+          resolve(recursion(childNodeId));
+
+          function recursion(nodeId) {
+
+            debugger
+            var node = _.find(categories, {id: nodeId});
+
+             if(node.parentId) {
+               return recursion(node.parentId);
+             } else {
+               return node;
+             }
+          }
+
+        }).catch((err) => {
+
+          reject(err);
+
+        })
+
+      });
+
+    };
 
     this.getArrayTree = (category_id) => {
 
@@ -257,7 +289,6 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-        debugger
         if(nav && nav.pageCurrent >= nav.pageCount && data.page >= nav.pageCount) {
 
           resolve([]);
