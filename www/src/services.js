@@ -188,7 +188,7 @@ angular.module('starter.services', [])
 
           if(cat.parentId) {
 
-             tree = getTree(cat.id, [cat]);
+             tree = getTree(cat.id, [cat], categories);
 
           } else {
 
@@ -219,7 +219,10 @@ angular.module('starter.services', [])
 
           if(cat.parentId) {
 
-             tree = getTree(cat.id, [cat]);
+            var chieldCats =  categories.filter((item) => item.parentId === cat.parentId)
+
+             tree = getTree(cat.parentId, chieldCats, categories);
+             tree.lastCosenNode = cat.parentId;
 
           } else {
 
@@ -239,11 +242,11 @@ angular.module('starter.services', [])
       })
     };
 
-    function getTree(category_id, items) {
+    function getTree(category_id, items, categories) {
         var category = _.find(categories, {id: category_id});
         category.items = items;
-        if(category.parentId) return getTree(category.parentId, [category]);
-        else return category;
+        if(category.parentId) return getTree(category.parentId, [category], categories);
+        else return [category];
       }
 
   })
@@ -263,6 +266,10 @@ angular.module('starter.services', [])
           Common.get('item.filter', data).then((data) => {
 
             var items = data.result || [];
+
+            items.count = data.nav.countRecord || 0;
+
+            console.log( items.count)
 
             items.map((item) => {
               if(item) {
@@ -299,6 +306,8 @@ angular.module('starter.services', [])
 
             var items = data.result || [];
             nav = data.nav || {};
+
+            items.count = nav.countRecord || 0;
 
             items.map((item) => {
               if(item) {

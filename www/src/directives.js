@@ -720,6 +720,7 @@ angular.module('starter.directives', [])
       scope: {
         categories: '=',
         click: '=',
+        close: '=',
         filter: '='
       },
 

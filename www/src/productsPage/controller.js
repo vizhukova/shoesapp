@@ -130,39 +130,56 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
 
   $scope.getCategoryTree = ($event, category_id) => {  //получение нового дерева категорий и сохранение фильтра по выбранной категории
 
-    debugger
     $event.stopPropagation();
   console.time('getCategoryTree')
+
     Category.getArrayTree(category_id).then((data) => {
+
       console.timeEnd('getCategoryTree')
+
       if( $scope.chosenFilter['sectionId'] == category_id ) {
+
         $scope.chosenFilter=  _.omit($scope.chosenFilter, ['sectionId']);
+        $scope.closeCategoryNode($event, category_id);
+
       }
 
       else if(! data) {
+
         $scope.chosenFilter['sectionId'] = category_id;
         chosenCategory.id = category_id;
-      }
-
-      else if( chosenCategory.id ===  category_id) {
-
-        Category.closeNode(category_id).then((data) => {
-          $scope.categories = data;
-          chosenCategory.id = undefined;
-          $scope.$digest();
-        });
 
       }
+
+      //else if( chosenCategory.id ===  category_id) {
+      //
+      //  $scope.closeCategoryNode($event, category_id);
+      //
+      //}
 
       else {
+
         $scope.categories = data;
         chosenCategory.id = $scope.chosenFilter['sectionId'] = category_id;
+
       }
 
       $timeout(() => {$scope.$digest()}, 50);
     });
 
     console.log('$scope.categories !!!!!!!!!', $scope.categories)
+  };
+
+  $scope.closeCategoryNode = ($event, category_id) => {
+    $event.stopPropagation();
+
+    Category.closeNode(category_id).then((data) => {
+      $scope.categories = data;
+      chosenCategory.id = data.lastCosenNode;
+      $scope.chosenFilter['sectionId'] = data.lastCosenNode;
+      $scope.$digest();
+    });
+
   };
 
   $scope.setChosenSize = (size_id) => { // сохранение фильтра по выбранному размеру
@@ -219,8 +236,6 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
 
     return new Promise((resolve, reject) => {
       var title = '';
-
-      debugger
 
       if(filterObj.q) {
         resolve('');
@@ -280,7 +295,6 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
     page ++;
 
     var filterBy = {};
-    debugger
 
     filterBy = _.assign({}, filterObj, {page: page});
 
