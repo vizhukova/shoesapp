@@ -1,7 +1,10 @@
 <ion-view view-title="Мои бренды" cache-view="false" class="Brands">
   <ion-content>
+     <div class="loader-gif" ng-if="!ready()"></div>
     <ion-scroll direction="y">
       <div class="container">
+
+       <div ng-if="ready()">
 
         <div class="content" ng-if="! hasLiked">
 
@@ -13,8 +16,6 @@
             </div>
           </div>
           </div>
-
-        </div>
 
       <div ng-if="hasLiked">
          <brand-list items="brands" goTo="goToBrand" goToFollowPage="goToBrandFollowPage"></brand-list>
@@ -43,6 +44,10 @@
         <img src="./../img/uniqlo.jpg" width="100%" height="auto" alt="">-->
 
       <div>
+      <div>
+      </div>
+      </div>
+      </div>
       </div>
       </div>
     </ion-scroll>

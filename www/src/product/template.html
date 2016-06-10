@@ -6,27 +6,32 @@
 
   <ion-content class="product-tab">
 
-     <div class="follow big-button" ng-if="" ng-click="follow(chosenBrand)">
-      <i class="ion-ios-plus-empty"></i>
-      <p>Подписаться</p>
+     <div class="loader-gif" ng-if="!ready()"> </div>
+     <div ng-if="ready()">
+       <div class="follow big-button" ng-if="" ng-click="follow(chosenBrand)">
+        <i class="ion-ios-plus-empty"></i>
+        <p>Подписаться</p>
+       </div>
+
+      <div class="following big-button" ng-if="" ng-click="follow(chosenBrand)">
+        <i class="ion-ios-checkmark-empty"></i>
+        <p>Подписан</p>
+      </div>
+
+      <ion-scroll direction="y" style="height: 100%;">
+       <buy-product item="product"></buy-product>
+        <div class="header" ng-if="products.length">
+          <p class="text">More like this</p>
+          <div class="line"></div>
+        </div>
+        <div>
+          <showcase products="products"></showcase>
+        </div>
+     </ion-scroll>
+       </div>
      </div>
 
-    <div class="following big-button" ng-if="" ng-click="follow(chosenBrand)">
-      <i class="ion-ios-checkmark-empty"></i>
-      <p>Подписан</p>
-    </div>
 
-    <ion-scroll direction="y" style="height: 100%;">
-     <buy-product item="product"></buy-product>
-      <div class="header" ng-if="products.length">
-        <p class="text">More like this</p>
-        <div class="line"></div>
-      </div>
-      <div>
-        <showcase products="products"></showcase>
-      </div>
-      </div>
-     </ion-scroll>
   </ion-content>
 
 </ion-view>

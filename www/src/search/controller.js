@@ -6,6 +6,12 @@ export default function($scope, $state, $ionicPopover, $stateParams, Category) {
 
  // $scope.isSearchOnFocus = false;
   $scope.isRecentSearchesShow = false;
+  $scope.subCategories = [];
+  $scope.categories = [];
+
+  $scope.ready = () => {
+    return $scope.categories.length;
+  };
 
   $scope.includes = {
     lastSearches: 'src/search/directives/last-searches.html',

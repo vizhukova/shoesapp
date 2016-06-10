@@ -15,7 +15,11 @@
 
     <ion-content>
 
-    <div class="me-tabs">
+    <div class="loader-gif" ng-if="!ready()"> </div>
+
+    <div ng-if="ready()">
+
+       <div class="me-tabs">
         <div class="link" ng-click="toOrders()">
             <i class="icon ion-cube"></i>
             <p>Заказы ({{::orderLength}})</p>
@@ -24,7 +28,7 @@
             <i class="icon ion-ios-checkmark-outline"></i>
             <p>Бренды ({{::likedBrands.length}})</p>
         </div>
-    </div>
+      </div>
 
       <div class="like-list">
           <p>Мне нравится ({{::likedProducts.length}})</p>
@@ -32,6 +36,8 @@
           <showcase products="likedProducts"></showcase>
         </div>
       </div>
+
+    </div>
 
     </ion-content>
 </ion-view>

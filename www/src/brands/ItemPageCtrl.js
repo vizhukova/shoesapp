@@ -5,10 +5,16 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
   $scope.animation = 'slide-in-up';
   $scope.chosenBrand = {};
   //$scope.categoryService = Category;
+  $scope.cats = [];
+  $scope.brands = [];
 
   $ionicHistory.nextViewOptions({
     disableBack: true
   });
+
+  $scope.ready = () => {
+    return $scope.cats.length && $scope.brands.length && $scope.chosenBrand;
+  };
 
   Category.get().then((data) => {
     $scope.cats = data;

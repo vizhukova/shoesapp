@@ -146,7 +146,6 @@ angular.module('starter.services', [])
 
           function recursion(nodeId) {
 
-            debugger
             var node = _.find(categories, {id: nodeId});
 
              if(node.parentId) {

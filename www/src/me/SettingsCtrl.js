@@ -2,6 +2,10 @@ export default function($scope, $state,  $ionicPopover, Settings) {
 
   $scope.sexObj = Settings.getSexObj();
 
+  $scope.ready = () => {
+    return $scope.staticPages;
+  };
+
   Settings.getStaticPage().then((data) => {
 
     $scope.staticPages = data;

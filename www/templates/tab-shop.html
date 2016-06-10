@@ -1,12 +1,12 @@
 <ion-view view-title="Магазин" class="Shop" hide-back-button="true">
 
-  <ion-scroll direction="y" style="height: 100%">
-
-    <ion-nav-buttons side="left">
+   <ion-nav-buttons side="left">
         <button class="button" ng-click="goToAlerts()">
             <i class="icon ion-ios-bell-outline"></i>
         </button>
     </ion-nav-buttons>
+
+  <ion-scroll direction="y" style="height: 100%">
 
     <div class="bar bar-subheader">
        <!--<miss-something></miss-something>-->
@@ -15,22 +15,29 @@
 
     <ion-content scroll-sista="header" class="has-subheader">
 
-      <banner-slider imgs="mainBanners" isClickable="true"></banner-slider>
+      <div class="loader-gif" ng-if="!ready()"> </div>
 
-      <button class="button by-cat-btn big-button" ng-click="openPopover()">
-        Просмотр по категориям
-      </button>
+      <div ng-if="ready()">
 
-      <liked-slider  title-click="goToProducts" title-click-param="{feature: 'sale', sectionId: categoryId}" widget="sales"></liked-slider>
-      <liked-slider  title-click="goToProducts" title-click-param="{feature: 'new', sectionId: categoryId}" widget="newArrivals"></liked-slider>
-      <liked-slider  title-click="goToProducts" title-click-param="{feature: 'popular', sectionId: categoryId}" widget="popular"></liked-slider>
+        <banner-slider imgs="mainBanners" isClickable="true"></banner-slider>
 
-      <gallery-slider title-click="goToBrands" title-click-param="{feature: 'sale'}" item-click="goToBrand" widget="brandSales"></gallery-slider>
-      <gallery-slider title-click="goToBrands" title-click-param="{feature: 'new'}" item-click="goToBrand" widget="brandNewArrivals"></gallery-slider>
-      <gallery-slider title-click="goToBrands" title-click-param="{feature: 'popular'}" item-click="goToBrand" widget="brandPopular"></gallery-slider>
+        <button class="button by-cat-btn big-button" ng-click="openPopover()">
+          Просмотр по категориям
+        </button>
+
+        <liked-slider  title-click="goToProducts" title-click-param="{feature: 'sale', sectionId: categoryId}" widget="sales"></liked-slider>
+        <liked-slider  title-click="goToProducts" title-click-param="{feature: 'new', sectionId: categoryId}" widget="newArrivals"></liked-slider>
+        <liked-slider  title-click="goToProducts" title-click-param="{feature: 'popular', sectionId: categoryId}" widget="popular"></liked-slider>
+
+        <gallery-slider title-click="goToBrands" title-click-param="{feature: 'sale'}" item-click="goToBrand" widget="brandSales"></gallery-slider>
+        <gallery-slider title-click="goToBrands" title-click-param="{feature: 'new'}" item-click="goToBrand" widget="brandNewArrivals"></gallery-slider>
+        <gallery-slider title-click="goToBrands" title-click-param="{feature: 'popular'}" item-click="goToBrand" widget="brandPopular"></gallery-slider>
 
 
-      <category-bar></category-bar>
+        <category-bar></category-bar>
+
+      </div>
+
     </ion-content>
 
   </ion-scroll>

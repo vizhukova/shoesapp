@@ -19,6 +19,10 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
 
   if($stateParams.id) {
 
+      $scope.ready = () => {
+        return $scope.item;
+     };
+
     Item.get({id: $stateParams.id}).then((data) => {
 
       $scope.item = data;

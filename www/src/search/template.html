@@ -2,7 +2,10 @@
   <ion-content>
     <search-panel></search-panel>
 
-    <div class="searches-list recent-searches check-element sample-show-hide ng-hide"
+    <div class="loader-gif" ng-if="!ready()"> </div>
+    <div ng-if="ready()">
+
+       <div class="searches-list recent-searches check-element sample-show-hide ng-hide"
          ng-show="isSearchOnFocus && isRecentSearchesShow"
          ng-include="includes.lastSearches"></div>
 
@@ -46,5 +49,8 @@
         </div>
       </div>
     </div>
+
+    </div>
+
   </ion-content>
 </ion-view>

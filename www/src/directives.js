@@ -572,7 +572,7 @@ angular.module('starter.directives', [])
     }
   })
 
-  .directive('brandFollow', function () {
+  .directive('brandFollow', function ($timeout) {
 
     return {
       restrict: 'E',
@@ -584,7 +584,19 @@ angular.module('starter.directives', [])
       },
 
       link: (scope, element, attrs) => {
-        if (scope.widget && scope.widget.items) scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+
+        scope.$watch('widget', (newVal, oldVal) => {
+
+          $timeout(function() {
+
+            if (newVal && newVal.items) {
+              scope.width = (1 + scope.widget.items.length) * 11 + 1 + 'em';
+            }
+
+          })
+
+        });
+
       }
     }
   })

@@ -1,5 +1,9 @@
 export default function($scope, $state, Item, Brand, Order) {
 
+  $scope.ready = () => {
+    return $scope.likedProducts &&  $scope.likedBrands &&  $scope.orders;
+  };
+
   Item.getLiked().then((data) => {
     $scope.likedProducts = data;
     $scope.$digest();

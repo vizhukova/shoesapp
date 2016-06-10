@@ -6,7 +6,11 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   $scope.chosenMenuItem = {};
   $scope.chosenFilter = {};   // для фильтрации
   $scope.animation = 'slide-in-up';
-  $scope.products = []; // массив продуктов
+  //$scope.products = []; // массив продуктов
+  $scope.sizes = [];
+  $scope.colors = [];
+  $scope.allCategories = [];
+  $scope.categories = [];
   var chosenCategory = {}; //для отображения дерева категорий
   var oldChosenFilter = {}; //для сохранения старого состояния объекта фильтрации
   var page = 0; // текущая просматриваемая страница
@@ -23,6 +27,11 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   Item.resetNav();
 
   setTitle();
+
+  $scope.ready = () => {
+    return $scope.sizes.length &&  $scope.colors.length && $scope.allCategories.length && $scope.categories.length
+    && $scope.products;
+  };
 
   function setTitle() {
 

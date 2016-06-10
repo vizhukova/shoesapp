@@ -7,7 +7,8 @@
 
   <ion-content>
 
-  <div class="bar-subheader">
+  <div class="loader-gif" ng-if="!ready()"> </div>
+  <div class="bar-subheader" ng-if="ready()">
     <categories cats="cats" activeCat="activeCat"></categories>
 
     <brand-follow ng-repeat="brand in brands" widget="brand"></brand-follow>

@@ -2043,3 +2043,13 @@ button.join {
     bottom: -1% !important;
     height: 55px;
   }
+
+  .loader-gif {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: url("./../img/loading.gif") top center;
+    background-size: contain;
+  }

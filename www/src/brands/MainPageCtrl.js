@@ -5,8 +5,14 @@ export default function ($stateParams, $scope, $state, $ionicPopover, $rootScope
   $scope.animation = 'slide-in-up';
   $scope.chosenBrands = []; //выбор бредов на главной страницы для подписки, если нет ни одного бренда, на который подписан пользователь
   $scope.chosenBrand = {};
+  $scope.brands = [];
+  $scope.hasLiked = Brand.hasLiked();
 
-   $scope.hasLiked = Brand.hasLiked();
+  $scope.ready = () => {
+    if($scope.hasLiked) return $scope.brands.length && $scope.brandSales &&  $scope.newArrivals;
+    else return $scope.brands.length;
+  };
+
 
   $scope.$watch('hasLiked', (newVal, oldVal) => {
 

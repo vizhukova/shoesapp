@@ -5,10 +5,16 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
 
   var filterBy = {};
   $scope.categoryService = Category;
+  $scope.cats = [];
+  $scope.brands = [];
 
   if(! filterBy.sectionId) {
     onChangeCategory( $scope.categoryService.getActive() );
   }
+
+  $scope.ready = () => {
+    return $scope.cats.length && $scope.brands.length;
+  };
 
   Category.get().then((data) => {
     $scope.cats = data;

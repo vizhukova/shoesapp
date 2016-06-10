@@ -2,6 +2,12 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
 
   //$scope.products = [1, 2, 3,4 ,5 ,6, 7, 8,9, 0];
 
+  //$scope.alerts = [];
+
+  $scope.ready = () => {
+    return $scope.alerts;
+  };
+
   $scope.goToAlerts = () => {
     $state.go('tab.alerts');
   };
@@ -10,11 +16,11 @@ export default function($stateParams, $scope, $state, $ionicPopover, $sce, Brand
     $state.go('tab.brand', {id: brand_id});
   };
 
-  Category.get().then((data) => {
-
-    $scope.cats = data;
-
-  });
+  //Category.get().then((data) => {
+  //
+  //  $scope.cats = data;
+  //
+  //});
 
   Alert.get().then((data) => {
 

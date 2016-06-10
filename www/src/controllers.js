@@ -91,8 +91,16 @@ angular.module('starter.controllers', [])
 
     $scope.categoryId;
     $scope.mainBanners = [];
-
     $scope.categoryService = Category;
+    $scope.categories = [];
+    $scope.mainBanners = [];
+
+    $scope.ready = () => {
+
+      return $scope.categories.length && $scope.mainBanners.length && $scope.sales &&  $scope.newArrivals
+        && $scope.popular && $scope.brandSales &&  $scope.brandNewArrivals &&  $scope.brandPopular;
+
+    };
 
     Category.get().then((data) => {
       $scope.categories = data;
