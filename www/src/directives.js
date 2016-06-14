@@ -225,16 +225,18 @@ angular.module('starter.directives', [])
       templateUrl: './src/shop/banner.slider.html',
       link: (scope, element, attrs) => {
 
+        scope.isLoaded = false;
+
         scope.$watch('imgs', (newVal, oldVal) => {
 
           if (newVal && newVal.length > 0) {
+            scope.isLoaded = true;
+
             $timeout(() => {
               var mySwiper = new Swiper($(element).find('.swiper-container'), {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
-                loop: true,
-                onReachBeginning: () => {debugger;scope.$digest()},
-                onReachEnd: () => {debugger;scope.$digest()}
+                loop: true
               })
 
             })

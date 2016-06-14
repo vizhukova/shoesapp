@@ -1,17 +1,13 @@
 <div class="bannerSlider">
   <!-- Slider main container -->
-  <div class="swiper-container">
+  {{isLoaded}}
+  <div class="loader-gif" ng-if="!ready()" ng-if="!isLoaded"></div>
+  <div class="swiper-container" ng-if="isLoaded">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
       <div class="swiper-slide" ng-repeat="obj in imgs track by $index" ng-click="click(obj)">
-         <image-loader
-            source="{{obj.img}}"
-            width="auto"
-            height="100%"
-            defaultPic="http://mymacrotools.com/wp-content/themes/nucleare-pro/images/no-image-box.png"
-         ></image-loader>
-        <!--<img ng-src="{{::obj.img}}" alt="">-->
+        <img ng-src="{{::obj.img}}" alt="">
         <div class="titles">
           <p class="titles__title">{{::obj.title}}</p>
           <p>{{::obj.subTitle}}</p>
