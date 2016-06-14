@@ -1,7 +1,7 @@
 <div class="bannerSlider">
   <!-- Slider main container -->
-  <div class="loader-gif" ng-show="!isLoaded"></div>
-  <div class="swiper-container" ng-show="isLoaded">
+  <div class="loader-gif" ng-class="hide: isLoaded"></div>
+  <div class="swiper-container" ng-class="hide: !isLoaded">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
