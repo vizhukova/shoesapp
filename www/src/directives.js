@@ -230,7 +230,6 @@ angular.module('starter.directives', [])
         scope.$watch('imgs', (newVal, oldVal) => {
 
           if (newVal && newVal.length > 0) {
-            scope.isLoaded = true;
 
             $timeout(() => {
               var mySwiper = new Swiper($(element).find('.swiper-container'), {
@@ -238,8 +237,11 @@ angular.module('starter.directives', [])
                 paginationClickable: true,
                 loop: true
               })
-
             })
+
+            $timeout(() => {
+              scope.isLoaded = true;
+            }, 100)
 
           }
 
