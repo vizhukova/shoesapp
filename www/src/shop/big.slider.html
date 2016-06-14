@@ -5,7 +5,14 @@
     <div class="swiper-wrapper">
       <!-- Slides -->
       <div class="swiper-slide" ng-repeat="img in imgs track by $index">
-        <img ng-src="{{::img}}" alt="">
+         <image-loader
+            source="{{img}}"
+            width="auto"
+            height="100%"
+            className="img"
+            defaultPic="http://mymacrotools.com/wp-content/themes/nucleare-pro/images/no-image-box.png"
+         ></image-loader>
+        <!--<img ng-src="{{::img}}" alt="">-->
       </div>
     </div>
     <div class="swiper-pagination"></div>

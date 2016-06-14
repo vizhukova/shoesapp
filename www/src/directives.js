@@ -232,7 +232,9 @@ angular.module('starter.directives', [])
               var mySwiper = new Swiper($(element).find('.swiper-container'), {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
-                loop: true
+                loop: true,
+                onReachBeginning: () => {debugger;scope.$digest()},
+                onReachEnd: () => {debugger;scope.$digest()}
               })
 
             })
@@ -404,7 +406,7 @@ angular.module('starter.directives', [])
     };
   })
 
-  .directive('imageLoader', function ($sce) {
+  .directive('imageLoader', function ($sce, $timeout, Server) {
 
     return {
       restrict: 'E',
@@ -413,17 +415,30 @@ angular.module('starter.directives', [])
       scope: {
         width: '@',
         height: '@',
-        source: '@'
+        source: '@',
+        classname: '@',
+        defaultpic: '@'
       },
       link: function (scope, element, attributes) {
 
-        scope.isLoaded = false;
-        console.log(scope.source)
+        console.info('!!!imageLoader!!!!!!!')
+
+        scope.isNotLoaded = () => {
+          return scope.isLoaded === false;
+        };
+
+        $timeout(() => {
+          scope.isLoaded = false;
+          console.log(scope.defaultpic)
 
         function PreLoadImage(objSettings, callback) {
 
           var thePic = new Image();
           thePic.src = $sce.trustAsResourceUrl(scope.source);
+
+          //Server.fetch(scope.source).then(() => {
+          //  scope.isLoaded = true;
+          //});
 
           thePic.onload = function () {
             callback();
@@ -431,7 +446,7 @@ angular.module('starter.directives', [])
           };
 
           thePic.onerror = function (err) {
-            scope.src = 'http://mymacrotools.com/wp-content/themes/nucleare-pro/images/no-image-box.png';
+            scope.source = scope.defaultpic;
             callback();
             console.error('Error load image in PreLoadImage', err)
           };
@@ -439,9 +454,11 @@ angular.module('starter.directives', [])
           //thePic.src = objSettings.src;
         }
 
-        PreLoadImage(scope, ()=> {
-          scope.isLoaded = true
-        });
+          PreLoadImage(scope, ()=> {
+            scope.isLoaded = true;
+            scope.$digest();
+          });
+        },100)
 
       }
     }

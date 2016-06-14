@@ -7,7 +7,16 @@
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
-      <div class="swiper-slide" ng-repeat="item in widget.items track by $index" ng-click="itemClick(item.id)"><img ng-src="{{::item.img}}" alt=""></div>
+      <div class="swiper-slide" ng-repeat="item in widget.items track by $index" ng-click="itemClick(item.id)">
+         <image-loader
+            source="{{item.img}}"
+            width="auto"
+            height="auto"
+            className="img"
+            defaultPic="http://mymacrotools.com/wp-content/themes/nucleare-pro/images/no-image-box.png"
+          ></image-loader>
+        <!--<img ng-src="{{::item.img}}" alt="">-->
+      </div>
     </div>
   </div>
 

@@ -1,9 +1,15 @@
 <div class="case-item" ng-click="openProduct(product)">
   <div class="img">
-    <img src="{{::product.img}}"
+    <image-loader
+        source="{{product.img}}"
+        width="100%"
+        height="auto"
+        defaultPic="http://mymacrotools.com/wp-content/themes/nucleare-pro/images/no-image-box.png"
+     ></image-loader>
+    <!--<img src="{{::product.img}}"
          alt=""
          width="100%"
-         height="auto">
+         height="auto">-->
       <i ng-if="! product.isLiked" ng-click="addLiked(product, $event)" class="ion-android-favorite-outline button-empty-like"></i>
       <i ng-if="product.isLiked" ng-click="removeLiked(product, $event)" class="ion-android-favorite-outline button-like"></i>
   </div>

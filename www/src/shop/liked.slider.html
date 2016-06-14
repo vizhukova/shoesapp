@@ -4,7 +4,14 @@
     <div class="scrolling" ng-style="{width: width}">
       <div class="thing" ng-repeat="product in widget.items track by $index" ng-click="openProduct(product)">
         <div class="holder">
-          <img class="img" ng-src="{{::product.img}}">
+          <image-loader
+          source="{{product.img}}"
+          width="100%"
+          height="auto"
+          className="img"
+          defaultPic="http://mymacrotools.com/wp-content/themes/nucleare-pro/images/no-image-box.png"
+          ></image-loader>
+          <!--<img class="img" ng-src="{{::product.img}}">-->
           <div class="ribbon" ng-if="::product.ribbon"><h2>{{::product.ribbon}}</h2></div>
         </div>
         <p class="brand">{{::product.brandName}}</p>
