@@ -225,8 +225,6 @@ angular.module('starter.directives', [])
       templateUrl: './src/shop/banner.slider.html',
       link: (scope, element, attrs) => {
 
-        scope.isLoaded = false;
-
         scope.$watch('imgs', (newVal, oldVal) => {
 
           if (newVal && newVal.length > 0) {
@@ -238,10 +236,6 @@ angular.module('starter.directives', [])
                 loop: true
               })
             })
-
-            $timeout(() => {
-              scope.isLoaded = true;
-            }, 100)
 
           }
 

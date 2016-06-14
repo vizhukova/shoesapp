@@ -2054,3 +2054,8 @@ button.join {
     background: url("./../img/loading.gif") top center;
     background-size: contain;
   }
+
+  .loader-container {
+    position: relative;
+    height: 100%;
+  }

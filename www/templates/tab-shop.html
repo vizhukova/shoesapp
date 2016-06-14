@@ -15,27 +15,30 @@
 
     <ion-content scroll-sista="header" class="has-subheader">
 
-      <div class="loader-gif" ng-if="!ready()"> </div>
+       <banner-slider imgs="mainBanners" isClickable="true"></banner-slider>
 
-      <div ng-if="ready()">
+      <div class="loader-container">
 
-        <banner-slider imgs="mainBanners" isClickable="true"></banner-slider>
+        <div class="loader-gif" ng-if="! ready()"></div>
 
-        <button class="button by-cat-btn big-button" ng-click="openPopover()">
-          Просмотр по категориям
-        </button>
+        <div ng-if="ready()">
 
-        <liked-slider  title-click="goToProducts" title-click-param="{feature: 'sale', sectionId: categoryId}" widget="sales"></liked-slider>
-        <liked-slider  title-click="goToProducts" title-click-param="{feature: 'new', sectionId: categoryId}" widget="newArrivals"></liked-slider>
-        <liked-slider  title-click="goToProducts" title-click-param="{feature: 'popular', sectionId: categoryId}" widget="popular"></liked-slider>
+          <button class="button by-cat-btn big-button" ng-click="openPopover()">
+            Просмотр по категориям
+          </button>
 
-        <gallery-slider title-click="goToBrands" title-click-param="{feature: 'sale'}" item-click="goToBrand" widget="brandSales"></gallery-slider>
-        <gallery-slider title-click="goToBrands" title-click-param="{feature: 'new'}" item-click="goToBrand" widget="brandNewArrivals"></gallery-slider>
-        <gallery-slider title-click="goToBrands" title-click-param="{feature: 'popular'}" item-click="goToBrand" widget="brandPopular"></gallery-slider>
+          <liked-slider  title-click="goToProducts" title-click-param="{feature: 'sale', sectionId: categoryId}" widget="sales"></liked-slider>
+          <liked-slider  title-click="goToProducts" title-click-param="{feature: 'new', sectionId: categoryId}" widget="newArrivals"></liked-slider>
+          <liked-slider  title-click="goToProducts" title-click-param="{feature: 'popular', sectionId: categoryId}" widget="popular"></liked-slider>
+
+          <gallery-slider title-click="goToBrands" title-click-param="{feature: 'sale'}" item-click="goToBrand" widget="brandSales"></gallery-slider>
+          <gallery-slider title-click="goToBrands" title-click-param="{feature: 'new'}" item-click="goToBrand" widget="brandNewArrivals"></gallery-slider>
+          <gallery-slider title-click="goToBrands" title-click-param="{feature: 'popular'}" item-click="goToBrand" widget="brandPopular"></gallery-slider>
 
 
-        <category-bar></category-bar>
+          <category-bar></category-bar>
 
+        </div>
       </div>
 
     </ion-content>
