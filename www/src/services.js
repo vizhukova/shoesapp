@@ -431,7 +431,7 @@ angular.module('starter.services', [])
 
           Promise.map(brands, (brand, index) => {
 
-            return Item.getFiltered({brandId: brand.id}).then((products, i) => {
+            return Item.getFiltered(_.assign({}, {brandId: brand.id}, data)).then((products, i) => {
 
               brands[index].items = products;
 

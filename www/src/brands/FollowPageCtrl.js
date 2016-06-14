@@ -4,6 +4,7 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
 
 
   var filterBy = {};
+  var activeCategory;
   $scope.categoryService = Category;
   $scope.cats = [];
   $scope.brands = [];
@@ -33,7 +34,7 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
 
   $scope.toBrandProducts = (id) => {
 
-    $state.go("tab.brand-products", {brandId: id});
+    $state.go("tab.brand-products", {brandId: id, sectionId: activeCategory.id});
 
   };
 
@@ -51,6 +52,7 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
 
   function onChangeCategory(value) {
 
+     activeCategory = value;
      filterBy = _.assign({}, {sectionId: value.id}, $stateParams);
 
     filterBy = _.omit(filterBy, Object.keys(filterBy).map((key) => {
@@ -59,6 +61,7 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
 
      Brand.getFullFiltered(filterBy).then((brands) => {
        $scope.brands = brands;
+       $scope.$digest();
      });
 
   }

@@ -24,13 +24,12 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
     $scope.searchPhrase = $stateParams.q;
   }
 
-  Item.resetNav();
-
-  setTitle();
-
   $scope.ready = () => {
+    // console.log($scope.sizes.length ,  $scope.colors.length , $scope.allCategories.length , $scope.categories.length
+    //, $scope.products)
     return $scope.sizes.length &&  $scope.colors.length && $scope.allCategories.length && $scope.categories.length
     && $scope.products;
+
   };
 
   function setTitle() {
@@ -312,5 +311,9 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
   }
+
+   Item.resetNav();
+   setTitle();
+   $scope.filter();
 
 }

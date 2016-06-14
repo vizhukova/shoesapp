@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export default function($stateParams, $scope, $state, $ionicPopover, $ionicHistory, $sce, Brand, Category, Item) {
+export default function($stateParams, $scope, $state, $ionicPopover, $ionicHistory, $sce, $cordovaSocialSharing, Brand, Category, Item) {
 
   $scope.animation = 'slide-in-up';
   $scope.chosenBrand = {};
@@ -78,7 +78,6 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
 
   var popups = [
     {name: 'brandPopover', url: 'src/brands/subtabs/brand-popover.html'},
-    {name: 'subtabShowcase', url: 'templates/subtab-showcase.html'},
     {name: 'moreInfo', url: 'src/brands/subtabs/more-info.html'}
   ];
 
@@ -97,8 +96,8 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
 
 
   $scope.openbrandPopover = (brand_id) => {
-    Brand.getProducts({id:brand_id}).then((products) => {
-      $scope.chosenBrand = products;
+    Brand.getProducts({id:brand_id}).then((brand) => {
+      $scope.chosenBrand = brand;
       $scope.brandPopover.show();
       console.log('$scope.chosenBrand', $scope.chosenBrand)
     });
@@ -169,5 +168,10 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
   //
   //  });
   //}
+
+  $scope.shareAnywhere = function() {
+                              /*socialType, message, image, link*/
+    $cordovaSocialSharing.share('', $scope.chosenBrand.name, $scope.chosenBrand.background, $scope.chosenBrand.background);
+  }
 
 }

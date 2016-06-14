@@ -185,7 +185,7 @@ angular.module('starter.controllers', [])
 
     $scope.goToProducts = (param) => {
       $scope.popover.hide();
-      $state.go($state.go("tab.shop-products", param));
+      $state.go("tab.shop-products", param);
     };
 
     $scope.goToBrand = (brand_id) => {
@@ -193,7 +193,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.goToBrands = (param) => {
-      $state.go("tab.brand-follow", param)
+      $state.go("tab.brand-follow", param);
     };
 
     $ionicPopover.fromTemplateUrl('src/shop/category-popover.html', {
@@ -259,6 +259,7 @@ angular.module('starter.controllers', [])
       $event.stopPropagation();
 
       $scope.isSearchOnFocus = false;
+      $scope.searchStr = '';
 
       if ($scope.$parent.onCancelClick) {
         $scope.$parent.onCancelClick($event);
