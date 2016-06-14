@@ -25,8 +25,8 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   }
 
   $scope.ready = () => {
-    // console.log($scope.sizes.length ,  $scope.colors.length , $scope.allCategories.length , $scope.categories.length
-    //, $scope.products)
+     console.log($scope.sizes.length ,  $scope.colors.length , $scope.allCategories.length , $scope.categories.length
+    , $scope.products)
     return $scope.sizes.length &&  $scope.colors.length && $scope.allCategories.length && $scope.categories.length
     && $scope.products;
 
@@ -37,7 +37,7 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
      getTitle().then((title) => {
       $scope.tabTitle = title;
       console.log('TITLEEEEE', title)
-      $scope.$digest();
+      //$scope.$digest();
     });
 
   }

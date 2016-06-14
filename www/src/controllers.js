@@ -79,10 +79,12 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('StaticPageCtrl', function ($scope, $state, $stateParams, Settings) {
+  .controller('StaticPageCtrl', function ($scope, $state, $timeout, $stateParams, Settings) {
 
    Settings.getStaticPage($stateParams).then((data) => {
-     $scope.page = data;
+     $timeout(function() {
+       $scope.page = data;
+     });
    })
 
   })

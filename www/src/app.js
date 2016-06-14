@@ -70,6 +70,7 @@ angular.module('starter', [
     $ionicConfigProvider.tabs.position('bottom').style('standart');
     $ionicConfigProvider.scrolling.jsScrolling(false);
     $ionicConfigProvider.navBar.alignTitle('center');
+    $ionicConfigProvider.views.swipeBackEnabled(false);
     $compileProvider.debugInfoEnabled(false);
     $logProvider.debugEnabled(false);
 

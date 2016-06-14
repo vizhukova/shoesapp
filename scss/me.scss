@@ -1,14 +1,13 @@
 .me-tabs {
 
   font-size: 0;
+  border-bottom: 1px solid #ccc;
 
   .link {
     display: inline-block;
-    width: 50%;
+    width: 49%;
     text-align: center;
     height: 80px;
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ccc;
     padding-top: 20px;
 
     &:first-child {

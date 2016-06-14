@@ -7,10 +7,12 @@
 
   <ion-content>
 
-  <div class="content">
-    <div class="title">{{::page.text}}</div>
-    <div>{{::page.textDetail}}</div>
-  </div>
+    <ion-scroll direction="y" style="height: 100%; width: 100%;">
+      <div class="content">
+        <div class="title">{{::page.text}}</div>
+        <div>{{::page.textDetail}}</div>
+      </div>
+    </ion-scroll>
 
   </ion-content>
 

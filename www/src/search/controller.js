@@ -52,7 +52,7 @@ export default function($scope, $state, $ionicPopover, $stateParams, Category) {
 
   $scope.goToProducts = (param) => {
     $scope.popover.hide();
-    $state.go($state.go("tab.search-products", param));
+    $state.go("tab.search-products", param);
   };
 
 }
