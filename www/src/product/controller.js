@@ -11,11 +11,12 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
    $scope.basketData = {//даные для отправки в сервис для оформления заказа
      quantity: 1
    };
-    var city = {}; // объект для сохранения данных о городе при сохранении нового адреса
+   var city = {}; // объект для сохранения данных о городе при сохранении нового адреса
    $scope.shipAddress = {}; // объект для сохранения нового адреса
    $scope.cardData  = {};// объект для соханения новых данных по карте
    $scope.addresses  = []; // все адреса данного пользователя
    $scope.delivery = []; //переменная для хранения вариантов доставки
+   var isDisableShare = false;
 
   if($stateParams.id) {
 
@@ -292,8 +293,17 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
   }
 
   $scope.shareAnywhere = function(item) {
-                              /*socialType, message, image, link*/
-    $cordovaSocialSharing.share('', item.name, item.img, item.img);
+
+    if(isDisableShare) return;
+
+    isDisableShare = true;
+
+                                /*socialType, message, image, link*/
+    $cordovaSocialSharing.share('', item.name, item.img, item.img).then(() => {
+      isDisableShare = false;
+    }).catch(() => {
+      isDisableShare = false;
+    })
   }
 
 }

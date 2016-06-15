@@ -438,6 +438,7 @@ angular.module('starter.services', [])
               return Category.get({brandId: brand.id}).then((data) => {
 
                 brands[index].categories = data;
+                brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
 
               }).then(() => {
 
@@ -446,7 +447,6 @@ angular.module('starter.services', [])
                   return Item.get({id: products[0].id}).then((product) => {
 
                     brands[index].items[0] = product;
-                    brands[index].isLiked = likes.indexOf(brands[index].id) > -1;
 
                   })
                 }

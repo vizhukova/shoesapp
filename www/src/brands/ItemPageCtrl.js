@@ -8,6 +8,8 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
   $scope.cats = [];
   $scope.brands = [];
 
+  var isDisableShare = false;
+
   $ionicHistory.nextViewOptions({
     disableBack: true
   });
@@ -170,8 +172,17 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
   //}
 
   $scope.shareAnywhere = function() {
+
+    if(isDisableShare) return;
+
+    isDisableShare = true;
+
                               /*socialType, message, image, link*/
-    $cordovaSocialSharing.share('', $scope.chosenBrand.name, $scope.chosenBrand.background, $scope.chosenBrand.background);
+    $cordovaSocialSharing.share('', $scope.chosenBrand.name, $scope.chosenBrand.background, $scope.chosenBrand.background).then(() => {
+      isDisableShare = false;
+    }).catch((err) => {
+      isDisableShare = false;
+    })
   }
 
 }
