@@ -123,7 +123,6 @@ angular.module('starter.controllers', [])
         }).then(() => {
 
           Item.getFiltered({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
-            debugger
           $scope.sales = {
             title: 'Распродажа',
             sale: true,

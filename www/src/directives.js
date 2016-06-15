@@ -138,22 +138,27 @@ angular.module('starter.directives', [])
       templateUrl: './src/shop/gallery.slider.html',
       link: (scope, element, attrs) => {
 
-        scope.$watch('widget', (newVal, oldVal) => {
+        var elem = element;
 
-          if (newVal ) {
-            $timeout(() => {
-              var mySwiper = new Swiper($(element).find('.swiper-container'), {
-                // Optional parameters
-                direction: 'horizontal',
-                slidesPerView: 'auto',
-                centeredSlides: true,
-                spaceBetween: 7,
-                loop: true
-              })
-            }, 1000);
-          }
+        scope.callback = () => {
 
-        });
+           scope.$watch('widget', (newVal, oldVal) => {
+            if (newVal) {
+              $timeout(() => {
+
+                var mySwiper = new Swiper($(elem).find('.swiper-container'), {
+                  // Optional parameters
+                  direction: 'horizontal',
+                  slidesPerView: 'auto',
+                  centeredSlides: true,
+                  spaceBetween: 7,
+                  loop: true
+                })
+              });
+            }
+
+          });
+        };
 
       }
     }
@@ -424,7 +429,8 @@ angular.module('starter.directives', [])
         height: '@',
         source: '@',
         classname: '@',
-        defaultpic: '@'
+        defaultpic: '@',
+        callback: '='
       },
       link: function (scope, element, attributes) {
 
@@ -462,6 +468,12 @@ angular.module('starter.directives', [])
           PreLoadImage(scope, ()=> {
             scope.isLoaded = true;
             scope.$digest();
+
+
+            if(scope.callback) {
+              scope.callback();
+            }
+
           });
         //})
 
