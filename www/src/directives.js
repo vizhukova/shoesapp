@@ -150,7 +150,7 @@ angular.module('starter.directives', [])
                 spaceBetween: 7,
                 loop: true
               })
-            }, 600);
+            }, 1000);
           }
 
         });
@@ -240,7 +240,7 @@ angular.module('starter.directives', [])
 
             $timeout(() => {
               isReady = true;
-            }, 500);
+            }, 800);
 
           }
 
@@ -432,8 +432,8 @@ angular.module('starter.directives', [])
           return scope.isLoaded === false;
         };
 
-        $timeout(() => {
-            scope.isLoaded = false;
+        //$timeout(() => {
+          scope.isLoaded = false;
           console.log(scope.defaultpic)
 
         function PreLoadImage(objSettings, callback) {
@@ -463,7 +463,7 @@ angular.module('starter.directives', [])
             scope.isLoaded = true;
             scope.$digest();
           });
-        },100)
+        //})
 
       }
     }
