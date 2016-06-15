@@ -2057,6 +2057,7 @@ button.join {
     left: 0;
     background: url("./../img/loading.gif") top center;
     background-size: contain;
+    z-index: 100;
   }
 
   .loader-container {

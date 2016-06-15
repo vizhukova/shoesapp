@@ -140,8 +140,7 @@ angular.module('starter.directives', [])
 
         scope.$watch('widget', (newVal, oldVal) => {
 
-
-          if (newVal) {
+          if (newVal ) {
             $timeout(() => {
               var mySwiper = new Swiper($(element).find('.swiper-container'), {
                 // Optional parameters
@@ -151,7 +150,7 @@ angular.module('starter.directives', [])
                 spaceBetween: 7,
                 loop: true
               })
-            });
+            }, 600);
           }
 
         });
@@ -225,6 +224,8 @@ angular.module('starter.directives', [])
       templateUrl: './src/shop/banner.slider.html',
       link: (scope, element, attrs) => {
 
+        var isReady = false;
+
         scope.$watch('imgs', (newVal, oldVal) => {
 
           if (newVal && newVal.length > 0) {
@@ -235,7 +236,11 @@ angular.module('starter.directives', [])
                 paginationClickable: true,
                 loop: true
               })
-            })
+            });
+
+            $timeout(() => {
+              isReady = true;
+            }, 500);
 
           }
 
@@ -246,6 +251,10 @@ angular.module('starter.directives', [])
           if(scope.isclickable) {
             $state.go('tab.shop-products', item);
           }
+        };
+
+        scope.ready = () => {
+          return isReady;
         };
 
 
@@ -419,13 +428,12 @@ angular.module('starter.directives', [])
       },
       link: function (scope, element, attributes) {
 
-        scope.isLoaded = false;
-
         scope.isNotLoaded = () => {
           return scope.isLoaded === false;
         };
 
         $timeout(() => {
+            scope.isLoaded = false;
           console.log(scope.defaultpic)
 
         function PreLoadImage(objSettings, callback) {
