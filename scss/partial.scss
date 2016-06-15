@@ -1281,6 +1281,10 @@ button.join {
 .brand-follow {
  @extend .vertical-slider;
 
+  .holder-text {
+    margin-top: 10px;
+  }
+
   .content .brand-descr {
     width: 60% !important;
   }

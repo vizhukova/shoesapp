@@ -419,14 +419,13 @@ angular.module('starter.directives', [])
       },
       link: function (scope, element, attributes) {
 
-        console.info('!!!imageLoader!!!!!!!')
+        scope.isLoaded = false;
 
         scope.isNotLoaded = () => {
           return scope.isLoaded === false;
         };
 
         $timeout(() => {
-          scope.isLoaded = false;
           console.log(scope.defaultpic)
 
         function PreLoadImage(objSettings, callback) {

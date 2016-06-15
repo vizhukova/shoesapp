@@ -13,12 +13,12 @@
               defaultPic="http://mymacrotools.com/wp-content/themes/nucleare-pro/images/no-image-box.png"
             ></image-loader>
           <!--<img class="img" ng-src="{{::product.img}}">-->
-          <div class="ribbon" ng-if="::product.ribbon"><h2>{{::product.ribbon}}</h2></div>
+          <div class="ribbon" ng-if="product.ribbon"><h2>{{product.ribbon}}</h2></div>
         </div>
-        <p class="title">{{::product.name}}</p>
+        <p class="title">{{product.name}}</p>
         <p class="cost">
-          <span ng-class="product.discount ? 'price old' : 'price'">{{::product.price}} {{::product.currency}}</span>
-          <span class="discount" ng-if="product.discount">{{::product.discount}} {{::product.currency}}</span>
+          <span ng-class="product.discount ? 'price old' : 'price'">{{product.price}} {{product.currency}}</span>
+          <span class="discount" ng-if="product.discount">{{product.discount}} {{product.currency}}</span>
         </p>
       </div>
       <div class="thing" ng-click="click()">

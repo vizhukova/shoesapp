@@ -9,10 +9,12 @@
         <div class="holder">
           <img class="img" ng-src="{{::product.img}}">
         </div>
-        <p class="title">{{::product.name}}</p>
-        <p class="cost">
+       <div class="holder-text">
+         <p class="title">{{::product.name}}</p>
+         <p class="cost">
           <span>{{::product.price}} {{::product.currency}}</span>
         </p>
+       </div>
       </div>
       <div class="thing" ng-click="toBrandProducts(widget.id)">
         <div class="holder">

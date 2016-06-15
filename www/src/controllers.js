@@ -116,11 +116,14 @@ angular.module('starter.controllers', [])
         $scope.categoryId = newVal.id;
 
         Banner.getLogin().then((data) => {
+
           $scope.mainBanners = data;
           $scope.$digest();
-        });
 
-        Item.getFiltered({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
+        }).then(() => {
+
+          Item.getFiltered({feature: 'sale', sectionId: $scope.categoryId}).then((data) => {
+            debugger
           $scope.sales = {
             title: 'Распродажа',
             sale: true,
@@ -176,6 +179,8 @@ angular.module('starter.controllers', [])
           };
           $scope.$digest();
         });
+
+        })
 
       }
 
