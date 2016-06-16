@@ -1,4 +1,4 @@
-export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner) {
+export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner, Info) {
 
   $scope.animation = 'slide-in-up';
   $scope.recovery = false;
@@ -8,6 +8,10 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner
 
   Banner.getLogin().then((data) => {
     $scope.banners = data;
+  });
+
+  Info.get().then((info) => {
+    $scope.info = info;
   });
 
 

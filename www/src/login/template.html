@@ -11,9 +11,8 @@
       <div class="img cas"></div>
     </ion-slide>
   </ion-slide-box>-->
-
+  <banner-slider imgs="banners"></banner-slider>
   <div class="footer">
-    <banner-slider imgs="banners"></banner-slider>
     <div class="sign-in-by">
         <button class="button button-positive big-button join" ng-click="toShop()">
           <i class="ion-social-facebook-outline"></i>
@@ -24,7 +23,7 @@
         </button>
         <p><span class="signin-btn" ng-click="opensigninPopover()">Войти</span> или <span ng-click="toShop()">Продолжить как гость</span></p>
     </div>
-    <p class="terms"> Присоединяясь к нам вы соглашаетесь с <a href="#" class="terms">условиями</a> и <a href="#" class="policy">положениями</a></p>
+    <p class="terms"> Присоединяясь к нам вы соглашаетесь с <a href='{{::info.termUrl}}' class="terms">условиями</a> и <a href='{{::info.privacyPolicyUrl}}' class="policy">положениями</a></p>
   </div>
 </div>
 </ion-view>

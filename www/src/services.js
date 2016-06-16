@@ -998,6 +998,21 @@ angular.module('starter.services', [])
 
   })
 
+  .service('Info', function ($http, $q, URL, Common) {
+
+    this.get = () => {
+      return new Promise((resolve, reject) => {
+       Common.get('shop.getInfo').then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
+
+    }
+
+  })
+
   .service('Cache', function () {
 
     var cache = {};

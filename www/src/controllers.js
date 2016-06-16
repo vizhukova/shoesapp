@@ -89,20 +89,21 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, Category, Item, Brand, Banner) {
+  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, Category, Item, Brand, Banner, Info) {
 
     $scope.categoryId;
-    $scope.mainBanners = [];
     $scope.categoryService = Category;
-    $scope.categories = [];
-    $scope.mainBanners = [];
 
     $scope.ready = () => {
 
-      return $scope.categories.length && $scope.mainBanners.length && $scope.sales &&  $scope.newArrivals
+      return $scope.categories && $scope.mainBanners && $scope.sales &&  $scope.newArrivals
         && $scope.popular && $scope.brandSales &&  $scope.brandNewArrivals &&  $scope.brandPopular;
 
     };
+
+    Info.get().then((info) => {
+      $scope.info = info;
+    });
 
     Category.get().then((data) => {
       $scope.categories = data;

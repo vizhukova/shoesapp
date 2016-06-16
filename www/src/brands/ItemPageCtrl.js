@@ -178,7 +178,7 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
     isDisableShare = true;
 
                               /*socialType, message, image, link*/
-    $cordovaSocialSharing.share('', $scope.chosenBrand.name, $scope.chosenBrand.background, $scope.chosenBrand.background).then(() => {
+    $cordovaSocialSharing.share('', $scope.chosenBrand.name, $scope.chosenBrand.background, $scope.chosenBrand.url).then(() => {
       isDisableShare = false;
     }).catch((err) => {
       isDisableShare = false;

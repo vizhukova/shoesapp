@@ -1419,13 +1419,29 @@ button.join {
   $mainTextColor: #000;
   $otherTextColor: #5B5E61;
 
-  background: #fff;
+  background: #F3F1F1;
   opacity: 0.95;
   text-align: center;
 
   .container {
 
-     padding: 2em;
+     padding: 1em;
+
+    img {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 5%;
+      margin: auto;
+      max-height: 200px;
+      height: 35%;
+      max-width: 60%;
+      width: auto;
+    }
+
+    .description {
+      padding-top: calc(200px + 5%);
+    }
 
     .close-btn, .description {
       color:  $otherTextColor;
@@ -1457,8 +1473,8 @@ button.join {
     }
 
     .connect {
-      border-top: solid 1px $otherTextColor;
-      border-bottom: solid 1px $otherTextColor;
+      border-top: solid 1px #BFC2C3;
+      border-bottom: solid 1px #BFC2C3;
       margin: 0 -2em;
 
         .icon {
@@ -1470,6 +1486,7 @@ button.join {
     .update {
       .description {
         line-height: 1em;
+        padding: 0;
       }
     }
   }
