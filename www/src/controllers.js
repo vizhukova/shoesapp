@@ -115,7 +115,7 @@ angular.module('starter.controllers', [])
 
         $scope.categoryId = newVal.id;
 
-        Banner.getLogin().then((data) => {
+        Banner.getMain().then((data) => {
 
           $scope.mainBanners = data;
           $scope.$digest();

@@ -25,11 +25,18 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner
       $scope[popup.name] = popover;
     });
 
-    $scope[`open${popup.name}`] = ($event)=>{
-      $scope[popup.name].show($event);
-      $scope.closeRecovery();
-    };
   });
+
+   $scope[`opensigninPopover`] = ($event)=>{
+     $scope[`signinPopover`].show($event);
+     $scope.closeRecovery();
+     $('#email').focus();
+   };
+
+  $scope[`opensignunPopover`] = ($event)=>{
+     $scope[`signunPopover`].show($event);
+     $scope.closeRecovery();
+   };
 
   $scope.openerrorModal = () => {
 
