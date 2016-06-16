@@ -30,7 +30,11 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner
    $scope[`opensigninPopover`] = ($event)=>{
      $scope[`signinPopover`].show($event);
      $scope.closeRecovery();
-     $('#email').focus();
+
+     setTimeout(() => {
+       $('#email').focus();
+       $scope.$digest();
+     }, 1000)
    };
 
   $scope[`opensignunPopover`] = ($event)=>{
