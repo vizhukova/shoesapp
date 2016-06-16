@@ -14,8 +14,8 @@
 
   <div class="body">
     <div class="button-bar">
-      <a class="button">Детали</a>
-      <a class="button">Возврат</a>
+      <a class="button" ng-class="{'chosen':details=='details'}" ng-click="chooseDetails('details')">Детали</a>
+      <a class="button" ng-class="{'chosen':details=='returns'}" ng-click="chooseDetails('returns')">Возврат</a>
     </div>
     <div class="info">{{item.descLong}}</div>
   </div>

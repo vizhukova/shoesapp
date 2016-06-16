@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordovaSocialSharing, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
+export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeout, $cordovaSocialSharing, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
 
   $scope.animation = 'slide-in-up';
   $scope.errors = {};
@@ -17,6 +17,10 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
    $scope.addresses  = []; // все адреса данного пользователя
    $scope.delivery = []; //переменная для хранения вариантов доставки
    var isDisableShare = false;
+
+  $scope.ready = () => {
+    return $scope.sizes;
+  };
 
   if($stateParams.id) {
 
@@ -51,8 +55,8 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
 
   var popups = [
     {name: 'moreInfo', url: 'src/brands/subtabs/more-info.html'},
-    {name: 'detailPopover', url: './src/product/directives/detail.popover.html'},
-    {name: 'basketPopover', url: './src/product/directives/basket.popover.html'},
+    {name: 'detailPopover', url: './src/product/popover/detail.popover.html'},
+    {name: 'basketPopover', url: './src/product/popover/basket.popover.html'},
     {name: 'login', url: './src/login/directives/login.popover.html'}
   ];
 
@@ -133,6 +137,10 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
 
   };
 
+  $scope.chooseDetails = (data) => {
+    $scope.details = data;
+  };
+
   $scope.addShipAddress = () => {
 
     Location.getbyZip({id:  $scope.shipAddress.zip}).then((data) => {
@@ -187,6 +195,13 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
 
   $scope.newAddressForm = () => {
     $scope.chosenType  =  $scope.chosenType =='newAddress' ? 'address' : 'newAddress';
+
+    $timeout(() => {
+      if($scope.chosenType === 'newAddress') {
+        $( "#fio" ).focus();
+      }
+    }, 100);
+
   };
 
   $scope.chooseShippingMethod = (id) => {
@@ -281,6 +296,9 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
   };
 
   function afterShowBasket() {
+
+    $scope.chosenType = 'size';
+
     Size.getByItem({id: $scope.item.id}).then((s) => {
 
       $scope.sizes = s || [];
@@ -299,7 +317,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $cordo
     isDisableShare = true;
 
                                 /*socialType, message, image, link*/
-    $cordovaSocialSharing.share('', item.name, item.img, item.img).then(() => {
+    $cordovaSocialSharing.share('', item.name, item.img, item.url).then(() => {
       isDisableShare = false;
     }).catch(() => {
       isDisableShare = false;

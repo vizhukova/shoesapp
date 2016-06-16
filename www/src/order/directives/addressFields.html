@@ -1,4 +1,4 @@
-<ion-scroll direction="y" style="height: 20em;">
+<ion-scroll direction="y" style="height: 30em;">
   <div class="address-fields">
 
     <div class="content"
@@ -16,23 +16,23 @@
       </div>
     </div>
     <div class="content" ng-if="addresses.length > 0" ng-click="newAddressForm()">
-      <span>Add a New Address</span>
+      <span>Добавить новый адрес</span>
       <i  ng-if="chosenType != 'newAddress'" class="ion-ios-plus-outline pull-right"></i>
       <i ng-if="chosenType == 'newAddress'" class="ion-ios-minus-outline pull-right"></i>
     </div>
 
     <form class="form" ng-if="addresses.length == 0 || chosenType == 'newAddress'" ng-submit="addShipAddress()">
-      <input type="text" name="name" placeholder="Full Name" ng-model="shipAddress.fullname" />
-      <input type="text" name="city" placeholder="City" class="city" ng-model="shipAddress.city" value="{{::shipAddress.city}}" />
-      <input type="text" name="zip" placeholder="Zip" class="zip" ng-class="{'error-field': errors.zip}" ng-model="shipAddress.zip" />
-      <input type="text" name="street" placeholder="Street" class="street" ng-model="shipAddress.street" />
-      <input type="text" name="build" placeholder="Build" class="build" ng-model="shipAddress.house" />
-      <input type="text" name="build" placeholder="Building" class="other" ng-model="shipAddress.building" />
-      <input type="text" name="build" placeholder="Flat" class="other" ng-model="shipAddress.flat" />
-      <input type="text" name="build" placeholder="Entrance" class="other" ng-model="shipAddress.entrance" />
-      <input type="text" name="phone" placeholder="Phone" ng-model="shipAddress.phone" />
+      <input type="text" name="name" placeholder="ФИО" ng-model="shipAddress.fullname" id="fio" />
+      <input type="text" name="city" placeholder="Город" class="city" ng-model="shipAddress.city" value="{{::shipAddress.city}}" />
+      <input type="text" name="zip" placeholder="Индекс" class="zip" ng-class="{'error-field': errors.zip}" ng-model="shipAddress.zip" />
+      <input type="text" name="street" placeholder="Улица" class="street" ng-model="shipAddress.street" />
+      <input type="text" name="build" placeholder="Дом" class="build" ng-model="shipAddress.house" />
+      <input type="text" name="build" placeholder="Строение" class="other" ng-model="shipAddress.building" />
+      <input type="text" name="build" placeholder="Квартира" class="other" ng-model="shipAddress.flat" />
+      <input type="text" name="build" placeholder="Подъезд" class="other" ng-model="shipAddress.entrance" />
+      <input type="text" name="phone" placeholder="Телефон" ng-model="shipAddress.phone" />
       <input type="text" name="email" placeholder="Email" ng-model="shipAddress.email" />
-      <input class="button  btn-done" type="submit" value="Done" />
+      <input class="button  btn-done address-btn-done" type="submit" value="Далее" />
     </form>
   </div>
 </ion-scroll>

@@ -13,7 +13,7 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   $scope.categories = [];
   var chosenCategory = {}; //для отображения дерева категорий
   var oldChosenFilter = {}; //для сохранения старого состояния объекта фильтрации
-  var page = 0; // текущая просматриваемая страница
+  var page = 1; // текущая просматриваемая страница
 
   var filterObj = _.omit($stateParams, Object.keys($stateParams).map((key) => {
     if($stateParams[key] == undefined) return key;
@@ -211,6 +211,8 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   };
 
   $scope.showResult = () => {
+    page = 1;
+    Item.resetNav();
     $scope.filterPopover.hide();
     $scope.filter($scope.chosenFilter);
 
@@ -226,7 +228,7 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   $scope.reset = () => {
 
     //Category.getFirstLevelParentNode($scope.chosenFilter.sectionId || filterObj.sectionId).then((parentNode) => {
-
+    page = 1;
     Item.resetNav();
       filterObj = {};
       $scope.chosenFilter = _.omit( $scope.chosenFilter, ['sectionId']);
@@ -283,7 +285,9 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   };
 
   $scope.filter = () => {
+
     var filterBy = {};
+
     _.assign(filterBy, filterObj, $scope.chosenFilter, {page: page});
 
      Item.getFilteredNav(filterBy).then((data) => {
@@ -292,9 +296,6 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
       $scope.$digest();
     });
 
-    page = 1;
-    Item.resetNav();
-
     //$scope.loadMore(true);
 
   };
@@ -302,15 +303,27 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   $scope.loadMore = () => {
     page ++;
 
+    //var filterBy = {};
+    //
+    //filterBy = _.assign({}, filterObj, {page: page});
+    //
+    //Item.getFilteredNav(filterBy).then((data) => {
+    //  $scope.products = _.concat($scope.products, data);
+    //  $scope.$broadcast('scroll.infiniteScrollComplete');
+    //});
+
     var filterBy = {};
 
-    filterBy = _.assign({}, filterObj, {page: page});
+    _.assign(filterBy, filterObj, $scope.chosenFilter, {page: page});
 
-    Item.getFilteredNav(filterBy).then((data) => {
-      $scope.products = _.concat($scope.products, data);
+     Item.getFilteredNav(filterBy).then((data) => {
+      $scope.products =  _.concat($scope.products, data);
+      console.log('products', data)
+      $scope.$digest();
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
-  }
+
+  };
 
    Item.resetNav();
    setTitle();

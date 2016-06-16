@@ -37,8 +37,7 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner
 
      setTimeout(() => {
        $('#email').focus();
-       $scope.$digest();
-     }, 1000)
+     }, 100)
    };
 
   $scope[`opensignunPopover`] = ($event)=>{

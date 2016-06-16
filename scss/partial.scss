@@ -478,6 +478,22 @@
     }
   }
 
+  .imageLoader {
+    width: 70%;
+    margin: auto;
+
+    img {
+      display: inline-block;
+      height: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+    }
+  }
+
 }
 
 
@@ -1507,11 +1523,11 @@ button.join {
   margin: 0 !important;
 
   &.close-address {
-    height: 358px;
+    height: 425px;
   }
 
   &.open-address {
-    height: 415px;
+    height: 425px;
   }
 
   &.chose-type {
@@ -1576,6 +1592,10 @@ button.join {
     min-height: 42px;
     height: 42px;
     border-radius: 0;
+    position: absolute;
+    bottom: 29px;
+    left: 0;
+    right: 0;
   }
 
   .left-text {
@@ -1595,26 +1615,28 @@ button.join {
     height: 90px;
     width: 90px;
     border-radius: 45px;
-    background: #000;
+    border: solid 1px #000;
     opacity: 1;
-    color: #ffffff;
+    color: #000;
     line-height: 90px;
     text-align: center;
     font-size: 30px;
-    }
+  }
 }
 
 .fields {
   .btn-done {
     background: #131313;
     color: #fff;
-    width: 100%;
+    width: 100% !important;
+    margin: 0 !important;
     text-transform: uppercase;
     font-size: 1em;
     font-weight: 600;
     letter-spacing: 0.1em;
     min-height: 1em;
     height: 3em;
+    //position: inherit;
   }
 
   input[type=text] {
@@ -1679,6 +1701,10 @@ button.join {
 
   }
 
+  .address-btn-done {
+    bottom: 23px;
+  }
+
 }
 
 
@@ -1741,6 +1767,14 @@ button.join {
   .btn-done {
     margin: 0 1em;
     width: calc(100% - 2em);
+  }
+
+  .increase {
+    height: 105px;
+    .details {
+      line-height: 1em;
+      text-align: right;
+    }
   }
 }
 
@@ -2081,3 +2115,8 @@ button.join {
     position: relative;
     height: 100%;
   }
+
+
+.size-container {
+  padding-top: 1em;
+}

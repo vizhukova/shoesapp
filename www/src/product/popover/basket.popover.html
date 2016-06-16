@@ -1,0 +1,111 @@
+<ion-popover-view class="basket-popover" ng-class="{'chose-type': !!chosenType,
+'close-address': !basketData.address.location,
+'open-address': basketData.address.location}
+">
+
+  <div class="nav-panel">
+    <span><b>Бесплатная доставка. </b>На все.</span>
+  </div>
+
+  <ion-scroll direction="y" style="height: 100%">
+
+    <div class="loader-gif" ng-if="!ready()"> </div>
+
+    <div  ng-if="ready()">
+      <div  ng-if="!chosenType || chosenType == 'size'" ng-click="setChosenType('size')" class="content">
+
+         <div>
+           <span ><b>Размер</b></span>
+
+           <span ng-if="!chosenType">
+             <span class="pull-right"><i class="ion-ios-plus-empty plus-icon"></i></span>
+             <span class="pull-right left-text">{{basketData.size.size}}</span>
+           </span>
+
+           <span class="pull-right" ng-if="chosenType"><i class="ion-ios-minus-empty plus-icon"></i></span>
+
+         </div>
+
+       </div>
+
+      <div  ng-if="!chosenType || chosenType == 'address'"
+            ng-click="setChosenType('address')"
+            ng-class="{'increase': basketData.address.location && !chosenType}"
+            class="content">
+
+         <div>
+           <span ><b>Адрес доставка</b></span>
+
+           <span ng-if="!basketData.address.location && !chosenType">
+             <span class="pull-right"><i class="ion-ios-plus-empty plus-icon"></i></span>
+             <span class="pull-right left-text">Добавить</span>
+           </span>
+
+           <span ng-if="basketData.address.location && !chosenType" class="pull-right">
+             <p>{{basketData.address.fullname}}</p>
+             <p>{{basketData.address.location}}, {{basketData.address.building}}</p>
+             <p>{{basketData.address.zip}}</p>
+           </span>
+
+           <span class="pull-right" ng-if="chosenType"><i class="ion-ios-minus-empty plus-icon"></i></span>
+
+         </div>
+
+       </div>
+
+        <div ng-if="!chosenType || chosenType == 'payment'" ng-click="setChosenType('payment')" class="content">
+
+         <span ><b>Методы оплаты</b></span>
+
+          <span ng-if="!chosenType && !basketData.payment">
+
+            <span class="pull-right"><i class="ion-ios-plus-empty plus-icon"></i></span>
+            <span class="pull-right left-text">Добавить</span>
+
+         </span>
+
+          <span class="pull-right" ng-if="!chosenType && basketData.payment">{{basketData.payment.name}}</span>
+
+          <span class="pull-right" ng-if="chosenType"><i class="ion-ios-minus-empty plus-icon"></i></span>
+
+       </div>
+
+        <div ng-if="!chosenType || chosenType == 'shipping'" ng-click="setChosenType('shipping')" class="content">
+
+            <span ><b>Доставка</b></span>
+
+             <span ng-if="!chosenType && !basketData.delivery">
+               <span class="pull-right"><i class="ion-ios-plus-empty plus-icon"></i></span>
+               <span class="pull-right left-text">Добавить</span>
+             </span>
+
+             <span ng-if="!chosenType && basketData.delivery" class="pull-right">{{basketData.delivery.name}}</span>
+
+           <span class="pull-right" ng-if="chosenType"><i class="ion-ios-minus-empty plus-icon"></i></span>
+       </div>
+
+        <div ng-if="!chosenType || chosenType == 'est'" ng-click="setChosenType('est')" class="content">
+           <span ><b>Итог</b></span>
+             <span ng-if="!chosenType" class="pull-right">
+               <span><b>{{basketData.size.price * basketData.quantity}} {{basketData.size.currency}}</b></span>
+             </span>
+           <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
+       </div>
+
+      <div ng-if="!chosenType" ng-click="checkout()">
+        <!--<p  class="comment">some comment</p>-->
+        <div class="button  btn-done">Далее</div>
+      </div>
+
+      <div class="container">
+        <size ng-if="chosenType=='size'"></size>
+        <address-fields ng-if="chosenType=='address' || chosenType=='newAddress'"></address-fields>
+        <payment ng-if="chosenType=='payment'"></payment>
+        <shipping-fields ng-if="chosenType=='shipping'"></shipping-fields>
+        <total-fields ng-if="chosenType=='est'"></total-fields>
+      </div>
+    </div>
+
+  </ion-scroll>
+
+</ion-popover-view>
