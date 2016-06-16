@@ -1,4 +1,4 @@
-export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner, Info) {
+export default function($scope, $state, $ionicPopover, $ionicModal, $timeout, User, Banner, Info) {
 
   $scope.animation = 'slide-in-up';
   $scope.recovery = false;
@@ -35,7 +35,8 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner
      $scope[`signinPopover`].show($event);
      $scope.closeRecovery();
 
-     setTimeout(() => {
+     $timeout(() => {
+       debugger
        $('#email').focus();
      }, 100)
    };
