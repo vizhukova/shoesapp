@@ -22,7 +22,7 @@
     </div>
 
     <form class="form" ng-if="addresses.length == 0 || chosenType == 'newAddress'" ng-submit="addShipAddress()">
-      <input type="text" name="name" placeholder="ФИО" ng-model="shipAddress.fullname" id="fio" />
+      <input type="text" name="name" placeholder="ФИО" ng-model="shipAddress.fullname" focus-if="isFocus()" />
       <input type="text" name="city" placeholder="Город" class="city" ng-model="shipAddress.city" value="{{::shipAddress.city}}" />
       <input type="text" name="zip" placeholder="Индекс" class="zip" ng-class="{'error-field': errors.zip}" ng-model="shipAddress.zip" />
       <input type="text" name="street" placeholder="Улица" class="street" ng-model="shipAddress.street" />

@@ -286,6 +286,76 @@ angular.module('starter.directives', [])
     }
   })
 
+  .directive('fullScreenSlider', function ($timeout, $state) {
+
+    return {
+      scope: {
+        imgs: '=',
+        autoplay: '=',
+        isclickable: '='
+      },
+      restrict: 'E',
+      replace: true,
+      templateUrl: './src/shop/full.screen.slider.html',
+      link: (scope, element, attrs) => {
+
+        var isReady = false;
+
+        scope.$watch('imgs', (newVal, oldVal) => {
+
+          if (newVal && newVal.length > 0) {
+
+            $timeout(() => {
+              var mySwiper = new Swiper($(element).find('.swiper-container'), {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                loop: true
+              })
+            });
+
+            $timeout(() => {
+              isReady = true;
+            }, 800);
+
+          }
+
+        });
+
+
+        scope.click = (item) => {
+          if(scope.isclickable) {
+            $state.go('tab.shop-products', item);
+          }
+        };
+
+        scope.ready = () => {
+          return isReady;
+        };
+
+
+      //  function getSlideDataIndex(swipe){
+      //    var activeIndex = swipe.activeIndex;
+      //    var slidesLen = swipe.slides.length;
+      //    if(swipe.params.loop){
+      //        switch(swipe.activeIndex){
+      //            case 0:
+      //                activeIndex = slidesLen-3;
+      //                break;
+      //            case slidesLen-1:
+      //                activeIndex = 0;
+      //                break;
+      //            default:
+      //                --activeIndex;
+      //        }
+      //    }
+      //    return  activeIndex;
+      //}
+
+
+      }
+    }
+  })
+
   .directive('tileSlider', function () {
 
     return {

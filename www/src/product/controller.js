@@ -125,7 +125,6 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 
     }
 
-
   };
 
   $scope.loginCallback = () => {
@@ -135,6 +134,10 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 
     afterShowBasket();
 
+  };
+
+  $scope.isFocus = () => {
+    return $scope.chosenType=='newAddress';
   };
 
   $scope.chooseDetails = (data) => {
@@ -196,11 +199,11 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
   $scope.newAddressForm = () => {
     $scope.chosenType  =  $scope.chosenType =='newAddress' ? 'address' : 'newAddress';
 
-    $timeout(() => {
-      if($scope.chosenType === 'newAddress') {
-        $( "#fio" ).focus();
-      }
-    }, 100);
+    //$timeout(() => {
+    //  if($scope.chosenType === 'newAddress') {
+    //    $( "#fio" ).focus();
+    //  }
+    //}, 100);
 
   };
 

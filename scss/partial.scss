@@ -1615,7 +1615,7 @@ button.join {
     height: 90px;
     width: 90px;
     border-radius: 45px;
-    border: solid 1px #000;
+    border: solid 1px #B7B6B6;
     opacity: 1;
     color: #000;
     line-height: 90px;
@@ -2119,4 +2119,15 @@ button.join {
 
 .size-container {
   padding-top: 1em;
+}
+
+.fullScreenSlider {
+  @extend .bannerSlider;
+
+  .img {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+  }
 }

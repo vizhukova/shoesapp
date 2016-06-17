@@ -3,6 +3,7 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner
   $scope.animation = 'slide-in-up';
   $scope.recovery = false;
   $scope.user = {};
+  var isFocused  = false;
 
   var isDisableButton = false;
 
@@ -32,12 +33,9 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner
   });
 
    $scope[`opensigninPopover`] = ($event)=>{
+     isFocused = true;
      $scope[`signinPopover`].show($event);
      $scope.closeRecovery();
-
-     setTimeout(() => {
-       $('#email').focus();
-     }, 100)
    };
 
   $scope[`opensignunPopover`] = ($event)=>{
@@ -63,7 +61,11 @@ export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner
 
     });
 
-  }
+  };
+
+  $scope.isFocus = () => {
+    return isFocused;
+  };
 
   $scope.openRecovery = () => {
     $scope.recovery = true;
