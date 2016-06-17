@@ -1534,6 +1534,10 @@ button.join {
     background: #F3F0F0 !important;
   }
 
+  .pull-right {
+    text-align: right;
+  }
+
   .nav-panel {
     height: 30px;
     line-height: 30px;
@@ -1563,11 +1567,18 @@ button.join {
   .content {
     padding: 14px;
     border-bottom: solid 1px #E5E5E5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
       .plus-icon {
         font-size: 17px;
         padding-left: 5px;
       }
+  }
+
+  .content>div>span {
+    width: 50%;
   }
 
   .increase {
@@ -1753,7 +1764,7 @@ button.join {
   }
 }
 
-.shipping-fields {
+.total-fields {
   @extend .fields;
 
   .content {
@@ -1774,9 +1785,24 @@ button.join {
     .details {
       line-height: 1em;
       text-align: right;
+      width: 50%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
+
+.shipping-fields {
+  @extend .total-fields;
+
+  .content {
+    //word-wrap: inherit;
+    white-space: inherit;
+  }
+
+}
+
 
 
 .tab-alert {

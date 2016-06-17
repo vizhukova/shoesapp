@@ -181,6 +181,9 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
         })
 
       }
+    }).catch((err) => {
+      $scope.err_message = 'Проверьте правильность введенного индекса';
+      $scope.openerrorModal();
     });
 
   };

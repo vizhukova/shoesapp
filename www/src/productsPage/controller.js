@@ -231,7 +231,8 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
     page = 1;
     Item.resetNav();
       filterObj = {};
-      $scope.chosenFilter = _.omit( $scope.chosenFilter, ['sectionId']);
+      //$scope.chosenFilter = _.omit( $scope.chosenFilter, ['sectionId']);
+      $scope.chosenFilter = {};
       setTitle();
     //})
 
