@@ -1,4 +1,4 @@
-export default function($scope, $state, $ionicPopover, $ionicModal, User, Banner, Info) {
+export default function($scope, $state, $ionicPopover, $ionicModal, $timeout, User, Banner, Info) {
 
   $scope.animation = 'slide-in-up';
   $scope.recovery = false;
