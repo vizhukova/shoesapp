@@ -972,6 +972,22 @@ angular.module('starter.directives', [])
     }
   })
 
+  .directive('input', function () {
+    return {
+      restrict: 'E',
+      scope: {
+        nIonic: '='
+      },
+      link: function(scope, element, attr) {
+        if(scope.nIonic) {
+          element.bind('touched touchmove touchstart', function(e) {
+            e.stopPropagation();
+          })
+        }
+      }
+    }
+  })
+
 
 
 

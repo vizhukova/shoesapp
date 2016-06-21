@@ -7,6 +7,9 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout, Us
 
   var isDisableButton = false;
 
+  //$cordovaKeyboard.disableScroll(true);
+
+
   Banner.getLogin().then((data) => {
     $scope.banners = data;
   });
@@ -63,7 +66,9 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout, Us
 
   };
 
-  $scope.isFocus = () => {
+  $scope.isFocus = ($event) => {
+    //$event.preventDefault();
+    //$eventt.stopPropagation();
     return isFocused;
   };
 

@@ -5,7 +5,7 @@
   <div ng-if="!recovery">
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Email" ng-model="user.email" focus-if="isFocus()">
+        <input type="text" placeholder="Email" ng-model="user.email" focus-if="isFocus($event)">
       </label>
       <label class="item item-input">
         <input type="password" placeholder="Пароль" ng-model="user.password">

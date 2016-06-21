@@ -1604,7 +1604,7 @@ button.join {
     height: 42px;
     border-radius: 0;
     position: absolute;
-    bottom: 29px;
+    bottom: 0;
     left: 0;
     right: 0;
   }
@@ -1961,6 +1961,7 @@ button.join {
      .button {
        top: 7.5em;
        right: 0.5em;
+       position: absolute;
        position: absolute;
        z-index: 600;
        border: 1px solid #444;

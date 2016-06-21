@@ -6,11 +6,11 @@
          ng-repeat="address in addresses"
          ng-click="chooseAddress(address.addressId)">
 
-     <div class="address">
+      <div class="address">
         <p>{{::address.fullname}}</p>
         <p>{{::address.street}} {{::address.house}}</p>
         <p>{{::address.location}}, {{::address.zip}}</p>
-     </div>
+      </div>
       <div class="mark" ng-if="address.addressId === basketData.address.addressId">
         <i class="ion-ios-checkmark-outline"></i>
       </div>
