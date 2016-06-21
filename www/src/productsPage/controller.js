@@ -19,6 +19,10 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
     if($stateParams[key] == undefined) return key;
   }));
 
+  if(filterObj.sectionId) {
+    $scope.chosenFilter.sectionId = filterObj.sectionId;
+  }
+
   if(filterObj.q) {
      console.log('searchPhrase', $stateParams.q)
     $scope.searchPhrase = $stateParams.q;
@@ -118,15 +122,15 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
     var nameToReturn;
 
     switch(name) {
-      case $scope.filterBy[0]: if($scope.chosenFilter['sectionId']) {
+      case $scope.filterBy[0]: if($scope.chosenFilter['sectionId'] && $scope.allCategories.length) {
                         nameToReturn = _.find($scope.allCategories, {id: $scope.chosenFilter['sectionId']}).name;
                       }
                   break;
-      case $scope.filterBy[1]: if($scope.chosenFilter['size']) {
+      case $scope.filterBy[1]: if($scope.chosenFilter['size'] && $scope.sizes.length) {
                       nameToReturn = _.find($scope.sizes, {id: $scope.chosenFilter['size']}).name;
                     }
                   break;
-      case $scope.filterBy[2]: if($scope.chosenFilter['color']) {
+      case $scope.filterBy[2]: if($scope.chosenFilter['color'] && $scope.colors.length) {
                       nameToReturn = _.find($scope.colors, {id: $scope.chosenFilter['color']}).name;
                     }
                   break;

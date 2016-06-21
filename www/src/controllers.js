@@ -192,7 +192,7 @@ angular.module('starter.controllers', [])
 
     $scope.goToProducts = (param) => {
       $scope.popover.hide();
-      $state.go("tab.shop-products", param);
+      $state.go("tab.shop-products", _.assign({}, param, {sectionId: $scope.categoryId}));
     };
 
     $scope.goToBrand = (brand_id) => {
