@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeout, $cordovaSocialSharing, $cordovaKeyboard, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
+export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeout, $cordovaSocialSharing, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
 
   $scope.animation = 'slide-in-up';
   $scope.errors = {};
@@ -19,11 +19,6 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
    $scope.deliveryIdTmp;//переменная, для варианты доставки без подтверждения выбора
    var isDisableShare = false;
 
-
-  console.log(window.cordova.plugins.Keyboard)
-  $cordovaKeyboard.hideAccessoryBar(true);
-  $cordovaKeyboard.disableScroll(true);
-  $cordovaKeyboard.close();
 
   $scope.ready = () => {
     return $scope.sizes;
