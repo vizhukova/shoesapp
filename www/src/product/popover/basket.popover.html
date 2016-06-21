@@ -87,7 +87,7 @@
         <div ng-if="!chosenType || chosenType == 'est'" ng-click="setChosenType('est')" class="content">
            <span ><b>Итог</b></span>
              <span ng-if="!chosenType" class="pull-right">
-               <span><b>{{basketData.size.price * basketData.quantity}} {{basketData.size.currency}}</b></span>
+               <span><b>{{basketData.size.price * basketData.quantity || 0}} {{basketData.size.currency}}</b></span>
              </span>
            <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
        </div>

@@ -16,6 +16,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
    $scope.cardData  = {};// объект для соханения новых данных по карте
    $scope.addresses  = []; // все адреса данного пользователя
    $scope.delivery = []; //переменная для хранения вариантов доставки
+   $scope.deliveryIdTmp;//переменная, для варианты доставки без подтверждения выбора
    var isDisableShare = false;
 
   $scope.ready = () => {
@@ -210,8 +211,20 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 
   };
 
+  $scope.setDeliveryIdTmp = (id) => {
+    $scope.deliveryIdTmp =  id;
+  };
+
   $scope.chooseShippingMethod = (id) => {
     $scope.basketData.delivery  =  _.find($scope.delivery, {id: id});
+
+    Payment.get({id: $scope.basketData.delivery.id}).then((payments) => {
+
+        $scope.payments = payments;
+        console.log('PAYMENT', payments)
+
+    })
+
   };
 
   $scope.choosePayment = (id) => {
@@ -288,7 +301,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 
     $scope.basketData.delivery = delivery[delivery.length - 1];
 
-    return Payment.get({id: delivery.id})
+    return Payment.get({id: delivery[delivery.length - 1].id})
 
   }).then((payments) => {
 

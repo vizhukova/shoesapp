@@ -11,7 +11,7 @@
 
   <div class="content" ng-class="{'increase': basketData.address.location}">
     <span>Адрес доставки</span>
-     <div  class="details pull-right">
+     <div  class="details pull-right" ng-if={{basketData.address}}>
         <p>{{::basketData.address.fullname}}</p>
         <p>{{::basketData.address.street}} {{::basketData.address.house}}</p>
         <p>{{::basketData.address.location}}, {{::basketData.address.zip}}</p>

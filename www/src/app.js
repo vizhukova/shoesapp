@@ -114,6 +114,24 @@ angular.module('starter', [
             templateUrl: 'src/product/template.html',
             controller: 'ProductCtrl'
           }
+        },
+
+        onEnter: function($ionicPlatform){
+
+          $ionicPlatform.ready(function() {
+            if(window.cordova ){
+               cordova.plugins.Keyboard.disableScroll(true);
+            }
+
+         });
+        },
+        onExit: function($ionicPlatform){
+          $ionicPlatform.ready(function() {
+             if(window.cordova){
+               cordova.plugins.Keyboard.disableScroll(false);
+
+              }
+          });
         }
       })
 
