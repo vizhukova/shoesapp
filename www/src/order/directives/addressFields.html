@@ -22,17 +22,39 @@
     </div>
 
     <form class="form" ng-if="addresses.length == 0 || chosenType == 'newAddress'" ng-submit="addShipAddress()">
-      <input type="text" name="name" placeholder="ФИО" ng-model="shipAddress.fullname" id="fio" />
-      <input type="text" name="city" placeholder="Город" class="city" ng-model="shipAddress.city" value="{{::shipAddress.city}}" />
-      <input type="text" name="zip" placeholder="Индекс" class="zip" ng-class="{'error-field': errors.zip}" ng-model="shipAddress.zip" />
-      <input type="text" name="street" placeholder="Улица" class="street" ng-model="shipAddress.street" />
-      <input type="text" name="build" placeholder="Дом" class="build" ng-model="shipAddress.house" />
-      <input type="text" name="build" placeholder="Строение" class="other" ng-model="shipAddress.building" />
-      <input type="text" name="build" placeholder="Квартира" class="other" ng-model="shipAddress.flat" />
-      <input type="text" name="build" placeholder="Подъезд" class="other" ng-model="shipAddress.entrance" />
-      <input type="text" name="phone" placeholder="Телефон" ng-model="shipAddress.phone" />
-      <input type="text" name="email" placeholder="Email" ng-model="shipAddress.email" />
-      <input class="button  btn-done address-btn-done" type="submit" value="Далее" />
+      <div>
+         <input type="text" name="name" placeholder="ФИО" ng-model="shipAddress.fullname" id="fio" />
+      </div>
+      <div>
+        <input type="text" name="city" placeholder="Город" class="city" ng-model="shipAddress.city" value="{{::shipAddress.city}}" />
+      </div>
+      <div>
+         <input type="text" name="zip" placeholder="Индекс" class="zip" ng-class="{'error-field': errors.zip}" ng-model="shipAddress.zip" />
+      </div>
+      <div>
+        <input type="text" name="street" placeholder="Улица" class="street" ng-model="shipAddress.street" />
+      </div>
+      <div>
+        <input type="text" name="build" placeholder="Дом" class="build" ng-model="shipAddress.house" />
+      </div>
+      <div>
+         <input type="text" name="build" placeholder="Строение" class="other" ng-model="shipAddress.building" />
+      </div>
+      <div>
+         <input type="text" name="build" placeholder="Квартира" class="other" ng-model="shipAddress.flat" />
+      </div>
+      <div>
+         <input type="text" name="build" placeholder="Подъезд" class="other" ng-model="shipAddress.entrance" />
+      </div>
+      <div>
+        <input type="text" name="phone" placeholder="Телефон" ng-model="shipAddress.phone" />
+      </div>
+      <div>
+         <input type="text" name="email" placeholder="Email" ng-model="shipAddress.email" />
+      </div>
+      <div>
+        <input class="button  btn-done address-btn-done" type="submit" value="Далее" />
+      </div>
     </form>
   </div>
 </ion-scroll>
