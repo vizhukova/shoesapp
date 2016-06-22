@@ -21,7 +21,70 @@
       <i ng-if="chosenType == 'newAddress'" class="ion-ios-minus-outline pull-right"></i>
     </div>
 
+
     <form class="form" ng-if="addresses.length == 0 || chosenType == 'newAddress'" ng-submit="addShipAddress()">
+
+      <div class="row">
+        <div class="col">
+          <input type="text" name="name" placeholder="ФИО" ng-model="shipAddress.fullname" id="fio" />
+        </div>
+      </div>
+
+      <div class="row">
+         <div class="col-67">
+          <input type="text" name="city" class="city" placeholder="Город" ng-model="shipAddress.city" value="{{::shipAddress.city}}" />
+        </div>
+        <div class="col-33">
+           <input type="text" name="zip" class="zip" placeholder="Индекс" ng-class="{'error-field': errors.zip}" ng-model="shipAddress.zip" />
+        </div>
+      </div>
+
+      <div class="row">
+         <div class="col-67">
+          <input type="text" name="street" name="street" placeholder="Улица" class="street" ng-model="shipAddress.street" />
+        </div>
+        <div class="col-33">
+          <input type="text" name="build" name="build" placeholder="Дом" class="build" ng-model="shipAddress.house" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-33">
+           <input type="text" name="build" placeholder="Строение" class="other" ng-model="shipAddress.building" />
+        </div>
+        <div class="col-33">
+           <input type="text" name="build" placeholder="Квартира" class="other" ng-model="shipAddress.flat" />
+        </div>
+        <div class="col-33">
+           <input type="text" name="build" placeholder="Подъезд" class="other" ng-model="shipAddress.entrance" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <input type="text" name="phone" placeholder="Телефон" ng-model="shipAddress.phone" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+           <input type="text" name="email" placeholder="Email" ng-model="shipAddress.email" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <input class="button  btn-done address-btn-done" type="submit" value="Далее" />
+        </div>
+      </div>
+
+    </form>
+
+
+
+
+
+    <!--<form class="form" ng-if="addresses.length == 0 || chosenType == 'newAddress'" ng-submit="addShipAddress()">
       <div>
          <input type="text" name="name" placeholder="ФИО" ng-model="shipAddress.fullname" id="fio" />
       </div>
@@ -55,6 +118,7 @@
       <div>
         <input class="button  btn-done address-btn-done" type="submit" value="Далее" />
       </div>
-    </form>
+
+    </form>-->
   </div>
 </ion-scroll>
