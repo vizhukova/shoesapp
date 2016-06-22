@@ -42,3 +42,9 @@ div.title.header-item {
   float: right;
 }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+

@@ -1671,6 +1671,14 @@ button.join {
 
   @extend .fields;
 
+  .form {
+    div{
+      float: left;
+      width: 100%;
+      display: block;
+    }
+  }
+
   input.error-field {
     border: solid 1px red;
   }
@@ -1691,6 +1699,28 @@ button.join {
   input.state {
     width: 37%;
   }
+
+  /*
+  div.error-field {
+    border: solid 1px red;
+  }
+
+  div.zip, div.build {
+    width: 40%;
+  }
+
+  div.other {
+    width: 32%;
+  }
+
+  div.city, div.street {
+    width: 58%;
+  }
+
+  div.state {
+    width: 37%;
+  }
+  */
 
   .content {
     p {
@@ -1714,12 +1744,6 @@ button.join {
 
   .address-btn-done {
     bottom: 70px;
-  }
-
-  .form {
-    div {
-      display: inline;
-    }
   }
 
 }
