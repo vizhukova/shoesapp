@@ -1044,7 +1044,7 @@ angular.module('starter.services', [])
 
       cache[key] = {
         data: data.result,
-        endTime: moment().add(data.ttl, 's'),
+        endTime: moment().add(data.ttl, 'ms'),
         nav: data.nav
       }
 
@@ -1151,6 +1151,8 @@ angular.module('starter.services', [])
         if (!dataToReturn) {
 
           Server.fetch(url).then((data) => {
+
+            data.ttl = 1000;
 
             Cache.set(url, data);
              console.log('Server format', {result: data.result, nav: data.nav})
