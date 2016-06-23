@@ -6,11 +6,13 @@
       <span><b>Бесплатная доставка. </b>На все.</span>
     </div>
 
+  {{isOffScroll}}
+
     <!--<ion-scroll direction="y" style="height: 100%">-->
 
     <div class="loader-gif" ng-if="!ready()"> </div>
 
-    <div  ng-if="ready()">
+    <div  class="ready-container" ng-if="ready()">
       <div  ng-if="!chosenType || chosenType == 'size'" ng-click="setChosenType('size')" class="content">
 
         <div>

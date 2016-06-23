@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeout, $cordovaSocialSharing, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
+export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeout, $rootScope, $cordovaSocialSharing, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
 
   $scope.animation = 'slide-in-up';
   $scope.errors = {};
@@ -17,6 +17,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
    $scope.addresses  = []; // все адреса данного пользователя
    $scope.delivery = []; //переменная для хранения вариантов доставки
    $scope.deliveryIdTmp;//переменная, для варианты доставки без подтверждения выбора
+   $scope.isScrollable = true;
    var isDisableShare = false;
 
 
@@ -115,6 +116,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
   $scope[`openbasketPopover`] = ()=>{
 
     var isLogIn = Settings.isLogIn();
+    $scope.isScrollable = false;
 
     if(isLogIn) {
 

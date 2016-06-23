@@ -48,3 +48,7 @@ div.title.header-item {
   clear: both;
 }
 
+.no-scroll {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
