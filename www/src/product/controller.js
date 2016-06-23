@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeout, $cordovaSocialSharing, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
+export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeout, $rootScope, $cordovaSocialSharing, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
 
   $scope.animation = 'slide-in-up';
   $scope.errors = {};
@@ -17,8 +17,15 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
    $scope.addresses  = []; // все адреса данного пользователя
    $scope.delivery = []; //переменная для хранения вариантов доставки
    $scope.deliveryIdTmp;//переменная, для варианты доставки без подтверждения выбора
-   $scope.isScrollable = true;
+   $scope.isDisableScroll = $rootScope.isDisableScroll = false;
+
    var isDisableShare = false;
+
+  $scope.$watch(function() {
+    return $rootScope.isDisableScroll;
+  }, function() {
+    $scope.isDisableScroll = $rootScope.isDisableScroll;
+  }, true);
 
 
   $scope.ready = () => {
@@ -57,9 +64,9 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 
 
   var popups = [
+    {name: 'basketPopover', url: './src/product/popover/basket.popover.html'},
     {name: 'moreInfo', url: 'src/brands/subtabs/more-info.html'},
     {name: 'detailPopover', url: './src/product/popover/detail.popover.html'},
-    {name: 'basketPopover', url: './src/product/popover/basket.popover.html'},
     {name: 'login', url: './src/login/directives/login.popover.html'}
   ];
 
@@ -86,6 +93,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
   };
 
   $scope[`openlogin`] = ()=>{
+  $scope.isDisableScroll = 123;
     $scope['login'].show();
   };
 
@@ -129,12 +137,26 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 
     }
 
+  //debugger
+
+    $rootScope.isDisableScroll = true;
+    //$scope.$parent.isDisableScroll = true;
+
   };
+
+
+// Execute action on hide popover
+$scope.$on('popover.hidden', function() {
+  // Execute action
+  $rootScope.isDisableScroll = false;
+  //$scope.isDisableScroll = false;
+});
+
 
   $scope.loginCallback = () => {
 
     $scope['login'].hide();
-    $scope['basketPopover'].show();
+    $scope[`openbasketPopover`]();
 
     afterShowBasket();
 

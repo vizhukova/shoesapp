@@ -1534,6 +1534,11 @@ button.join {
     background: #F3F0F0 !important;
   }
 
+  .ready-container {
+    position: relative;
+    height: 100%;
+  }
+
   .pull-right {
     text-align: right;
   }
@@ -1604,7 +1609,7 @@ button.join {
     height: 42px;
     border-radius: 0;
     position: absolute;
-    bottom: 0;
+    bottom: 30px;
     left: 0;
     right: 0;
   }
@@ -1612,6 +1617,10 @@ button.join {
   .left-text {
     width: 40%;
     text-align: right;
+  }
+
+  .container {
+    height: 100%;
   }
 
 }
@@ -1743,7 +1752,7 @@ button.join {
   }
 
   .address-btn-done {
-    bottom: 70px;
+    bottom: 79px;
   }
 
 }
@@ -2187,4 +2196,13 @@ button.join {
     background-size: cover;
     background-position: center center;
   }
+}
+
+.under-popover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
 }

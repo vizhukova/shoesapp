@@ -49,5 +49,6 @@ div.title.header-item {
 }
 
 .no-scroll {
-  -webkit-overflow-scrolling: inherit;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }

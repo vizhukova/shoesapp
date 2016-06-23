@@ -70,10 +70,6 @@
 
 
 
-
-
-
-
     <form class="form" ng-if="addresses.length == 0 || chosenType == 'newAddress'" ng-submit="addShipAddress()">
          <input type="text" name="name" placeholder="ФИО" ng-model="shipAddress.fullname" id="fio" />
         <input type="text" name="city" placeholder="Город" class="city" ng-model="shipAddress.city" value="{{::shipAddress.city}}" />
