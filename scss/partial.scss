@@ -1609,7 +1609,7 @@ button.join {
     height: 42px;
     border-radius: 0;
     position: absolute;
-    bottom: 0;
+    bottom: 30px;
     left: 0;
     right: 0;
   }
@@ -1617,6 +1617,10 @@ button.join {
   .left-text {
     width: 40%;
     text-align: right;
+  }
+
+  .container {
+    height: 100%;
   }
 
 }
@@ -1748,7 +1752,7 @@ button.join {
   }
 
   .address-btn-done {
-    bottom: 70px;
+    bottom: 79px;
   }
 
 }
