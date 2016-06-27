@@ -988,6 +988,39 @@ angular.module('starter.directives', [])
     }
   })
 
+  .directive('followNavButton', function (Main, Brand) {
+    return {
+      restrict: 'E',
+      scope: {},
+      templateUrl: 'src/partial/follow.nav.button.html',
+      replace: true,
+      link: function(scope, element, attr) {
+
+        scope.mainService = Main;
+
+        scope.$watch('mainService.getCurrentBrand()', (newVal) => {
+          if (newVal) {
+            scope.brand = newVal;
+          }
+        });
+
+        scope.follow = (item) => {
+
+          if(item.isLiked) {
+            Brand.removeLiked(item.id);
+          } else {
+            Brand.addLiked(item.id);
+          }
+
+          scope.brand.isLiked = !scope.brand.isLiked;
+          Main.setCurrentBrand(scope.brand);
+
+        };
+
+      }
+    }
+  })
+
 
 
 

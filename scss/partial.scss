@@ -491,6 +491,7 @@
       right: 0;
       left: 0;
       margin: auto;
+      padding: 1em;
     }
   }
 
@@ -500,7 +501,7 @@
 .bigSlider {
   position: relative;
   width: auto;
-  background-color: #fff;
+  background-color: rgb(234, 232, 232);
   height: 18em;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -527,6 +528,17 @@
         }
       }
     }
+
+    .swiper-pagination-bullet {
+        background: rgb(0, 0, 0);
+        border: 1px white solid;
+        opacity: 1;
+     }
+
+     .swiper-pagination-bullet-active {
+       background: rgb(255, 255, 255);
+       border: 1px black solid;
+     }
   }
 
 }
@@ -1125,6 +1137,7 @@
         p.chosen {
           background: white;
           color: #000;
+          border: 1px solid #fff;
         }
       }
 
@@ -1239,6 +1252,14 @@
 
     &:nth-child(2n+3){
       clear: both;
+    }
+
+    &:nth-last-child(2){
+      margin-bottom: 5em;
+    }
+
+    &:nth-last-child(1){
+      margin-bottom: 5em;
     }
 
     div.img {
@@ -1368,8 +1389,9 @@ button.join {
   }
 
    .scrolling div.thing div.holder .img {
-     width: 4em;
-     height: auto;
+     //width: 4em;
+     //height: auto;
+     width: 65%;
 
    }
 
@@ -1602,7 +1624,7 @@ button.join {
     color: #fff;
     width: 100%;
     text-transform: uppercase;
-    font-size: 15px;
+    font-size: 1em;
     font-weight: 600;
     letter-spacing: 3px;
     min-height: 42px;
@@ -1653,9 +1675,11 @@ button.join {
     text-transform: uppercase;
     font-size: 1em;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    //letter-spacing: 0.1em;
     min-height: 1em;
     height: 3em;
+    font-weight: 600;
+    letter-spacing: 3px;
     //position: inherit;
   }
 
@@ -2029,13 +2053,13 @@ button.join {
    .sign-in-by {
        position: absolute;
        bottom: 40%;
-       //top: 33em;
        left: 0;
        right: 0;
        text-align: center;
 
        button {
          width: 95%;
+         text-transform: uppercase;
 
          &.join {
            margin-bottom: 1.5em;
@@ -2055,6 +2079,10 @@ button.join {
       }
 
     }
+
+     .signin-btn {
+       text-decoration: underline;
+     }
 
    }
 
@@ -2076,7 +2104,8 @@ button.join {
      }
 
      .button {
-       padding: 0;
+       font-size: 0.7em;
+       padding: 0 1em;
      }
     }
 
@@ -2205,4 +2234,26 @@ button.join {
   left: 0;
   right: 0;
   background: transparent;
+}
+
+//.Showcase-tab {
+//  .search-panel {
+//    .button {
+//      font-size: 0.7em;
+//      padding: 0 1em;
+//    }
+//  }
+//}
+
+.follow-nav-button {
+  //@include transition-with-delay(0.5s, 0s);
+  oacity: 1;
+
+   .follow {
+    left: 0;
+    top: 43px;
+    bottom: inherit;
+    z-index: 500;
+    margin: auto;
+  }
 }

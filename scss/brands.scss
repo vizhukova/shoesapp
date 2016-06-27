@@ -10,8 +10,8 @@
   }
 
   .sample-show-hide {
-    -webkit-transition:opacity linear 0.5s;
-    transition:opacity linear 0.5s;
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
   }
 
   .sample-show-hide.ng-hide {
@@ -94,6 +94,7 @@
           bottom: 0;
           left: 0;
           right: 0;
+          z-index: 5;
 
         }
       }
@@ -198,6 +199,29 @@
   .bar-subheader {
     position: inherit;
   }
+
+  .brand-block {
+    .imageLoader {
+      height: 100px;
+      position: relative;
+      overflow: hidden;
+      background: $background;
+      padding: 0.5em;
+
+      img {
+        width: auto;
+        height: auto;
+        max-width: 95%;
+        max-height: 95%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+    }
+  }
 }
 
 
@@ -298,6 +322,26 @@ $colorShipping: #B5A758;
       color: #14120E;
       left: 1%;
       text-align: center;
+
+      .img {
+        position: relative;
+        height: 5em;
+        width: 5em;
+        overflow: hidden;
+
+        img {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          width: auto;
+          height: auto;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
     }
 
     .name {

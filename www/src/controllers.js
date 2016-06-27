@@ -280,14 +280,27 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('MainController', function ($scope, $state, $rootScope) {
+  .controller('MainController', function ($scope, $state, $rootScope, $timeout, Main) {
 
     var options = {
       'brands': 'tab.brands',
       'shop': 'tab.shop',
       'search': 'tab.search',
       'me': 'tab.me'
-    }
+    };
+
+    $scope.bodyClass = '';
+
+    $scope.mainService = Main;
+
+    $scope.$watch('mainService.isFollowButton()', (newVal) => {
+      $scope.isFollowButton = $state.is('tab.shop-product' || 'tab.product') && newVal;
+      console.log('mainService', newVal)
+    });
+
+    //$scope.isProductTab = () => {
+    //    return $state.is('tab.shop-product' || 'tab.product') && Main.isFollowButton();
+    //};
 
     $scope.deselect = (option) => $state.go(options[option]);
 

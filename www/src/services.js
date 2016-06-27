@@ -4,6 +4,32 @@ import moment from 'moment';
 
 angular.module('starter.services', [])
 
+   .service('Main', function ($http, $q, URL) {
+
+    var currentBrand = {};
+    var followButton = false;
+
+     this.setCurrentBrand = (item) => {
+       currentBrand = item || {};
+       followButton = !item.isLiked;
+       console.log('setCurrentBrand', item)
+     }
+
+     this.getCurrentBrand = () => {
+       return currentBrand;
+     }
+
+     this.setFollowButton = (value) => {
+       followButton = value && !currentBrand.isLiked;
+       console.log('setFollowButton', value)
+     }
+
+     this.isFollowButton = () => {
+       return followButton;
+     }
+
+  })
+
   .service('User', function (Server, localStorageService) {
   /*
   curl --data "{"email":"test@test.ru","pass":"asdfsfd","firstName":"Ivan"}"  http://shoes.mikero.ru/api/auth.signUp --header "Content-Type:application/json"
@@ -640,6 +666,11 @@ angular.module('starter.services', [])
     this.hasLiked = () => {
       var likes = localStorageService.get('likedBrands') || [];
       return !!likes.length;
+    };
+
+     this.isLiked = (id) => {
+      var likes = localStorageService.get('likedBrands') || [];
+      return likes.indexOf(id) !== -1;
     };
 
     this.saveInLocalStorage = (likedBrands) => {

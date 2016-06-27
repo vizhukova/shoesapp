@@ -2,15 +2,15 @@ export default function($scope, $state, $ionicPopover, $stateParams, Category) {
 
   Category.get().then((data) => {
     $scope.categories = data;
+    $scope.$digest();
   });
 
  // $scope.isSearchOnFocus = false;
   $scope.isRecentSearchesShow = false;
   $scope.subCategories = [];
-  $scope.categories = [];
 
   $scope.ready = () => {
-    return $scope.categories.length;
+    return $scope.categories;
   };
 
   $scope.includes = {

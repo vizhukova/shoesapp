@@ -1,5 +1,16 @@
 $background: #E8E5E5;
 
+@mixin transition-with-delay($transition, $delay) {
+  -webkit-transition: all linear $transition;
+  -webkit-transition-delay: $delay;
+  -o-transition: all linear $transition;
+  -o-transition-delay: $delay;
+  -moz-transition: all linear $transition;
+  -moz-transition-delay: $delay;
+  transition: all linear $transition;
+  transition-delay: $delay;
+}
+
 @import './login';
 @import './popover';
 @import './shop';
@@ -51,4 +62,21 @@ div.title.header-item {
 .no-scroll {
   overflow-y: hidden;
   overflow-x: hidden;
+}
+
+.bar-header {
+  //@include transition-with-delay(0.5s, 1s);
+}
+
+.body-product {
+
+  .bar-header {
+    height: 60px;
+    //@include transition-with-delay(0s, 0s);
+
+  }
+  .product-tab .product-slider {
+    margin-top: 6em;
+  }
+
 }

@@ -47,7 +47,7 @@ export default function($scope, $state, $stateParams, $ionicHistory, Category, B
 
     }
 
-  })
+  });
 
 
   function onChangeCategory(value) {

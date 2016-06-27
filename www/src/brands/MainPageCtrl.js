@@ -5,12 +5,11 @@ export default function ($stateParams, $scope, $state, $ionicPopover, $rootScope
   $scope.animation = 'slide-in-up';
   $scope.chosenBrands = []; //выбор бредов на главной страницы для подписки, если нет ни одного бренда, на который подписан пользователь
   $scope.chosenBrand = {};
-  $scope.brands = [];
   $scope.hasLiked = Brand.hasLiked();
 
   $scope.ready = () => {
-    if($scope.hasLiked) return $scope.brands.length && $scope.brandSales &&  $scope.newArrivals;
-    else return $scope.brands.length;
+    if($scope.hasLiked) return $scope.brands && $scope.brandSales &&  $scope.newArrivals;
+    else return $scope.brands;
   };
 
 
@@ -113,6 +112,7 @@ export default function ($stateParams, $scope, $state, $ionicPopover, $rootScope
 
       Brand.getFiltered().then((brands) => {
         $scope.brands = brands;
+        $scope.$digest();
       });
 
       $scope.onBlindChange = (index) => {

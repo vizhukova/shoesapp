@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeout, $rootScope, $cordovaSocialSharing, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order) {
+export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeout, $rootScope, $cordovaSocialSharing, $state, Item, Size, Location, Address, Brand, Settings, Delivery, Payment, Order, Main) {
 
   $scope.animation = 'slide-in-up';
   $scope.errors = {};
@@ -41,6 +41,9 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
     Item.get({id: $stateParams.id}).then((data) => {
 
       $scope.item = data;
+      var brandIsLiked = Brand.isLiked(data.brandId);
+
+      Main.setCurrentBrand({id: data.brandId, name: data.brandName, icon: data.brandIcon, isLiked: brandIsLiked});
       //$('#slider').update(updateTranslate);
 
       return Item.getFiltered({sectionId: $scope.item.sectionId});
@@ -48,11 +51,31 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
     }).then((products) => {
 
       $scope.products = products;
-      $scope.$digest();
+      $scope.$apply();
 
     }).catch((error) => {
 
     })
+
+    $scope.mainService = Main;
+
+    //$scope.$watch('mainService.getCurrentBrand()', (newVal, oldVal) => {
+    //  if (newVal !== oldVal) {
+    //    $scope.digest();
+    //  }
+    //});
+
+    $rootScope.$on("$routeChangeStart", function(args){
+      console.error('$routeChangeStart')
+       Main.setFollowButton(false);
+    });
+
+    $scope.$on('$destroy', function() {
+          console.error('$routeChangeStart')
+       Main.setFollowButton(false);
+    });
+
+
   }
 
 
@@ -70,6 +93,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
     {name: 'login', url: './src/login/directives/login.popover.html'}
   ];
 
+
   var modals = [
     {name: 'errorModal', url: './src/login/directives/error.modal.html'},
     {name: 'fullScreenModal', url: './src/product/modal/full.screen.modal.html'}
@@ -86,15 +110,18 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 
   $scope[`openmoreInfo`] = ()=>{
     $scope['moreInfo'].show();
+    Main.setFollowButton(false);
   };
 
   $scope[`opendetailPopover`] = ()=>{
     $scope['detailPopover'].show();
+    Main.setFollowButton(false);
   };
 
   $scope[`openlogin`] = ()=>{
   $scope.isDisableScroll = 123;
     $scope['login'].show();
+    Main.setFollowButton(false);
   };
 
   modals.map((modal)=>{
@@ -108,10 +135,12 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 
     $scope[`open${modal.name}`] = () => {
      mod.show();
+     Main.setFollowButton(false);
     }
 
     $scope[`close${modal.name}`] = () => {
      mod.hide();
+     Main.setFollowButton(true);
     }
 
     });
@@ -125,6 +154,8 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 
     var isLogIn = Settings.isLogIn();
     $scope.isScrollable = false;
+    Main.setFollowButton(false);
+    console.info('openbasketPopover')
 
     if(isLogIn) {
 
@@ -149,6 +180,8 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 $scope.$on('popover.hidden', function() {
   // Execute action
   $rootScope.isDisableScroll = false;
+  Main.setFollowButton(true);
+  console.info('popover.hidden')
   //$scope.isDisableScroll = false;
 });
 
