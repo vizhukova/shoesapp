@@ -103,23 +103,28 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
     $ionicPopover.fromTemplateUrl(popup.url, {
       scope: $scope,
       animation: $scope.animation
+      //backdropClickToClose: false
     }).then((popover)=>{
       $scope[popup.name] = popover;
     });
   });
 
   $scope[`openmoreInfo`] = ()=>{
-    $scope['moreInfo'].show();
-    Main.setFollowButton(false);
+    $timeout(() => {
+      $scope['moreInfo'].show();
+      Main.setFollowButton(false);
+    });
   };
 
   $scope[`opendetailPopover`] = ()=>{
-    $scope['detailPopover'].show();
-    Main.setFollowButton(false);
+    $timeout(() => {
+      $scope['detailPopover'].show();
+      Main.setFollowButton(false);
+    });
   };
 
   $scope[`openlogin`] = ()=>{
-  $scope.isDisableScroll = 123;
+  $scope.isDisableScroll = true;
     $scope['login'].show();
     Main.setFollowButton(false);
   };
@@ -150,8 +155,10 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
     $event.stopPropagation();
   };
 
-  $scope[`openbasketPopover`] = ()=>{
+  $scope[`openbasketPopover`] = ($event)=>{
 
+    $event.stopPropagation();
+    debugger
     var isLogIn = Settings.isLogIn();
     $scope.isScrollable = false;
     Main.setFollowButton(false);
