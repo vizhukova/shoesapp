@@ -1,4 +1,4 @@
-export default function($scope, $state,  $ionicPopover, Settings) {
+export default function($scope, $state,  $ionicPopover, Settings, Brand, Item) {
 
   $scope.sexObj = Settings.getSexObj();
 
@@ -27,5 +27,7 @@ export default function($scope, $state,  $ionicPopover, Settings) {
   $scope.signOut = () => {
     Settings.signOut();
     $state.go("login");
+    Brand.clearLikes();
+    Item.clearLikes();
   }
 }

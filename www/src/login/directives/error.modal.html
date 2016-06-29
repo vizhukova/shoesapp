@@ -1,7 +1,7 @@
 <ion-modal-view class="error-modal">
   <ion-content>
 
-    <div class="dark" ng-click="closeerrorModal()"></div>
+    <div class="dark" ng-touchend="closeerrorModal()"></div>
 
     <div class="content">
         <div>
@@ -9,7 +9,7 @@
               {{err_message}}
            <!--</ion-scroll>-->
         </div>
-        <ion-footer-bar ng-click="closeerrorModal()">
+        <ion-footer-bar ng-touchend="closeerrorModal()">
           <span class="title"> OK</span>
         </ion-footer-bar>
     </div>

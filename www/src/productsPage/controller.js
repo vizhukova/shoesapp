@@ -97,7 +97,8 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
 
     $ionicPopover.fromTemplateUrl('./src/productsPage/filter-popover/filter-popover.html', {
       scope: $scope,
-      animation: $scope.animation
+      animation: $scope.animation,
+      backdropClickToClose: false
     }).then((popover)=>{
       $scope['filterPopover'] = popover;
     });

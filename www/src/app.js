@@ -17,7 +17,8 @@ angular.module('starter', [
   'starter.config',
   //'jett.ionic.scroll.sista',
   'LocalStorageModule',
-  'ngCordova'
+  'ngCordova',
+  'ngTouch'
 ])
 
   .constant('_', window._)
@@ -329,6 +330,17 @@ angular.module('starter', [
           'tab-shop': {
             templateUrl: 'src/alerts/directives/alert.item.html',
             controller: 'AlertCtrl'
+          }
+        }
+      })
+
+      .state('tab.order', {
+        url: '/order/:id',
+        cache: false,
+        views: {
+          'tab-shop': {
+            templateUrl: 'src/order/template.html',
+            controller: 'OrderCtrl'
           }
         }
       })

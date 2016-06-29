@@ -11,6 +11,7 @@ import MeSettingsPromoCtrl from './me/promo/promo'
 import MeSettingsShowMeCtrl from './me/showMe/showMe'
 import AlertCtrl from './alerts/controller'
 import ProductsPageCtrl from './productsPage/controller'
+import OrderCtrl from './order/controller'
 import _ from 'lodash';
 
 angular.module('starter.controllers', [])
@@ -55,6 +56,8 @@ angular.module('starter.controllers', [])
   .controller('BrandsCtrl', BrandsCtrl)
 
   .controller('FollowPageCtrl', FollowPageCtrl)
+
+  .controller('OrderCtrl', OrderCtrl)
 
   .controller('ItemPageCtrl', ItemPageCtrl)
 
@@ -298,11 +301,19 @@ angular.module('starter.controllers', [])
       console.log('mainService', newVal)
     });
 
+    $scope.$watch('mainService.getNavVisible()', (newVal) => {
+      $scope.isNavVisible = newVal;
+    });
+
     //$scope.isProductTab = () => {
     //    return $state.is('tab.shop-product' || 'tab.product') && Main.isFollowButton();
     //};
 
-    $scope.deselect = (option) => $state.go(options[option]);
+    $scope.deselect = (option) => {
+      if($scope.isNavVisible) {
+        $state.go(options[option]);
+      }
+    };
 
     $scope.isShowButton = false;
 
@@ -317,6 +328,7 @@ angular.module('starter.controllers', [])
       $scope.isShowButton = data;
 
     };
+
 
 
   })

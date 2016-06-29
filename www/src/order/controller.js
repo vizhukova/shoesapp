@@ -21,77 +21,75 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
 
    var isDisableShare = false;
 
-  $scope.$watch(function() {
-    return $rootScope.isDisableScroll;
-  }, function() {
-    $scope.isDisableScroll = $rootScope.isDisableScroll;
-  }, true);
-
+  Main.setNavVisible(false);
 
   $scope.ready = () => {
-    return $scope.sizes;
+    return true;
   };
 
+  console.log($stateParams.id)
   if($stateParams.id) {
-
-      $scope.ready = () => {
-        return $scope.item;
-     };
-
     Item.get({id: $stateParams.id}).then((data) => {
-
+      debugger
       $scope.item = data;
-      var brandIsLiked = Brand.isLiked(data.brandId);
-
-      Main.setCurrentBrand({id: data.brandId, name: data.brandName, icon: data.brandIcon, isLiked: brandIsLiked});
-      //$('#slider').update(updateTranslate);
-
-      return Item.getFiltered({sectionId: $scope.item.sectionId});
-
-    }).then((products) => {
-
-      $scope.products = products;
-      $scope.$apply();
-
-    }).catch((error) => {
-
+      afterShowBasket();
     })
-
-    $scope.mainService = Main;
-
-    //$scope.$watch('mainService.getCurrentBrand()', (newVal, oldVal) => {
-    //  if (newVal !== oldVal) {
-    //    $scope.digest();
-    //  }
-    //});
-
-    $rootScope.$on("$routeChangeStart", function(args){
-      console.error('$routeChangeStart')
-       Main.setFollowButton(false);
-    });
-
-    $scope.$on('$destroy', function() {
-      console.error('$routeChangeStart')
-       Main.setFollowButton(false);
-    });
-
-
   }
 
+    //Item.get({id: $stateParams.id}).then((data) => {
+    //
+    //  $scope.item = data;
+    //  var brandIsLiked = Brand.isLiked(data.brandId);
+    //
+    //  Main.setCurrentBrand({id: data.brandId, name: data.brandName, icon: data.brandIcon, isLiked: brandIsLiked});
+    //  //$('#slider').update(updateTranslate);
+    //
+    //  return Item.getFiltered({sectionId: $scope.item.sectionId});
+    //
+    //}).then((products) => {
+    //
+    //  $scope.products = products;
+    //  $scope.$apply();
+    //
+    //}).catch((error) => {
+    //
+    //})
+    //
+    //$scope.mainService = Main;
+    //
+    ////$scope.$watch('mainService.getCurrentBrand()', (newVal, oldVal) => {
+    ////  if (newVal !== oldVal) {
+    ////    $scope.digest();
+    ////  }
+    ////});
 
-  $scope.goToBrand = (brand_id) => {
+    //$rootScope.$on("$routeChangeStart", function(args){
+    //  console.error('$routeChangeStart')
+    //   Main.setFollowButton(false);
+    //});
+    //
+    //$scope.$on('$destroy', function() {
+    //      console.error('$routeChangeStart')
+    //   Main.setFollowButton(false);
+    //});
 
-    $state.go("tab.brand", {id: brand_id});
-
-  };
 
 
-  var popups = [
-    {name: 'basketPopover', url: './src/product/popover/basket.popover.html'},
-    {name: 'moreInfo', url: 'src/brands/subtabs/more-info.html'},
-    {name: 'detailPopover', url: './src/product/popover/detail.popover.html'},
-    {name: 'login', url: './src/login/directives/login.popover.html'}
-  ];
+
+
+  //$scope.goToBrand = (brand_id) => {
+  //
+  //  $state.go("tab.brand", {id: brand_id});
+  //
+  //};
+
+
+  //var popups = [
+  //  {name: 'basketPopover', url: './src/product/popover/basket.popover.html'},
+  //  {name: 'moreInfo', url: 'src/brands/subtabs/more-info.html'},
+  //  {name: 'detailPopover', url: './src/product/popover/detail.popover.html'},
+  //  {name: 'login', url: './src/login/directives/login.popover.html'}
+  //];
 
 
   var modals = [
@@ -99,35 +97,35 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
     {name: 'fullScreenModal', url: './src/product/modal/full.screen.modal.html'}
   ];
 
-  popups.map((popup)=>{
-    $ionicPopover.fromTemplateUrl(popup.url, {
-      scope: $scope,
-      animation: $scope.animation,
-      backdropClickToClose: false
-    }).then((popover)=>{
-      $scope[popup.name] = popover;
-    });
-  });
-
-  $scope[`openmoreInfo`] = ()=>{
-    $timeout(() => {
-      $scope['moreInfo'].show();
-      Main.setFollowButton(false);
-    });
-  };
-
-  $scope[`opendetailPopover`] = ()=>{
-    $timeout(() => {
-      $scope['detailPopover'].show();
-      Main.setFollowButton(false);
-    });
-  };
-
-  $scope[`openlogin`] = ()=>{
-    //$scope.isDisableScroll = true;
-    $scope['login'].show();
-    Main.setFollowButton(false);
-  };
+  //popups.map((popup)=>{
+  //  $ionicPopover.fromTemplateUrl(popup.url, {
+  //    scope: $scope,
+  //    animation: $scope.animation,
+  //    backdropClickToClose: false
+  //  }).then((popover)=>{
+  //    $scope[popup.name] = popover;
+  //  });
+  //});
+  //
+  //$scope[`openmoreInfo`] = ()=>{
+  //  $timeout(() => {
+  //    $scope['moreInfo'].show();
+  //    Main.setFollowButton(false);
+  //  });
+  //};
+  //
+  //$scope[`opendetailPopover`] = ()=>{
+  //  $timeout(() => {
+  //    $scope['detailPopover'].show();
+  //    Main.setFollowButton(false);
+  //  });
+  //};
+  //
+  //$scope[`openlogin`] = ()=>{
+  //  //$scope.isDisableScroll = true;
+  //  $scope['login'].show();
+  //  Main.setFollowButton(false);
+  //};
 
   modals.map((modal)=>{
 
@@ -151,51 +149,53 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
     });
   });
 
-  $scope.sliderClick = ($event) => {
-    $event.stopPropagation();
-  };
+  //$scope.sliderClick = ($event) => {
+  //  $event.stopPropagation();
+  //};
 
-  $scope[`openbasketPopover`] = ()=>{
-
-    var isLogIn = Settings.isLogIn();
-    $scope.isScrollable = false;
-    Main.setFollowButton(false);
-    console.info('openbasketPopover')
-
-    if(isLogIn) {
-
-      $state.go('tab.order', {id: $scope.item.id});
-      afterShowBasket();
-
-    } else {
-
-      $scope['login'].show();
-
-    }
-
-    //$rootScope.isDisableScroll = true;
-    console.info('!!!!!!!!!!!!!!!!', $scope)
-
-  };
+  //$scope[`openbasketPopover`] = ()=>{
+  //
+  //  debugger
+  //
+  //  var isLogIn = Settings.isLogIn();
+  //  $scope.isScrollable = false;
+  //  Main.setFollowButton(false);
+  //  console.info('openbasketPopover')
+  //
+  //  if(isLogIn) {
+  //
+  //    $scope['basketPopover'].show();
+  //    afterShowBasket();
+  //
+  //  } else {
+  //
+  //    $scope['login'].show();
+  //
+  //  }
+  //
+  //  //$rootScope.isDisableScroll = true;
+  //  console.info('!!!!!!!!!!!!!!!!', $scope)
+  //
+  //};
 
 
 // Execute action on hide popover
-$scope.$on('popover.hidden', function() {
-  // Execute action
-  Main.setFollowButton(true);
-  console.info('popover.hidden')
-  //$scope.isDisableScroll = false;
-});
+//$scope.$on('popover.hidden', function() {
+//  // Execute action
+//  Main.setFollowButton(true);
+//  console.info('popover.hidden')
+//  //$scope.isDisableScroll = false;
+//});
 
 
-  $scope.loginCallback = () => {
-
-    $scope['login'].hide();
-    //$scope[`openbasketPopover`]();
-    $state.go('tab.order', {id: $scope.item.id});
-    afterShowBasket();
-
-  };
+  //$scope.loginCallback = () => {
+  //
+  //  $scope['login'].hide();
+  //  $scope[`openbasketPopover`]();
+  //
+  //  afterShowBasket();
+  //
+  //};
 
   $scope.isFocus = () => {
     return $scope.chosenType=='newAddress';
@@ -282,7 +282,7 @@ $scope.$on('popover.hidden', function() {
 
   $scope.choosePayment = (id) => {
     $scope.basketData.payment = _.find($scope.payments, {id: id});
-  };
+  }
 
   $scope.chooseAddress = (id) => {
     $scope.basketData.address = _.find($scope.addresses, {addressId: id});
@@ -313,14 +313,11 @@ $scope.$on('popover.hidden', function() {
 
     };
 
-  $scope.checkout = ($event) => {
-
-    debugger
-    $event.stopPropagation();
+  $scope.checkout = () => {
 
       Order.add($scope.basketData).then(() => {
 
-         $scope['basketPopover'].hide();
+        $scope['basketPopover'].hide();
          $scope.err_message = 'Заказ успешно оформлен';
          $scope.openerrorModal();
 
@@ -398,5 +395,15 @@ $scope.$on('popover.hidden', function() {
       isDisableShare = false;
     })
   }
+
+  $rootScope.$on("$routeChangeStart", function(args){
+    console.error('$routeChangeStart')
+     Main.setNavVisible(true);
+  });
+
+  $scope.$on('$destroy', function() {
+        console.error('$routeChangeStart')
+     Main.setNavVisible(true);
+  });
 
 }

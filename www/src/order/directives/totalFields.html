@@ -3,15 +3,15 @@
   <div class="content">
     <span>Количество x {{::basketData.size.price}}$</span>
     <span class="text-left">
-      <span class="pull-right"><i class="ion-ios-plus-empty" ng-click="changeQuantityProduct(1)"></i></span>
+      <span class="pull-right"><i class="ion-ios-plus-empty" ng-touchend="changeQuantityProduct(1)"></i></span>
        <span class="pull-right">{{basketData.quantity}}</span>
-      <span class="pull-right"><i class="ion-ios-minus-empty" ng-click="changeQuantityProduct(-1)"></i></span>
+      <span class="pull-right"><i class="ion-ios-minus-empty" ng-touchend="changeQuantityProduct(-1)"></i></span>
     </span>
   </div>
 
   <div class="content" ng-class="{'increase': basketData.address.location}">
     <span>Адрес доставки</span>
-     <div  class="details pull-right" ng-if={{basketData.address}}>
+     <div  class="details pull-right" ng-if="basketData.address">
         <p>{{::basketData.address.fullname}}</p>
         <p>{{::basketData.address.street}} {{::basketData.address.house}}</p>
         <p>{{::basketData.address.location}}, {{::basketData.address.zip}}</p>
@@ -23,6 +23,6 @@
     <span class="pull-right">{{basketData.size.price * basketData.quantity}} {{::basketData.size.currency}}</span>
   </div>
 
-  <div class="button  btn-done" ng-click="setChosenType()">Далее</div>
+  <div class="button  btn-done" ng-touchend="setChosenType()">Далее</div>
 </div>
 

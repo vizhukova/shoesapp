@@ -239,7 +239,8 @@ angular.module('starter.directives', [])
               var mySwiper = new Swiper($(element).find('.swiper-container'), {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
-                loop: true
+                loop: true,
+                autoplay: 3000
               })
             });
 
@@ -309,7 +310,8 @@ angular.module('starter.directives', [])
               var mySwiper = new Swiper($(element).find('.swiper-container'), {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
-                loop: true
+                loop: true,
+                autoplay: 3000
               })
             });
 

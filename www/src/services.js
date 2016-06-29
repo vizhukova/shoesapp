@@ -8,6 +8,17 @@ angular.module('starter.services', [])
 
     var currentBrand = {};
     var followButton = false;
+    var isNavAvailable = true;
+
+    this.setNavVisible = (value) => {
+      isNavAvailable = value;
+      console.log('setNavVisible', value)
+    };
+
+    this.getNavVisible = () => {
+       console.log('getNavVisible', isNavAvailable)
+      return isNavAvailable;
+    };
 
      this.setCurrentBrand = (item) => {
        currentBrand = item || {};
@@ -391,6 +402,10 @@ angular.module('starter.services', [])
 
     };
 
+    this.clearLikes = () => {
+      localStorageService.set('likedItems', []);
+    };
+
     this.getLiked = () => {
 
       return new Promise((resolve, reject) => {
@@ -615,6 +630,10 @@ angular.module('starter.services', [])
 
     };
 
+    this.clearLikes = () => {
+      localStorageService.set('likedBrands', []);
+    };
+
     this.getLiked = () => {
 
       return new Promise((resolve, reject) => {
@@ -668,7 +687,7 @@ angular.module('starter.services', [])
       return !!likes.length;
     };
 
-     this.isLiked = (id) => {
+    this.isLiked = (id) => {
       var likes = localStorageService.get('likedBrands') || [];
       return likes.indexOf(id) !== -1;
     };

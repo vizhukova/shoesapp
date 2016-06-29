@@ -1,29 +1,29 @@
 <ion-popover-view  class="more-info-popover">
 
-    <ion-scroll direction="y" style="width: 100%; height: 100%">
+    <ion-content scrollbar-x="false">
       <div class="container">
-        <div class="close-btn" ng-click="moreInfo.hide()"><i class="ion-android-close"></i></div>
+        <div class="close-btn" ng-touchend="moreInfo.hide()"><i class="ion-android-close"></i></div>
         <img src="{{::chosenBrand.logo}}" alt="">
         <p class="description">
           {{::chosenBrand.descLong}}
         </p>
         <p>{{::chosenBrand.url}}</p>
         <div class="connect block-line">
-          <p class="title">Connect with {{::chosenBrand.name}}</p>
+          <p class="title">Связаться с {{::chosenBrand.name}}</p>
           <i class="icon ion-social-facebook"></i>
           <i class="icon ion-social-twitter"></i>
           <i class="icon ion-social-instagram-outline"></i>
         </div>
         <div class="block-line update">
-          <p class="title">Get Updates</p>
-          <p class="description">Be in the know for exlusive products, discounts, and more</p>
+          <p class="title">Получать Новости</p>
+          <p class="description">Узнавайте об эксклюзивных продуктах, скидках и т.д.</p>
           <div class="button">
             <i class="ion-ios-email-outline"></i>
-            <span>Sign up for updates</span>
+            <span>Подписаться</span>
           </div>
         </div>
       </div>
-    </ion-scroll>
+    </ion-content>
 
 
   <!--<div class="close-btn"><i class="ion-android-close"></i></div>-->

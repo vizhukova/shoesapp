@@ -5,7 +5,7 @@
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
-      <div class="swiper-slide" ng-repeat="obj in imgs track by $index" ng-click="click(obj)">
+      <div class="swiper-slide" ng-repeat="obj in imgs track by $index" ng-touchend="click(obj)">
         <div class="img" style="background-image: url('{{:: obj.img}}')"></div>
         <div class="titles">
           <p class="titles__title">{{::obj.title}}</p>

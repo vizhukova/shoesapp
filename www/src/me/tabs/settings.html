@@ -11,14 +11,14 @@
       <div ng-if="ready()">
 
          <!--<div class="label">Promotion</div>
-        <div class="link" ng-click="toPromo()">
+        <div class="link" ng-touchend="toPromo()">
           <span>Promo codes</span>
           <div class="arrow">
             <i class="ion-chevron-right"></i>
           </div>
         </div>
         <div class="label">Profile</div>
-        <div class="link" ng-click="toShowMe()">
+        <div class="link" ng-touchend="toShowMe()">
           <span>Show me</span>
           <div class="arrow">
             <span>{{sexObj.sex[sexObj.chosenIndex]}}</span>
@@ -30,14 +30,14 @@
         <!--<div class="link">Feedback</div>
         <div class="link">Contact us</div>-->
 
-        <div class="link" ng-click="toStaticPage(page.id)" ng-repeat="page in staticPages">
+        <div class="link" ng-touchend="toStaticPage(page.id)" ng-repeat="page in staticPages">
           <span>{{::page.name}}</span>
           <div class="arrow">
             <i class="ion-chevron-right"></i>
           </div>
         </div>
 
-        <div class="logout" ng-click="signOut()">
+        <div class="logout" ng-touchend="signOut()">
             <button>Выход</button>
         </div>
 

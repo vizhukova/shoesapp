@@ -43,6 +43,12 @@ $background: #E8E5E5;
 
 div.title.header-item {
   line-height: 51px!important;
+  margin: 0;
+  padding: 0 10px;
+
+  .back-button {
+    padding: 0 10px;
+  }
 }
 
 .pull-left {

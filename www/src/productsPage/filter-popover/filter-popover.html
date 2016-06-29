@@ -1,13 +1,13 @@
 <ion-popover-view class="filter-popover">
   <div class="nav-panel">
-    <button ng-click="hidePopover()" class="close-btn button button-icon icon ion-android-close"></button>
+    <button ng-touchend="hidePopover()" class="close-btn button button-icon icon ion-android-close"></button>
     <span class="title">Параметры</span>
-    <span class="reset" ng-click="reset()">Сбросить</span>
+    <span class="reset" ng-touchend="reset()">Сбросить</span>
   </div>
 
   <div class="body">
     <div class="nav">
-      <p class="{{chosenMenuItem.name == filter ? 'chosen' : ''}}" ng-click="setChosenFilter(filter)" ng-repeat="filter in filterBy">{{filter}}</p>
+      <p class="{{chosenMenuItem.name == filter ? 'chosen' : ''}}" ng-touchend="setChosenFilter(filter)" ng-repeat="filter in filterBy">{{filter}}</p>
     </div>
 
     <div class="content">
@@ -34,7 +34,7 @@
   </div>
 
   <div class="footer">
-    <button class="button button-positive big-button" ng-click="showResult()">
+    <button class="button button-positive big-button" ng-touchend="showResult()">
       Показать результат
     </button>
   </div>

@@ -1,16 +1,18 @@
-<div>
+<ion-view hide-back-button="true" class="tab-basket" cache-view="false">
 
-  <div class="under-basket-popover" ng-touchend="basketPopover.hide()"></div>
+  <ion-nav-title class="basket-title">
+    <back></back>
+    <span><b>Бесплатная доставка. </b>На все.</span>
+  </ion-nav-title>
 
-  <ion-popover-view class="basket-popover"
+  <div class="basket-container"
                     ng-class="{'chose-type': !!chosenType,
   'close-address': !basketData.address.location,
   'open-address': basketData.address.location}"
-                    ng-touchend="$event.stopPropagation();"
   >
-      <div class="nav-panel">
+      <!--<div class="nav-panel">
         <span><b>Бесплатная доставка. </b>На все.</span>
-      </div>
+      </div>-->
 
       <!--<ion-scroll direction="y" style="height: 100%">-->
 
@@ -97,7 +99,7 @@
           <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
         </div>
 
-        <div ng-if="!chosenType" ng-touchend="checkout()">
+        <div ng-if="!chosenType" ng-touchend="checkout($event)">
           <!--<p  class="comment">some comment</p>-->
           <div class="button  btn-done">Далее</div>
         </div>
@@ -113,6 +115,6 @@
 
       <!--</ion-scroll>-->
 
-  </ion-popover-view>
+  </div>
 
-</div>
+</ion-view>

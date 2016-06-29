@@ -5,7 +5,7 @@
 
   <ion-scroll direction="x" delegate-handle="horizontal">
     <div class="scrolling" ng-style="{width: width}">
-      <div class="thing" ng-repeat="product in widget.items" ng-click="openProduct(product)">
+      <div class="thing" ng-repeat="product in widget.items" ng-touchend="openProduct(product)">
         <div class="holder">
           <img class="img" ng-src="{{::product.img}}">
         </div>
@@ -16,7 +16,7 @@
         </p>
        </div>
       </div>
-      <div class="thing" ng-click="toBrandProducts(widget.id)">
+      <div class="thing" ng-touchend="toBrandProducts(widget.id)">
         <div class="holder">
           <div class="img">
             <div class="center">

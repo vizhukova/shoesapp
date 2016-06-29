@@ -1,12 +1,12 @@
 <div class="shipping-fields">
 
-  <div class="content" ng-repeat="del in delivery" ng-click="setDeliveryIdTmp(del.id)">
+  <div class="content" ng-repeat="del in delivery" ng-touchend="setDeliveryIdTmp(del.id)">
     <p>
       <b>{{::del.name}}</b>
       <i ng-if="deliveryIdTmp === del.id" class="ion-ios-checkmark-outline pull-right"></i>
     </p>
     <p ng-if="deliveryIdTmp === del.id">{{::del.description}}</p>
   </div>
-  <div class="button  btn-done" ng-click="chooseShippingMethod(deliveryIdTmp); setChosenType()">Далее</div>
+  <div class="button  btn-done" ng-touchend="chooseShippingMethod(deliveryIdTmp); setChosenType()">Далее</div>
 </div>
 

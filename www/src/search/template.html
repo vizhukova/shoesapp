@@ -17,7 +17,7 @@
       <div class="category-holder">
         <p class="title">Просмотр по категориям</p>
         <div class="categories">
-          <div class="category" ng-repeat="category in categories track by $index" ng-click="openPopover(category.id, $event)">
+          <div class="category" ng-repeat="category in categories track by $index" ng-touchend="openPopover(category.id, $event)">
             <div class="img">
               <img src="{{::category.icon}}" width="60%" height="auto" alt="">
             </div>

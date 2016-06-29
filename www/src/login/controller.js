@@ -28,7 +28,8 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout, Us
   popups.map((popup)=>{
     $ionicPopover.fromTemplateUrl(popup.url, {
       scope: $scope,
-      animation: $scope.animation
+      animation: $scope.animation//,
+      //backdropClickToClose: false
     }).then((popover)=>{
       $scope[popup.name] = popover;
     });

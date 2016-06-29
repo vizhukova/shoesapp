@@ -14,14 +14,14 @@
 
   <div class="body">
     <div class="button-bar">
-      <a class="button" ng-class="{'chosen':details=='details'}" ng-click="chooseDetails('details')">Детали</a>
-      <a class="button" ng-class="{'chosen':details=='returns'}" ng-click="chooseDetails('returns')">Возврат</a>
+      <a class="button" ng-class="{'chosen':details=='details'}" ng-touchend="chooseDetails('details')">Детали</a>
+      <a class="button" ng-class="{'chosen':details=='returns'}" ng-touchend="chooseDetails('returns')">Возврат</a>
     </div>
     <div class="info">{{item.descLong}}</div>
   </div>
 
   <div class="footer">
-    <button class="button button-clear button-positive" ng-click="detailPopover.hide()">
+    <button class="button button-clear button-positive" ng-touchend="detailPopover.hide()">
       Закрыть
     </button>
   </div>
