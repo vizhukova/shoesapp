@@ -12,7 +12,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://shoes.mikero.ru/api"
+      "proxyUrl": "https://shoes.mikero.ru/api"
     }
   ]
 }
