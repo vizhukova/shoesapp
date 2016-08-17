@@ -3,7 +3,7 @@
     class="tab-item cat-item"
     ng-repeat="cat in cats track by $index"
     ng-class="{'active': isActive($index)}"
-    ng-touchend="setActive($index)"
+    ng-click="setActive($index)"
   ><span class="cat-text">{{::cat.name}}</span></div>
   <div class="active-line"></div>
 </div>

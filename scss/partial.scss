@@ -268,9 +268,9 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
 
-    &.red {
-      color: red;
-    }
+    //&.red {
+    //  color: red;
+    //}
 
     i:before {
       font-size: 15px;
@@ -412,6 +412,10 @@
 
         &.brand {
           font-weight: 600;
+        }
+
+        &.title {
+          font-weight: 100;
         }
         &.name {}
 

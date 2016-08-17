@@ -1,15 +1,15 @@
 <div class="product-slider transition-with-delay">
   <div class="title content-profile">
-    <div class="flag" ng-touchend="goToBrand(item.brandId)">
+    <div class="flag" ng-click="goToBrand(item.brandId)">
       <div class="img">
         <img src="{{::item.brandLogo}}" width="100%" height="100%" alt="">
       </div>
     </div>
-    <p class="name" ng-touchend="goToBrand(item.brandId)">{{::item.brandName}}</p>
+    <p class="name" ng-click="goToBrand(item.brandId)">{{::item.brandName}}</p>
     <div class="mark">{{::item.time}}</div>
   </div>
 
- <big-slider imgs="item.imgs" ng-touchend="openfullScreenModal()"></big-slider>
+ <big-slider imgs="item.imgs" ng-click="openfullScreenModal()"></big-slider>
 
   <div class="description content-profile">
     <p class="title">{{::item.name}}</p>
@@ -22,7 +22,7 @@
               <i class="ion-cube"></i>
             </div>
           </div>
-          <div ng-touchend="opendetailPopover()">
+          <div ng-click="opendetailPopover()">
             <p class="title">Shipping data</p>
             <p class="description">some info</p>
           </div>

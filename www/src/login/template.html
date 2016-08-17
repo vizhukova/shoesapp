@@ -14,14 +14,14 @@
   <full-screen-slider imgs="banners"></full-screen-slider>
   <div class="footer">
     <div class="sign-in-by">
-        <button class="button button-positive big-button join" ng-touchend="toShop()">
+        <button class="button button-positive big-button join" ng-click="toShop()">
           <i class="ion-social-facebook-outline"></i>
           <span>Войти через facebook</span>
         </button>
-        <button class="button button-calm big-button" ng-touchend="opensignunPopover()">
+        <button class="button button-calm big-button" ng-click="opensignunPopover()">
           <span>Присоединиться через email</span>
         </button>
-        <p><span class="signin-btn" ng-touchend="opensigninPopover()">Войти</span> или <span ng-touchend="toShop()">Продолжить как гость</span></p>
+        <p><span class="signin-btn" ng-click="opensigninPopover()">Войти</span> или <span ng-click="toShop()">Продолжить как гость</span></p>
     </div>
     <p class="terms"> Присоединяясь к нам вы соглашаетесь с <a href='{{::info.termUrl}}' class="terms">условиями</a> и <a href='{{::info.privacyPolicyUrl}}' class="policy">положениями</a></p>
   </div>

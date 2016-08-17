@@ -19,7 +19,7 @@
       <div class="loader-gif" ng-if="!ready()"> </div>
 
       <div  class="ready-container" ng-if="ready()">
-        <div  ng-if="!chosenType || chosenType == 'size'" ng-touchend="setChosenType('size')" class="content">
+        <div  ng-if="!chosenType || chosenType == 'size'" ng-click="setChosenType('size')" class="content">
 
           <div>
             <span ><b>Размер</b></span>
@@ -36,7 +36,7 @@
         </div>
 
         <div  ng-if="!chosenType || chosenType == 'address'"
-              ng-touchend="setChosenType('address')"
+              ng-click="setChosenType('address')"
               ng-class="{'increase': basketData.address.location && !chosenType}"
               class="content">
 
@@ -60,7 +60,7 @@
 
         </div>
 
-        <div ng-if="!chosenType || chosenType == 'payment'" ng-touchend="setChosenType('payment')" class="content">
+        <div ng-if="!chosenType || chosenType == 'payment'" ng-click="setChosenType('payment')" class="content">
 
           <span ><b>Методы оплаты</b></span>
 
@@ -77,7 +77,7 @@
 
         </div>
 
-        <div ng-if="!chosenType || chosenType == 'shipping'" ng-touchend="setChosenType('shipping')" class="content">
+        <div ng-if="!chosenType || chosenType == 'shipping'" ng-click="setChosenType('shipping')" class="content">
 
           <span ><b>Доставка</b></span>
 
@@ -91,7 +91,7 @@
           <span class="pull-right" ng-if="chosenType"><i class="ion-ios-minus-empty plus-icon"></i></span>
         </div>
 
-        <div ng-if="!chosenType || chosenType == 'est'" ng-touchend="setChosenType('est')" class="content">
+        <div ng-if="!chosenType || chosenType == 'est'" ng-click="setChosenType('est')" class="content">
           <span ><b>Итог</b></span>
                <span ng-if="!chosenType" class="pull-right">
                  <span><b>{{basketData.size.price * basketData.quantity || 0}} {{basketData.size.currency}}</b></span>
@@ -99,7 +99,7 @@
           <i ng-if="chosenType" class="ion-ios-minus-empty plus-icon pull-right"></i>
         </div>
 
-        <div ng-if="!chosenType" ng-touchend="checkout($event)">
+        <div ng-if="!chosenType" ng-click="checkout($event)">
           <!--<p  class="comment">some comment</p>-->
           <div class="button  btn-done">Далее</div>
         </div>

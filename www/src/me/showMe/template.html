@@ -2,7 +2,7 @@
 
   <ion-content>
 
-  <div class="sex" ng-repeat="s in sexObj.sex track by $index" ng-touchend="chooseSex($index); toSettings()">
+  <div class="sex" ng-repeat="s in sexObj.sex track by $index" ng-click="chooseSex($index); toSettings()">
     <div>{{s}}</div>
     <div ng-if='s==sexObj.sex[sexObj.chosenIndex]' class="chosen">
       <i class="ion-ios-checkmark-outline"></i>

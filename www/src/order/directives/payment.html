@@ -1,23 +1,23 @@
 <div class="payment">
 
-  <!--<div class="content" ng-repeat="paym in payment" ng-touchend="choosePayment(paym.id)">
+  <!--<div class="content" ng-repeat="paym in payment" ng-click="choosePayment(paym.id)">
     <span><b>{{paym.name}}</b></span>
     <img src="{{paym.img}}" alt="">
     <p ng-if="paym.id === chosenPayment">{{paym.description}}</p>
   </div>-->
 
-  <!--<div class="button payment-option" ng-touchend="choosePayment('4'); openCardData(true);">
+  <!--<div class="button payment-option" ng-click="choosePayment('4'); openCardData(true);">
     <span>Card</span>
     <i class="ion-card"></i>
   </div>-->
 
-  <div class="button payment-option" ng-touchend="choosePayment('1'); setChosenType();">
+  <div class="button payment-option" ng-click="choosePayment('1'); setChosenType();">
     <span>Наличными</span>
     <i class="ion-cash"></i>
   </div>
 
   <div class="payment-fields" ng-if="isOpenCardPage">
-    <button ng-touchend="openCardData(false)" class="close-btn button button-icon icon ion-android-close"></button>
+    <button ng-click="openCardData(false)" class="close-btn button button-icon icon ion-android-close"></button>
     <div class="form">
       <input type="text" placeholder="Enter Card Number" ng-model="cardData.card" />
       <input type="text" placeholder="CVV" class="cvv" ng-model="cardData.cvv" />

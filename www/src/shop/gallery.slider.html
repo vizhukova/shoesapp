@@ -7,7 +7,7 @@
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
-      <div class="swiper-slide" ng-repeat="item in widget.items track by $index" ng-touchend="itemClick(item.id)">
+      <div class="swiper-slide" ng-repeat="item in widget.items track by $index" ng-click="itemClick(item.id)">
          <image-loader
             source="{{item.img}}"
             width="auto"
