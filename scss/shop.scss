@@ -3,6 +3,14 @@
   background-color: $background;
   text-align: center;
 
+  .miss-block {
+    top: calc(88px + 164px);
+  }
+
+  #MainScroll.has-header{
+    top: 0;
+  }
+
   .by-cat-btn {
     margin: .6em;
     width: 90%;

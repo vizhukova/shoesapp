@@ -41,20 +41,20 @@ angular.module('starter.services', [])
 
   })
 
-  .service('User', function (Server, localStorageService) {
+  .service('User', function (Common, Server, localStorageService) {
   /*
   curl --data "{"email":"test@test.ru","pass":"asdfsfd","firstName":"Ivan"}"  http://shoes.mikero.ru/api/auth.signUp --header "Content-Type:application/json"
   */
+
     this.signIn = function(data) {
       //return Server.post('auth.signIn', data);
 
       return new Promise((resolve, reject) => {
 
         Server.post('auth.signIn', data).then((result) => {
-
-            localStorageService.set('token', result.token);
-            resolve();
-            console.log(result.token)
+          localStorageService.set('token', result.token);
+          resolve();
+          console.log(result.token)
 
         }).catch((error) => {
 
@@ -71,7 +71,6 @@ angular.module('starter.services', [])
       return new Promise((resolve, reject) => {
 
         Server.post('auth.signUp', data).then((result) => {
-
 
           localStorageService.set('token', result.token);
           resolve();
@@ -93,6 +92,25 @@ angular.module('starter.services', [])
       return Server.post('auth.forgotPassword', data);
 
     };
+
+    this.getUserInfo = function(data) {
+
+      return new Promise((resolve, reject) => {
+
+        Common.get('account.get').then((data) => {
+
+          resolve(data.result);
+
+        }).catch((err) => {
+
+          reject(err);
+
+        })
+
+      })
+
+    };
+
 
   })
 

@@ -1,15 +1,15 @@
 <div class="product-slider transition-with-delay">
   <div class="title content-profile">
-    <div class="flag" ng-touchend="goToBrand(item.brandId)">
+    <div class="flag" ng-click="goToBrand(item.brandId)">
       <div class="img">
         <img src="{{::item.brandLogo}}" width="100%" height="100%" alt="">
       </div>
     </div>
-    <p class="name" ng-touchend="goToBrand(item.brandId)">{{::item.brandName}}</p>
+    <p class="name" ng-click="goToBrand(item.brandId)">{{::item.brandName}}</p>
     <div class="mark">{{::item.time}}</div>
   </div>
 
- <big-slider imgs="item.imgs" ng-touchend="openfullScreenModal()"></big-slider>
+ <big-slider imgs="item.imgs" ng-click="openfullScreenModal()"></big-slider>
 
   <div class="description content-profile">
     <p class="title">{{::item.name}}</p>
@@ -22,27 +22,27 @@
               <i class="ion-cube"></i>
             </div>
           </div>
-          <div ng-touchend="opendetailPopover()">
+          <div ng-click="opendetailPopover()">
             <p class="title">Shipping data</p>
             <p class="description">some info</p>
           </div>
         </div>-->
-        <div class="button button-footer" ng-touchend="openbasketPopover()">
+        <div class="button button-footer" ng-click="openbasketPopover()">
             <em>Купить</em>
             <span>{{::item.price}} {{::item.currency}}</span>
         </div>
       </div>
       <div class="right-data">
-        <div class="button data" ng-touchend="opendetailPopover()">
+        <div class="button data" ng-click="opendetailPopover()">
            <span>Детали</span>
           <span><i class="ion-ios-plus-empty"></i></span>
         </div>
-        <div class="button button-footer" ng-touchend="like(item)">
+        <div class="button button-footer" ng-click="like(item)">
           <i ng-if="item.isLiked" class="ion-ios-heart"></i>
           <i ng-if="!item.isLiked" class="ion-ios-heart-outline"></i>
           <span>{{::item.loveCount}}</span>
         </div>
-        <div class="button button-footer" ng-touchend="shareAnywhere(item)">
+        <div class="button button-footer" ng-click="shareAnywhere(item)">
           <i class="ion-ios-upload-outline"></i>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <div class="brand-item" ng-repeat="brand in brands">
 
-  <span ng-touchend="$parent.goToBrand(brand.id)">
+  <span ng-click="$parent.goToBrand(brand.id)">
 
     <div class="img">
       <img src="{{::brand.img}}" width="100%" height="100%" alt=""/>
@@ -18,7 +18,7 @@
 
   </span>
 
-  <div class="follow-button" ng-touchend="$parent.follow(brand, $event)">
+  <div class="follow-button" ng-click="$parent.follow(brand, $event)">
 
     <div ng-if="brand.isLiked">
       <i class="icon ion-ios-checkmark"></i>

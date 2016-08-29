@@ -2,7 +2,7 @@
 
     <ion-content scrollbar-x="false">
       <div class="container">
-        <div class="close-btn" ng-touchend="moreInfo.hide()"><i class="ion-android-close"></i></div>
+        <div class="close-btn" ng-click="moreInfo.hide()"><i class="ion-android-close"></i></div>
         <img src="{{::chosenBrand.logo}}" alt="">
         <p class="description">
           {{::chosenBrand.descLong}}
@@ -10,9 +10,9 @@
         <p>{{::chosenBrand.url}}</p>
         <div class="connect block-line">
           <p class="title">Связаться с {{::chosenBrand.name}}</p>
-          <i class="icon ion-social-facebook"></i>
-          <i class="icon ion-social-twitter"></i>
-          <i class="icon ion-social-instagram-outline"></i>
+            <a href="::{{chosenBrand.facebook}}"><i class="icon ion-social-facebook"></i></a>
+            <a href="::{{chosenBrand.twitter}}"><i class="icon ion-social-twitter"></i></a>
+            <a href="::{{chosenBrand.instagram}}"><i class="icon ion-social-instagram-outline"></i></a>
         </div>
         <div class="block-line update">
           <p class="title">Получать Новости</p>

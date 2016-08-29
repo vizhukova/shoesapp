@@ -7,10 +7,10 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   $scope.chosenFilter = {};   // для фильтрации
   $scope.animation = 'slide-in-up';
   //$scope.products = []; // массив продуктов
-  $scope.sizes = [];
-  $scope.colors = [];
-  $scope.allCategories = [];
-  $scope.categories = [];
+  // $scope.sizes = [];
+  // $scope.colors = [];
+  // $scope.allCategories = [];
+  // $scope.categories = [];
   var chosenCategory = {}; //для отображения дерева категорий
   var oldChosenFilter = {}; //для сохранения старого состояния объекта фильтрации
   var page = 1; // текущая просматриваемая страница
@@ -29,9 +29,9 @@ export default function($scope, $timeout, $ionicPopover, $state, $stateParams, B
   }
 
   $scope.ready = () => {
-     console.log($scope.sizes.length ,  $scope.colors.length , $scope.allCategories.length , $scope.categories.length
+     console.log($scope.sizes ,  $scope.colors , $scope.allCategories , $scope.categories
     , $scope.products)
-    return $scope.sizes.length &&  $scope.colors.length && $scope.allCategories.length && $scope.categories.length
+    return $scope.sizes &&  $scope.colors && $scope.allCategories && $scope.categories
     && $scope.products;
 
   };

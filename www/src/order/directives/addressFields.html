@@ -4,7 +4,7 @@
     <div class="content"
          ng-if="chosenType != 'newAddress'"
          ng-repeat="address in addresses"
-         ng-touchend="chooseAddress(address.addressId)">
+         ng-click="chooseAddress(address.addressId)">
 
       <div class="address">
         <p>{{::address.fullname}}</p>
@@ -15,7 +15,7 @@
         <i class="ion-ios-checkmark-outline"></i>
       </div>
     </div>
-    <div class="content" ng-if="addresses.length > 0" ng-touchend="newAddressForm()">
+    <div class="content" ng-if="addresses.length > 0" ng-click="newAddressForm()">
       <span>Добавить новый адрес</span>
       <i  ng-if="chosenType != 'newAddress'" class="ion-ios-plus-outline pull-right"></i>
       <i ng-if="chosenType == 'newAddress'" class="ion-ios-minus-outline pull-right"></i>

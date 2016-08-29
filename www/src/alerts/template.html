@@ -8,7 +8,7 @@
   <ion-content>
      <div class="loader-gif" ng-if="!ready()"></div>
     <div  ng-if="ready()">
-      <alert-item class="tab-alert-item" ng-touchend="goToAlert(alert.brandId)" widget="alert" ng-repeat="alert in alerts"></alert-item>
+      <alert-item class="tab-alert-item" ng-click="goToAlert(alert.brandId)" widget="alert" ng-repeat="alert in alerts"></alert-item>
     </div>
   </ion-content>
 

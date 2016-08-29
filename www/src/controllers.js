@@ -92,10 +92,15 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, Category, Item, Brand, Banner, Info) {
+  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, $ionicScrollDelegate, Category, Item, Brand, Banner, Info, Settings) {
 
     $scope.categoryId;
     $scope.categoryService = Category;
+    $scope.settingsService = Settings;
+    $scope.isMainScrollOn = false;
+    $scope.allowScroll = false;
+
+    // onMainScroll();
 
     $scope.ready = () => {
 
@@ -104,6 +109,47 @@ angular.module('starter.controllers', [])
 
     };
 
+    $('#MainScroll').bind('scroll', function() {
+
+      if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+        offMainScroll();
+      }
+
+    });
+
+    $('#ContentScroll').bind('scroll', function() {
+
+      if($(this).scrollTop() === 0) {
+       onMainScroll();
+      }
+
+    });
+
+    function onMainScroll () {
+
+      if(! $scope.isLogIn) {
+        $('#MainScroll').css('overflow-y', 'auto');
+        $('#ContentScroll').css('overflow-y', 'hidden');
+        $ionicScrollDelegate.$getByHandle('MainScroll').scrollTop(true);
+      }
+
+    }
+
+    function offMainScroll () {
+      if(! $scope.isLogIn) {
+        $('#MainScroll').css('overflow-y', 'hidden');
+        $('#ContentScroll').css('overflow-y', 'auto');
+      }
+    }
+
+    $scope.isLogIn = Settings.isLogIn();
+
+    if($scope.isLogIn) {
+      offMainScroll();
+    } else {
+      onMainScroll();
+    }
+
     Info.get().then((info) => {
       $scope.info = info;
     });
@@ -111,6 +157,14 @@ angular.module('starter.controllers', [])
     Category.get().then((data) => {
       $scope.categories = data;
       $scope.$digest();
+    });
+
+    $scope.$watch('settingsService.isLogIn()', (newVal) => {
+      if(newVal) {
+        offMainScroll();
+        $scope.isLogIn = newVal;
+        console.log('isLogon watcher');
+      }
     });
 
      $scope.$watch('categoryService.getActive()', (newVal) => {

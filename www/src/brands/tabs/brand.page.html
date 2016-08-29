@@ -12,23 +12,24 @@
         <div class="brand-first-page">
         <div class="brand-slide">
           <img class="base-img" src="{{::chosenBrand.background}}" width="100%" height="100%" alt="">
+          <div class="gradient-under-pictire"></div>
           <div class="details">
             <div class="details-under-picture">
 
-              <div class="follow big-button" ng-if="! chosenBrand.isLiked" ng-touchend="follow(chosenBrand)">
+              <div class="follow big-button" ng-if="! chosenBrand.isLiked" ng-click="follow(chosenBrand)">
                 <i class="ion-ios-plus-empty"></i>
                 <p>Подписаться</p>
               </div>
 
-              <div class="following big-button" ng-if="chosenBrand.isLiked" ng-touchend="follow(chosenBrand)">
+              <div class="following big-button" ng-if="chosenBrand.isLiked" ng-click="follow(chosenBrand)">
                 <i class="ion-ios-checkmark-empty"></i>
                 <p>Подписан</p>
               </div>
 
-            <div class="send" ng-touchend="shareAnywhere()">
+            <div class="send" ng-click="shareAnywhere()">
               <i class="ion-ios-upload-outline"></i>
             </div>
-            <div class="more-info" ng-touchend="openmoreInfo()">
+            <div class="more-info" ng-click="openmoreInfo()">
               <p class="title short">{{::chosenBrand.descShort}}</p>
               <p>
                 <span>Подробнее</span>
@@ -45,17 +46,17 @@
         </div>
         </ul>
         <div class="container">
-          <div class="button button-main" ng-touchend="toBrandProducts()">Просмотреть все</div>
-          <!--<brand-picture2 widget="chosenBrand" ng-touchend="toBrandProducts()"></brand-picture2>-->
+          <div class="button button-main" ng-click="toBrandProducts()">Просмотреть все</div>
+          <!--<brand-picture2 widget="chosenBrand" ng-click="toBrandProducts()"></brand-picture2>-->
 
           <category-bar click="toBrandProducts"></category-bar>
           <!--<ul class="to-category">
             <span ng-repeat="category in categoryTree">
-              <li  ng-touchend="toBrandProducts(category.id)">
+              <li  ng-click="toBrandProducts(category.id)">
                 <span class="title">{{::category.name}}</span>
                 <i class="ion-ios-arrow-right"></i>
               </li>
-               <li ng-repeat="item in category.items" ng-touchend="toBrandProducts(item.id)">
+               <li ng-repeat="item in category.items" ng-click="toBrandProducts(item.id)">
                 <span>{{::item.name}}</span>
                 <i class="ion-ios-arrow-right"></i>
               </li>
@@ -64,10 +65,10 @@
 
         </div>
         <!--<div class="filter">
-          <div class="box" ng-touchend="opensortPopover()">sort</div>
-          <div class="box" ng-touchend="openfilterPopover()">filter</div>
-          <div class="box" ng-touchend="openfilterPopover()">filter</div>
-          <div class="box" ng-touchend="openfilterPopover()">filter</div>
+          <div class="box" ng-click="opensortPopover()">sort</div>
+          <div class="box" ng-click="openfilterPopover()">filter</div>
+          <div class="box" ng-click="openfilterPopover()">filter</div>
+          <div class="box" ng-click="openfilterPopover()">filter</div>
         </div>
         <showcase></showcase>-->
       </div>
