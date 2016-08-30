@@ -139,6 +139,7 @@ export default function($scope, $stateParams, $ionicPopover, $ionicModal, $timeo
     $scope[modal.name] = mod;
 
     $scope[`open${modal.name}`] = () => {
+    if(window.dragable) return
      mod.show();
      Main.setFollowButton(false);
     }

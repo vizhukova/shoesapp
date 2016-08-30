@@ -119,6 +119,10 @@ angular.module('starter.controllers', [])
 
         $scope.categoryId = newVal.id;
 
+        Category.getArrayTree( $scope.categoryId).then((data) => {
+            $scope.subCategories = data[0].items;
+        })
+
         Banner.getMain().then((data) => {
 
           $scope.mainBanners = data;
@@ -216,10 +220,6 @@ angular.module('starter.controllers', [])
     $scope.openPopover = ($event)=> {
 
       $scope.popover.show($event);
-
-      Category.getArrayTree( $scope.categoryId).then((data) => {
-        $scope.subCategories = data[0].items;
-      })
 
     };
 
@@ -329,7 +329,17 @@ angular.module('starter.controllers', [])
 
     };
 
+    $('body').on('touchmove', () => {
+      window.dragable = true;
+    })
 
+    $('body').on('touchstart', () => {
+      window.dragable = false;
+    })
+
+$('body').on('touchmend', (e) => {
+  if(window.dragable) e.preventDefault();
+})
 
   })
 

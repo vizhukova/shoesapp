@@ -1,4 +1,4 @@
-<ion-view class="Shop" hide-back-button="true">
+<ion-view class="Shop" hide-back-button="true" data-tap-disabled="true">
 
   <ion-nav-title>
      {{info.name}}
@@ -22,8 +22,8 @@
        <banner-slider imgs="mainBanners" isClickable="true"></banner-slider>
 
        <button class="button by-cat-btn big-button" ng-click="ready() ? openPopover() : null">
-        Просмотр по категориям
-      </button>
+         Просмотр по категориям
+       </button>
 
       <div class="loader-container">
 

@@ -28,6 +28,10 @@ $background: #E8E5E5;
 @import './android';
 
 
+//* {
+//  touch-events: none;
+//}
+
 .bar-stable {
   background: #fff;
 }
@@ -77,7 +81,7 @@ div.title.header-item {
 .body-product {
 
   .bar-header {
-    height: 60px;
+    height: 74px !important;
     //@include transition-with-delay(0s, 0s);
 
   }

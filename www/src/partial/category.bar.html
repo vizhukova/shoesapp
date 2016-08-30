@@ -1,10 +1,10 @@
 <ul class="to-category">
   <span ng-repeat="category in categories">
-    <li  ng-touchend="click(category.id)">
+    <li  ng-click="click(category.id)">
       <span class="title">{{::category.name}}</span>
       <i class="ion-ios-arrow-right"></i>
     </li>
-     <li ng-repeat="item in category.items" ng-touchend="click(item.id)">
+     <li ng-repeat="item in category.items" ng-click="click(item.id)">
       <span>{{::item.name}}</span>
       <i class="ion-ios-arrow-right"></i>
     </li>

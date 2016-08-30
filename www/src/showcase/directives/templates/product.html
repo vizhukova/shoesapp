@@ -1,4 +1,4 @@
-<div class="case-item" ng-touchend="openProduct(product)">
+<div class="case-item" ng-click="openProduct(product)">
   <div class="img">
     <image-loader
         source="{{product.img}}"
@@ -10,8 +10,8 @@
          alt=""
          width="100%"
          height="auto">-->
-      <i ng-if="! product.isLiked" ng-touchend="addLiked(product, $event)" class="ion-android-favorite-outline button-empty-like"></i>
-      <i ng-if="product.isLiked" ng-touchend="removeLiked(product, $event)" class="ion-android-favorite-outline button-like"></i>
+      <i ng-if="! product.isLiked" ng-click="addLiked(product, $event)" class="ion-android-favorite-outline button-empty-like"></i>
+      <i ng-if="product.isLiked" ng-click="removeLiked(product, $event)" class="ion-android-favorite-outline button-like"></i>
   </div>
   <span class="mark">{{::product.brandName}}</span>
   <span class="title">{{::product.name}}</span>

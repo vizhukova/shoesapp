@@ -1,8 +1,8 @@
 <div class="liked-slider">
-  <p ng-class="widget.sale ? 'slider-header red' : 'slider-header' " ng-touchend="titleClick(titleClickParam)">{{::widget.title}} <i class="ion-chevron-right"></i></p>
+  <p ng-class="widget.sale ? 'slider-header red' : 'slider-header' " ng-click="titleClick(titleClickParam)">{{::widget.title}} <i class="ion-chevron-right"></i></p>
   <ion-scroll direction="x" delegate-handle="horizontal">
     <div class="scrolling" ng-style="{width: width}">
-      <div class="thing" ng-repeat="product in widget.items track by $index" ng-touchend="openProduct(product)">
+      <div class="thing" ng-repeat="product in widget.items track by $index" ng-click="openProduct(product)">
         <div class="holder">
           <image-loader
           source="{{product.img}}"
@@ -21,7 +21,7 @@
           <span class="discount" ng-if="product.discount">{{product.discount}} {{product.currency}}</span>
         </p>
       </div>
-      <div class="thing" ng-touchend="titleClick(titleClickParam)">
+      <div class="thing" ng-click="titleClick(titleClickParam)">
         <div class="holder">
           <div class="img">
             <div class="center">

@@ -3,7 +3,7 @@
       <div ng-style="{height: height}">
          <div class="block"
               ng-class="{'chosen': filter===color.id}"
-              ng-repeat="color in colors" ng-touchend="click(color.id)">
+              ng-repeat="color in colors" ng-click="click(color.id)">
            {{color.name}}
          </div>
       </div>
