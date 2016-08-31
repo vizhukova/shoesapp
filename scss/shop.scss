@@ -7,8 +7,12 @@
     top: calc(88px + 164px);
   }
 
-  #MainScroll.has-header{
-    top: 0;
+  #MainScroll {
+    @include transition-with-delay(0.5s, 0s);
+
+    &.has-header{
+      top: 0;
+    }
   }
 
   .by-cat-btn {

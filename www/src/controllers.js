@@ -109,17 +109,29 @@ angular.module('starter.controllers', [])
 
     };
 
-    $('#MainScroll').bind('scroll', function() {
+    var mainScroll = $('#MainScroll');
+    var contentScroll = $('#ContentScroll');
 
-      if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-        offMainScroll();
-      }
-
+    $('.bannerSlider').bind('touchstart', function() {
+      console.log('!!!!!!! bannerSlider touchstart !!!!!!!!!!!!');
     });
 
-    $('#ContentScroll').bind('scroll', function() {
+    $('.bannerSlider').bind('touchend', function() {
+      console.log('!!!!!!! bannerSlider touchend !!!!!!!!!!!!');
+    });
 
-      if($(this).scrollTop() === 0) {
+    mainScroll.bind('scroll', function() {
+      console.log('main scroll')
+      if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+          offMainScroll();
+      }
+    });
+
+    contentScroll.bind('scroll', function() {
+
+       console.log('content scroll')
+      console.log('scrollTop ==', $(this).scrollTop())
+      if($(this).scrollTop() <= 5) {
        onMainScroll();
       }
 
@@ -128,17 +140,18 @@ angular.module('starter.controllers', [])
     function onMainScroll () {
 
       if(! $scope.isLogIn) {
-        $('#MainScroll').css('overflow-y', 'auto');
-        $('#ContentScroll').css('overflow-y', 'hidden');
-        $ionicScrollDelegate.$getByHandle('MainScroll').scrollTop(true);
+        mainScroll.css('overflow-y', 'auto');
+        contentScroll.css('overflow-y', 'hidden');
+        // $ionicScrollDelegate.$getByHandle('MainScroll').scrollTop(true);
+        mainScroll.scrollTop(0);
       }
 
     }
 
     function offMainScroll () {
       if(! $scope.isLogIn) {
-        $('#MainScroll').css('overflow-y', 'hidden');
-        $('#ContentScroll').css('overflow-y', 'auto');
+        mainScroll.css('overflow-y', 'hidden');
+        contentScroll.css('overflow-y', 'auto');
       }
     }
 
