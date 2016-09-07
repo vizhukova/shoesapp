@@ -14,7 +14,7 @@
   <full-screen-slider imgs="banners"></full-screen-slider>
   <div class="footer">
     <div class="sign-in-by">
-        <button class="button button-positive big-button join" ng-click="toShop()">
+        <button class="button button-positive big-button join" ng-click="signInViaFacebook()">
           <i class="ion-social-facebook-outline"></i>
           <span>Войти через facebook</span>
         </button>
@@ -26,4 +26,5 @@
     <p class="terms"> Присоединяясь к нам вы соглашаетесь с <a href='{{::info.termUrl}}' class="terms">условиями</a> и <a href='{{::info.privacyPolicyUrl}}' class="policy">положениями</a></p>
   </div>
 </div>
+    <div id="fb-root"></div>
 </ion-view>

@@ -18,6 +18,7 @@ angular.module('starter', [
   //'jett.ionic.scroll.sista',
   'LocalStorageModule',
   'ngCordova',
+  'ngCordovaOauth',
   'ngTouch'
 ])
 

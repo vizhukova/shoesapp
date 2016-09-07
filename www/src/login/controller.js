@@ -1,4 +1,5 @@
-export default function($scope, $state, $ionicPopover, $ionicModal, $timeout, User, Banner, Info) {
+
+export default function($scope, $state, $ionicPopover, $ionicModal, $timeout, $cordovaOauth,Facebook, User, Banner, Info) {
 
   $scope.animation = 'slide-in-up';
   $scope.recovery = false;
@@ -138,6 +139,50 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout, Us
 
     })
 
+  };
+
+  $scope.signInViaFacebook = function() {
+      // facebookConnectPlugin.browserInit(274524819600750);
+
+
+      facebookConnectPlugin.login(['public_profile'], (status)=>{
+        console.log(status)
+
+        var data = status.authResponse;
+        Facebook.getUserData(data.userID, data.accessToken).then((result) => {
+          console.log(result); // data{name: '', email: '', id: ''}
+          $scope.toShop();
+        });
+
+      }, (err)=>{
+        console.log('Error', err)
+      })
+
+
+     // $cordovaOauth.facebook("148628878919188", ["email"]).then(function(result) {
+     //        // results
+     //   debugger
+     //    }, function(error) {
+     //        // error
+     //   debugger
+     //    });
+
+    // CordovaFacebook.login({
+    //    permissions: ['email', 'user_likes'],
+    //    onSuccess: function(result) {
+    //       if(result.declined.length > 0) {
+    //          alert("The User declined something!");
+    //       }
+    //       alert("OK");
+    //    },
+    //    onFailure: function(result) {
+    //       if(result.cancelled) {
+    //          alert("The user doesn't like my app");
+    //       } else if(result.error) {
+    //          alert("There was an error:" + result.errorLocalized);
+    //       }
+    //    }
+    // });
   };
 
   $scope.forgotPassword = function() {

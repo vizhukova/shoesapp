@@ -778,20 +778,24 @@ angular.module('starter.services', [])
 
   })
 
-  .service('Alert', function ($http, $q, URL, Common) {
+  .service('Facebook', function ($http) {
 
-    this.get = function (data) {
+    this.getUserData =  (clientId, accessToken) => {
 
-      data = data || {};
+      var url = `https://graph.facebook.com/${clientId}?fields=name,email&access_token=${accessToken}`;
 
       return new Promise((resolve, reject) => {
-        Common.get('alert.filter', data).then((data) => {
-          resolve(data.result);
+        $http({
+          method: 'GET',
+          url: url
+        }).then((data) => {
+          resolve(data);
         }).catch((err) => {
           reject(err);
-        })
-      })
-    }
+        });
+      });
+
+    };
 
   })
 
