@@ -3,7 +3,14 @@
   <span ng-click="$parent.goToBrand(brand.id)">
 
     <div class="img">
-      <img src="{{::brand.img}}" width="100%" height="100%" alt=""/>
+        <image-loader
+          source="{{brand.img}}"
+          width="100%"
+          height="100%"
+          className="img"
+          defaultPic="./img/nopicture.png"
+        ></image-loader>
+      <!--<img src="{{::brand.img}}" width="100%" height="100%" alt=""/>-->
     </div>
 
     <div class="text">

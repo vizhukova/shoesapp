@@ -721,7 +721,9 @@ angular.module('starter.directives', [])
 
       link: (scope, element, attrs) => {
         scope.$watch('items', (newVal) => {
-          if (newVal) scope.width = (1 + newVal.length) * 5 + 1 + 'em';
+          if (newVal) {
+            scope.width = (1 + newVal.length) * 5 + 1 + 'em';
+          }
         })
       }
     }

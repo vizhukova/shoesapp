@@ -807,7 +807,7 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
         Common.get('item.getSize', data).then((data) => {
-          resolve(data.result);
+          resolve(data.result || []);
         }).catch((err) => {
           reject(err);
         })
@@ -818,7 +818,7 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
         Common.get('reference.getSize').then((data) => {
-          resolve(data.result);
+          resolve(data.result || []);
         }).catch((err) => {
           reject(err);
         })
@@ -834,12 +834,29 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
        Common.get('reference.getColor').then((data) => {
-          resolve(data.result);
+          resolve(data.result || []);
         }).catch((err) => {
           reject(err);
         })
       })
 
+    }
+
+  })
+
+  .service('Alert', function ($http, $q, URL, Common) {
+
+    this.get = function (data) {
+
+      data = data || {};
+
+      return new Promise((resolve, reject) => {
+        Common.get('alert.filter', data).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
     }
 
   })

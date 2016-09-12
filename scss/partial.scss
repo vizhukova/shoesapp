@@ -415,7 +415,7 @@
         width: 10em;
 
         &.brand {
-          font-weight: 600;
+          font-weight: 800;
         }
         &.name {}
 
@@ -1956,6 +1956,7 @@ button.join {
   }
 
    .imageLoader {
+    min-height: 100px;
 
     .spinner {
       background: gray;
