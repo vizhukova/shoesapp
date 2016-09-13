@@ -1,5 +1,5 @@
 
-export default function($scope, $state, $ionicPopover, $ionicModal, $timeout, $cordovaOauth,Facebook, User, Banner, Info) {
+export default function($scope, $state, $ionicPopover, $ionicModal, $timeout,Facebook, User, Banner, Info) {
 
   $scope.animation = 'slide-in-up';
   $scope.recovery = false;
