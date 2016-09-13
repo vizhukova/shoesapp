@@ -4,7 +4,7 @@ import moment from 'moment';
 
 angular.module('starter.services', [])
 
-   .service('Main', function ($http, $q, URL) {
+  .service('Main', function ($http, $q, URL) {
 
     var currentBrand = {};
     var followButton = false;
@@ -16,37 +16,37 @@ angular.module('starter.services', [])
     };
 
     this.getNavVisible = () => {
-       console.log('getNavVisible', isNavAvailable)
+      console.log('getNavVisible', isNavAvailable)
       return isNavAvailable;
     };
 
-     this.setCurrentBrand = (item) => {
-       currentBrand = item || {};
-       followButton = !item.isLiked;
-       console.log('setCurrentBrand', item)
-     }
+    this.setCurrentBrand = (item) => {
+      currentBrand = item || {};
+      followButton = !item.isLiked;
+      console.log('setCurrentBrand', item)
+    }
 
-     this.getCurrentBrand = () => {
-       return currentBrand;
-     }
+    this.getCurrentBrand = () => {
+      return currentBrand;
+    }
 
-     this.setFollowButton = (value) => {
-       followButton = value && !currentBrand.isLiked;
-       console.log('setFollowButton', value)
-     }
+    this.setFollowButton = (value) => {
+      followButton = value && !currentBrand.isLiked;
+      console.log('setFollowButton', value)
+    }
 
-     this.isFollowButton = () => {
-       return followButton;
-     }
+    this.isFollowButton = () => {
+      return followButton;
+    }
 
   })
 
   .service('User', function (Common, Server, localStorageService) {
-  /*
-  curl --data "{"email":"test@test.ru","pass":"asdfsfd","firstName":"Ivan"}"  http://shoes.mikero.ru/api/auth.signUp --header "Content-Type:application/json"
-  */
+    /*
+     curl --data "{"email":"test@test.ru","pass":"asdfsfd","firstName":"Ivan"}"  http://shoes.mikero.ru/api/auth.signUp --header "Content-Type:application/json"
+     */
 
-    this.signIn = function(data) {
+    this.signIn = function (data) {
       //return Server.post('auth.signIn', data);
 
       return new Promise((resolve, reject) => {
@@ -66,7 +66,7 @@ angular.module('starter.services', [])
 
     };
 
-    this.signUp = function(data) {
+    this.signUp = function (data) {
 
       return new Promise((resolve, reject) => {
 
@@ -87,13 +87,13 @@ angular.module('starter.services', [])
 
     };
 
-    this.forgotPassword = function(data) {
+    this.forgotPassword = function (data) {
 
       return Server.post('auth.forgotPassword', data);
 
     };
 
-    this.getUserInfo = function(data) {
+    this.getUserInfo = function (data) {
 
       return new Promise((resolve, reject) => {
 
@@ -128,26 +128,26 @@ angular.module('starter.services', [])
       return activeCategory;
     };
 
-    this.get =  (data) => {
+    this.get = (data) => {
 
       data = data || {};
       var categories = [];
 
       return new Promise((resolve, reject) => {
 
-         Common.get('section.filter', data).then((data) => {
-           var c = data.result;
-           categories = c.filter((item) => {
+        Common.get('section.filter', data).then((data) => {
+          var c = data.result;
+          categories = c.filter((item) => {
 
-             if(item.deptLevel === '1') return item;
+            if (item.deptLevel === '1') return item;
 
-             //if(item.deptLevel === 1) {
-             //  item.items = c.filter((it) => it.deptLevel === 2 && it.parentId === item.id);
-             //  return item;
-             //}
-           });
-           resolve(categories);
-         })
+            //if(item.deptLevel === 1) {
+            //  item.items = c.filter((it) => it.deptLevel === 2 && it.parentId === item.id);
+            //  return item;
+            //}
+          });
+          resolve(categories);
+        })
 
       })
     }
@@ -178,13 +178,13 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-         Common.get('section.filter', data).then((data) => {
-           var c = data.result;
-           categories = c.filter((item) => {
-              return item;
-           });
-           resolve(categories);
-         })
+        Common.get('section.filter', data).then((data) => {
+          var c = data.result;
+          categories = c.filter((item) => {
+            return item;
+          });
+          resolve(categories);
+        })
 
       })
     };
@@ -203,11 +203,11 @@ angular.module('starter.services', [])
 
             var node = _.find(categories, {id: nodeId});
 
-             if(node.parentId) {
-               return recursion(node.parentId);
-             } else {
-               return node;
-             }
+            if (node.parentId) {
+              return recursion(node.parentId);
+            } else {
+              return node;
+            }
           }
 
         }).catch((err) => {
@@ -227,22 +227,22 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-         this.getAll().then((c) => {
+        this.getAll().then((c) => {
 
-           categories = _.cloneDeep(c);
-           var cat = _.find(categories, {id: category_id});
+          categories = _.cloneDeep(c);
+          var cat = _.find(categories, {id: category_id});
 
 
           var chieldCat = categories.filter((item) => item.parentId === cat.id);
 
-           if(! chieldCat.length) {
-             resolve(undefined);
-             return;
-           }
+          if (!chieldCat.length) {
+            resolve(undefined);
+            return;
+          }
 
-          if(cat.parentId) {
+          if (cat.parentId) {
 
-             tree = getTree(cat.id, [cat], categories);
+            tree = getTree(cat.id, [cat], categories);
 
           } else {
 
@@ -253,7 +253,7 @@ angular.module('starter.services', [])
           tree.items = chieldCat;
           resolve([tree]);
 
-         });
+        });
 
       })
     }
@@ -265,23 +265,23 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-         this.getAll().then((c) => {
+        this.getAll().then((c) => {
 
-         categories = _.cloneDeep(c);
+          categories = _.cloneDeep(c);
 
           var cat = _.find(categories, {id: siblingNodeId});
 
-          if(cat.parentId) {
+          if (cat.parentId) {
 
-            var chieldCats =  categories.filter((item) => item.parentId === cat.parentId)
+            var chieldCats = categories.filter((item) => item.parentId === cat.parentId)
 
-             tree = getTree(cat.parentId, chieldCats, categories);
-             tree.lastCosenNode = cat.parentId;
+            tree = getTree(cat.parentId, chieldCats, categories);
+            tree.lastCosenNode = cat.parentId;
 
           } else {
 
             tree = categories.filter((item) => {
-              if( item.deptLevel === '1' ) {
+              if (item.deptLevel === '1') {
                 item.items = [];
                 return item;
               }
@@ -291,21 +291,21 @@ angular.module('starter.services', [])
 
           resolve(tree);
 
-         });
+        });
 
       })
     };
 
     function getTree(category_id, items, categories) {
-        var category = _.find(categories, {id: category_id});
-        category.items = items;
-        if(category.parentId) return getTree(category.parentId, [category], categories);
-        else return [category];
-      }
+      var category = _.find(categories, {id: category_id});
+      category.items = items;
+      if (category.parentId) return getTree(category.parentId, [category], categories);
+      else return [category];
+    }
 
   })
 
-  .service('Item', function ($http, $q, URL, Common, Server,  localStorageService) {
+  .service('Item', function ($http, $q, URL, Common, Server, localStorageService) {
 
     var likes = [];
     var nav;
@@ -313,27 +313,27 @@ angular.module('starter.services', [])
     this.getFiltered = function (data) {
 
       data = data || {};
-      likes =  localStorageService.get('likedItems') || [];
+      likes = localStorageService.get('likedItems') || [];
 
       return new Promise((resolve, reject) => {
 
-          Common.get('item.filter', data).then((data) => {
+        Common.get('item.filter', data).then((data) => {
 
-            var items = data.result || [];
+          var items = data.result || [];
 
-            items.count = data.nav.countRecord || 0;
+          items.count = data.nav.countRecord || 0;
 
-            console.log( items.count)
+          console.log(items.count)
 
-            items.map((item) => {
-              if(item) {
-                item.isLiked = likes.indexOf(item.id) > -1;
-              }
-            });
+          items.map((item) => {
+            if (item) {
+              item.isLiked = likes.indexOf(item.id) > -1;
+            }
+          });
 
-            resolve(items);
+          resolve(items);
 
-          })
+        })
 
       });
 
@@ -346,11 +346,11 @@ angular.module('starter.services', [])
     this.getFilteredNav = function (data) {
 
       data = data || {};
-      likes =  localStorageService.get('likedItems') || [];
+      likes = localStorageService.get('likedItems') || [];
 
       return new Promise((resolve, reject) => {
 
-        if(nav && nav.pageCurrent >= nav.pageCount && data.page >= nav.pageCount) {
+        if (nav && nav.pageCurrent >= nav.pageCount && data.page >= nav.pageCount) {
 
           resolve([]);
 
@@ -364,7 +364,7 @@ angular.module('starter.services', [])
             items.count = nav.countRecord || 0;
 
             items.map((item) => {
-              if(item) {
+              if (item) {
                 item.isLiked = likes.indexOf(item.id) > -1;
               }
             });
@@ -382,37 +382,37 @@ angular.module('starter.services', [])
     this.get = function (data) {
 
       data = data || {};
-      likes =  localStorageService.get('likedItems') || [];
+      likes = localStorageService.get('likedItems') || [];
 
 
       return new Promise((resolve, reject) => {
 
-         Common.get('item.get', data).then((data) => {
-           var item = data.result;
-           if(item)  {
+        Common.get('item.get', data).then((data) => {
+          var item = data.result;
+          if (item) {
 
-             item.isLiked = likes.indexOf(item.id) > -1;
-           }
-           resolve(item);
-         })
+            item.isLiked = likes.indexOf(item.id) > -1;
+          }
+          resolve(item);
+        })
 
       })
     };
 
     this.addLiked = (id) => {
 
-      likes =  localStorageService.get('likedItems') || [];
+      likes = localStorageService.get('likedItems') || [];
 
       likes.push(id);
       localStorageService.set('likedItems', likes);
-       console.log('addLiked', likes)
+      console.log('addLiked', likes)
       return Server.post('item.love', {"id": id, "love": 1});
 
     };
 
     this.removeLiked = (id) => {
 
-      likes =  localStorageService.get('likedItems') || [];
+      likes = localStorageService.get('likedItems') || [];
 
       likes = likes.filter((item) => item != id);
       localStorageService.set('likedItems', likes);
@@ -438,15 +438,15 @@ angular.module('starter.services', [])
 
             var result = data.result;
 
-              likes =  localStorageService.get('likedItems') || [];
+            likes = localStorageService.get('likedItems') || [];
 
-              if(! result) {
-                likes.concat( _.difference(likes, result) );
-              }
+            if (!result) {
+              likes.concat(_.difference(likes, result));
+            }
 
-              var likedProduct = products.filter((item) => likes.indexOf(item.id) > -1);
+            var likedProduct = products.filter((item) => likes.indexOf(item.id) > -1);
 
-              resolve(likedProduct);
+            resolve(likedProduct);
 
           })
 
@@ -455,9 +455,7 @@ angular.module('starter.services', [])
       });
 
 
-
-
-  };
+    };
 
   })
 
@@ -478,7 +476,7 @@ angular.module('starter.services', [])
 
     };
 
-    this.getFullFiltered =  (data) => {
+    this.getFullFiltered = (data) => {
 
       var brands = {};
 
@@ -530,22 +528,21 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-          Promise.map(brandsArr, (brand, index) => {
+        Promise.map(brandsArr, (brand, index) => {
 
-            return Item.getFiltered({feature: 'sales', brandId: brand.id}).then((products) => {
+          return Item.getFiltered({feature: 'sales', brandId: brand.id}).then((products) => {
 
-              brandsArr[index].items = products;
-              brandsArr[index].sale = true;
-              brandsArr[index].title = 'Распродажа';
-
-            })
-
-          }).then((result) => {
-
-            resolve(brandsArr);
+            brandsArr[index].items = products;
+            brandsArr[index].sale = true;
+            brandsArr[index].title = 'Распродажа';
 
           })
 
+        }).then((result) => {
+
+          resolve(brandsArr);
+
+        })
 
 
       })
@@ -556,23 +553,22 @@ angular.module('starter.services', [])
 
       var brandsArr = _.cloneDeep(array);
 
-     return new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) => {
 
-          Promise.map(brandsArr, (brand, index) => {
+        Promise.map(brandsArr, (brand, index) => {
 
-            return Item.getFiltered({feature: 'sales', brandId: brand.id}).then((products) => {
+          return Item.getFiltered({feature: 'sales', brandId: brand.id}).then((products) => {
 
-              brandsArr[index].items = products;
-              brandsArr[index].title = 'Новые поступления';
-
-            })
-
-          }).then((result) => {
-
-            resolve(brandsArr);
+            brandsArr[index].items = products;
+            brandsArr[index].title = 'Новые поступления';
 
           })
 
+        }).then((result) => {
+
+          resolve(brandsArr);
+
+        })
 
 
       })
@@ -614,20 +610,20 @@ angular.module('starter.services', [])
     this.get = (data) => {
 
       return new Promise((resolve, reject) => {
-         Common.get('brand.get', data).then((data) => {
+        Common.get('brand.get', data).then((data) => {
 
-           var brand = data.result;
+          var brand = data.result;
 
-          if(brand) {
+          if (brand) {
             brand.isLiked = likes.indexOf(brand.id) > -1;
           }
-           resolve(brand);
+          resolve(brand);
 
         }).catch((error) => {
 
-           reject(error);
+          reject(error);
 
-         })
+        })
       });
     };
 
@@ -635,7 +631,7 @@ angular.module('starter.services', [])
 
       likes.push(id);
       localStorageService.set('likedBrands', likes);
-       console.log('addLiked', likes)
+      console.log('addLiked', likes)
       Server.post('brand.follow', {"brandId": id, "follow": 1});
 
     };
@@ -661,19 +657,19 @@ angular.module('starter.services', [])
 
         this.getFiltered().then((b) => {
 
-          brands =  b;
+          brands = b;
 
           Common.get('account.getBrandFollow').then((data) => {
 
             var result = data.result;
 
-              likes =  localStorageService.get('likedBrands') || [];
+            likes = localStorageService.get('likedBrands') || [];
 
-              if(! result) {
-                likes.concat( _.difference(likes, result) );
-              }
+            if (!result) {
+              likes.concat(_.difference(likes, result));
+            }
 
-              likedBrands = brands.filter((item) => likes.indexOf(item.id) > -1);
+            likedBrands = brands.filter((item) => likes.indexOf(item.id) > -1);
 
           }).then(() => {
 
@@ -696,9 +692,7 @@ angular.module('starter.services', [])
       });
 
 
-
-
-  };
+    };
 
     this.hasLiked = () => {
       var likes = localStorageService.get('likedBrands') || [];
@@ -733,13 +727,13 @@ angular.module('starter.services', [])
       termsOfService: 'test text termsOfService'
     };
 
-    this.saveInLocalStorage =  () => {
+    this.saveInLocalStorage = () => {
 
       localStorageService.set('Settings', settings);
 
     };
 
-    this.getStaticPage =  (data) => {
+    this.getStaticPage = (data) => {
 
       data = data || {};
 
@@ -752,13 +746,13 @@ angular.module('starter.services', [])
       })
     };
 
-    this.getSexObj =  () => {
+    this.getSexObj = () => {
 
       return settings.sexObj;
 
     };
 
-    this.setCurrenctSexIndex =  (index) => {
+    this.setCurrenctSexIndex = (index) => {
 
       settings.sexObj.chosenIndex = index;
       this.saveInLocalStorage();
@@ -780,7 +774,7 @@ angular.module('starter.services', [])
 
   .service('Facebook', function ($http) {
 
-    this.getUserData =  (clientId, accessToken) => {
+    this.getUserData = (clientId, accessToken) => {
 
       var url = `https://graph.facebook.com/${clientId}?fields=name,email&access_token=${accessToken}`;
 
@@ -799,6 +793,59 @@ angular.module('starter.services', [])
 
   })
 
+  .service('pushNotification', function ($cordovaDevice, Server) {
+
+    this.subscribe = (pushToken) => {
+
+      return sendToServer('subscribe', pushToken);
+
+    };
+
+    this.unsubscribe = () => {
+
+      return sendToServer('unsubscribe', '');
+
+    };
+
+    function sendToServer(method, pushToken) {
+
+      var toSend = {
+        deviceId: $cordovaDevice.getUUID(),
+        method: method,
+        platform: $cordovaDevice.getPlatform().toLowerCase(),
+        pushToken: pushToken
+
+      };
+
+      console.log(toSend)
+
+      return new Promise((resolve, reject) => {
+
+        Server.post('account.pushNotification', toSend).then((result) => {
+
+          resolve(result);
+
+        }).catch(function (err) {
+
+          reject(err);
+
+        });
+
+      })
+
+      // Server.post('account.pushNotification', toSend).then((result) => {
+      //
+      //   resolve(result);
+      //
+      // }).catch((error) => {
+      //
+      //   reject(error);
+      //
+      // })
+
+    }
+  })
+
   .service('Size', function ($http, $q, URL, Common) {
 
     this.getByItem = function (data) {
@@ -814,7 +861,7 @@ angular.module('starter.services', [])
       })
     }
 
-    this.get = function() {
+    this.get = function () {
 
       return new Promise((resolve, reject) => {
         Common.get('reference.getSize').then((data) => {
@@ -830,10 +877,10 @@ angular.module('starter.services', [])
 
   .service('Color', function ($http, $q, URL, Common) {
 
-    this.get = function() {
+    this.get = function () {
 
       return new Promise((resolve, reject) => {
-       Common.get('reference.getColor').then((data) => {
+        Common.get('reference.getColor').then((data) => {
           resolve(data.result || []);
         }).catch((err) => {
           reject(err);
@@ -873,7 +920,7 @@ angular.module('starter.services', [])
 
           var result = data.result;
           var response = [];
-          if(result) response.push(result);
+          if (result) response.push(result);
 
           resolve(response);
 
@@ -933,7 +980,7 @@ angular.module('starter.services', [])
       data = data || {};
 
       return new Promise((resolve, reject) => {
-       Common.get('shop.getLocationByZip', data).then((data) => {
+        Common.get('shop.getLocationByZip', data).then((data) => {
           resolve(data.result);
         }).catch((err) => {
           reject(err);
@@ -947,7 +994,7 @@ angular.module('starter.services', [])
       data = data || {};
 
       return new Promise((resolve, reject) => {
-      Common.get('shop.getLocationByName', data).then((data) => {
+        Common.get('shop.getLocationByName', data).then((data) => {
           resolve(data.result);
         }).catch((err) => {
           reject(err);
@@ -960,38 +1007,38 @@ angular.module('starter.services', [])
 
   .service('Delivery', function ($http, $q, URL, Common) {
 
-      this.get = function (data) {
+    this.get = function (data) {
 
-        data = data || {};
+      data = data || {};
 
-        return new Promise((resolve, reject) => {
-         Common.get('shop.getDelivery', data).then((data) => {
-            resolve(data.result);
-          }).catch((err) => {
-            reject(err);
-          })
+      return new Promise((resolve, reject) => {
+        Common.get('shop.getDelivery', data).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
         })
+      })
 
-      };
+    };
 
-    })
+  })
 
   .service('Payment', function ($http, $q, URL, Common) {
 
-      this.get = function (data) {
+    this.get = function (data) {
 
-        data = data || {};
+      data = data || {};
 
-        return new Promise((resolve, reject) => {
-         Common.get('shop.getPayment', data).then((data) => {
-            resolve(data.result);
-          }).catch((err) => {
-            reject(err);
-          })
+      return new Promise((resolve, reject) => {
+        Common.get('shop.getPayment', data).then((data) => {
+          resolve(data.result);
+        }).catch((err) => {
+          reject(err);
         })
-      };
+      })
+    };
 
-    })
+  })
 
   .service('Search', function ($http, $q, URL, Common) {
 
@@ -1030,7 +1077,7 @@ angular.module('starter.services', [])
 
         }).then((order) => {
 
-            resolve();
+          resolve();
 
         }).catch((error) => {
 
@@ -1045,7 +1092,7 @@ angular.module('starter.services', [])
     this.get = (data) => {
 
       return new Promise((resolve, reject) => {
-       Common.get('order.filter', data).then((data) => {
+        Common.get('order.filter', data).then((data) => {
           resolve(data.result);
         }).catch((err) => {
           reject(err);
@@ -1061,7 +1108,7 @@ angular.module('starter.services', [])
     this.getLogin = (data) => {
 
       return new Promise((resolve, reject) => {
-       Common.get('banner.filter', {where: 'signin'}).then((data) => {
+        Common.get('banner.filter', {where: 'signin'}).then((data) => {
           resolve(data.result);
         }).catch((err) => {
           reject(err);
@@ -1076,7 +1123,7 @@ angular.module('starter.services', [])
       _.assign(filterBy, {where: 'main'});
 
       return new Promise((resolve, reject) => {
-       Common.get('banner.filter', filterBy).then((data) => {
+        Common.get('banner.filter', filterBy).then((data) => {
           resolve(data.result);
         }).catch((err) => {
           reject(err);
@@ -1091,7 +1138,7 @@ angular.module('starter.services', [])
 
     this.get = () => {
       return new Promise((resolve, reject) => {
-       Common.get('shop.getInfo').then((data) => {
+        Common.get('shop.getInfo').then((data) => {
           resolve(data.result);
         }).catch((err) => {
           reject(err);
@@ -1109,11 +1156,11 @@ angular.module('starter.services', [])
     this.get = (key) => {
 
       var dataToReturn = cache[key];
-      if(dataToReturn) {
+      if (dataToReturn) {
 
         var today = moment();
 
-        if(moment.max(today, dataToReturn.endTime) == today) {
+        if (moment.max(today, dataToReturn.endTime) == today) {
 
           return undefined;
 
@@ -1147,7 +1194,7 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
 
-     console.log(URL + url)
+        console.log(URL + url)
 
 
         $http({
@@ -1159,9 +1206,9 @@ angular.module('starter.services', [])
         }).then((response) => {
 
 
-          if(response.data.err_code) {
+          if (response.data.err_code) {
 
-            if(response.data.err_code == 306) {
+            if (response.data.err_code == 306) {
               localStorageService.remove('token');
               resolve({});
 
@@ -1193,9 +1240,9 @@ angular.module('starter.services', [])
           data: JSON.stringify(data)
         }).then((response) => {
 
-          if(response.data.err_code) {
+          if (response.data.err_code) {
 
-            if(response.data.err_code == 306) {
+            if (response.data.err_code == 306) {
               localStorageService.remove('token');
               resolve({});
 
@@ -1244,7 +1291,7 @@ angular.module('starter.services', [])
             data.ttl = 1000;
 
             Cache.set(url, data);
-             console.log('Server format', {result: data.result, nav: data.nav})
+            console.log('Server format', {result: data.result, nav: data.nav})
             resolve({result: data.result, nav: data.nav});
 
           }).catch((err) => {
