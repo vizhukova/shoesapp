@@ -11,6 +11,7 @@ require('angular-local-storage');
 angular.module('starter', [
   'ionic',
   'ionic.service.core',
+  'ionic.service.push',
   'starter.controllers',
   'starter.services',
   'starter.directives',
@@ -18,7 +19,8 @@ angular.module('starter', [
   //'jett.ionic.scroll.sista',
   'LocalStorageModule',
   'ngCordova',
-  'ngTouch'
+  'ngTouch',
+  'angular-bind-html-compile'
 ])
 
   .constant('_', window._)
@@ -50,7 +52,7 @@ angular.module('starter', [
 
   })
 
-  .run(function ($ionicPlatform) {
+  .run(function ($ionicPlatform, pushNotification) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)

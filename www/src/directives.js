@@ -721,7 +721,9 @@ angular.module('starter.directives', [])
 
       link: (scope, element, attrs) => {
         scope.$watch('items', (newVal) => {
-          if (newVal) scope.width = (1 + newVal.length) * 5 + 1 + 'em';
+          if (newVal) {
+            scope.width = (1 + newVal.length) * 5 + 1 + 'em';
+          }
         })
       }
     }
@@ -1022,6 +1024,20 @@ angular.module('starter.directives', [])
       }
     }
   })
+
+.directive('bindHtmlCompile', ['$compile', function ($compile) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            scope.$watch(function () {
+                return scope.$eval(attrs.bindHtmlCompile);
+            }, function (value) {
+                element.html(value);
+                $compile(element.contents())(scope);
+            });
+        }
+    };
+}]);
 
 
 

@@ -1,4 +1,4 @@
-export default function($scope, $state, Item, Brand, Order) {
+export default function($scope, $state, Item, Brand, Order, User) {
 
   $scope.ready = () => {
     return $scope.likedProducts &&  $scope.likedBrands &&  $scope.orders;
@@ -22,6 +22,10 @@ export default function($scope, $state, Item, Brand, Order) {
     $scope.$digest();
     console.log('ORDRS',  $scope.orders)
 
+  });
+
+  User.getUserInfo().then((data) => {
+    $scope.user = data;
   });
 
 

@@ -392,8 +392,8 @@ $scope.$on('popover.hidden', function() {
 
     isDisableShare = true;
 
-                                /*socialType, message, image, link*/
-    $cordovaSocialSharing.share('', item.name, item.img, item.url).then(() => {
+                                /*socialType, message,    image,    link*/
+    $cordovaSocialSharing.share(     '',     item.name, item.img, item.url).then(() => {
       isDisableShare = false;
     }).catch(() => {
       isDisableShare = false;

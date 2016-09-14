@@ -19,6 +19,18 @@
 
     <div ng-if="ready()">
 
+       <div ng-if="user" class="me-block">
+           <i class="camera-icon ion-ios-camera-outline"></i>
+           <p class="data-block">
+               <span class="name">{{ user.name }}</span>
+               <span class="surname">{{ user.lastName }}</span>
+               <span class="data-register">Пользователь с  {{ user.dateRegister }}</span>
+               <p class="shipping">Бесплатная доставка. Бесплатные возвраты.</p>
+           </p>
+       </div>
+
+        <miss-something ng-if="!user"></miss-something>
+
        <div class="me-tabs">
         <div class="link" ng-click="toOrders()">
             <i class="icon ion-cube"></i>

@@ -9,8 +9,8 @@
 
     <ion-scroll direction="y" style="height: 100%; width: 100%;">
       <div class="content">
-        <div class="title">{{::page.text}}</div>
-        <div>{{::page.textDetail}}</div>
+        <div bind-html-compile="page.text" class="title"></div>
+        <div bind-html-compile="page.textDetail"></div>
       </div>
     </ion-scroll>
 

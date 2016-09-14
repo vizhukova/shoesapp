@@ -25,6 +25,14 @@ export default function($scope, $state,  $ionicPopover, Settings, Brand, Item) {
   };
 
   $scope.signOut = () => {
+
+    facebookConnectPlugin.logout(
+      () => {
+        console.success('Success facebook logout');
+      }, () => {
+       console.error('Error facebook logout');
+      });
+
     Settings.signOut();
     $state.go("login");
     Brand.clearLikes();
