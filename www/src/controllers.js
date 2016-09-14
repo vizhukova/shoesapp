@@ -13,7 +13,6 @@ import AlertCtrl from './alerts/controller'
 import ProductsPageCtrl from './productsPage/controller'
 import OrderCtrl from './order/controller'
 import _ from 'lodash';
-var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
 angular.module('starter.controllers', [])
 
@@ -93,7 +92,7 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, $ionicScrollDelegate, Category, Item, Brand, Banner, Info, Settings, pushNotification) {
+  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, pushwooshConfig, $ionicScrollDelegate, Category, Item, Brand, Banner, Info, Settings, pushNotification) {
 
     $scope.categoryId;
     $scope.categoryService = Category;
@@ -143,10 +142,9 @@ angular.module('starter.controllers', [])
        * Push notification
        */
 
-      pushwoosh.onDeviceReady({
-          appid : "A2198-8ED39",
-          projectid: "2850847882"
-      });
+       var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
+
+      pushwoosh.onDeviceReady(poshwooshConfig);
 
       pushwoosh.registerDevice(
           function(status) {

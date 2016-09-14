@@ -1,0 +1,118 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'angular-bind-html-compile' ]
+2 info using npm@2.15.9
+3 info using node@v4.5.0
+4 verbose install initial load of /home/nika/Documents/quatrieme.app/package.json
+5 warn package.json spshop@1.1.1 No repository field.
+6 warn package.json spshop@1.1.1 No README data
+7 warn package.json spshop@1.1.1 No license field.
+8 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/angular-local-storage/package.json
+9 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/babel-preset-es2015/package.json
+10 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/babelify/package.json
+11 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/bluebird/package.json
+12 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/bower/package.json
+13 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/browserify/package.json
+14 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/gulp/package.json
+15 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/gulp-concat/package.json
+16 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/gulp-minify-css/package.json
+17 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/gulp-rename/package.json
+18 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/gulp-sass/package.json
+19 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/gulp-util/package.json
+20 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/lodash/package.json
+21 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/moment/package.json
+22 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/shelljs/package.json
+23 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/swiper/package.json
+24 verbose installManyTop reading scoped package data from /home/nika/Documents/quatrieme.app/node_modules/vinyl-source-stream/package.json
+25 info package.json gulp-minify-css@0.3.13 No license field.
+26 info package.json gulp-util@2.2.20 No license field.
+27 info package.json shelljs@0.3.0 license should be a valid SPDX license expression
+28 info package.json gulp-rename@1.2.2 No license field.
+29 verbose readDependencies loading dependencies from /home/nika/Documents/quatrieme.app/package.json
+30 silly cache add args [ 'angular-bind-html-compile', null ]
+31 verbose cache add spec angular-bind-html-compile
+32 silly cache add parsed spec Result {
+32 silly cache add   raw: 'angular-bind-html-compile',
+32 silly cache add   scope: null,
+32 silly cache add   name: 'angular-bind-html-compile',
+32 silly cache add   rawSpec: '',
+32 silly cache add   spec: 'latest',
+32 silly cache add   type: 'tag' }
+33 silly addNamed angular-bind-html-compile@latest
+34 verbose addNamed "latest" is being treated as a dist-tag for angular-bind-html-compile
+35 info addNameTag [ 'angular-bind-html-compile', 'latest' ]
+36 silly mapToRegistry name angular-bind-html-compile
+37 silly mapToRegistry using default registry
+38 silly mapToRegistry registry https://registry.npmjs.org/
+39 silly mapToRegistry data Result {
+39 silly mapToRegistry   raw: 'angular-bind-html-compile',
+39 silly mapToRegistry   scope: null,
+39 silly mapToRegistry   name: 'angular-bind-html-compile',
+39 silly mapToRegistry   rawSpec: '',
+39 silly mapToRegistry   spec: 'latest',
+39 silly mapToRegistry   type: 'tag' }
+40 silly mapToRegistry uri https://registry.npmjs.org/angular-bind-html-compile
+41 verbose addNameTag registry:https://registry.npmjs.org/angular-bind-html-compile not in flight; fetching
+42 verbose request uri https://registry.npmjs.org/angular-bind-html-compile
+43 verbose request no auth needed
+44 info attempt registry request try #1 at 11:15:53 AM
+45 verbose request id 147e460a3f00a9af
+46 http request GET https://registry.npmjs.org/angular-bind-html-compile
+47 http 404 https://registry.npmjs.org/angular-bind-html-compile
+48 verbose headers { 'content-type': 'application/json',
+48 verbose headers   'cache-control': 'max-age=0',
+48 verbose headers   'content-length': '2',
+48 verbose headers   'accept-ranges': 'bytes',
+48 verbose headers   date: 'Wed, 14 Sep 2016 08:15:53 GMT',
+48 verbose headers   via: '1.1 varnish',
+48 verbose headers   age: '0',
+48 verbose headers   connection: 'keep-alive',
+48 verbose headers   'x-served-by': 'cache-fra1225-FRA',
+48 verbose headers   'x-cache': 'MISS',
+48 verbose headers   'x-cache-hits': '0',
+48 verbose headers   'x-timer': 'S1473840953.745934,VS0,VE108',
+48 verbose headers   vary: 'Accept-Encoding' }
+49 silly get cb [ 404,
+49 silly get   { 'content-type': 'application/json',
+49 silly get     'cache-control': 'max-age=0',
+49 silly get     'content-length': '2',
+49 silly get     'accept-ranges': 'bytes',
+49 silly get     date: 'Wed, 14 Sep 2016 08:15:53 GMT',
+49 silly get     via: '1.1 varnish',
+49 silly get     age: '0',
+49 silly get     connection: 'keep-alive',
+49 silly get     'x-served-by': 'cache-fra1225-FRA',
+49 silly get     'x-cache': 'MISS',
+49 silly get     'x-cache-hits': '0',
+49 silly get     'x-timer': 'S1473840953.745934,VS0,VE108',
+49 silly get     vary: 'Accept-Encoding' } ]
+50 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/angular-bind-html-compile
+50 verbose stack     at makeError (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+50 verbose stack     at CachingRegistryClient.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:242:14)
+50 verbose stack     at Request._callback (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+50 verbose stack     at Request.self.callback (/usr/lib/node_modules/npm/node_modules/request/request.js:200:22)
+50 verbose stack     at emitTwo (events.js:87:13)
+50 verbose stack     at Request.emit (events.js:172:7)
+50 verbose stack     at Request.<anonymous> (/usr/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+50 verbose stack     at emitOne (events.js:82:20)
+50 verbose stack     at Request.emit (events.js:169:7)
+50 verbose stack     at IncomingMessage.<anonymous> (/usr/lib/node_modules/npm/node_modules/request/request.js:988:12)
+51 verbose statusCode 404
+52 verbose pkgid angular-bind-html-compile
+53 verbose cwd /home/nika/Documents/quatrieme.app
+54 error Linux 4.4.0-36-generic
+55 error argv "/usr/bin/nodejs" "/usr/bin/npm" "install" "angular-bind-html-compile"
+56 error node v4.5.0
+57 error npm  v2.15.9
+58 error code E404
+59 error 404 Registry returned 404 for GET on https://registry.npmjs.org/angular-bind-html-compile
+59 error 404
+59 error 404 'angular-bind-html-compile' is not in the npm registry.
+59 error 404 You should bug the author to publish it (or use the name yourself!)
+59 error 404 It was specified as a dependency of 'spshop'
+59 error 404
+59 error 404 Note that you can also install from a
+59 error 404 tarball, folder, http url, or git url.
+60 verbose exit [ 1, true ]

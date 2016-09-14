@@ -29,7 +29,7 @@
             <div class="send" ng-click="shareAnywhere()">
               <i class="ion-ios-upload-outline"></i>
             </div>
-            <div class="more-info" ng-click="openmoreInfo()">
+            <div class="more-info" ng-touchend="openmoreInfo($event)">
               <p class="title short">{{::chosenBrand.descShort}}</p>
               <p>
                 <span>Подробнее</span>

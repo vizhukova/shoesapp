@@ -19,7 +19,8 @@ angular.module('starter', [
   //'jett.ionic.scroll.sista',
   'LocalStorageModule',
   'ngCordova',
-  'ngTouch'
+  'ngTouch',
+  'angular-bind-html-compile'
 ])
 
   .constant('_', window._)

@@ -109,7 +109,8 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
     $scope.subtabShowcase.show();
   }
 
-  $scope.openmoreInfo = () => {
+  $scope.openmoreInfo = (e) => {
+    e.stopPropagation();
     $scope.moreInfo.show();
   }
 
@@ -121,6 +122,11 @@ export default function($stateParams, $scope, $state, $ionicPopover, $ionicHisto
     $scope.categories.map((item) => item.chosen = false);
     $scope.categories[index].chosen = true;
   };
+
+  $scope.followFormMoreInfo = () => {
+    $scope.follow( $scope.chosenBrand );
+    $scope.moreInfo.hide();
+  }
 
 
   //$scope.onBlindChange = (index) => {

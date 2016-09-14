@@ -17,9 +17,10 @@
         <div class="block-line update">
           <p class="title">Получать Новости</p>
           <p class="description">Узнавайте об эксклюзивных продуктах, скидках и т.д.</p>
-          <div class="button">
+          <div class="button" ng-click="followFormMoreInfo()">
             <i class="ion-ios-email-outline"></i>
-            <span>Подписаться</span>
+            <span ng-if="chosenBrand.isLiked">Отписаться</span>
+            <span ng-if="! chosenBrand.isLiked">Подписаться</span>
           </div>
         </div>
       </div>

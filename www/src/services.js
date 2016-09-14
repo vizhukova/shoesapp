@@ -629,18 +629,28 @@ angular.module('starter.services', [])
 
     this.addLiked = (id) => {
 
-      likes.push(id);
-      localStorageService.set('likedBrands', likes);
-      console.log('addLiked', likes)
-      Server.post('brand.follow', {"brandId": id, "follow": 1});
+      pushwoosh.getPushwooshHWID(function(token) {
+
+        likes.push(id);
+        localStorageService.set('likedBrands', likes);
+        console.log('addLiked', likes)
+        Server.post('brand.follow', {"brandId": id, "follow": 1, hwid: token});
+
+      });
 
     };
 
     this.removeLiked = (id) => {
 
-      likes = likes.filter((item) => item != id);
-      localStorageService.set('likedBrands', likes);
-      Server.post('brand.follow', {"brandId": id, "follow": 0});
+      var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
+
+      pushwoosh.getPushwooshHWID(function(token) {
+
+         likes = likes.filter((item) => item != id);
+        localStorageService.set('likedBrands', likes);
+        Server.post('brand.follow', {"brandId": id, "follow": 0});
+
+      });
 
     };
 
