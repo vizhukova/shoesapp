@@ -157,6 +157,7 @@ angular.module('starter.controllers', [])
       );
     }
 
+
     function onMainScroll () {
 
       if(! $scope.isLogIn) {
