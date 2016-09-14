@@ -144,7 +144,7 @@ angular.module('starter.controllers', [])
 
        var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
-      pushwoosh.onDeviceReady(poshwooshConfig);
+      pushwoosh.onDeviceReady(pushwooshConfig);
 
       pushwoosh.registerDevice(
           function(status) {
