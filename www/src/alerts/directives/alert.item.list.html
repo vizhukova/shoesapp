@@ -1,6 +1,12 @@
 <div>
   <div class="img">
-    <img src="{{::widget.img}}" width="100%" height="auto" alt="">
+       <image-loader
+            source="{{widget.img}}"
+            width="100%"
+            height="auto"
+            defaultPic="./img/nopicture.png"
+         ></image-loader>
+    <!--<img src="{{::widget.img}}" width="100%" height="auto" alt="">-->
   </div>
   <div class="text">
     <p class="title">{{::widget.name}}</p>

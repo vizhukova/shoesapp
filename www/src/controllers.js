@@ -92,10 +92,15 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, Category, Item, Brand, Banner, Info) {
+  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, pushwooshConfig, $ionicScrollDelegate, Category, Item, Brand, Banner, Info, Settings, pushNotification) {
 
     $scope.categoryId;
     $scope.categoryService = Category;
+    $scope.settingsService = Settings;
+    $scope.isMainScrollOn = false;
+    $scope.allowScroll = false;
+
+    // onMainScroll();
 
     $scope.ready = () => {
 
@@ -104,6 +109,81 @@ angular.module('starter.controllers', [])
 
     };
 
+    var mainScroll = $('#MainScroll');
+    var contentScroll = $('#ContentScroll');
+
+    $('.bannerSlider').bind('touchstart', function() {
+      console.log('!!!!!!! bannerSlider touchstart !!!!!!!!!!!!');
+    });
+
+    $('.bannerSlider').bind('touchend', function() {
+      console.log('!!!!!!! bannerSlider touchend !!!!!!!!!!!!');
+    });
+
+    mainScroll.bind('scroll', function() {
+      console.log('main scroll')
+      if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+          offMainScroll();
+      }
+    });
+
+    contentScroll.bind('scroll', function() {
+
+       console.log('content scroll')
+      console.log('scrollTop ==', $(this).scrollTop())
+      if($(this).scrollTop() <= 5) {
+       onMainScroll();
+      }
+
+    });
+
+    function pushNotif() {
+       /**
+       * Push notification
+       */
+
+       var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
+
+      pushwoosh.onDeviceReady(poshwooshConfig);
+
+      pushwoosh.registerDevice(
+          function(status) {
+              pushNotification.subscribe(status.pushToken);
+              // alert("Registered with push token: " + status.pushToken);
+          },
+          function(error) {
+              alert("Failed to register: " +  error);
+          }
+      );
+    }
+
+    function onMainScroll () {
+
+      if(! $scope.isLogIn) {
+        mainScroll.css('overflow-y', 'auto');
+        contentScroll.css('overflow-y', 'hidden');
+        // $ionicScrollDelegate.$getByHandle('MainScroll').scrollTop(true);
+        mainScroll.scrollTop(0);
+      }
+
+    }
+
+    function offMainScroll () {
+      if(! $scope.isLogIn) {
+        mainScroll.css('overflow-y', 'hidden');
+        contentScroll.css('overflow-y', 'auto');
+      }
+    }
+
+    $scope.isLogIn = Settings.isLogIn();
+
+    if($scope.isLogIn) {
+      offMainScroll();
+      pushNotif();
+    } else {
+      onMainScroll();
+    }
+
     Info.get().then((info) => {
       $scope.info = info;
     });
@@ -111,6 +191,15 @@ angular.module('starter.controllers', [])
     Category.get().then((data) => {
       $scope.categories = data;
       $scope.$digest();
+    });
+
+    $scope.$watch('settingsService.isLogIn()', (newVal) => {
+      if(newVal) {
+        offMainScroll();
+        pushNotif();
+        $scope.isLogIn = newVal;
+        console.log('isLogon watcher');
+      }
     });
 
      $scope.$watch('categoryService.getActive()', (newVal) => {

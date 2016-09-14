@@ -12,40 +12,46 @@
 
   <ion-scroll direction="y" style="height: 100%">
 
-    <div class="bar bar-subheader">
-       <!--<miss-something></miss-something>-->
-      <categories cats="categories" activeCat="activeCategoryId"></categories>
-    </div>
+    <ion-content id="MainScroll" scroll="true" delegate-handle="MainScroll">
+       <div class="bar bar-subheader">
+          <miss-something ng-if="!isLogIn"></miss-something>
+          <categories cats="categories" activeCat="activeCategoryId"></categories>
+        </div>
 
-    <ion-content scroll-sista="header" class="has-subheader">
+        <ion-content scroll="true" style="height: calc(100% - 164px + 49px + 28px);"
+                     class="has-subheader"
+                     id="ContentScroll"
+                     ng-class="{'miss-block': !isLogIn}">
 
-       <banner-slider imgs="mainBanners" isClickable="true"></banner-slider>
+           <banner-slider imgs="mainBanners" isClickable="true"></banner-slider>
 
-       <button class="button by-cat-btn big-button" ng-click="ready() ? openPopover() : null">
-        Просмотр по категориям
-      </button>
+           <button class="button by-cat-btn big-button" ng-click="ready() ? openPopover() : null">
+            Просмотр по категориям
+          </button>
 
-      <div class="loader-container">
+          <div class="loader-container">
 
-        <div class="loader-gif" ng-if="! ready()"></div>
+            <div class="loader-gif" ng-if="! ready()"></div>
 
-        <div ng-if="ready()">
+            <div ng-if="ready()">
 
-          <liked-slider  title-click="goToProducts" title-click-param="{feature: 'sale', sectionId: categoryId}" widget="sales"></liked-slider>
-          <liked-slider  title-click="goToProducts" title-click-param="{feature: 'new', sectionId: categoryId}" widget="newArrivals"></liked-slider>
-          <liked-slider  title-click="goToProducts" title-click-param="{feature: 'popular', sectionId: categoryId}" widget="popular"></liked-slider>
+              <liked-slider  title-click="goToProducts" title-click-param="{feature: 'sale', sectionId: categoryId}" widget="sales"></liked-slider>
+              <liked-slider  title-click="goToProducts" title-click-param="{feature: 'new', sectionId: categoryId}" widget="newArrivals"></liked-slider>
+              <liked-slider  title-click="goToProducts" title-click-param="{feature: 'popular', sectionId: categoryId}" widget="popular"></liked-slider>
 
-          <gallery-slider title-click="goToBrands" title-click-param="{feature: 'sale'}" item-click="goToBrand" widget="brandSales"></gallery-slider>
-          <gallery-slider title-click="goToBrands" title-click-param="{feature: 'new'}" item-click="goToBrand" widget="brandNewArrivals"></gallery-slider>
-          <gallery-slider title-click="goToBrands" title-click-param="{feature: 'popular'}" item-click="goToBrand" widget="brandPopular"></gallery-slider>
+              <gallery-slider title-click="goToBrands" title-click-param="{feature: 'sale'}" item-click="goToBrand" widget="brandSales"></gallery-slider>
+              <gallery-slider title-click="goToBrands" title-click-param="{feature: 'new'}" item-click="goToBrand" widget="brandNewArrivals"></gallery-slider>
+              <gallery-slider title-click="goToBrands" title-click-param="{feature: 'popular'}" item-click="goToBrand" widget="brandPopular"></gallery-slider>
 
 
-          <category-bar></category-bar>
+              <category-bar></category-bar>
+              </div>
+
           </div>
 
-      </div>
-
+        </ion-content>
     </ion-content>
+
 
   </ion-scroll>
 

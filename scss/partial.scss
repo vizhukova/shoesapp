@@ -309,6 +309,10 @@
         margin-right: 1em;
       }
 
+      p.title {
+        font-weight: 100;
+      }
+
       div.holder {
         position: relative;
         width: 10em;
@@ -411,7 +415,7 @@
         width: 10em;
 
         &.brand {
-          font-weight: 600;
+          font-weight: 800;
         }
 
         &.title {
@@ -1461,7 +1465,7 @@ button.join {
   $mainTextColor: #000;
   $otherTextColor: #5B5E61;
 
-  background: #CCCCCC !important;
+  background: #f1f1f1 !important;
   opacity: 0.95;
   text-align: center;
 
@@ -1956,6 +1960,7 @@ button.join {
   }
 
    .imageLoader {
+    min-height: 100px;
 
     .spinner {
       background: gray;
@@ -2159,6 +2164,7 @@ button.join {
      bottom: 0;
      margin: auto;
      background: transparent;
+     background-color: transparent !important;
    }
 
  .button-done {
@@ -2206,10 +2212,13 @@ button.join {
     height: 30px;
     line-height: 30px;
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid transparent;
     border-radius: 7px;
     font-size: 0.7em;
     font-weight: 600;
+   -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 
     p {
       line-height: 2em;
@@ -2298,11 +2307,50 @@ button.join {
     bottom: inherit;
     z-index: 500;
     margin: auto;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: solid 1px #000;
   }
 }
 
 .hide-nav {
   .tabs {
     display: none;
+  }
+}
+
+.miss-something {
+  padding: 15px;
+  position: relative;
+  background: #f5f5f5;
+  color: #4f5052;
+  font-size: 13px;
+  height: 164px;
+  text-align: center;
+
+  .paragraph-title {
+    color: #353537;
+    font-size: 14px;
+  }
+
+  button {
+    background-color: #3d6eee;
+    width: 90%;
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 1;
+    padding: 0 8px;
+    min-width: initial;
+    min-height: 31px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 32px;
+  }
+}
+
+.title.title-center.header-item {
+  .nav-bar-title{
+    padding-left: 10px;
   }
 }

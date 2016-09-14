@@ -12,6 +12,7 @@
         <div class="brand-first-page">
         <div class="brand-slide">
           <img class="base-img" src="{{::chosenBrand.background}}" width="100%" height="100%" alt="">
+          <div class="gradient-under-pictire"></div>
           <div class="details">
             <div class="details-under-picture">
 
@@ -28,7 +29,7 @@
             <div class="send" ng-click="shareAnywhere()">
               <i class="ion-ios-upload-outline"></i>
             </div>
-            <div class="more-info" ng-click="openmoreInfo()">
+            <div class="more-info" ng-touchend="openmoreInfo($event)">
               <p class="title short">{{::chosenBrand.descShort}}</p>
               <p>
                 <span>Подробнее</span>
