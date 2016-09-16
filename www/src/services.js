@@ -782,11 +782,11 @@ angular.module('starter.services', [])
 
   })
 
-  .service('Facebook', function ($http) {
+  .service('Facebook', function ($http, Server) {
 
     this.getUserData = (clientId, accessToken) => {
 
-      var url = `https://graph.facebook.com/${clientId}?fields=name,email&access_token=${accessToken}`;
+      var url = `https://graph.facebook.com/${clientId}?fields=picture,id,name,first_name,last_name,gender,email&access_token=${accessToken}`;
 
       return new Promise((resolve, reject) => {
         $http({
@@ -798,6 +798,25 @@ angular.module('starter.services', [])
           reject(err);
         });
       });
+
+    };
+
+
+    this.auth = (accessToken, data) => {
+
+      var dataToSend = {
+        userToken: accessToken,
+        data: data
+      };
+
+      return new Promise((resolve, reject) => {
+        Server.post('auth.facebook', dataToSend).then((result) => {
+          localStorageService.set('token', result.token);
+          resolve(data.result || []);
+        }).catch((err) => {
+          reject(err);
+        })
+      })
 
     };
 
