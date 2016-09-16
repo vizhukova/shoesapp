@@ -10,7 +10,7 @@
 * выполняем команду gulp sass
 * выполняем команду ionic state restore
 * выполняем команду cordova plugin add phonegap-facebook-plugin --variable APP_ID=value --variable APP_NAME=value, где value  -соответсвующие данные аккаунта разработчика facebook
-* В файле build.gradle добавить строки 
+* В файле platforms/android/build.gradle добавить строки 
 allprojects {
     configurations {
         all*.exclude group: 'com.android.support', module: 'support-v4'
