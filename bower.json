@@ -13,6 +13,6 @@
     "ngtouch": "~1.0.1",
     "ng-cordova-oauth": "^0.2.10",
     "ionic-push-notification": "^1.0.0",
-    "angular-bind-html-compile": "^1.3.0"
+    "angular-bind-html-compile": "~1.3.0"
   }
 }

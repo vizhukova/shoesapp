@@ -35,7 +35,6 @@
     "pushwoosh-cordova-plugin"
   ],
   "cordovaPlatforms": [
-    "ios",
-    "android"
+    "ios"
   ]
 }

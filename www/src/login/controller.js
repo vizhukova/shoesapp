@@ -145,20 +145,23 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout,Fac
       // facebookConnectPlugin.browserInit(274524819600750);
 
 
+    debugger
       facebookConnectPlugin.login(['public_profile'], (status)=>{
         console.log(status)
 
         var data = status.authResponse;
         Facebook.getUserData(data.userID, data.accessToken).then((result) => {
 
-          return Facebook.auth(data.accessToken, result);
+          return Facebook.auth(data.accessToken, result.data);
 
-        }).then(() => {
+        }).then((data) => {
 
-          console.log(result); // data{name: '', email: '', id: ''}
+          console.log(data); // data{name: '', email: '', id: ''}
           $scope.toShop();
 
-      })
+      }).catch((err) => {
+          console.error(err);
+        })
 
       }, (err)=>{
         console.log('Error', err)

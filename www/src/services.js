@@ -782,7 +782,7 @@ angular.module('starter.services', [])
 
   })
 
-  .service('Facebook', function ($http, Server) {
+  .service('Facebook', function ($http, Server, localStorageService) {
 
     this.getUserData = (clientId, accessToken) => {
 
@@ -810,7 +810,8 @@ angular.module('starter.services', [])
       };
 
       return new Promise((resolve, reject) => {
-        Server.post('auth.facebook', dataToSend).then((result) => {
+        Server.post('auth.facebook/', dataToSend).then((result) => {
+          debugger
           localStorageService.set('token', result.token);
           resolve(data.result || []);
         }).catch((err) => {
