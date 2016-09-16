@@ -150,39 +150,20 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout,Fac
 
         var data = status.authResponse;
         Facebook.getUserData(data.userID, data.accessToken).then((result) => {
+
+          return Facebook.auth(data.accessToken, result);
+
+        }).then(() => {
+
           console.log(result); // data{name: '', email: '', id: ''}
           $scope.toShop();
-        });
+
+      })
 
       }, (err)=>{
         console.log('Error', err)
       })
 
-
-     // $cordovaOauth.facebook("148628878919188", ["email"]).then(function(result) {
-     //        // results
-     //   debugger
-     //    }, function(error) {
-     //        // error
-     //   debugger
-     //    });
-
-    // CordovaFacebook.login({
-    //    permissions: ['email', 'user_likes'],
-    //    onSuccess: function(result) {
-    //       if(result.declined.length > 0) {
-    //          alert("The User declined something!");
-    //       }
-    //       alert("OK");
-    //    },
-    //    onFailure: function(result) {
-    //       if(result.cancelled) {
-    //          alert("The user doesn't like my app");
-    //       } else if(result.error) {
-    //          alert("There was an error:" + result.errorLocalized);
-    //       }
-    //    }
-    // });
   };
 
   $scope.forgotPassword = function() {
