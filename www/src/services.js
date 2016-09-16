@@ -811,9 +811,8 @@ angular.module('starter.services', [])
 
       return new Promise((resolve, reject) => {
         Server.post('auth.facebook/', dataToSend).then((result) => {
-          debugger
           localStorageService.set('token', result.token);
-          resolve(data.result || []);
+          resolve(result);
         }).catch((err) => {
           reject(err);
         })

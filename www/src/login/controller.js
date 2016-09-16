@@ -144,8 +144,6 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout,Fac
   $scope.signInViaFacebook = function() {
       // facebookConnectPlugin.browserInit(274524819600750);
 
-
-    debugger
       facebookConnectPlugin.login(['public_profile'], (status)=>{
         console.log(status)
 
