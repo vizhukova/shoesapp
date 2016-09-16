@@ -1,5 +1,5 @@
 
-export default function($scope, $state, $ionicPopover, $ionicModal, $timeout,Facebook, User, Banner, Info) {
+export default function($scope, $state, $ionicPopover, $ionicModal, $timeout,Facebook, User, Banner, Info, pushwooshConfig, pushNotification) {
 
   $scope.animation = 'slide-in-up';
   $scope.recovery = false;
@@ -98,6 +98,7 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout,Fac
 
     User.signIn($scope.user).then((data) => {
 
+      pushNotif();
       $scope.signinPopover.hide();
 
       if($scope.callback) {
@@ -123,6 +124,7 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout,Fac
 
     User.signUp($scope.user).then((data) => {
 
+      pushNotif();
       $scope.signinPopover.hide();
       $scope.signunPopover.hide();
 
@@ -154,6 +156,7 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout,Fac
 
         }).then((data) => {
 
+          pushNotif();
           console.log(data); // data{name: '', email: '', id: ''}
           $scope.toShop();
 
@@ -189,4 +192,24 @@ export default function($scope, $state, $ionicPopover, $ionicModal, $timeout,Fac
     })
 
   };
+
+  function pushNotif() {
+    /**
+     * Push notification
+     */
+
+    var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
+
+    pushwoosh.onDeviceReady(pushwooshConfig);
+
+    pushwoosh.registerDevice(
+      function(status) {
+        pushNotification.subscribe(status.pushToken);
+        console.log('Push subscribe', status)
+      },
+      function(error) {
+        console.error("Failed to register: " +  error);
+      }
+    );
+  }
 }

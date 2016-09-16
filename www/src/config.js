@@ -6,7 +6,7 @@ angular.module('starter.config', [])
 .value('URL', 'https://selectologie.ru/api/') // domain for sending requests from app
 
 .value('pushwooshConfig', {
-  appid : "A2198-8ED39",
+  appid : "D2EF1-88C05",
   projectid: "994032173270", // for Android
   serviceName: 'GCM' // is optional for Windows Phone (wp8)
 });

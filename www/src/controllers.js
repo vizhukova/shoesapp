@@ -92,7 +92,7 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, pushwooshConfig, $ionicScrollDelegate, Category, Item, Brand, Banner, Info, Settings, pushNotification) {
+  .controller('ShopCtrl', function ($scope, $state, $ionicPopover, $ionicScrollDelegate, Category, Item, Brand, Banner, Info, Settings) {
 
     $scope.categoryId;
     $scope.categoryService = Category;
@@ -137,26 +137,6 @@ angular.module('starter.controllers', [])
 
     });
 
-    function pushNotif() {
-       /**
-       * Push notification
-       */
-
-       var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
-
-      pushwoosh.onDeviceReady(pushwooshConfig);
-
-      pushwoosh.registerDevice(
-          function(status) {
-              pushNotification.subscribe(status.pushToken);
-              // alert("Registered with push token: " + status.pushToken);
-          },
-          function(error) {
-              alert("Failed to register: " +  error);
-          }
-      );
-    }
-
 
     function onMainScroll () {
 
@@ -180,7 +160,6 @@ angular.module('starter.controllers', [])
 
     if($scope.isLogIn) {
       offMainScroll();
-      pushNotif();
     } else {
       onMainScroll();
     }
@@ -197,7 +176,6 @@ angular.module('starter.controllers', [])
     $scope.$watch('settingsService.isLogIn()', (newVal) => {
       if(newVal) {
         offMainScroll();
-        pushNotif();
         $scope.isLogIn = newVal;
         console.log('isLogon watcher');
       }
